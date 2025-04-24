@@ -1,0 +1,82 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 22/04/2025, 3:11:11 a. m.
+    Author     : javie
+*/
+
+
+
+body {
+    font-family: sans-serif;
+    background-color: #f4f4f4; /* Un fondo gris claro */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header {
+    background: rgba(33,180,226,1); /* Uno de los colores finales del gradiente */
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+main {
+    background-color: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 600px;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #333;
+}
+
+input[type="date"],
+input[type="time"],
+select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 15px; /* Usando el mismo radio que los campos de texto */
+    font-size: 18px;
+    box-sizing: border-box;
+}
+
+button {
+    background: rgba(113,206,239,1); /* Un color intermedio del gradiente */
+    color: black;
+    padding: 10px 30px;
+    border: none;
+    border-radius: 15px; /* Usando el mismo radio que los botones */
+    font-size: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+button:hover {
+    background: rgba(33,180,226,1); /* Color más intenso al hacer hover */
+    color: white;
+}
+
+#mensaje {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #28a745; /* Un color verde para mensajes de éxito */
+    text-align: center;
+}

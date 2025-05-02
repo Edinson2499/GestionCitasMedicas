@@ -1,24 +1,16 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : 6/10/2020, 08:12:16 PM
-    Author     : Emmanuel
-*/
 
 *{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+    padding: 0; /*Quitar el padding de los elementos*/
+    margin: 0; /*Quitar el margin de los elementos*/
+    box-sizing: border-box; /*Para que el padding y el margin no afecten al tamaño del elemento*/
+    font-family: 'Poppins', sans-serif; /*Tipo de letra*/
 }
 
 
 body{
     padding: 0;
     margin: 0;
-    background-image: url(../imagenes/fondoBlanco.jpg);
+    background-image: url(../imagenes/fondoBlanco.jpeg);
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -26,12 +18,22 @@ body{
     color: white; /*Colorear de blanco los componentes de nuestra pagina: letra, bordes, etc..*/
 }
 
-.menu{
-    padding: 20px;
-    text-align: center;
-    border-style: none solid solid solid;
-    border-radius: 0px 0px 50px 50px;
-    
+.menu {
+    padding: 0; /*Quitar el padding de los elementos*/
+    margin: 0 auto; /*Centrar el menú horizontalmente*/
+    text-align: center; /*Alinear el texto al centro*/
+    background: rgba(183,222,237,1); /*Color de fondo*/
+    border-style: none solid none; /*Borde de los elementos*/
+    border-color: rgba(255, 255, 255, 0.7); /*Color del borde*/
+    border-radius: 30px; /*Esquinas redondeadas*/
+    border-width: 0px 0px 5px 0px; /*Espacio entre los elementos*/
+    width: fit-content; /*Ajustar el ancho al contenido*/
+    position: absolute; /*Posicionar el menú de forma absoluta*/
+    top: 50%; /*Centrar verticalmente*/
+    left: 50%; /*Centrar horizontalmente*/
+    transform: translate(-50%, -50%); /*Ajustar el centro exacto*/
+    display: inline-block; /*Mantener los botones uno al lado del otro*/
+
     background: rgba(183,222,237,1);
     background: -moz-radial-gradient(center, ellipse cover, rgba(183,222,237,1) 0%, rgba(183,222,237,1) 7%, rgba(113,206,239,1) 31%, rgba(33,180,226,1) 67%, rgba(33,180,226,1) 100%);
     background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(183,222,237,1)), color-stop(7%, rgba(183,222,237,1)), color-stop(31%, rgba(113,206,239,1)), color-stop(67%, rgba(33,180,226,1)), color-stop(100%, rgba(33,180,226,1)));
@@ -40,34 +42,73 @@ body{
     background: -ms-radial-gradient(center, ellipse cover, rgba(183,222,237,1) 0%, rgba(183,222,237,1) 7%, rgba(113,206,239,1) 31%, rgba(33,180,226,1) 67%, rgba(33,180,226,1) 100%);
     background: radial-gradient(ellipse at center, rgba(183,222,237,1) 0%, rgba(183,222,237,1) 7%, rgba(113,206,239,1) 31%, rgba(33,180,226,1) 67%, rgba(33,180,226,1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b7deed', endColorstr='#21b4e2', GradientType=1 );
-}
+    font-family: 'Poppins', sans-serif; /*Asegurar consistencia en la fuente*/
+    font-size: 18px; /*Tamaño de letra más uniforme*/
+    font-weight: 500; /*Peso de la letra para mejor legibilidad*/
+    letter-spacing: 0.5px; /*Espaciado entre letras para mayor claridad*/
+    text-align: center; /*Alinear el texto al centro*/
+    color: #ffffff; /*Color blanco para contraste con el fondo*/
+    }
+
+    .menu ul {
+        display: flex; /*Usar flexbox para alinear los botones en línea*/
+        justify-content: center; /*Centrar los botones horizontalmente*/
+        padding: 0;
+        margin: 0;
+    }
+    .menu.move-to-top {
+        position: relative; /* Cambiar a posición relativa para que afecte el flujo del documento */
+        top: 0; /* Mover el menú a la parte superior */
+        transform: translate(-50%,0);/* Ajustar la posición horizontal */
+        left: 50%; /* Mantener centrado horizontalmente */
+        margin: 0 auto; /* Centrar horizontalmente */
+        width: fit-content; /* Ajustar el ancho al contenido */
+        transition: all 0.5s ease; /* Transición suave */
+        margin-bottom: 20px; /* Agregar margen inferior para empujar otros componentes hacia abajo */
+        z-index: 1; /* Asegurar que el menú esté por encima de otros elementos */
+    }
 
 
 
 .menu ul li a{
-    text-decoration: none;
-    padding: 10px;
-    color: white;
+    text-decoration: none; /*Quitar el subrayado de los enlaces*/
+    color: white; /*Colorear de blanco los componentes de nuestra pagina: letra, bordes, etc..*/
+    padding: 10px 20px; /*Espacio entre los elementos*/
+    color: white; /*Colorear de blanco los componentes de nuestra pagina: letra, bordes, etc..*/
+    font-size: 20px; /*Tamaño de la letra*/
 }
 
 
 .menu ul li{
-    font-size: 25px;
-    list-style: none;
-    display: inline-block;
-    padding: 10px;
-    border-style: solid;
-    margin-right: 30px;
-    border-radius: 30px;
-    background: rgba(0,0,0, 0.4);
-    box-shadow: 0px 0px 10px 4px white;
-    transition: all .5s;
-}
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif; /*Tipo de letra*/
+    font-weight: 600; /*Grosor de la letra*/
+    list-style: none; /*Quitar los puntos de la lista*/
+    text-align: center; /*Alinear el texto al centro*/
+    display: inline-block; /*Mostrar los elementos en linea*/
+    padding: 10px 20px; /*Espacio entre los elementos*/
+    border-style: solid; /*Borde de los elementos*/
+    border-width: 0px 0px 5px 0px; /*Espacio entre los elementos*/
+    margin-right: 20px; /*Espacio entre los elementos*/
+    margin-left: 20px; /*Espacio entre los elementos*/
+    border-radius: 30px; /*Esquinas redondeadas*/
+    border-color: rgba(255, 255, 255, 0.7); /*Color del borde*/
+    transition: all .5s; /*Transicion de los elementos*/
+    background: linear-gradient(to bottom, #00acc1, #40c4ff); /*Color de fondo*/
+    gap: 20px; /*Espacio entre los elementos*/
+    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2); /*Sombra de los elementos*/
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /*Sombra del texto*/
+    margin-bottom: 20px; /*Espacio entre los elementos*/
+    margin-top: 20px; /*Espacio entre los elementos*/
+    }
 
 
 .menu ul li:hover{
     transition: all .5s;
-    box-shadow: 0px 0px 10px 6px white;
-    background: rgba(0,0,0, 0.9);
-    transform: translate(0px, -5px);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5); /*Sombra de los elementos*/
+    text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /*Sombra del texto*/
+    background: rgba(255, 255, 255, 0.2); /*Color de fondo*/
+    border-color: rgba(255, 255, 255, 0.7); /*Color del borde*/
+    transform: translate(0px, -5px); /*Mover los elementos hacia arriba*/
+    cursor: pointer; /*Cambiar el cursor al pasar por encima de los elementos*/
 }

@@ -1,10 +1,5 @@
-<%-- 
-    Document   : login.jsp
-    Created on : 17/08/2020, 09:17:04 PM
-    Author     : Emmanuel
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="java.util.*" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -21,25 +16,21 @@
     <body>
         <div class="cuerpoFormulario" id="cuerpoFormulario">
             <form class="formularioLogin" id="formularioLogin" method="post" action="InicioSesionServlet">
-                <h1>Inicie Sesion</h1>
+                <form id="loginFormElement">
+                    <label for="username">Usuario:</label>
+                    <input type="text" id="username" name="username" placeholder="Ingrese su usuario" required />
 
-                <p>Usuario:</p>
-                <div class="texto">
-                    <input type="text" class="txt" id="txtUsuario" required="" name="txtUsuario">
-                </div>
+                    <label for="password">Contraseña:</label>
+                    <input type="password" id="password" name="password" placeholder="Ingrese su contraseña" required />
 
-                <p>Contraseña:</p>
-                <div class="texto">
-                    <input type="password" class="txt" id="txtContrasena" required="" name="txtContrasena">
-                </div>
-                <button onclick="window.location.href='login_admin.jsp'">Iniciar Sesión como Admin</button>
-                <br>
-
-                <input type="submit" value="Iniciar Sesion" class="btn">
-                <input type="button" value="Borrar Datos" class="btn" onclick="resetearFormularioLogin()">
-             
+                    <div class="buttonGroup">
+                        <input type="submit" value="Iniciar Sesion" class="btn">
+                        <input type="button" value="Borrar Datos" class="btn" onclick="resetearFormularioLogin()">
+                    </div>
+                </form>
             </form>
         </div>
     </body>
+        <div class="cuerpoFormulario" id="cuerpoFormulario">
     <script src="js/funcionesLogin.js"></script>
 </html>

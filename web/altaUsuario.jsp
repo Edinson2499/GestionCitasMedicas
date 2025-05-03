@@ -21,7 +21,6 @@
         <div class="cuerpoFormulario" id="cuerpoFormulario"> 
             <form class="formularioAlta" id="formularioAlta" method="post" action="GuardarServlet">
                 <input type="hidden" name="rol" value="paciente">
-                <input type="submit" value="Enviar Datos" class="btn" id="btnEnviarDatos" disabled="">
                 <h1>Registro de Usuarios</h1>
                 <br>
                 <label>ID:</label> <input type="text" class="txt" id="txtId" required="" name="txtId">

@@ -10,7 +10,7 @@
 body{
     padding: 0;
     margin: 0;
-    background-image: url(../imagenes/fondoBlanco.jpeg);
+    background-image: url(../imagenes/fondoBlanco.png);
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -67,6 +67,17 @@ body{
         margin-bottom: 20px; /* Agregar margen inferior para empujar otros componentes hacia abajo */
         z-index: 1; /* Asegurar que el menú esté por encima de otros elementos */
     }
+    .menu.move-to-top-login {
+        position: fixed; /* Cambiar a fixed para que se posicione relativo a la ventana */
+        top: 24%; /* Mover el menú a la parte superior */
+        left: 50%; /* Centrar horizontalmente */
+        transform: translate(-50%, 0); /* Ajustar el centro horizontal */
+        margin: 0; /* Eliminar márgenes que puedan afectar el posicionamiento */
+        width: fit-content; /* Ajustar el ancho al contenido */
+        transition: all 0.5s ease; /* Transición suave */
+        z-index: 1000; /* Asegurar que el menú esté por encima de otros elementos */
+    }
+
 
 
 

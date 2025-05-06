@@ -14,22 +14,22 @@
         %>
     </head>
     <body>
-        <div class="cuerpoFormulario" id="cuerpoFormulario">
-            <form class="formularioLogin" id="formularioLogin" method="post" action="InicioSesionServlet">
-                <form id="loginFormElement">
-                    <label for="username">Usuario:</label>
-                    <input type="text" id="username" name="username" placeholder="Ingrese su usuario" required />
+            <div class="cuerpoFormulario" id="cuerpoFormulario">
+                <form class="formularioLogin" id="formularioLogin" method="post" action="InicioSesionServlet">
+                    <form id="loginFormElement">
+                        <label for="username">Usuario:</label>
+                        <input type="text" id="username" name="username" placeholder="Ingrese su usuario" required />
 
-                    <label for="password">Contraseña:</label>
-                    <input type="password" id="password" name="password" placeholder="Ingrese su contraseña" required />
+                        <label for="password">Contraseña:</label>
+                        <input type="password" id="password" name="password" placeholder="Ingrese su contraseña" required />
 
-                    <div class="buttonGroup">
-                        <input type="submit" value="Iniciar Sesion" class="btn">
-                        <input type="button" value="Borrar Datos" class="btn" onclick="resetearFormularioLogin()">
-                    </div>
+                        <div class="buttonGroup">
+                            <input type="submit" value="Iniciar Sesion" class="btn">
+                            <input type="button" value="Borrar Datos" class="btn" onclick="resetearFormularioLogin()">
+                        </div>
+                    </form>
                 </form>
-            </form>
-        </div>
+            </div>
     </body>
         <div class="cuerpoFormulario" id="cuerpoFormulario">
     <script src="js/funcionesLogin.js"></script>

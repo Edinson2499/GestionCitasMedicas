@@ -11,14 +11,17 @@ function cargarAltaUsuario(){
     cargarElementoDinamicamente("altaUsuario.jsp", document.getElementById("contenidoDinamico"));
 }
 
-function cargarLogin(){
+function cargarLogin() {
     cargarElementoDinamicamente("login.jsp", document.getElementById("contenidoDinamico"));
+    const menu = document.getElementById("menu");
     if (menu) {
-        menu.classList.add('move-to-top');
+        console.log("Aplicando clase move-to-top-login");
+        menu.classList.add('move-to-top-login');
+    } else {
+        console.log("El elemento con ID 'menu' no se encontró");
     }
 }
 function mostrarSeleccionRegistro() {
-    // Creamos el formulario con un <select> para elegir Especialista o Paciente
     const modal = document.createElement("div");
     modal.style.position = "fixed";
     modal.style.top = "0";
@@ -34,8 +37,8 @@ function mostrarSeleccionRegistro() {
     
     const form = document.createElement("div");
     form.style.backgroundColor = "#fff";
-    form.style.padding = "10px";
-    form.style.borderRadius = "8px";
+    form.style.padding = "10px"; // Espaciado interno
+    form.style.borderRadius = "5px"; // Bordes redondeados
     form.style.textAlign = "center";
     form.style.width = "218px"; // Ancho ajustado
     form.style.height = "94px"; // Altura ajustada
@@ -43,13 +46,19 @@ function mostrarSeleccionRegistro() {
     form.style.display = "flex";
     form.style.flexDirection = "column";
     form.style.justifyContent = "space-between"; // Espaciado uniforme entre los elementos
-    form.style.alignItems = "center"; // Centramos el contenido horizontalmente
+    form.style.alignItems = "center";
 
+    // Estilo del select
     const select = document.createElement("select");
     select.id = "tipoUsuario";
-    select.style.width = "calc(100% - 20px)"; // Ancho ajustado con margen
-    select.style.margin = "10px 0"; // Margen ajustado
+    select.style.width = "100%"; // Ancho completo del contenedor
+    select.style.margin = "0"; // Sin margen
     select.style.height = "30px"; // Altura ajustada
+    select.style.border = "1px solid #ccc"; // Borde delgado
+    select.style.borderRadius = "5px"; // Bordes redondeados
+    select.style.padding = "2px"; // Espaciado interno
+    select.style.fontSize = "14px"; // Tamaño de fuente
+
     const option1 = document.createElement("option");
     option1.value = "especialista";
     option1.innerText = "Especialista";
@@ -61,24 +70,32 @@ function mostrarSeleccionRegistro() {
     select.appendChild(option2);
     
     form.appendChild(select);
-    
+
+    // Estilo del botón
     const button = document.createElement("button");
     button.innerText = "Seleccionar";
-    button.style.width = "calc(100% - 20px)"; // Ancho ajustado con margen
-    button.style.margin = "10px 0"; // Margen ajustado
+    button.style.width = "100%"; // Ancho completo del contenedor
+    button.style.margin = "5px 0"; // Margen superior e inferior
     button.style.height = "30px"; // Altura ajustada
+    button.style.backgroundColor = "#f5f5f5"; // Color de fondo
+    button.style.color = "#000"; // Color del texto
+    button.style.border = "1px solid #ccc"; // Borde delgado
+    button.style.borderRadius = "5px"; // Bordes redondeados
+    button.style.fontSize = "14px"; // Tamaño de fuente
+    button.style.cursor = "pointer"; // Cursor de puntero
+
     button.onclick = function() {
         const tipoUsuario = select.value;
-        const menu = document.getElementById("menu"); // Asumimos que el menú tiene este ID
+        const menu = document.getElementById("menu");
         if (tipoUsuario === "especialista") {
-            cargarAltaUsuarioE(); // Llamada para el registro de Especialista
+            cargarAltaUsuarioE();
         } else if (tipoUsuario === "paciente") {
-            cargarAltaUsuario(); // Llamada para el registro de Paciente
+            cargarAltaUsuario();
         }
         if (menu) {
-            menu.classList.add('move-to-top'); // Aplicamos la clase 'move-to-top'
+            menu.classList.remove('move-to-top-login');
+            menu.classList.add('move-to-top');
         }
-        // Cerrar el modal después de la selección
         document.body.removeChild(modal);
     };
     

@@ -20,21 +20,31 @@
     <body>
         <div class="cuerpoFormulario" id="cuerpoFormulario"> 
             <form class="formularioAlta" id="formularioAlta" method="post" action="GuardarServlet">
-                <input type="hidden" name="rol" value="paciente">
-                <h1>Registro de Usuarios</h1>
-                <br>
-                <label>ID:</label> <input type="text" class="txt" id="txtId" required="" name="txtId">
-                <br>
-                <br>
-                <label>Nombre:</label> <input type="text" class="txt" id="txtNombre" required="" onkeyup="usuarioGeneradoAutomaticamente()" name="txtNombre">
-                <label>Apellidos:</label> <input type="text" class="txt" id="txtApellidos" required="" onkeyup="usuarioGeneradoAutomaticamente()" name="txtApellidos">
-                <label>Telefono:</label> <input type="tel" class="txt" id="txtTelefono" required="" onkeyup="usuarioGeneradoAutomaticamente()" name="txtTelefono">
-                <label>Direccion:</label> <input type="text" class="txt" id="txtDireccion" required="" onkeyup="usuarioGeneradoAutomaticamente()" name="txtDireccion">
-                <br>
-                <br>
-                <label>Contraseña:</label> <input type="password" class="txt" id="txtContrasena" required="" onkeyup="coincidirContrasena()">
-                <label>Repita la Contraseña:</label> <input type="password" class="txt" id="txtRepetirContrasena" required="" onkeyup="coincidirContrasena()" name="txtContrasena">
-                <br>
+            <input type="hidden" name="rol" value="paciente">
+            <h1>Registro de Usuarios</h1>
+            <br>
+            <label>ID:</label> <input type="text" class="txt" id="txtId" required="" name="txtId" style="margin-bottom: 5px;">
+            <br>
+            <br>
+            <label style="display: inline-block; width: 100px; text-align: left; margin-right: 5px;">Nombre:</label> 
+            <input type="text" class="txt" id="txtNombre" required="" onkeyup="usuarioGeneradoAutomaticamente()" name="txtNombre" style="display: inline-block; margin-bottom: 5px;">
+            <br>
+            <label style="display: inline-block; width: 100px; text-align: left; margin-right: 5px;">Apellidos:</label> 
+            <input type="text" class="txt" id="txtApellidos" required="" onkeyup="usuarioGeneradoAutomaticamente()" name="txtApellidos" style="display: inline-block; margin-bottom: 5px;">
+            <br>
+            <label style="display: inline-block; width: 100px; text-align: left; margin-right: 5px;">Telefono:</label> 
+            <input type="tel" class="txt" id="txtTelefono" required="" onkeyup="usuarioGeneradoAutomaticamente()" name="txtTelefono" style="display: inline-block; margin-bottom: 5px;">
+            <br>
+            <label style="display: inline-block; width: 100px; text-align: left; margin-right: 5px;">Direccion:</label> 
+            <input type="text" class="txt" id="txtDireccion" required="" onkeyup="usuarioGeneradoAutomaticamente()" name="txtDireccion" style="display: inline-block; margin-bottom: 5px;">
+            <br>
+            <br>
+            <label style="display: inline-block; width: 100px; text-align: left; margin-right: 5px;">Contraseña:</label> 
+            <input type="password" class="txt" id="txtContrasena" required="" onkeyup="coincidirContrasena()" style="display: inline-block; margin-bottom: 5px;">
+            <br>
+            <label style="display: contents; width: 100px; text-align: left; margin-right: 5px;">Repita la Contraseña:</label> 
+            <input type="password" class="txt" id="txtRepetirContrasena" required="" onkeyup="coincidirContrasena()" name="txtContrasena" style="display: inline-block; margin-bottom: 5px;">
+            <br>
                 <br>
                 <label class="avisoContrasena" id="avisoContrasena"> ------- </label>
                 <br>

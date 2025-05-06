@@ -1,5 +1,5 @@
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@pa</style>ge contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -21,15 +21,22 @@
                 <label>ID:</label> <input type="text" class="txt" id="txtId" required="" name="txtiD">
                 <br>
                 <br>
-                <label>Nombre:</label> <input type="text" class="txt" id="txtNombre" required="" onkeyup="usuarioGeneradoAutomaticamente()" name="txtNombre">
-                <label>Apellidos:</label> <input type="text" class="txt" id="txtApellidos" required="" onkeyup="usuarioGeneradoAutomaticamente()" name="txtApellidos">
-                <label>Telefono:</label> <input type="tel" class="txt" id="txtTelefono" required="" onkeyup="usuarioGeneradoAutomaticamente()" name="txtTelefono">
-                <label>Direccion:</label> <input type="text" class="txt" id="txtDireccion" required="" onkeyup="usuarioGeneradoAutomaticamente()" name="txtDireccion">
+                <label style="display: inline-block; width: 100px; text-align: left; margin-right: 5px; margin-bottom: 5px;">Nombre:</label> 
+                <input type="text" class="txt" id="txtNombre" required="" onkeyup="usuarioGeneradoAutomaticamente()" name="txtNombre" style="margin-bottom: 5px;">
+                <br>
+                <label style="display: inline-block; width: 100px; text-align: left; margin-right: 5px; margin-bottom: 5px;">Apellidos:</label> 
+                <input type="text" class="txt" id="txtApellidos" required="" onkeyup="usuarioGeneradoAutomaticamente()" name="txtApellidos" style="margin-bottom: 5px;">
+                <br>
+                <label style="display: inline-block; width: 100px; text-align: left; margin-right: 5px; margin-bottom: 5px;">Telefono:</label> 
+                <input type="tel" class="txt" id="txtTelefono" required="" onkeyup="usuarioGeneradoAutomaticamente()" name="txtTelefono" style="margin-bottom: 5px;">
+                <br>
+                <label style="display: inline-block; width: 100px; text-align: left; margin-right: 5px; margin-bottom: 5px;">Direccion:</label> 
+                <input type="text" class="txt" id="txtDireccion" required="" onkeyup="usuarioGeneradoAutomaticamente()" name="txtDireccion" style="margin-bottom: 5px;">
                 <br>
                 <br>
                 <label>Especialidad:</label>
-                <select class="txt" id="txtEspecialidad" name="txtEspecialidad" required="">
-                    <option value="">Seleccione una especialidad</option>
+                <select class="txt select" id="txtEspecialidad" name="txtEspecialidad" required="">
+                    <option value=""disabled selected>Seleccione una especialidad</option>
                     <option value="Cardiología">Cardiología</option>
                     <option value="Dermatología">Dermatología</option>
                     <option value="Pediatría">Pediatría</option>
@@ -52,18 +59,22 @@
                     <option value="Nefrología">Nefrología</option>
                     <option value="Inmunología">Inmunología</option>
                 </select>
-                
                 <br>
                 <br>
-                <label>NUMERO TARJETA PROFESIONAL:</label> <input type="text" class="txt" id="txtTp" required="" name="txtTp">
-                <label>Contraseña:</label> <input type="password" class="txt" id="txtContrasena" required="" onkeyup="coincidirContrasena()">
-                <label>Repita la Contraseña:</label> <input type="password" class="txt" id="txtRepetirContrasena" required="" onkeyup="coincidirContrasena()" name="txtContrasena">
+                <label style="display: contents; width: 100px; text-align: left; margin-right: 5px; margin-bottom: 5px;">ID Tarjeta Profecional:</label> 
+                <input type="text" class="txt" id="txtTp" required="" name="txtTp"style="margin-bottom: 5px;">
+                <br>
+                <label style="display: contents; width: 100px; text-align: left; margin-right: 5px; margin-bottom: 5px;">Contraseña:</label> 
+                <input type="password" class="txt" id="txtContrasena" required="" onkeyup="coincidirContrasena()"style="margin-bottom: 5px;">
+                <br>
+                <label style="display: contents; width: 100px; text-align: left; margin-right: 5px; margin-bottom: 5px;">Repita la Contrasena:</label> 
+                <input type="password" class="txt" id="txtRepetirContrasena" required="" onkeyup="coincidirContrasena()" name="txtContrasena"style="margin-bottom: 5px;">
                 <br>
                 <br>
                 <label class="avisoContrasena" id="avisoContrasena"> ------- </label>
                 <br>
                 <br>
-                <label>Usuario Generado Automaticamente:</label> <input type="text" class="txt" id="txtUsuarioGeneradoAutomaticamente" required="" readonly="" name="txtUsuarioGeneradoAutomaticamente">
+                <label>Usuario Generado:</label> <input type="text" class="txt" id="txtUsuarioGeneradoAutomaticamente" required="" readonly="" name="txtUsuarioGeneradoAutomaticamente">
                 <br>
                 <br>
                 

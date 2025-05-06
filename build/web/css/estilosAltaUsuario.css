@@ -52,6 +52,7 @@
 .txt{
     font-size: 20px;
     border-radius: 15px;
+    padding: 5px; /* Agrega un pequeño margen interno entre el texto y el cuadro */
 }
 
 

@@ -56,6 +56,4 @@ function coincidirContrasena() {
         avisoContrasena.style.color = "green";
         btnEnviarDatos.disabled = false;
     }
-
-
 }

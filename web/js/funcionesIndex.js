@@ -11,10 +11,14 @@ function cargarAltaUsuario(){
     cargarElementoDinamicamente("altaUsuario.jsp", document.getElementById("contenidoDinamico"));
 }
 
-function cargarLogin(){
+function cargarLogin() {
     cargarElementoDinamicamente("login.jsp", document.getElementById("contenidoDinamico"));
+    const menu = document.getElementById("menu");
     if (menu) {
-        menu.classList.add('move-to-top');
+        console.log("Aplicando clase move-to-top-login");
+        menu.classList.add('move-to-top-login');
+    } else {
+        console.log("El elemento con ID 'menu' no se encontró");
     }
 }
 function mostrarSeleccionRegistro() {
@@ -76,6 +80,7 @@ function mostrarSeleccionRegistro() {
             cargarAltaUsuario(); // Llamada para el registro de Paciente
         }
         if (menu) {
+            menu.classList.remove('move-to-top-login'); // Eliminamos la clase 'move-to-top-login'
             menu.classList.add('move-to-top'); // Aplicamos la clase 'move-to-top'
         }
         // Cerrar el modal después de la selección

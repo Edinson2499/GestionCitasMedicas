@@ -1,5 +1,5 @@
 
-<%@pa</style>ge contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -36,7 +36,7 @@
                 <br>
                 <label>Especialidad:</label>
                 <select class="txt select" id="txtEspecialidad" name="txtEspecialidad" required="">
-                    <option value=""disabled selected>Seleccione una especialidad</option>
+                    <option value="" disabled selected>Seleccione una especialidad</option>
                     <option value="Cardiología">Cardiología</option>
                     <option value="Dermatología">Dermatología</option>
                     <option value="Pediatría">Pediatría</option>
@@ -57,14 +57,14 @@
                     <option value="Neumología">Neumología</option>
                     <option value="Gastroenterología">Gastroenterología</option>
                     <option value="Nefrología">Nefrología</option>
-                    <option value="Inmunología">Inmunología</option>
+                    <option value="Inmunología">Inmunología</option>                    
                 </select>
                 <br>
                 <br>
                 <label style="display: contents; width: 100px; text-align: left; margin-right: 5px; margin-bottom: 5px;">ID Tarjeta Profecional:</label> 
                 <input type="text" class="txt" id="txtTp" required="" name="txtTp"style="margin-bottom: 5px;">
                 <br>
-                <label style="display: contents; width: 100px; text-align: left; margin-right: 5px; margin-bottom: 5px;">Contraseña:</label> 
+                <label style="display: contents; width: 100px; text-align: left; margin-right: 5px; margin-bottom: 5px;">ContraseÃ±a:</label> 
                 <input type="password" class="txt" id="txtContrasena" required="" onkeyup="coincidirContrasena()"style="margin-bottom: 5px;">
                 <br>
                 <label style="display: contents; width: 100px; text-align: left; margin-right: 5px; margin-bottom: 5px;">Repita la Contrasena:</label> 

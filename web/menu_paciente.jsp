@@ -1,24 +1,17 @@
-<%-- 
-    Document   : menu_paciente
-    Created on : 22/04/2025, 2:32:40 a. m.
-    Author     : javie
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/estilosMenu_paciente.css" type="text/css" media="all">
+    <link rel="stylesheet" href="css/estilosMenu_U.css" type="text/css" media="all">
     <title>Menú Paciente</title>
-    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
         <h1>Bienvenido, Paciente</h1>
     </header>
-    <nav>
+    <nav class="menu-usuario">
         <ul>
             <li><a href="agendar_cita.jsp">Agendar Cita</a></li>
             <li><a href="consultar_citas.jsp">Consultar Citas</a></li>
@@ -29,7 +22,7 @@
     </nav>
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const menuLinks = document.querySelectorAll('.menu-paciente a');
+        const menuLinks = document.querySelectorAll('.menu-u a');
 
         menuLinks.forEach((link, index) => {
             // Retraso ligero para cada enlace

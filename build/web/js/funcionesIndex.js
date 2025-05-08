@@ -6,9 +6,11 @@ function cargarElementoDinamicamente(url, elemento){
 }
 function cargarAltaUsuarioE(){
     cargarElementoDinamicamente("altaUsuarioE.jsp", document.getElementById("contenidoDinamico"));
+    document.getElementById('contenidoDinamico').innerHTML += '<br><a href="index.html" class="menu move-to-top-inicioregistro"></a>';
 }
 function cargarAltaUsuario(){
     cargarElementoDinamicamente("altaUsuario.jsp", document.getElementById("contenidoDinamico"));
+    document.getElementById('contenidoDinamico').innerHTML += '<br><a href="index.html" class="menu move-to-top-inicioregistro"></a>';
 }
 
 function cargarLogin() {
@@ -17,6 +19,7 @@ function cargarLogin() {
     if (menu) {
         console.log("Aplicando clase move-to-top-login");
         menu.classList.add('move-to-top-login');
+        document.getElementById('contenidoDinamico').innerHTML += '<br><a href="index.html" class="menu move-to-top-inicio"></a>';
     } else {
         console.log("El elemento con ID 'menu' no se encontró");
     }

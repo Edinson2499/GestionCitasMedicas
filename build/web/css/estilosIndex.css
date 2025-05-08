@@ -51,6 +51,7 @@ body{
     }
 
     .menu ul {
+        top: 10vh; /* Espacio entre el menú y los elementos de la lista */
         display: flex; /*Usar flexbox para alinear los botones en línea*/
         justify-content: center; /*Centrar los botones horizontalmente*/
         padding: 0;
@@ -58,9 +59,9 @@ body{
     }
     .menu.move-to-top {
         position: relative; /* Cambiar a posición relativa para que afecte el flujo del documento */
-        top: 0; /* Mover el menú a la parte superior */
+        top: 2vh; /* Mover el menú a la parte superior */
         transform: translate(-50%,0);/* Ajustar la posición horizontal */
-        left: 50%; /* Mantener centrado horizontalmente */
+        left: center; /* Mantener centrado horizontalmente */
         margin: 0 auto; /* Centrar horizontalmente */
         width: fit-content; /* Ajustar el ancho al contenido */
         transition: all 0.5s ease; /* Transición suave */
@@ -70,14 +71,44 @@ body{
     .menu.move-to-top-login {
         position: fixed; /* Cambiar a fixed para que se posicione relativo a la ventana */
         top: 24%; /* Mover el menú a la parte superior */
-        left: 50%; /* Centrar horizontalmente */
-        transform: translate(-50%, 0); /* Ajustar el centro horizontal */
+        left: center; /* Centrar horizontalmente */
         margin: 0; /* Eliminar márgenes que puedan afectar el posicionamiento */
         width: fit-content; /* Ajustar el ancho al contenido */
         transition: all 0.5s ease; /* Transición suave */
         z-index: 1000; /* Asegurar que el menú esté por encima de otros elementos */
     }
+    .menu.move-to-top-inicio {
+        width: 150px;
+        height: 120px;
+        background-image: url('../imagenes/Logo.png');
+        background-size: cover;
+        background-position: center;
+        border-radius: 30px;
+        border: 0px;
+        cursor: pointer;
+        transition: background 0.3s;
+        position: absolute;
+        left: 20vh;
+        top: 9vh;
+    }
+    .menu.move-to-top-inicioregistro {
+        width: 150px;
+        height: 120px;
+        background-image: url('../imagenes/Logo.png');
+        background-size: cover;
+        background-position: center;
+        border-radius: 30px;
+        border: 0px;
+        cursor: pointer;
+        transition: background 0.3s;
+        position: absolute;
+        left: 20vh;
+        top: 9vh;
+    }
 
+    .menu.move-to-top-inicioregistro:hover {
+        background-color: #bde4ff;
+    }
 
 
 

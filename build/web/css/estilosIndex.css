@@ -93,7 +93,6 @@ body{
     }
     .menu.move-to-top-inicio:hover {
     text-decoration: underline;
-    color: #0056b3; /* Color más intenso al hacer hover */
     background-image: url(../imagenes/Atras_hover.png);
     background-size: 120px 120px;
     }
@@ -113,7 +112,6 @@ body{
     }
     .menu.move-to-top-inicioregistro:hover {
     text-decoration: underline;
-    color: #0056b3; /* Color más intenso al hacer hover */
     background-image: url(../imagenes/Atras_hover.png);
     background-size: 120px 120px;
     }

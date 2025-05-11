@@ -34,7 +34,7 @@ body{
     transform: translate(-50%, -50%); /*Ajustar el centro exacto*/
     display: inline-block; /*Mantener los botones uno al lado del otro*/
 
-    background: rgba(183,222,237,1);
+    background: rgb(48, 155, 197);
     background: -moz-radial-gradient(center, ellipse cover, rgba(183,222,237,1) 0%, rgba(183,222,237,1) 7%, rgba(113,206,239,1) 31%, rgba(33,180,226,1) 67%, rgba(33,180,226,1) 100%);
     background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(183,222,237,1)), color-stop(7%, rgba(183,222,237,1)), color-stop(31%, rgba(113,206,239,1)), color-stop(67%, rgba(33,180,226,1)), color-stop(100%, rgba(33,180,226,1)));
     background: -webkit-radial-gradient(center, ellipse cover, rgba(183,222,237,1) 0%, rgba(183,222,237,1) 7%, rgba(113,206,239,1) 31%, rgba(33,180,226,1) 67%, rgba(33,180,226,1) 100%);
@@ -78,36 +78,44 @@ body{
         z-index: 1000; /* Asegurar que el menú esté por encima de otros elementos */
     }
     .menu.move-to-top-inicio {
-        width: 150px;
+        width: 120px;
         height: 120px;
         background-image: url('../imagenes/Logo.png');
         background-size: cover;
         background-position: center;
-        border-radius: 30px;
         border: 0px;
         cursor: pointer;
         transition: background 0.3s;
         position: absolute;
+        background-size: 120px 120px;
         left: 20vh;
         top: 9vh;
+    }
+    .menu.move-to-top-inicio:hover {
+    text-decoration: underline;
+    color: #0056b3; /* Color más intenso al hacer hover */
+    background-image: url(../imagenes/Atras_hover.png);
+    background-size: 120px 120px;
     }
     .menu.move-to-top-inicioregistro {
-        width: 150px;
+        width: 120px;
         height: 120px;
         background-image: url('../imagenes/Logo.png');
         background-size: cover;
         background-position: center;
-        border-radius: 30px;
         border: 0px;
         cursor: pointer;
         transition: background 0.3s;
         position: absolute;
+        background-size: 120px 120px;
         left: 20vh;
         top: 9vh;
     }
-
     .menu.move-to-top-inicioregistro:hover {
-        background-color: #bde4ff;
+    text-decoration: underline;
+    color: #0056b3; /* Color más intenso al hacer hover */
+    background-image: url(../imagenes/Atras_hover.png);
+    background-size: 120px 120px;
     }
 
 

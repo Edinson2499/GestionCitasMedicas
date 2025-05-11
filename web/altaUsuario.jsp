@@ -1,15 +1,9 @@
-<%-- 
-    Document   : altaUsuario
-    Created on : 17/08/2020, 09:16:34 PM
-    Author     : Emmanuel
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Registro U</title>
         <link rel="stylesheet" href="css/estilosAltaUsuario.css" type="text/css" media="all">
         <%
             response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");

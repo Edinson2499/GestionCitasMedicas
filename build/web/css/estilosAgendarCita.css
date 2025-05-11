@@ -14,8 +14,9 @@ header {
     background: rgba(33,180,226,1); /* Uno de los colores finales del gradiente */
     color: white;
     padding: 20px 0;
+    border-radius: 20px; /* Bordes redondeados */
     text-align: center;
-    width: 100%;
+    width: 40%;
     margin-bottom: 20px;
 }
 
@@ -60,7 +61,7 @@ button {
 }
 
 button:hover {
-    background: rgba(33,180,226,1); /* Color más intenso al hacer hover */
+    background: #2e86d8; /* Color más intenso al hacer hover */
     color: white;
 }
 

@@ -1,9 +1,3 @@
-<%-- 
-    Document   : actualizar_disponibilidad
-    Created on : 22/04/2025, 3:38:16 p. m.
-    Author     : javie
---%>
-
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
     if (session.getAttribute("idUsuario") == null || !"especialista".equals(session.getAttribute("rol"))) {
@@ -27,7 +21,6 @@
 </head>
 <body>
     <h1>Actualizar Disponibilidad, <%= nombreEspecialista %></h1>
-
     <div>
         <p>Aquí podrás ver y modificar tu horario de atención.</p>
         <form action="GuardarDisponibilidadServlet" method="post">
@@ -45,6 +38,6 @@
     </div>
 
     <br>
-    <a href="menu_Especialista.jsp">Volver al Menú del Especialista</a>
+    <a href="menu_Especialista.jsp"></a>
 </body>
 </html>

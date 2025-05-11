@@ -4,7 +4,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Registro E</title>
         <link rel="stylesheet" href="css/estilosAltaUsuario.css" type="text/css" media="all">
         <%
             response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");

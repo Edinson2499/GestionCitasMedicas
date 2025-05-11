@@ -1,8 +1,3 @@
-<%-- 
-    Document   : historial_pacientes
-    Created on : 22/04/2025, 3:38:58 p. m.
-    Author     : javie
---%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
     if (session.getAttribute("idUsuario") == null || !"especialista".equals(session.getAttribute("rol"))) {
@@ -35,11 +30,10 @@
             <button type="submit">Buscar Paciente</button>
         </form>
 
-        <div id="resultado_historial">
-            </div>
+        <div id="resultado_historial"></div>
     </div>
 
     <br>
-    <a href="menu_Especialista.jsp">Volver al Menú del Especialista</a>
+    <a href="menu_Especialista.jsp"></a>
 </body>
 </html>

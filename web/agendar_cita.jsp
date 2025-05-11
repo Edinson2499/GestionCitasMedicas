@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agendar Cita</title>
+    <title>Agendamiento</title>
     <link rel="stylesheet" href="css/estilosAgendarCita.css" type="text/css" media="all">
 </head>
 <body>
     <header>
-        <h1>Agendar Cita</h1>
+        <h1>Agende su Cita</h1>
     </header>
     <main>
         <form action="VerificarDisponibilidadServlet" method="post">

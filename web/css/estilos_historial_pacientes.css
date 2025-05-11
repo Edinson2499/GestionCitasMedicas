@@ -19,10 +19,14 @@ body {
 }
 
 h1 {
-    color: #333;
+    background: rgba(33,180,226,1); /* Uno de los colores finales del gradiente */
+    color: white;
+    padding: 20px 0;
+    border-radius: 20px; /* Bordes redondeados */
+    text-align: center;
+    width: 50%;
     margin-bottom: 20px;
 }
-
 div {
     background-color: white;
     padding: 20px;
@@ -60,7 +64,7 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-    background-color: #1e7e34;
+    background-color: #2e86d8;
 }
 
 #resultado_historial {
@@ -72,12 +76,23 @@ button[type="submit"]:hover {
 }
 
 a {
-    display: inline-block;
-    margin-top: 20px;
-    text-decoration: none;
-    color: #007bff;
+    width: 80px;
+    height: 80px;
+    background-image: url('../imagenes/Atras.png');
+    background-size: cover;
+    background-position: center;
+    border-radius: 30px;
+    border: 0px;
+    cursor: pointer;
+    transition: background 0.3s;
+    position: absolute;
+    left: 20vh;
+    top: 20vh;
+    background-size: 80px 80px;
 }
 
 a:hover {
     text-decoration: underline;
+    color: #0056b3; /* Color más intenso al hacer hover */
+    background-image: url(../imagenes/Atras_hover.png);
 }

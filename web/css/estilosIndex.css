@@ -58,7 +58,7 @@ body{
         padding: 0;
         margin: 0;
     }
-    .menu.move-to-top {
+    .menu.move-to-top-registro {
         position: relative; /* Cambiar a posición relativa para que afecte el flujo del documento */
         top: 2vh; /* Mover el menú a la parte superior */
         transform: translate(-50%,0);/* Ajustar la posición horizontal */

@@ -97,7 +97,7 @@ function mostrarSeleccionRegistro() {
         }
         if (menu) {
             menu.classList.remove('move-to-top-login');
-            menu.classList.add('move-to-top');
+            menu.classList.add('move-to-top-registro');
         }
         document.body.removeChild(modal);
     };

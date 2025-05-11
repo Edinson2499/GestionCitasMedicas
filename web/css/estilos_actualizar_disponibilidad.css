@@ -79,13 +79,12 @@ a {
     cursor: pointer;
     transition: background 0.3s;
     position: absolute;
-    left: 20vh;
-    top: 20vh;
+    left: 10%;
+    top: 13%;
     background-size: 80px 80px;
 }
 
 a:hover {
     text-decoration: underline;
-    color: #0056b3; /* Color más intenso al hacer hover */
     background-image: url(../imagenes/Atras_hover.png);
 }

@@ -68,3 +68,25 @@ a {
 a:hover {
     text-decoration: underline;
 }
+
+/*a {
+    width: 80px;
+    height: 80px;
+    background-image: url('../imagenes/Atras.png');
+    background-size: cover;
+    background-position: center;
+    border-radius: 30px;
+    border: 0px;
+    cursor: pointer;
+    transition: background 0.3s;
+    position: absolute;
+    left:10%;
+    top: 13%;
+    background-size: 80px 80px;
+}
+
+a:hover {
+    text-decoration: underline;
+/*    background-image: url(../imagenes/Atras_hover.png);
+}
+*/

@@ -79,8 +79,8 @@ a {
     cursor: pointer;
     transition: background 0.3s;
     position: absolute;
-    left: 20vh;
-    top: 20vh;
+    left: 10%;
+    top: 13%;
     background-size: 80px 80px;
 }
 

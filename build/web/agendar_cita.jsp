@@ -69,5 +69,6 @@
             <% } %>
         </form>
     </main>
+    <a href="menu_paciente.jsp"></a>
 </body>
 </html>

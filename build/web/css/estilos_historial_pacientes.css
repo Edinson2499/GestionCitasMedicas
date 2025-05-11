@@ -1,11 +1,7 @@
 /*
 Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
 Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
-*/
-/* 
-    Created on : 22/04/2025, 3:46:51 p. m.
-    Author     : javie
-*/
+
 /* estilos_historial_pacientes.css */
 
 body {
@@ -16,7 +12,11 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-image: url(../imagenes/Menus.png);
+    background-size: cover;
+    background-position: center;
 }
+
 
 h1 {
     background: rgba(33,180,226,1); /* Uno de los colores finales del gradiente */
@@ -24,7 +24,8 @@ h1 {
     padding: 20px 0;
     border-radius: 20px; /* Bordes redondeados */
     text-align: center;
-    width: 50%;
+    width: 80%;
+    max-width: 600px;
     margin-bottom: 20px;
 }
 div {
@@ -86,8 +87,9 @@ a {
     cursor: pointer;
     transition: background 0.3s;
     position: absolute;
-    left:10%;
-    top: 13%;
+    left:0%;
+    top: 0%;
+    margin: 5%;
     background-size: 80px 80px;
 }
 

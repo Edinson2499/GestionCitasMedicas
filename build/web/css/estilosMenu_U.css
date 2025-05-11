@@ -1,11 +1,15 @@
 body {
+    background-image: url(../imagenes/Menus.png);
+    background-size: cover;
+    background-position: center;
     font-family: sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 20px;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+    color: white;
 }
 
 h1 {

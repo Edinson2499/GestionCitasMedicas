@@ -29,8 +29,10 @@
     <link rel="stylesheet" href="css/ver_citas.css">
 </head>
 <body>
-    <h1>Mis Citas, <%= nombrePaciente %></h1>
-
+    <header>
+        <h1>Mis Citas, <%= nombrePaciente %></h1>
+    </header>
+    <main>
     <%
         try {
             connection = ConexionBD.conectar();
@@ -58,9 +60,9 @@
                         String apellidosEspecialista = resultSet.getString("apellidos_especialista");
     %>
                         <div class="cita-container">
-                            <p><strong>Fecha y Hora:</strong> <%= fechaHoraFormateada %></p>
-                            <p><strong>Especialidad:</strong> <%= especialidad %></p>
-                            <p><strong>Especialista:</strong> <%= nombreEspecialista %> <%= apellidosEspecialista %></p>
+                            <li><p><strong>Fecha y Hora:</strong> <%= fechaHoraFormateada %></p></li>
+                            <li><p><strong>Especialidad:</strong> <%= especialidad %></p></li>
+                            <li><p><strong>Especialista:</strong> <%= nombreEspecialista %> <%= apellidosEspecialista %></p></li>
                         </div>
     <%
                     }
@@ -85,8 +87,8 @@
             try { if (connection != null && !connection.isClosed()) connection.close(); } catch (SQLException e) { e.printStackTrace(); }
         }
     %>
-
-    <br>
-    <a href="menu_paciente.jsp">Volver al Menú</a>
+    
+    </main>
+    <a href="menu_paciente.jsp"></a>
 </body>
 </html>

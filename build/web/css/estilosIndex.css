@@ -8,9 +8,10 @@
 
 
 body{
-    padding: 0;
-    margin: 0;
-    background-image: url(../imagenes/fondoBlanco.png);
+    padding: 20px; /*Espacio entre los elementos*/
+    margin: 10px; /*Espacio entre los elementos*/
+    background-image: url(../imagenes/fondoBlanco.png); /*Imagen de fondo*/
+    background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -88,8 +89,9 @@ body{
         transition: background 0.3s;
         position: absolute;
         background-size: 120px 120px;
-        left: 20vh;
-        top: 9vh;
+        margin: 10%;
+        left:0%;
+        top: 0%;
     }
     .menu.move-to-top-inicio:hover {
     text-decoration: underline;
@@ -107,8 +109,10 @@ body{
         transition: background 0.3s;
         position: absolute;
         background-size: 120px 120px;
-        left: 20vh;
-        top: 9vh;
+        margin: 6%; /* Ajustar el margen para que no se superponga con el menú */
+        left:0%;
+        top: 0%;
+        padding: 20px;
     }
     .menu.move-to-top-inicioregistro:hover {
     text-decoration: underline;

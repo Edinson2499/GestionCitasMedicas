@@ -4,10 +4,13 @@ body {
     font-family: sans-serif;
     background-color: #f4f4f4; /* Un fondo gris claro */
     margin: 0;
-    padding: 0;
+    padding: 2%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-image: url(../imagenes/Menus.png);
+    background-size: cover;
+    background-position: center;
 }
 
 header {
@@ -19,7 +22,7 @@ header {
     width: 40%;
     margin-bottom: 20px;
 }
-
+ 
 main {
     background-color: white;
     padding: 30px;
@@ -71,4 +74,25 @@ button:hover {
     font-weight: bold;
     color: #28a745; /* Un color verde para mensajes de éxito */
     text-align: center;
+}
+
+a {
+    width: 80px;
+    height: 80px;
+    background-image: url('../imagenes/Atras.png');
+    background-size: cover;
+    background-position: center;
+    border-radius: 30px;
+    border: 0px;
+    cursor: pointer;
+    transition: background 0.3s;
+    position: absolute;
+    left: 0;
+    margin: 5%;
+    top: 0;
+    background-size: 80px 80px;
+}
+
+a:hover {
+    background-image: url(../imagenes/Atras_hover.png);
 }

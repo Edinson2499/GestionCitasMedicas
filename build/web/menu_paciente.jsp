@@ -1,4 +1,7 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+    String nombrePaciente = (String) session.getAttribute("nombre");
+%>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -9,7 +12,7 @@
 </head>
 <body>
     <header>
-        <h1>Bienvenido, Paciente</h1>
+        <h1>Bienvenido, Paciente <%= nombrePaciente %> </h1>
     </header>
     <nav class="menu-usuario">
         <ul>
@@ -18,6 +21,7 @@
             <li><a href="cancelar_cita.jsp">Cancelar Cita</a></li>
             <li><a href="actualizar_datos.jsp">Actualizar Datos</a></li>
             <li><a href="historial_medico.jsp">Historial Médico</a></li>
+            <li><a href="CerrarSesionServlet">Cerrar Sesión</a></li>
         </ul>
     </nav>
     <script>

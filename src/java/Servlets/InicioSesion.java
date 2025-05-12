@@ -73,7 +73,7 @@ public class InicioSesion extends HttpServlet {
 
             out.println("<div class='modal' id='welcomeModal'>");
             out.println("  <div class='modal-content'>");
-            out.println("    <h2>¡Bienvenido a mi página!</h2>");
+            out.println("    <h2>¡Bienvenido a BuinessHealth!</h2>");
             out.println("    <p>Iniciaste sesión como: <strong>" + txtUsuario + "</strong> (Rol: " + rol + ")</p>");
             out.println("    <button onclick='redirigir()'>Aceptar</button>");
             out.println("  </div>");

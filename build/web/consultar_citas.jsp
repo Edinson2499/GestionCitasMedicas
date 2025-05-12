@@ -38,13 +38,13 @@
             connection = ConexionBD.conectar();
             if (connection != null) {
                 String sql = "SELECT c.fecha_hora, es.especialidad, esp_u.nombre AS nombre_especialista, esp_u.apellidos AS apellidos_especialista " +
-                             "FROM Cita c " +
-                             "JOIN Usuario pac_u ON c.id_paciente = pac_u.id " +
-                             "JOIN Usuario esp_u ON c.id_especialista = esp_u.id " +
-                             "JOIN Especialista es ON esp_u.id = es.id_usuario " +
-                             "WHERE pac_u.id = ? " +
-                             "AND c.fecha_hora >= NOW() " + // Mostrar solo citas futuras
-                             "ORDER BY c.fecha_hora ASC";
+                            "FROM Cita c " +
+                            "JOIN Usuario pac_u ON c.id_paciente = pac_u.id " +
+                            "JOIN Usuario esp_u ON c.id_especialista = esp_u.id " +
+                            "JOIN Especialista es ON esp_u.id = es.id_usuario " +
+                            "WHERE pac_u.id = ? " +
+                            "AND c.fecha_hora >= NOW() " + // Mostrar solo citas futuras
+                            "ORDER BY c.fecha_hora ASC";
 
                 preparedStatement = connection.prepareStatement(sql);
                 preparedStatement.setInt(1, idPaciente);

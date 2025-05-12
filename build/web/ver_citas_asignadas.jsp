@@ -1,9 +1,3 @@
-<%-- 
-    Document   : ver_citas_asignadas
-    Created on : 22/04/2025, 3:36:54 p. m.
-    Author     : javie
---%>
-
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%

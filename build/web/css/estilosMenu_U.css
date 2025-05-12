@@ -1,22 +1,15 @@
-/*
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
-*/
-/* 
-    Created on : 22/04/2025, 3:29:26 p. m.
-    Author     : javie
-*/
-
-/* estilosMenu_especialista.css */
-
 body {
+    background-image: url(../imagenes/Menus.png);
+    background-size: cover;
+    background-position: center;
     font-family: sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 20px;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+    color: white;
 }
 
 h1 {
@@ -24,7 +17,7 @@ h1 {
     margin-bottom: 20px;
 }
 
-.menu-especialista {
+.menu-usuario {
     background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
     padding: 20px;
     border-radius: 15px;
@@ -32,18 +25,18 @@ h1 {
     text-align: center;
 }
 
-.menu-especialista ul {
+.menu-usuario ul {
     list-style: none;
     padding: 0;
     margin: 0;
     display: inline-block;
 }
 
-.menu-especialista li {
+.menu-usuario li {
     margin: 15px 0;
 }
 
-.menu-especialista a {
+.menu-usuario a {
     display: block;
     padding: 12px 25px;
     text-decoration: none;
@@ -54,7 +47,7 @@ h1 {
     transition: background-color 0.3s ease;
 }
 
-.menu-especialista a:hover {
+.menu-usuario a:hover {
     background-color: #e0f7fa;
     color: #007bff;
 }

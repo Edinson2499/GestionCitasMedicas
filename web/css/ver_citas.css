@@ -1,0 +1,85 @@
+/* Estilos para la página de Ver mis Cita */
+
+body {
+    background-image: url(../imagenes/Menus.png);
+    background-size: cover;
+    background-position: center;
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+    color: white;
+}
+main {
+    background-color: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: auto;/* Cambié el ancho a 80% */
+    max-width: 600px;
+}
+header {
+    background: rgba(33,180,226,1); /* Uno de los colores finales del gradiente */
+    color: white;
+    padding: 20px 0;
+    border-radius: 20px; /* Bordes redondeados */
+    text-align: center;
+    width: 40%;
+    margin-bottom: 20px;
+}
+.no-citas {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #1d1414; /* Un color verde para mensajes de éxito */
+    text-align: center;
+}
+.citas-container {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #1d1414; /* Un color verde para mensajes de éxito */
+    text-align: center;
+}
+
+.cita-container li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+}
+
+.cita-container p {
+    margin: 15px 0;
+}
+.error {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #e63731; /* Un color verde para mensajes de éxito */
+    text-align: center;
+}
+a {
+    width: 80px;
+    height: 80px;
+    background-image: url('../imagenes/Atras.png');
+    background-size: cover;
+    background-position: center;
+    border-radius: 30px;
+    border: 0px;
+    cursor: pointer;
+    transition: background 0.3s;
+    position: absolute;
+    left: 0%;
+    top: 0%;
+    margin: 5%;
+    background-size: 80px 80px;
+}
+
+a:hover {
+    text-decoration: underline;
+    background-image: url(../imagenes/Atras_hover.png);
+}

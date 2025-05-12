@@ -4,10 +4,6 @@
  */
 package SQL;
 
-/**
- *
- * @author javie
- */
 class ResultSet {
     
 }

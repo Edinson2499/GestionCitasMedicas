@@ -57,7 +57,7 @@ public class InicioSesion extends HttpServlet {
             if (rol.equals("paciente")) {
                 out.println("location = 'menu_paciente.jsp'");
             } else if (rol.equals("especialista")) {
-                out.println("location = 'menu_Especialista.jsp'"); // Asegúrate de tener este JSP
+                out.println("location = 'menu_especialista.jsp'"); // Asegúrate de tener este JSP
             } else {
                 out.println("location = 'menu_otro.jsp'"); // Para otros roles si los hay
             }

@@ -1,4 +1,4 @@
-
+/* Estilos para el Index */
 *{
     padding: 0; /*Quitar el padding de los elementos*/
     margin: 0; /*Quitar el margin de los elementos*/
@@ -8,9 +8,10 @@
 
 
 body{
-    padding: 0;
-    margin: 0;
-    background-image: url(../imagenes/fondoBlanco.png);
+    padding: 20px; /*Espacio entre los elementos*/
+    margin: 10px; /*Espacio entre los elementos*/
+    background-image: url(../imagenes/fondoBlanco.png); /*Imagen de fondo*/
+    background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -34,7 +35,7 @@ body{
     transform: translate(-50%, -50%); /*Ajustar el centro exacto*/
     display: inline-block; /*Mantener los botones uno al lado del otro*/
 
-    background: rgba(183,222,237,1);
+    background: rgb(48, 155, 197);
     background: -moz-radial-gradient(center, ellipse cover, rgba(183,222,237,1) 0%, rgba(183,222,237,1) 7%, rgba(113,206,239,1) 31%, rgba(33,180,226,1) 67%, rgba(33,180,226,1) 100%);
     background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(183,222,237,1)), color-stop(7%, rgba(183,222,237,1)), color-stop(31%, rgba(113,206,239,1)), color-stop(67%, rgba(33,180,226,1)), color-stop(100%, rgba(33,180,226,1)));
     background: -webkit-radial-gradient(center, ellipse cover, rgba(183,222,237,1) 0%, rgba(183,222,237,1) 7%, rgba(113,206,239,1) 31%, rgba(33,180,226,1) 67%, rgba(33,180,226,1) 100%);
@@ -51,16 +52,17 @@ body{
     }
 
     .menu ul {
+        top: 10vh; /* Espacio entre el menú y los elementos de la lista */
         display: flex; /*Usar flexbox para alinear los botones en línea*/
         justify-content: center; /*Centrar los botones horizontalmente*/
         padding: 0;
         margin: 0;
     }
-    .menu.move-to-top {
+    .menu.move-to-top-registro {
         position: relative; /* Cambiar a posición relativa para que afecte el flujo del documento */
-        top: 0; /* Mover el menú a la parte superior */
+        top: 2vh; /* Mover el menú a la parte superior */
         transform: translate(-50%,0);/* Ajustar la posición horizontal */
-        left: 50%; /* Mantener centrado horizontalmente */
+        left: center; /* Mantener centrado horizontalmente */
         margin: 0 auto; /* Centrar horizontalmente */
         width: fit-content; /* Ajustar el ancho al contenido */
         transition: all 0.5s ease; /* Transición suave */
@@ -70,14 +72,53 @@ body{
     .menu.move-to-top-login {
         position: fixed; /* Cambiar a fixed para que se posicione relativo a la ventana */
         top: 24%; /* Mover el menú a la parte superior */
-        left: 50%; /* Centrar horizontalmente */
-        transform: translate(-50%, 0); /* Ajustar el centro horizontal */
+        left: center; /* Centrar horizontalmente */
         margin: 0; /* Eliminar márgenes que puedan afectar el posicionamiento */
         width: fit-content; /* Ajustar el ancho al contenido */
         transition: all 0.5s ease; /* Transición suave */
         z-index: 1000; /* Asegurar que el menú esté por encima de otros elementos */
     }
-
+    .menu.move-to-top-inicio {
+        width: 120px;
+        height: 120px;
+        background-image: url('../imagenes/Logo.png');
+        background-size: cover;
+        background-position: center;
+        border: 0px;
+        cursor: pointer;
+        transition: background 0.3s;
+        position: absolute;
+        background-size: 120px 120px;
+        margin: 10%;
+        left:0%;
+        top: 0%;
+    }
+    .menu.move-to-top-inicio:hover {
+    text-decoration: underline;
+    background-image: url(../imagenes/Atras_hover.png);
+    background-size: 120px 120px;
+    }
+    .menu.move-to-top-inicioregistro {
+        width: 120px;
+        height: 120px;
+        background-image: url('../imagenes/Logo.png');
+        background-size: cover;
+        background-position: center;
+        border: 0px;
+        cursor: pointer;
+        transition: background 0.3s;
+        position: absolute;
+        background-size: 120px 120px;
+        margin: 6%; /* Ajustar el margen para que no se superponga con el menú */
+        left:0%;
+        top: 0%;
+        padding: 20px;
+    }
+    .menu.move-to-top-inicioregistro:hover {
+    text-decoration: underline;
+    background-image: url(../imagenes/Atras_hover.png);
+    background-size: 120px 120px;
+    }
 
 
 

@@ -13,11 +13,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menú del Especialista</title>
-    <link rel="stylesheet" href="css/estilosMenu_especialista.css">
+    <link rel="stylesheet" href="css/estilosMenu_U.css">
 </head>
 <body>
     <h1>Bienvenido, Especialista <%= nombreEspecialista %></h1>
-    <nav class="menu-especialista">
+    <nav class="menu-usuario" id="menu-usuario">
         <ul>
             <li><a href="ver_citas_asignadas.jsp">Ver Citas Asignadas</a></li>
             <li><a href="actualizar_disponibilidad.jsp">Actualizar Disponibilidad</a></li>

@@ -116,7 +116,7 @@ public class MetodosSQL {
                 System.err.println("Error al cerrar la conexión: " + e.getMessage());
             }
         }
-        System.out.println("El valor del usuario Repetido en el METODO es: " + usuarioRepetido);
+        System.out.println("El valor del usuario Repzetido en el METODO es: " + usuarioRepetido);
         return usuarioRepetido;
     }
 

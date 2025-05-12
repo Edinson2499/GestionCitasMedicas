@@ -1,5 +1,7 @@
 body {
     background-image: url(../imagenes/login.png);
+    background-size: cover;
+    background-position: center;
     font-family: sans-serif;
     display: flex;
     justify-content: center;
@@ -7,6 +9,7 @@ body {
     flex-direction: column;
     height: 100vh;
     margin: 0;
+    padding: 0;
     color: white;
   }
 

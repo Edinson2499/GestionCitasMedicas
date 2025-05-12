@@ -94,9 +94,18 @@ public class InicioSesion extends HttpServlet {
             out.println("</script>");
 
         } else {
+            out.println("<div class='modal' id='errorModal'>");
+            out.println("  <div class='modal-content'>");
+            out.println("    <h2>Datos Incorrectos</h2>");
+            out.println("    <p>Verifica tus credenciales o date de alta en el sistema.</p>");
+            out.println("    <button onclick='redirigirError()'>Aceptar</button>");
+            out.println("  </div>");
+            out.println("</div>");
+
             out.println("<script type='text/javascript'>");
-            out.println("alert('Datos Incorrectos, verifica tus credenciales o date de alta en el sistema');");
-            out.println("location = 'index.html';");
+            out.println("function redirigirError() {");
+            out.println("  window.location = 'index.html';");
+            out.println("}");
             out.println("</script>");
         }
 

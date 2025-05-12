@@ -35,39 +35,38 @@
                 <br>
                 <br>
                 <label>Especialidad:</label>
-                <select class="txt select" id="txtEspecialidad" name="txtEspecialidad" required="">
-                    <option value="" disabled selected>Seleccione una especialidad</option>
-                    <option value="Cardiología">Cardiología</option>
-                    <option value="Dermatología">Dermatología</option>
-                    <option value="Pediatría">Pediatría</option>
-                    <option value="Neurología">Neurología</option>
-                    <option value="Oncología">Oncología</option>
-                    <option value="Psiquiatría">Psiquiatría</option>
-                    <option value="Ginecología">Ginecología</option>
-                    <option value="Oftalmología">Oftalmología</option>
-                    <option value="Ortopedia">Ortopedia</option>
-                    <option value="Endocrinología">Endocrinología</option>
-                    <option value="Traumatología">Traumatología</option>
-                    <option value="Otorrinolaringología">Otorrinolaringología</option>
-                    <option value="Medicina Interna">Medicina Interna</option>
-                    <option value="Urología">Urología</option>
-                    <option value="Radiología">Radiología</option>
-                    <option value="Anestesiología">Anestesiología</option>
-                    <option value="Cirugía General">Cirugía General</option>
-                    <option value="Neumología">Neumología</option>
-                    <option value="Gastroenterología">Gastroenterología</option>
-                    <option value="Nefrología">Nefrología</option>
-                    <option value="Inmunología">Inmunología</option>                    
-                </select>
+                <input list="especialidad" placeholder="Seleccione una especialidad" class="txt" id="txtEspecialidad" name="txtEspecialidad" required="">
+                <datalist id="especialidad">
+                    <option value="Cardiología"></option>
+                    <option value="Dermatología"></option>
+                    <option value="Pediatría"></option>
+                    <option value="Neurología"></option>
+                    <option value="Oncología"></option>
+                    <option value="Psiquiatría"></option>
+                    <option value="Ginecología"></option>
+                    <option value="Oftalmología"></option>
+                    <option value="Ortopedia"></option>
+                    <option value="Endocrinología"></option>
+                    <option value="Traumatología"></option>
+                    <option value="Otorrinolaringología"></option>
+                    <option value="Medicina Interna"></option>
+                    <option value="Urología"></option>
+                    <option value="Radiología"></option>
+                    <option value="Anestesiología"></option>
+                    <option value="Cirugía General"></option>
+                    <option value="Neumología"></option>
+                    <option value="Gastroenterología"> </option>
+                    <option value="Nefrología"></option>
+                    </datalist>
                 <br>
                 <br>
                 <label style="display: contents; width: 100px; text-align: left; margin-right: 5px; margin-bottom: 5px;">ID Tarjeta Profecional:</label> 
                 <input type="text" class="txt" id="txtTp" required="" name="txtTp"style="margin-bottom: 5px;">
                 <br>
-                <label style="display: contents; width: 100px; text-align: left; margin-right: 5px; margin-bottom: 5px;">ContraseÃ±a:</label> 
+                <label style="display: contents; width: 100px; text-align: left; margin-right: 5px; margin-bottom: 5px;">Contraseña:</label> 
                 <input type="password" class="txt" id="txtContrasena" required="" onkeyup="coincidirContrasena()"style="margin-bottom: 5px;">
                 <br>
-                <label style="display: contents; width: 100px; text-align: left; margin-right: 5px; margin-bottom: 5px;">Repita la Contrasena:</label> 
+                <label style="display: contents; width: 100px; text-align: left; margin-right: 5px; margin-bottom: 5px;">Repita la Contraseña:</label> 
                 <input type="password" class="txt" id="txtRepetirContrasena" required="" onkeyup="coincidirContrasena()" name="txtContrasena"style="margin-bottom: 5px;">
                 <br>
                 <br>

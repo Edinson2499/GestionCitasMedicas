@@ -14,19 +14,19 @@ Aplicación web desarrollada en Java para gestionar citas entre pacientes y méd
 ## 📁 Estructura del Proyecto
 
 GestionCitasMedicas/
-├── build.xml # Script de construcción con Ant
-├── CitasMedicasBase.sql # Script para crear la base de datos
-├── mysql-connector-j-9.2.0.jar# Driver JDBC
-│
-├── src/java/Servlets/ # Lógica del servidor (Servlets)
-├── src/java/SQL/ # Acceso a la base de datos
-│
-├── web/ # Archivos de la interfaz (JSP, CSS, imágenes)
-│ ├── WEB-INF/
-│ ├── css/
-│ ├── js/
-│ ├── imagenes/
-│ └── *.jsp
+-├── build.xml # Script de construcción con Ant
+-├── CitasMedicasBase.sql # Script para crear la base de datos
+-├── mysql-connector-j-9.2.0.jar# Driver JDBC
+-│
+-├── src/java/Servlets/ # Lógica del servidor (Servlets)
+-├── src/java/SQL/ # Acceso a la base de datos
+-│
+-├── web/ # Archivos de la interfaz (JSP, CSS, imágenes)
+-│ ├── WEB-INF/
+-│ ├── css/
+-│ ├── js/
+-│ ├── imagenes/
+-│ └── *.jsp
 
 
 ## ✅ Requisitos

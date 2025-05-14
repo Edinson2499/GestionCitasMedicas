@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agendamiento</title>
+    <link rel="icon" href="imagenes/Logo.png" type="image/png">
     <link rel="stylesheet" href="css/estilosAgendarCita.css" type="text/css" media="all">
 </head>
 <body>

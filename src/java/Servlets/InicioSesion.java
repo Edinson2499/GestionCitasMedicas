@@ -40,6 +40,8 @@ public class InicioSesion extends HttpServlet {
         out.println("<head>");
         out.println("<meta charset='UTF-8'>");
         out.println("<title>Inicio de Sesión</title>");
+        out.println("<link rel='icon' href='imagenes/Logo.png' type='image/png'>");
+        out.println("<meta name='viewport' content='width=device-width, initial-scale=1.0'>");
         out.println("<style>");
         out.println("body { margin: 0; font-family: Arial, sans-serif; background-color: #e6f4fe; }"); // fondo azul celeste claro
         out.println(".modal { display: flex; justify-content: center; align-items: center; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; }");

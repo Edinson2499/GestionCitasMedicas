@@ -5,6 +5,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Iniciar Sesion</title>
+        <link rel="icon" href="imagenes/Logo.png" type="image/png">
         <link rel="stylesheet" href="css/estilosLogin.css" type="text/css" media="all">
         
         <%

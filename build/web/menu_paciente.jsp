@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/estilosMenu_U.css" type="text/css" media="all">
     <title>Menú Paciente</title>
+    <link rel="icon" href="imagenes/Logo.png" type="image/png">
 </head>
 <body>
     <header>

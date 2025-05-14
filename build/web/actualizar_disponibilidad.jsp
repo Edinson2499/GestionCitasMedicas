@@ -17,6 +17,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Actualizar Disponibilidad</title>
+    <link rel="icon" href="imagenes/Logo.png" type="image/png">
     <link rel="stylesheet" href="css/estilos_actualizar_disponibilidad.css">
 </head>
 <body>

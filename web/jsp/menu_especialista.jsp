@@ -13,8 +13,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menú del Especialista</title>
-    <link rel="icon" href="imagenes/Logo.png" type="image/png">
-    <link rel="stylesheet" href="css/estilosMenu_U.css">
+    <link rel="icon" href="../imagenes/Logo.png" type="image/png">
+    <link rel="stylesheet" href="../css/estilosMenu_U.css">
 </head>
 <body>
     <h1>Bienvenido, Especialista <%= nombreEspecialista %></h1>

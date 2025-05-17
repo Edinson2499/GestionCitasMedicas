@@ -37,7 +37,7 @@ function cargarLogin() {
 
             // Añadir enlace sin sobrescribir contenido
             // Aquí uso insertAdjacentHTML para no eliminar el contenido del login
-            contenido.insertAdjacentHTML('beforeend', '<br><a href="index.html" class="menu move-to-top-inicio"></a>');
+            contenido.insertAdjacentHTML('beforeend', '<br><a href="index.html" class="menu move-to-top-inicio">Inicio</a>');
         })
         .catch(error => {
             console.error("Error al cargar login.jsp:", error);

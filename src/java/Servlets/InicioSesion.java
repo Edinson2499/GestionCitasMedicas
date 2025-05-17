@@ -85,12 +85,13 @@ public class InicioSesion extends HttpServlet {
             out.println("function redirigir() {");
 
             if (rol.equals("paciente")) {
-                out.println("  window.location = 'menu_paciente.jsp';");
+                out.println("  window.location = 'jsp/menu_paciente.jsp';");
             } else if (rol.equals("especialista")) {
-                out.println("  window.location = 'menu_especialista.jsp';");
+                out.println("  window.location = 'jsp/menu_especialista.jsp';");
             } else {
-                out.println("  window.location = 'menu_otro.jsp';");
+                out.println("  window.location = 'jsp/menu_otro.jsp';");
             }
+
 
             out.println("}");
             out.println("</script>");

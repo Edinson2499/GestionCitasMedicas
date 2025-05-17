@@ -14,16 +14,36 @@ function cargarAltaUsuario(){
 }
 
 function cargarLogin() {
-    cargarElementoDinamicamente("login.jsp", document.getElementById("contenidoDinamico"));
-    const menu = document.getElementById("menu");
-    if (menu) {
-        console.log("Aplicando clase move-to-top-login");
-        menu.classList.add('move-to-top-login');
-        document.getElementById('contenidoDinamico').innerHTML += '<br><a href="index.html" class="menu move-to-top-inicio"></a>';
-    } else {
-        console.log("El elemento con ID 'menu' no se encontró");
-    }
+    fetch('login.jsp')
+        .then(response => response.text())
+        .then(html => {
+            const contenido = document.getElementById('contenidoDinamico');
+            if (!contenido) {
+                console.error("No se encontró el elemento 'contenidoDinamico'");
+                return;
+            }
+
+            // Insertar el HTML de login.jsp
+            contenido.innerHTML = html;
+
+            // Aplicar clase al menú
+            const menu = document.getElementById("menu");
+            if (menu) {
+                console.log("Aplicando clase move-to-top-login");
+                menu.classList.add('move-to-top-login');
+            } else {
+                console.log("El elemento con ID 'menu' no se encontró");
+            }
+
+            // Añadir enlace sin sobrescribir contenido
+            // Aquí uso insertAdjacentHTML para no eliminar el contenido del login
+            contenido.insertAdjacentHTML('beforeend', '<br><a href="index.html" class="menu move-to-top-inicio"></a>');
+        })
+        .catch(error => {
+            console.error("Error al cargar login.jsp:", error);
+        });
 }
+
 function mostrarSeleccionRegistro() {
     const modal = document.createElement("div");
     modal.style.position = "fixed";

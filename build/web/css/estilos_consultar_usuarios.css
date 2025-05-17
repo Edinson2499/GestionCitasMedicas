@@ -1,0 +1,90 @@
+body {
+    background-image: url(../imagenes/login.png);
+    background-size: cover;
+    background-position: center;
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+h2 {
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+}
+
+label {
+    margin-bottom: 5px;
+    color: #111213;
+}
+
+th, td {
+    padding: 12px 15px;
+    border: 1px solid #141313;
+    text-align: left;
+}
+
+th {
+    background-color: #007bff;
+    color: white;
+}
+
+td  {
+    background-color: #f9f9f9;
+    color: #333;
+}
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #ddd;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #0056b3;
+}
+area {
+    width: 80px;
+    height: 80px;
+    background-image: url('../imagenes/Atras.png');
+    background-size: cover;
+    background-position: center;
+    border-radius: 30px;
+    border: 0px;
+    cursor: pointer;
+    transition: background 0.3s;
+    position: absolute;
+    left: 0;
+    margin: 5%;
+    top: 0;
+    background-size: 80px 80px;
+}
+
+area:hover {
+    background-image: url(../imagenes/Atras_hover.png);
+}

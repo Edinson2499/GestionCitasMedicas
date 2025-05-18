@@ -57,7 +57,7 @@
                         <td>${usuario.usuarioGenerado}</td>
                         <td>${usuario.tipoUsuario}</td>
                         <td>
-                            <a href="editar_usuario.jsp?id=${usuario.id}">Editar</a> |
+                            <a href="editar_usuario.jsp?id=${usuario.id}">Editar</a> 
                             <a href="EliminarUsuarioServlet?id=${usuario.id}" onclick="return confirm('¿Estás seguro de eliminar este usuario?')">Eliminar</a>
                         </td>
                     </tr>

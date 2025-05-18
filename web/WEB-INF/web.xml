@@ -24,6 +24,9 @@
         <servlet-name>CerrarSesion</servlet-name>
         <url-pattern>/CerrarSesion</url-pattern>
     </servlet-mapping>
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
     <session-config>
         <session-timeout>
             30

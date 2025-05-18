@@ -34,7 +34,8 @@ GestionCitasMedicas/
 │ ├── imagenes/
 │ └── *.jsp
 
-![image](https://github.com/user-attachments/assets/1c8e2163-2870-43c0-88cd-61557e03328b)
+![ChatGPT Image 18 may 2025, 12_05_38 (1)](https://github.com/user-attachments/assets/f2b544a3-e566-4360-8a4d-b6fe70a2f30a)
+
 
 
 ## ⚙️ Requisitos

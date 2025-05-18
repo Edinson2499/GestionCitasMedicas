@@ -34,6 +34,7 @@ GestionCitasMedicas/
 │ ├── imagenes/
 │ └── *.jsp
 
+![image](https://github.com/user-attachments/assets/1c8e2163-2870-43c0-88cd-61557e03328b)
 
 
 ## ⚙️ Requisitos

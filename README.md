@@ -1,17 +1,24 @@
-# Gestión de Citas Médicas
+# 🏥 Gestión de Citas Médicas
 
-Aplicación web desarrollada en Java para gestionar citas entre pacientes y médicos. Permite a los usuarios registrarse, iniciar sesión, solicitar citas, y a los administradores supervisar el sistema.
+Sistema web para la gestión de citas médicas, desarrollado con JSP, Servlets y MySQL. Este proyecto permite a pacientes registrarse, iniciar sesión y agendar citas médicas, mientras que los administradores pueden gestionar usuarios y horarios disponibles.
 
-## 🛠 Tecnologías Utilizadas
+## 📌 Características Principales
 
-- **Java EE** (Servlets y JSP)
-- **MySQL** (Base de datos relacional)
-- **Apache Tomcat** (Servidor de aplicaciones)
-- **JDBC** (`mysql-connector-j-9.2.0.jar`)
-- **Apache Ant** (`build.xml`) para construcción
-- **HTML/CSS/JS** para la interfaz
+- Registro de nuevos pacientes.
+- Inicio de sesión para pacientes y administradores.
+- Agendamiento y gestión de citas médicas.
+- Validación de formularios en el cliente y servidor.
+- Panel de administración para gestión de usuarios y citas.
 
-## 📁 Estructura del Proyecto
+## 🚀 Tecnologías Utilizadas
+
+- Java EE (Servlets, JSP)
+- Apache Tomcat
+- HTML5, CSS3
+- MySQL
+- JDBC
+
+## 📂 Estructura del Proyecto
 
 GestionCitasMedicas/
 ├── build.xml # Script de construcción con Ant
@@ -28,24 +35,20 @@ GestionCitasMedicas/
 │ └── *.jsp
 
 
-## ✅ Requisitos
 
-- JDK 8 o superior
-- Apache Tomcat 9+
+## ⚙️ Requisitos
+
+- Java JDK 8 o superior
+- Apache Tomcat 9 o superior
 - MySQL Server
-- NetBeans (opcional, recomendado)
-- Ant (para compilar con `build.xml`)
+- IDE como Eclipse o IntelliJ (opcional)
 
-## 🚀 Instalación
+## 🛠️ Instalación y Configuración
 
-1. **Base de datos**  
-   Ejecuta el script `CitasMedicasBase.sql` en tu servidor MySQL para crear las tablas necesarias.
+1. **Clona este repositorio:**
 
-2. **Conexión a la base de datos**  
-   Modifica la clase `SQL.Conexion.java` con tus credenciales de MySQL.
-
-3. **Compilar y desplegar**  
-   Usa Ant para compilar el proyecto con `build.xml` o genera un archivo WAR y despliega en Tomcat.
+bash
+git clone https://github.com/tu-usuario/GestionCitasMedicas.git
 
 ## 👤 Roles de Usuario
 
@@ -60,7 +63,21 @@ GestionCitasMedicas/
 - `menu.jsp`: Menú principal
 - `citas.jsp`: Gestión de citas
 - `admin.jsp`: Panel administrativo
+## 👤 🏥Registro de Nuevo Paciente
 
+Como nuevo usuario del sistema (paciente),
+quiero registrarme mediante un formulario en línea,
+para que pueda acceder al sistema y agendar mis citas médicas.
+
+-Criterios de Aceptación:
+   -El formulario debe estar disponible en la vista altaUsuario.jsp.
+
+   -El usuario debe ingresar datos como nombre, correo electrónico, contraseña y documento.
+
+   -Se debe validar que los datos sean correctos antes de registrarlos en la base de datos.
+
+   -El sistema debe confirmar el registro y redirigir al usuario a la página de login (login.jsp).
+   
 ## 🔒 Seguridad
 
 - Validación de formularios del lado del cliente y servidor.

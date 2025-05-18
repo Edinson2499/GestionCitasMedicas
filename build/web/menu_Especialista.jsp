@@ -24,7 +24,7 @@
             <li><a href="actualizar_disponibilidad.jsp">Actualizar Disponibilidad</a></li>
             <li><a href="historial_pacientes.jsp">Historial de Pacientes</a></li>
             <li><a href="generar_reportes.jsp">Generar Reportes</a></li>
-            <li><a href="CerrarSesionServlet">Cerrar Sesión</a></li>
+            <li><a href="<%= request.getContextPath() %>/CerrarSesion">Cerrar Sesión</a></li>
         </ul>
     </nav>
 </body>

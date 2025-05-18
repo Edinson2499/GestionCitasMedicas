@@ -58,6 +58,6 @@
     </div>
 
     <br>
-    <a href="menu_especialista.jsp">Volver al Menú del Especialista</a>
+    <a href="menu_especialista.jsp"></a>
 </body>
 </html>

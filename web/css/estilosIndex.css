@@ -1,166 +1,132 @@
 /* Estilos para el Index */
-*{
-    padding: 0; /*Quitar el padding de los elementos*/
-    margin: 0; /*Quitar el margin de los elementos*/
-    box-sizing: border-box; /*Para que el padding y el margin no afecten al tamaño del elemento*/
-    font-family: 'Poppins', sans-serif; /*Tipo de letra*/
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
-
-body{
-    padding: 20px; /*Espacio entre los elementos*/
-    margin: 10px; /*Espacio entre los elementos*/
-    background-image: url(../imagenes/fondoBlanco.png); /*Imagen de fondo*/
+body {
+    padding: 20px;
+    margin: 10px;
+    background-image: url(../imagenes/fondoBlanco.png);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-position: center;
-    color: white; /*Colorear de blanco los componentes de nuestra pagina: letra, bordes, etc..*/
+    color: #2a4d69; /* azul grisáceo suave para texto */
 }
 
+/* Estilo del menú con tonos azulados pastel */
 .menu {
-    padding: 0; /*Quitar el padding de los elementos*/
-    margin: 0 auto; /*Centrar el menú horizontalmente*/
-    text-align: center; /*Alinear el texto al centro*/
-    background: rgba(183,222,237,1); /*Color de fondo*/
-    border-style: none solid none; /*Borde de los elementos*/
-    border-color: rgba(255, 255, 255, 0.7); /*Color del borde*/
-    border-radius: 30px; /*Esquinas redondeadas*/
-    border-width: 0px 0px 5px 0px; /*Espacio entre los elementos*/
-    width: fit-content; /*Ajustar el ancho al contenido*/
-    position: absolute; /*Posicionar el menú de forma absoluta*/
-    top: 50%; /*Centrar verticalmente*/
-    left: 50%; /*Centrar horizontalmente*/
-    transform: translate(-50%, -50%); /*Ajustar el centro exacto*/
-    display: inline-block; /*Mantener los botones uno al lado del otro*/
+    padding: 0;
+    margin: 0 auto;
+    text-align: center;
+    background: linear-gradient(135deg, #d6f1ff, #cce6f6); /* azul cielo muy claro */
+    border-radius: 20px;
+    width: fit-content;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: inline-block;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    color: #333;
+    transition: all 0.3s ease;
+}
 
-    background: rgb(48, 155, 197);
-    background: -moz-radial-gradient(center, ellipse cover, rgba(183,222,237,1) 0%, rgba(183,222,237,1) 7%, rgba(113,206,239,1) 31%, rgba(33,180,226,1) 67%, rgba(33,180,226,1) 100%);
-    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(183,222,237,1)), color-stop(7%, rgba(183,222,237,1)), color-stop(31%, rgba(113,206,239,1)), color-stop(67%, rgba(33,180,226,1)), color-stop(100%, rgba(33,180,226,1)));
-    background: -webkit-radial-gradient(center, ellipse cover, rgba(183,222,237,1) 0%, rgba(183,222,237,1) 7%, rgba(113,206,239,1) 31%, rgba(33,180,226,1) 67%, rgba(33,180,226,1) 100%);
-    background: -o-radial-gradient(center, ellipse cover, rgba(183,222,237,1) 0%, rgba(183,222,237,1) 7%, rgba(113,206,239,1) 31%, rgba(33,180,226,1) 67%, rgba(33,180,226,1) 100%);
-    background: -ms-radial-gradient(center, ellipse cover, rgba(183,222,237,1) 0%, rgba(183,222,237,1) 7%, rgba(113,206,239,1) 31%, rgba(33,180,226,1) 67%, rgba(33,180,226,1) 100%);
-    background: radial-gradient(ellipse at center, rgba(183,222,237,1) 0%, rgba(183,222,237,1) 7%, rgba(113,206,239,1) 31%, rgba(33,180,226,1) 67%, rgba(33,180,226,1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b7deed', endColorstr='#21b4e2', GradientType=1 );
-    font-family: 'Poppins', sans-serif; /*Asegurar consistencia en la fuente*/
-    font-size: 18px; /*Tamaño de letra más uniforme*/
-    font-weight: 500; /*Peso de la letra para mejor legibilidad*/
-    letter-spacing: 0.5px; /*Espaciado entre letras para mayor claridad*/
-    text-align: center; /*Alinear el texto al centro*/
-    color: #ffffff; /*Color blanco para contraste con el fondo*/
-    }
+.menu ul {
+    top: 10vh;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    gap: 10px;
+    box-shadow: #333 0px 0px 10px;
+    border-radius: 20px;
+}
 
-    .menu ul {
-        top: 10vh; /* Espacio entre el menú y los elementos de la lista */
-        display: flex; /*Usar flexbox para alinear los botones en línea*/
-        justify-content: center; /*Centrar los botones horizontalmente*/
-        padding: 0;
-        margin: 0;
-    }
-    .menu.move-to-top-registro {
-        position: relative; /* Cambiar a posición relativa para que afecte el flujo del documento */
-        top: 2vh; /* Mover el menú a la parte superior */
-        transform: translate(-50%,0);/* Ajustar la posición horizontal */
-        left: center; /* Mantener centrado horizontalmente */
-        margin: 0 auto; /* Centrar horizontalmente */
-        width: fit-content; /* Ajustar el ancho al contenido */
-        transition: all 0.5s ease; /* Transición suave */
-        margin-bottom: 20px; /* Agregar margen inferior para empujar otros componentes hacia abajo */
-        z-index: 1; /* Asegurar que el menú esté por encima de otros elementos */
-    }
-    .menu.move-to-top-login {
-        position: fixed; /* Cambiar a fixed para que se posicione relativo a la ventana */
-        top: 24%; /* Mover el menú a la parte superior */
-        left: center; /* Centrar horizontalmente */
-        margin: 0; /* Eliminar márgenes que puedan afectar el posicionamiento */
-        width: fit-content; /* Ajustar el ancho al contenido */
-        transition: all 0.5s ease; /* Transición suave */
-        z-index: 1000; /* Asegurar que el menú esté por encima de otros elementos */
-    }
-    .menu.move-to-top-inicio {
-        width: 120px;
-        height: 120px;
-        background-image: url('../imagenes/Logo.png');
-        background-size: cover;
-        background-position: center;
-        border: 0px;
-        cursor: pointer;
-        transition: background 0.3s;
-        position: absolute;
-        background-size: 120px 120px;
-        margin: 10%;
-        left:0%;
-        top: 0%;
-    }
-    .menu.move-to-top-inicio:hover {
-    text-decoration: underline;
-    background-image: url(../imagenes/Atras_hover.png);
-    background-size: 120px 120px;
-    }
-    .menu.move-to-top-inicioregistro {
-        width: 120px;
-        height: 120px;
-        background-image: url('../imagenes/Logo.png');
-        background-size: cover;
-        background-position: center;
-        border: 0px;
-        cursor: pointer;
-        transition: background 0.3s;
-        position: absolute;
-        background-size: 120px 120px;
-        margin: 6%; /* Ajustar el margen para que no se superponga con el menú */
-        left:0%;
-        top: 0%;
-        padding: 20px;
-    }
-    .menu.move-to-top-inicioregistro:hover {
-    text-decoration: underline;
-    background-image: url(../imagenes/Atras_hover.png);
-    background-size: 120px 120px;
-    }
+.menu.move-to-top-registro {
+    position: relative;
+    top: 2vh;
+    transform: translate(-50%, 0);
+    margin: 0 auto 20px auto;
+    width: fit-content;
+    z-index: 1;
+}
 
+.menu.move-to-top-login {
+    position: fixed;
+    top: 18%;
+    transform: translateX(-50%);
+    left: 50%;
+    width: fit-content;
+    z-index: 1000;
+}
 
-
-.menu ul li a{
-    text-decoration: none; /*Quitar el subrayado de los enlaces*/
-    color: white; /*Colorear de blanco los componentes de nuestra pagina: letra, bordes, etc..*/
-    padding: 10px 20px; /*Espacio entre los elementos*/
-    color: white; /*Colorear de blanco los componentes de nuestra pagina: letra, bordes, etc..*/
-    font-size: 20px; /*Tamaño de la letra*/
+/* LOGOS como imagenes puras sin fondo ni bordes */
+.menu.move-to-top-inicio,
+.menu.move-to-top-inicioregistro {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    width: 100px;
+    height: 100px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: absolute;
+    left: 0%;
+    top: 0%;
+    cursor: pointer;
+    transition: transform 0.3s ease;
 }
 
 
-.menu ul li{
-    font-size: 20px;
-    font-family: 'Poppins', sans-serif; /*Tipo de letra*/
-    font-weight: 600; /*Grosor de la letra*/
-    list-style: none; /*Quitar los puntos de la lista*/
-    text-align: center; /*Alinear el texto al centro*/
-    display: inline-block; /*Mostrar los elementos en linea*/
-    padding: 10px 20px; /*Espacio entre los elementos*/
-    border-style: solid; /*Borde de los elementos*/
-    border-width: 0px 0px 5px 0px; /*Espacio entre los elementos*/
-    margin-right: 20px; /*Espacio entre los elementos*/
-    margin-left: 20px; /*Espacio entre los elementos*/
-    border-radius: 30px; /*Esquinas redondeadas*/
-    border-color: rgba(255, 255, 255, 0.7); /*Color del borde*/
-    transition: all .5s; /*Transicion de los elementos*/
-    background: linear-gradient(to bottom, #00acc1, #40c4ff); /*Color de fondo*/
-    gap: 20px; /*Espacio entre los elementos*/
-    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2); /*Sombra de los elementos*/
-    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /*Sombra del texto*/
-    margin-bottom: 20px; /*Espacio entre los elementos*/
-    margin-top: 20px; /*Espacio entre los elementos*/
-    }
+.menu.move-to-top-inicio {
+    background-image: url('../imagenes/Logo.png');
+    margin: 10%;
+}
 
+.menu.move-to-top-inicioregistro {
+    background-image: url('../imagenes/Logo.png');
+    margin: 6%;
+    padding: 10px;
+}
 
-.menu ul li:hover{
-    transition: all .5s;
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5); /*Sombra de los elementos*/
-    text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /*Sombra del texto*/
-    background: rgba(255, 255, 255, 0.2); /*Color de fondo*/
-    border-color: rgba(255, 255, 255, 0.7); /*Color del borde*/
-    transform: translate(0px, -5px); /*Mover los elementos hacia arriba*/
-    cursor: pointer; /*Cambiar el cursor al pasar por encima de los elementos*/
+.menu.move-to-top-inicio:hover,
+.menu.move-to-top-inicioregistro:hover {
+    background-image: url(../imagenes/Atras_hover.png);
+    transform: scale(1.05);
+}
+
+.menu ul li {
+    list-style: none;
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 15px;
+    background: linear-gradient(to bottom, #aee2f9, #d6f6ff); /* tonos azul pastel */
+    color: #2a4d69;
+    font-weight: 600;
+    font-size: 18px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.4);
+    transition: all 0.3s ease;
+}
+
+.menu ul li a {
+    text-decoration: none;
+    color: #2a4d69;
+    font-size: 18px;
+}
+
+.menu ul li:hover {
+    background: #e1f5fe;
+    transform: translateY(-4px);
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
 }

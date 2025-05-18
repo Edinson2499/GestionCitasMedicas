@@ -16,6 +16,7 @@
 </head>
 <body>
     <div class="cuerpoFormulario" id="cuerpoFormulario">
+        <h1>Iniciar Sesión</h1>
         <form class="formularioLogin" id="formularioLogin" method="post" action="InicioSesionServlet">
             <label for="username">Usuario:</label>
             <input type="text" id="username" name="txtUsuario" placeholder="Ingrese su usuario" required />

@@ -18,8 +18,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Citas Asignadas</title>
-    <link rel="icon" href="../imagenes/Logo.png" type="image/png">
-    <link rel="stylesheet" href="../css/estilos_citas_asignadas.css">
+    <link rel="icon" href="imagenes/Logo.png" type="image/png">
+    <link rel="stylesheet" href="css/estilos_citas_asignadas.css">
 </head>
 <body>
     <h1>Citas Asignadas a <%= nombreEspecialista %></h1>
@@ -58,6 +58,6 @@
     </div>
 
     <br>
-    <a href="menu_especialista.jsp">Volver al Menú del Especialista</a>
+    <a href="menu_especialista.jsp"></a>
 </body>
 </html>

@@ -1,91 +1,110 @@
-/*
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
-*/
-
 /* estilos_citas_asignadas.css */
 
 body {
-    font-family: sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f4f4f4;
     margin: 0;
-    padding: 20px;
+    padding: 40px 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     background-image: url(../imagenes/Menus.png);
     background-size: cover;
     background-position: center;
+    min-height: 100vh;
+    backdrop-filter: blur(2px);
 }
 
 h1 {
-    color: #333;
-    margin-bottom: 20px;
+    color: #222;
+    margin-bottom: 30px;
+    font-size: 28px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 10px 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
 div {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 80%;
-    max-width: 800px;
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 1000px;
+    overflow-x: auto;
 }
 
 p {
     margin-bottom: 15px;
+    font-size: 16px;
+    color: #333;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 15px;
+    margin-top: 20px;
+    font-size: 15px;
 }
 
 th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
+    padding: 12px;
     text-align: left;
+    border-bottom: 1px solid #e0e0e0;
 }
 
 th {
-    background-color: #f2f2f2;
-    font-weight: bold;
+    background-color: #f0f0f0;
+    font-weight: 600;
+    color: #444;
 }
 
 tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
+    background-color: #fafafa;
+}
+
+tbody tr:hover {
+    background-color: #f1f1f1;
 }
 
 a {
-    display: inline-block;
-    margin-top: 20px;
-    text-decoration: none;
-    color: #007bff;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-/*a {
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
     background-image: url('../imagenes/Atras.png');
     background-size: cover;
     background-position: center;
-    border-radius: 30px;
-    border: 0px;
+    border-radius: 50%;
+    border: none;
     cursor: pointer;
-    transition: background 0.3s;
-    position: absolute;
-    left:10%;
-    top: 13%;
-    background-size: 80px 80px;
+    transition: transform 0.2s ease, background-image 0.3s ease;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 10;
 }
 
 a:hover {
-    text-decoration: underline;
-/*    background-image: url(../imagenes/Atras_hover.png);
+    background-image: url('../imagenes/Atras_hover.png');
+    transform: scale(1.05);
 }
-*/
+
+/* Responsive table scroll for mobile */
+@media (max-width: 600px) {
+    table {
+        font-size: 14px;
+    }
+
+    th, td {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 22px;
+    }
+
+    div {
+        padding: 20px;
+    }
+}

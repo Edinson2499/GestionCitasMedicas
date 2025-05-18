@@ -21,6 +21,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Usuario</title>
     <link rel="stylesheet" href="css/estilos_editar_usuario.css">
+    <link rel="icon" href="imagenes/Logo.png" type="image/png">
 </head>
 <body>
     <h1>Editar Usuario</h1>

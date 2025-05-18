@@ -1,5 +1,3 @@
-/* Estilos para la página del Login */
-
 body {
     background-image: url(../imagenes/login.png);
     background-size: cover;
@@ -13,135 +11,219 @@ body {
     margin: 0;
     padding: 0;
     color: white;
-  }
+}
 
-  .button-group {
-    background: linear-gradient(to bottom, #40c4ff, #00acc1);
-    padding: 10px 20px;
-    border-radius: 30px;
-    display: flex;
-    gap: 20px;
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
-    margin-bottom: 30px;
-    display: flex;
-  }
-
-  .button-group button {
-    background: linear-gradient(to bottom, #546e7a, #37474f);
-    color: white;
-    border: 2px solid white;
-    padding: 10px 20px;
-    border-radius: 30px;
-    font-size: 1em;
-    cursor: pointer;
-    transition: transform 0.2s, background-color 0.2s;
-  }
-
-  .button-group button:hover {
-    transform: scale(1.05);
-    background-color: #263238;
-  }
-
-  .overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 999;
-  }
-
-  .form-container {
+/* Contenedor del formulario */
+.cuerpoFormulario {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 300px;
+    margin: 25px auto ;
     display: flex;
     flex-direction: column;
-    background: white;
-    border-radius: 10px;
-    padding: 30px;
-    width: 300px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  }
+}
 
-  .form-container h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    font-weight: bold;
-  }
+/* Formulario login */
+.formularioLogin {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
 
-  label {
-    margin-bottom: 5px;
-    color: #111213;
-  }
+.formularioLogin label {
+    font-weight: 600;
+    color: #37474f;
+}
 
-  input, select {
-    margin-bottom: 15px;
-    padding: 10px;
+.formularioLogin input[type="text"],
+.formularioLogin input[type="password"] {
+    padding: 10px 14px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 10px;
+    font-size: 1em;
+    background-color: #f7f9fc;
+    color: #333;
+    transition: border 0.2s ease-in-out;
     width: 100%;
-    box-sizing: border-box;
-  }
+    max-width: 300px;
+}
 
-  .form-container button {
-    background-color: #007bff;
-    color: white;
-    border: none;
+.formularioLogin input:focus {
+    border-color: #00acc1;
+    outline: none;
+}
+
+/* Botones principales */
+.buttonGroup {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    margin: 0 auto;
+    justify-content: center; /* Añadido para centrar los botones */
+    width: 100%; /* Ocupar todo el ancho disponible del contenedor */
+    max-width: 300px;
+}
+
+.buttonGroup .btn {
     padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    cursor: pointer;
+    background: linear-gradient(to right, #85bfda, #5ac8ff); /* Azul claro */
+    border: none;
+    border-radius: 10px;
+    color: white;
     font-weight: bold;
     font-size: 1em;
-    transition: background-color 0.3s ease;
-  }
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
 
-  .form-container button:hover {
-    background-color: #0056b3;
-  }
+.buttonGroup .btn:hover {
+    background: linear-gradient(to right, #639bb4, #4ba7d4);
+    transform: translateY(-2px);
+}
 
-  h2 {
-    color: #121213;
-  }
 
-          #modalAdmin {
-            display: none;
-            position: fixed;
-            z-index: 9999;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
-            justify-content: center;
-            align-items: center;
-        }
+/* Modal de admin */
+#modalAdmin {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+}
+.formularioAdmin label {
+    font-weight: 600;
+    color: #37474f;
+    display: block;
+    margin-bottom: 6px;
+    text-align: left;
+}
+.formularioAdmin input[type="text"],
+.formularioAdmin input[type="password"] {
+    padding: 10px 14px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 1em;
+    background-color: #f7f9fc;
+    color: #978282;
+    transition: border 0.2s ease-in-out;
+    width: 110%;
+    max-width: 300px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+}
 
-        #modalAdmin .contenido-modal {
-            background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
-            color: #000000;
-            padding: 30px;
-            border-radius: 12px;
-            text-align: center;
-            width: 90%;
-            max-width: 400px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
+.formularioAdmin input[type="text"]:focus,
+.formularioAdmin input[type="password"]:focus {
+    border-color: #00acc1;
+    outline: none;
+}
+#modalAdmin .contenido-modal {
+    background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+    color: #000000;
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
 
-        #modalAdmin button {
-            background-color: rgba(113, 206, 239, 1);
-            border: none;
-            color: black;
-            padding: 10px 20px;
-            margin-top: 20px;
-            font-size: 16px;
-            cursor: pointer;
-            border-radius: 8px;
-        }
+#modalAdmin .contenido-modal .buttonGroup {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+    width: 100%;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
 
-  area {
+#modalAdmin .contenido-modal .btn {
+    padding: 10px;
+    background: linear-gradient(to right, #85bfda, #5ac8ff);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+#modalAdmin .contenido-modal .btn:hover {
+    background: linear-gradient(to right, #639bb4, #4ba7d4);
+    transform: translateY(-2px);
+}
+
+#modalAdmin button {
+    background-color: rgba(113, 206, 239, 1);
+    border: none;
+    color: black;
+    padding: 10px 20px;
+    margin-top: 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+/* ===== NUEVO: Menú Normal Estilizado ===== */
+
+.menu-usuario {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 20px 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    max-width: 700px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #37474f;
+    margin-top: 20px;
+}
+
+.menu-usuario h2 {
+    color: #37474f;
+    margin-bottom: 20px;
+}
+
+.menu-usuario .opciones {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+}
+
+.menu-usuario .opciones a {
+    background: linear-gradient(to right, #85bfda, #5ac8ff);
+    color: white;
+    padding: 12px 20px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: bold;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.menu-usuario .opciones a:hover {
+    background: linear-gradient(to right, #639bb4, #4ba7d4);
+    transform: translateY(-2px);
+}
+
+
+/* Botón de regreso (ícono redondo) */
+a.btn-atras {
     width: 80px;
     height: 80px;
     background-image: url('../imagenes/Atras.png');
@@ -152,12 +234,18 @@ body {
     cursor: pointer;
     transition: background 0.3s;
     position: absolute;
+    top: 0;
     left: 0;
     margin: 5%;
-    top: 0;
-    background-size: 80px 80px;
 }
 
-area:hover {
-    background-image: url(../imagenes/Atras_hover.png);
+a.btn-atras:hover {
+    background-image: url('../imagenes/Atras_hover.png');
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #37474f;
+    text-align: center;
 }

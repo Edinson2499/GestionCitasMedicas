@@ -26,7 +26,7 @@
             <li><a href="#">Gestionar Citas</a></li>
             <li><a href="#">Gestionar Especialistas</a></li>
             <li><a href="#">Gestionar Pacientes</a></li>
-            <li><a href="CerrarSesionServlet">Cerrar Sesión</a></li>
+            <li><a href="<%= request.getContextPath() %>/CerrarSesion">Cerrar Sesión</a></li>
         </ul>
     </nav>
 </body>

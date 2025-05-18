@@ -22,7 +22,7 @@
             <li><a href="cancelar_cita.jsp">Cancelar Cita</a></li>
             <li><a href="actualizar_datos.jsp">Actualizar Datos</a></li>
             <li><a href="historial_medico.jsp">Historial Médico</a></li>
-            <li><a href="CerrarSesionServlet">Cerrar Sesión</a></li>
+            <li><a href="<%= request.getContextPath() %>/CerrarSesion">Cerrar Sesión</a></li>
         </ul>
     </nav>
     <script>

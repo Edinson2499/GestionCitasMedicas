@@ -17,8 +17,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Historial de Pacientes</title>
-    <link rel="icon" href="../imagenes/Logo.png" type="image/png">
-    <link rel="stylesheet" href="../css/estilos_historial_pacientes.css">
+    <link rel="icon" href="imagenes/Logo.png" type="image/png">
+    <link rel="stylesheet" href="css/estilos_historial_pacientes.css">
 </head>
 <body>
     <h1>Historial de Pacientes, <%= nombreEspecialista %></h1>

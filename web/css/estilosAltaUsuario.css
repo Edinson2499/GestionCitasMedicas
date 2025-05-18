@@ -1,67 +1,72 @@
-/*Estilos para el formulario de registro del usuario*/
-*{
+/* Estilos para el formulario de registro del usuario */
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
-.cuerpoFormulario{
-    margin: 20px 15%;
-    color:black;
+.cuerpoFormulario {
+    margin: 40px auto;
+    max-width: 600px;
+    color: #333;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-
-.formularioAlta{
-    padding: 20px;
-    border-color: black;
-    border-width: 2px;
-    border-style: solid;
-    border-radius: 20px;
+.formularioAlta {
+    padding: 30px;
+    border: 2px solid #ccc;
+    border-radius: 16px;
     text-align: center;
-    line-height: 30px;
-    font-size: 20px;
-    /*Colores de fondo*/
-    background: rgba(183,222,237,1);
-    background: -moz-radial-gradient(center, ellipse cover, rgba(183,222,237,1) 0%, rgba(183,222,237,1) 7%, rgba(113,206,239,1) 31%, rgba(33,180,226,1) 67%, rgba(33,180,226,1) 100%);
-    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(183,222,237,1)), color-stop(7%, rgba(183,222,237,1)), color-stop(31%, rgba(113,206,239,1)), color-stop(67%, rgba(33,180,226,1)), color-stop(100%, rgba(33,180,226,1)));
-    background: -webkit-radial-gradient(center, ellipse cover, rgba(183,222,237,1) 0%, rgba(183,222,237,1) 7%, rgba(113,206,239,1) 31%, rgba(33,180,226,1) 67%, rgba(33,180,226,1) 100%);
-    background: -o-radial-gradient(center, ellipse cover, rgba(183,222,237,1) 0%, rgba(183,222,237,1) 7%, rgba(113,206,239,1) 31%, rgba(33,180,226,1) 67%, rgba(33,180,226,1) 100%);
-    background: -ms-radial-gradient(center, ellipse cover, rgba(183,222,237,1) 0%, rgba(183,222,237,1) 7%, rgba(113,206,239,1) 31%, rgba(33,180,226,1) 67%, rgba(33,180,226,1) 100%);
-    background: radial-gradient(ellipse at center, rgba(183,222,237,1) 0%, rgba(183,222,237,1) 7%, rgba(113,206,239,1) 31%, rgba(33,180,226,1) 67%, rgba(33,180,226,1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b7deed', endColorstr='#21b4e2', GradientType=1 );
+    line-height: 1.8;
+    font-size: 18px;
+    background: linear-gradient(145deg, #e6f4f9 0%, #cdeafd 100%);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
 }
 
-
-
-.btn{
-    margin:10px;
-    padding: 10px 30px 10px 30px;
-    border-radius: 15px;
-    font-family: sans-serif;
-    transition: all .5s;
+.formularioAlta:hover {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
 
-.btn:hover{
-    transition: all .5s;
-    border-color: black;
+.txt {
+    font-size: 16px;
+    border-radius: 10px;
+    padding: 8px 12px;
+    border: 1px solid #aaa;
+    margin: 10px 0;
+    width: 60%;
+    max-width: 400px;
+}
+
+.btn {
+    margin: 15px;
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-family: inherit;
+    border: none;
+    background-color: #2196F3;
+    color: white;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.btn:hover {
+    background-color: #1976D2;
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
     cursor: pointer;
-    transform: translate(0px, -10px);
-    box-shadow: 0px 0px 10px 4px white;
 }
 
-.txt{
-    font-size: 20px;
-    border-radius: 15px;
-    padding: 5px; /* Agrega un pequeño margen interno entre el texto y el cuadro */
+.avisoContrasena {
+    background-color: #fff;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1.5px solid #888;
+    margin-top: 15px;
+    font-size: 14px;
+    color: #555;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
 }
-
-
-.avisoContrasena{
-    background-color: white;
-    padding: 10px;
-    border-radius: 15px;
-    border-style: solid;
-    border-color: black;
-    border-width: 2px;
-}
-

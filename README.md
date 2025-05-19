@@ -91,3 +91,59 @@ Repositorio gestionado con Git.
 ---
 
 > Para dudas o mejoras, siéntete libre de abrir un issue o pull request.
+
+## 📘 Tutorial de Funcionamiento de la Página Web
+
+Esta aplicación permite gestionar citas médicas entre pacientes y médicos a través de una interfaz web sencilla. A continuación se detalla cómo utilizar las principales funcionalidades:
+
+### 🔐 Inicio de Sesión / Registro
+
+1. **Registro de Usuario:**
+   - Accede a `altaUsuario.jsp` si eres paciente o a `altaUsuarioE.jsp` si eres especialista.
+   - Completa el formulario con tus datos personales.
+   - Una vez registrado, puedes iniciar sesión.
+   
+   _[Espacio para captura de pantalla del formulario de registro]_
+
+2. **Inicio de Sesión:**
+   - Ingresa tus credenciales en la página de login.
+   - Según el rol (paciente o médico), serás redirigido al panel correspondiente.
+   
+   _[Espacio para captura de pantalla de la página de login]_
+
+### 📅 Agendar una Cita (Paciente)
+
+1. Dirígete a la sección de **Agendar Cita** (`agendar_cita.jsp`).
+2. Selecciona el especialista, fecha y hora disponible.
+3. Confirma tu cita. Recibirás una notificación de éxito.
+
+_[Espacio para captura de pantalla de la página de agendamiento]_
+
+### 🕒 Gestionar Disponibilidad (Especialista)
+
+1. Accede a `actualizar_disponibilidad.jsp`.
+2. Indica los días y horas en que estás disponible para atender citas.
+3. Guarda los cambios para que los pacientes puedan agendar en esos espacios.
+
+_[Espacio para captura de pantalla de la gestión de disponibilidad]_
+
+### 📋 Ver y Administrar Citas
+
+- Tanto pacientes como médicos pueden consultar sus citas programadas.
+- Es posible cancelar o modificar citas según los permisos establecidos.
+
+_[Espacio para captura de pantalla del listado de citas]_
+
+### 🛠 Requisitos Técnicos
+
+- Java 8+
+- Servidor Apache Tomcat
+- MySQL (importar `CitasMedicasBase.sql`)
+- Maven para gestión de dependencias (`pom.xml`)
+
+### 🚀 Despliegue
+
+1. Importa el proyecto en tu IDE (NetBeans/Eclipse).
+2. Configura el servidor Tomcat.
+3. Importa la base de datos desde `CitasMedicasBase.sql`.
+4. Ejecuta el proyecto y accede a la app vía navegador.

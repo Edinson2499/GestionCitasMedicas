@@ -16,7 +16,22 @@ Esta aplicación permite gestionar citas médicas entre pacientes y médicos a t
    - Según el rol (paciente o médico), serás redirigido al panel correspondiente.
    
    _[Espacio para captura de pantalla de la página de login]_
+   
+## 👤 🏥Registro de Nuevo Paciente
 
+Como nuevo usuario del sistema (paciente),
+quiero registrarme mediante un formulario en línea,
+para que pueda acceder al sistema y agendar mis citas médicas.
+
+-Criterios de Aceptación:
+   -El formulario debe estar disponible en la vista altaUsuario.jsp.
+
+   -El usuario debe ingresar datos como nombre, correo electrónico, contraseña y documento.
+
+   -Se debe validar que los datos sean correctos antes de registrarlos en la base de datos.
+
+   -El sistema debe confirmar el registro y redirigir al usuario a la página de login (login.jsp).
+   
 ### 📅 Agendar una Cita (Paciente)
 
 1. Dirígete a la sección de **Agendar Cita** (`agendar_cita.jsp`).
@@ -66,7 +81,7 @@ Sistema web para la gestión de citas médicas, desarrollado con JSP, Servlets y
 - Agendamiento y gestión de citas médicas.
 - Validación de formularios en el cliente y servidor.
 - Panel de administración para gestión de usuarios y citas.
-
+---------------------------------------------------------------------------------------------
 ## 🚀 Tecnologías Utilizadas
 
 - Java EE (Servlets, JSP)
@@ -93,7 +108,6 @@ GestionCitasMedicas/
 
 ![ChatGPT Image 18 may 2025, 12_05_38 (1)](https://github.com/user-attachments/assets/f2b544a3-e566-4360-8a4d-b6fe70a2f30a)
 
----------------------------------------------------------------------------------------------
 
 ## ⚙️ Requisitos
 
@@ -122,21 +136,7 @@ git clone https://github.com/tu-usuario/GestionCitasMedicas.git
 - `menu.jsp`: Menú principal
 - `citas.jsp`: Gestión de citas
 - `admin.jsp`: Panel administrativo
-## 👤 🏥Registro de Nuevo Paciente
 
-Como nuevo usuario del sistema (paciente),
-quiero registrarme mediante un formulario en línea,
-para que pueda acceder al sistema y agendar mis citas médicas.
-
--Criterios de Aceptación:
-   -El formulario debe estar disponible en la vista altaUsuario.jsp.
-
-   -El usuario debe ingresar datos como nombre, correo electrónico, contraseña y documento.
-
-   -Se debe validar que los datos sean correctos antes de registrarlos en la base de datos.
-
-   -El sistema debe confirmar el registro y redirigir al usuario a la página de login (login.jsp).
-   
 ## 🔒 Seguridad
 
 - Validación de formularios del lado del cliente y servidor.

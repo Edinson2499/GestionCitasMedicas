@@ -1,25 +1,31 @@
-/* Estilos para mostrar el menú de usuario */
-
-
+/* ==============================
+   Estilos generales del body
+   ============================== */
 body {
     background-image: url(../imagenes/Menus.png);
     background-size: cover;
     background-position: center;
     font-family: sans-serif;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    height: 100vh;
+    justify-content: center;    /* Centrar horizontalmente */
+    align-items: center;        /* Centrar verticalmente */
+    flex-direction: column;     /* Organizar elementos en columna */
+    height: 100vh;              /* Altura completa de la ventana */
     margin: 0;
     color: white;
 }
 
+/* ==============================
+   Título principal (h1)
+   ============================== */
 h1 {
     color: #333;
     margin-bottom: 20px;
 }
 
+/* ==============================
+   Contenedor del menú de usuario
+   ============================== */
 .menu-usuario {
     background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
     padding: 20px;
@@ -28,29 +34,41 @@ h1 {
     text-align: center;
 }
 
+/* ==============================
+   Lista dentro del menú de usuario
+   ============================== */
 .menu-usuario ul {
-    list-style: none;
+    list-style: none;          /* Quitar viñetas */
     padding: 0;
     margin: 0;
-    display: inline-block;
+    display: inline-block;     /* Para ajustar al contenido */
 }
 
+/* ==============================
+   Elementos de la lista
+   ============================== */
 .menu-usuario li {
-    margin: 15px 0;
+    margin: 15px 0;            /* Espacio vertical entre items */
 }
 
+/* ==============================
+   Enlaces dentro del menú de usuario
+   ============================== */
 .menu-usuario a {
-    display: block;
+    display: block;            /* Que el enlace ocupe todo el bloque */
     padding: 12px 25px;
-    text-decoration: none;
+    text-decoration: none;     /* Sin subrayado */
     color: #333;
     font-size: 18px;
     border-radius: 10px;
-    background-color: #fff;
+    background-color: #fff;    /* Fondo blanco */
     transition: background-color 0.3s ease;
 }
 
+/* ==============================
+   Efecto hover para los enlaces
+   ============================== */
 .menu-usuario a:hover {
-    background-color: #e0f7fa;
-    color: #007bff;
+    background-color: #e0f7fa; /* Fondo celeste claro */
+    color: #007bff;            /* Texto azul brillante */
 }

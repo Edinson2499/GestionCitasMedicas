@@ -1,58 +1,100 @@
-/* Estilos para la página de Inicio */
-
-*{
+/* =========================
+   Reset básico para todos los elementos
+   ========================= */
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
-
-body{
+/* =========================
+   Estilos generales del body
+   ========================= */
+body {
     padding: 0;
     margin: 0;
+    height: 100vh;
     background-image: url(../imagenes/fondoBlanco.png);
     background-size: cover;
     background-attachment: fixed;
     background-repeat: no-repeat;
-    background-position: center;  
+    background-position: center;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;    /* Centra horizontalmente */
+    align-items: center;        /* Centra verticalmente */
+    flex-direction: column;
+    color: #37474f;
 }
 
-
-.contenidoInicio{
+/* =========================
+   Contenedor principal del contenido de inicio
+   ========================= */
+.contenidoInicio {
     font-size: 20px;
     padding: 40px;
-    text-align: center;
     margin: 10% 20%;
-    border-style: solid;
-    border-radius: 10px;
-    line-height: 300%;
-    
-    background: rgba(183,222,237,1);
-    background: -moz-radial-gradient(center, ellipse cover, rgba(183,222,237,1) 0%, rgba(183,222,237,1) 7%, rgba(113,206,239,1) 31%, rgba(33,180,226,1) 67%, rgba(33,180,226,1) 100%);
-    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(183,222,237,1)), color-stop(7%, rgba(183,222,237,1)), color-stop(31%, rgba(113,206,239,1)), color-stop(67%, rgba(33,180,226,1)), color-stop(100%, rgba(33,180,226,1)));
-    background: -webkit-radial-gradient(center, ellipse cover, rgba(183,222,237,1) 0%, rgba(183,222,237,1) 7%, rgba(113,206,239,1) 31%, rgba(33,180,226,1) 67%, rgba(33,180,226,1) 100%);
-    background: -o-radial-gradient(center, ellipse cover, rgba(183,222,237,1) 0%, rgba(183,222,237,1) 7%, rgba(113,206,239,1) 31%, rgba(33,180,226,1) 67%, rgba(33,180,226,1) 100%);
-    background: -ms-radial-gradient(center, ellipse cover, rgba(183,222,237,1) 0%, rgba(183,222,237,1) 7%, rgba(113,206,239,1) 31%, rgba(33,180,226,1) 67%, rgba(33,180,226,1) 100%);
-    background: radial-gradient(ellipse at center, rgba(183,222,237,1) 0%, rgba(183,222,237,1) 7%, rgba(113,206,239,1) 31%, rgba(33,180,226,1) 67%, rgba(33,180,226,1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b7deed', endColorstr='#21b4e2', GradientType=1 );
-}
-
-a{
-    color: black;
-}
-
-
-input[type=submit]{
-    padding: 10px 30px 10px 30px;
+    text-align: center;
     border-radius: 15px;
-    font-family: sans-serif;
-    transition: all .5s;
+    line-height: 1.8;
+    background: radial-gradient(
+        ellipse at center, 
+        rgba(183, 222, 237, 1) 0%, 
+        rgba(113, 206, 239, 1) 31%, 
+        rgba(33, 180, 226, 1) 100%
+    );
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    max-width: 600px;
+    width: 90%;
 }
 
-input[type=submit]:hover{
-    transition: all .5s;
-    border-color: black;
-    transform: translate(0px,-10px);
+/* =========================
+   Estilo para enlaces
+   ========================= */
+a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #0056b3;
+}
+
+/* =========================
+   Botones de envío
+   ========================= */
+input[type=submit] {
+    padding: 12px 30px;
+    border-radius: 15px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 1em;
+    border: 2px solid transparent;
+    background: linear-gradient(to right, #85bfda, #5ac8ff);
+    color: white;
     cursor: pointer;
-    box-shadow: 0px 0px 10px 4px white;
+    transition: all 0.4s ease;
+    box-shadow: 0 4px 10px rgba(90, 200, 255, 0.5);
+    max-width: 200px;
+    width: 100%;
+    margin: 20px auto 0 auto;
+    display: block;
+}
+
+input[type=submit]:hover {
+    border-color: #007bff;
+    transform: translateY(-6px);
+    box-shadow: 0 6px 20px rgba(33, 150, 243, 0.8);
+}
+
+/* =========================
+   Título principal (por si tienes uno)
+   ========================= */
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #37474f;
+    text-align: center;
 }

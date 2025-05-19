@@ -1,8 +1,9 @@
-/* Estilos para la página de Agendar Cita */
-
+/* ==============================
+   Estilos generales para la página
+   ============================== */
 body {
     font-family: sans-serif;
-    background-color: #f4f4f4; /* Un fondo gris claro */
+    background-color: #f4f4f4; /* Fondo gris claro */
     margin: 0;
     padding: 2%;
     display: flex;
@@ -13,16 +14,24 @@ body {
     background-position: center;
 }
 
-header {
-    background: rgba(33,180,226,1); /* Uno de los colores finales del gradiente */
-    color: white;
-    padding: 20px 0;
-    border-radius: 20px; /* Bordes redondeados */
+/* ==============================
+   Estilos para el encabezado (header)
+   ============================== */
+h1 {
+    color: #222;
+    margin-bottom: 30px;
+    font-size: 28px;
     text-align: center;
-    width: 40%;
-    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 10px 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
- 
+
+
+/* ==============================
+   Estilos para la sección principal (main)
+   ============================== */
 main {
     background-color: white;
     padding: 30px;
@@ -32,6 +41,9 @@ main {
     max-width: 600px;
 }
 
+/* ==============================
+   Estilos para etiquetas (labels)
+   ============================== */
 label {
     display: block;
     margin-bottom: 10px;
@@ -39,6 +51,9 @@ label {
     color: #333;
 }
 
+/* ==============================
+   Estilos para campos de formulario (fecha, hora, select)
+   ============================== */
 input[type="date"],
 input[type="time"],
 select {
@@ -46,17 +61,20 @@ select {
     padding: 12px;
     margin-bottom: 20px;
     border: 1px solid #ccc;
-    border-radius: 15px; /* Usando el mismo radio que los campos de texto */
+    border-radius: 15px; /* Bordes redondeados coherentes */
     font-size: 18px;
     box-sizing: border-box;
 }
 
+/* ==============================
+   Estilos para el botón principal
+   ============================== */
 button {
-    background: rgba(113,206,239,1); /* Un color intermedio del gradiente */
+    background: rgba(113,206,239,1); /* Azul claro */
     color: black;
     padding: 10px 30px;
     border: none;
-    border-radius: 15px; /* Usando el mismo radio que los botones */
+    border-radius: 15px; /* Bordes redondeados */
     font-size: 20px;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -64,33 +82,38 @@ button {
 }
 
 button:hover {
-    background: #2e86d8; /* Color más intenso al hacer hover */
+    background: #2e86d8; /* Azul más oscuro al hover */
     color: white;
 }
 
+/* ==============================
+   Estilo para mensaje de éxito
+   ============================== */
 #mensaje {
     margin-top: 20px;
     font-size: 18px;
     font-weight: bold;
-    color: #28a745; /* Un color verde para mensajes de éxito */
+    color: #28a745; /* Verde para éxito */
     text-align: center;
 }
 
+/* ==============================
+   Estilos para enlace tipo botón "atrás"
+   ============================== */
 a {
     width: 80px;
     height: 80px;
     background-image: url('../imagenes/Atras.png');
-    background-size: cover;
+    background-size: 80px 80px;
     background-position: center;
     border-radius: 30px;
-    border: 0px;
+    border: 0;
     cursor: pointer;
     transition: background 0.3s;
     position: absolute;
     left: 0;
-    margin: 5%;
     top: 0;
-    background-size: 80px 80px;
+    margin: 5%;
 }
 
 a:hover {

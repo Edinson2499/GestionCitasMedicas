@@ -1,50 +1,70 @@
-/* Estilos para la página de Ver mis Cita */
-
+/* =========================
+   Estilos generales del body
+   ========================= */
 body {
     background-image: url(../imagenes/Menus.png);
     background-size: cover;
     background-position: center;
     font-family: sans-serif;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: center;   /* Centrar horizontalmente */
+    align-items: center;       /* Centrar verticalmente */
     flex-direction: column;
     height: 100vh;
     margin: 0;
     color: white;
 }
+
+/* =========================
+   Contenedor principal (main)
+   ========================= */
 main {
     background-color: white;
     padding: 30px;
     border-radius: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: auto;/* Cambié el ancho a 80% */
+    width: 80%;               /* Ajuste ancho para mejor responsividad */
     max-width: 600px;
+    color: #1d1414;           /* Texto oscuro para contraste en fondo blanco */
 }
-header {
-    background: rgba(33,180,226,1); /* Uno de los colores finales del gradiente */
-    color: white;
-    padding: 20px 0;
-    border-radius: 20px; /* Bordes redondeados */
+
+/* =========================
+   Encabezado de la sección
+   ========================= */
+h1 {
+    color: #222;
+    margin-bottom: 30px;
+    font-size: 28px;
     text-align: center;
-    width: 40%;
-    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 10px 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
-.no-citas {
+
+
+/* =========================
+   Mensajes de estado (sin citas, error, etc)
+   ========================= */
+.no-citas, .citas-container {
     margin-top: 20px;
     font-size: 18px;
     font-weight: bold;
-    color: #1d1414; /* Un color verde para mensajes de éxito */
-    text-align: center;
-}
-.citas-container {
-    margin-top: 20px;
-    font-size: 18px;
-    font-weight: bold;
-    color: #1d1414; /* Un color verde para mensajes de éxito */
+    color: #1d1414;          /* Texto oscuro */
     text-align: center;
 }
 
+.error {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #e63731;          /* Rojo para mensajes de error */
+    text-align: center;
+}
+
+/* =========================
+   Lista de citas
+   ========================= */
 .cita-container li {
     list-style: none;
     padding: 0;
@@ -55,31 +75,27 @@ header {
 .cita-container p {
     margin: 15px 0;
 }
-.error {
-    margin-top: 20px;
-    font-size: 18px;
-    font-weight: bold;
-    color: #e63731; /* Un color verde para mensajes de éxito */
-    text-align: center;
-}
+
+/* =========================
+   Botón de regreso (ícono redondo)
+   ========================= */
 a {
     width: 80px;
     height: 80px;
     background-image: url('../imagenes/Atras.png');
-    background-size: cover;
+    background-size: 80px 80px;
     background-position: center;
     border-radius: 30px;
-    border: 0px;
+    border: none;
     cursor: pointer;
     transition: background 0.3s;
     position: absolute;
-    left: 0%;
-    top: 0%;
+    top: 0;
+    left: 0;
     margin: 5%;
-    background-size: 80px 80px;
 }
 
 a:hover {
     text-decoration: underline;
-    background-image: url(../imagenes/Atras_hover.png);
+    background-image: url('../imagenes/Atras_hover.png');
 }

@@ -1,10 +1,15 @@
-/* Estilos para el formulario de registro del usuario */
+/* ==============================
+   Reset básico para todos los elementos
+   ============================== */
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
+/* ==============================
+   Contenedor principal del formulario
+   ============================== */
 .cuerpoFormulario {
     margin: 40px auto;
     max-width: 600px;
@@ -12,6 +17,9 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* ==============================
+   Estilos para el formulario de registro
+   ============================== */
 .formularioAlta {
     padding: 30px;
     border: 2px solid #ccc;
@@ -24,10 +32,14 @@
     transition: box-shadow 0.3s ease;
 }
 
+/* Efecto hover para el formulario */
 .formularioAlta:hover {
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
 
+/* ==============================
+   Campos de texto dentro del formulario
+   ============================== */
 .txt {
     font-size: 16px;
     border-radius: 10px;
@@ -38,6 +50,9 @@
     max-width: 400px;
 }
 
+/* ==============================
+   Botones del formulario
+   ============================== */
 .btn {
     margin: 15px;
     padding: 12px 25px;
@@ -45,19 +60,23 @@
     font-size: 16px;
     font-family: inherit;
     border: none;
-    background-color: #2196F3;
+    background-color: #2196F3; /* Azul base */
     color: white;
     transition: all 0.3s ease;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
+/* Efecto hover para botones */
 .btn:hover {
-    background-color: #1976D2;
+    background-color: #1976D2; /* Azul más oscuro */
     transform: translateY(-5px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
     cursor: pointer;
 }
 
+/* ==============================
+   Mensaje de aviso para contraseña
+   ============================== */
 .avisoContrasena {
     background-color: #fff;
     padding: 12px;

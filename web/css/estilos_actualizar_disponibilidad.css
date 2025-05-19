@@ -1,8 +1,6 @@
-/*
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
-*/
-/* Estilos para la página de actualización de disponibilidad */
+/* ================================
+   Estilos generales del cuerpo
+================================== */
 body {
     font-family: sans-serif;
     background-color: #f4f4f4;
@@ -16,17 +14,24 @@ body {
     background-position: center;
 }
 
+/* ================================
+   Título principal (h1)
+================================== */
 h1 {
-    background: rgba(33,180,226,1); /* Uno de los colores finales del gradiente */
-    color: white;
-    padding: 20px 0;
-    border-radius: 20px; /* Bordes redondeados */
+    color: #222;
+    margin-bottom: 30px;
+    font-size: 28px;
     text-align: center;
-    width: 80%;
-    max-width: 600px;
-    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 10px 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
+
+/* ================================
+   Contenedor principal
+================================== */
 div {
     background-color: white;
     padding: 20px;
@@ -36,12 +41,18 @@ div {
     max-width: 600px;
 }
 
+/* ================================
+   Etiquetas de formulario
+================================== */
 label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
 }
 
+/* ================================
+   Campos de fecha y hora
+================================== */
 input[type="date"],
 input[type="time"] {
     width: calc(100% - 12px);
@@ -52,6 +63,9 @@ input[type="time"] {
     box-sizing: border-box;
 }
 
+/* ================================
+   Botón de envío del formulario
+================================== */
 button[type="submit"] {
     background: rgba(113,206,239,1); /* Un color intermedio del gradiente */
     color: black;
@@ -64,10 +78,16 @@ button[type="submit"] {
     margin-top: 10px;
 }
 
+/* ================================
+   Efecto hover del botón de envío
+================================== */
 button[type="submit"]:hover {
     background-color: #0056b3;
 }
 
+/* ================================
+   Botón de regreso con imagen
+================================== */
 a {
     width: 80px;
     height: 80px;
@@ -85,6 +105,9 @@ a {
     background-size: 80px 80px;
 }
 
+/* ================================
+   Efecto hover del botón de regreso
+================================== */
 a:hover {
     background-image: url(../imagenes/Atras_hover.png);
 }

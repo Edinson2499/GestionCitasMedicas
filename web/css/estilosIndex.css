@@ -1,4 +1,6 @@
-/* Estilos para el Index */
+/* ==============================
+   Reset básico y fuente general
+   ============================== */
 * {
     padding: 0;
     margin: 0;
@@ -6,6 +8,9 @@
     font-family: 'Poppins', sans-serif;
 }
 
+/* ==============================
+   Estilos generales del body
+   ============================== */
 body {
     padding: 20px;
     margin: 10px;
@@ -14,15 +19,17 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    color: #2a4d69; /* azul grisáceo suave para texto */
+    color: #2a4d69; /* Azul grisáceo suave para texto */
 }
 
-/* Estilo del menú con tonos azulados pastel */
+/* ==============================
+   Contenedor principal del menú
+   ============================== */
 .menu {
     padding: 0;
     margin: 0 auto;
     text-align: center;
-    background: linear-gradient(135deg, #d6f1ff, #cce6f6); /* azul cielo muy claro */
+    background: linear-gradient(135deg, #d6f1ff, #cce6f6); /* Azul cielo muy claro */
     border-radius: 20px;
     width: fit-content;
     position: absolute;
@@ -37,6 +44,9 @@ body {
     transition: all 0.3s ease;
 }
 
+/* ==============================
+   Lista de opciones dentro del menú
+   ============================== */
 .menu ul {
     top: 10vh;
     display: flex;
@@ -48,6 +58,11 @@ body {
     border-radius: 20px;
 }
 
+/* ==============================
+   Modificaciones para menú en diferentes posiciones
+   ============================== */
+
+/* Mover menú hacia arriba para registro */
 .menu.move-to-top-registro {
     position: relative;
     top: 2vh;
@@ -57,6 +72,7 @@ body {
     z-index: 1;
 }
 
+/* Menú fijo para login */
 .menu.move-to-top-login {
     position: fixed;
     top: 18%;
@@ -66,7 +82,9 @@ body {
     z-index: 1000;
 }
 
-/* LOGOS como imagenes puras sin fondo ni bordes */
+/* ==============================
+   Estilos para logos (imágenes sin fondo ni bordes)
+   ============================== */
 .menu.move-to-top-inicio,
 .menu.move-to-top-inicioregistro {
     background: none;
@@ -85,31 +103,36 @@ body {
     transition: transform 0.3s ease;
 }
 
-
+/* Logo para inicio */
 .menu.move-to-top-inicio {
     background-image: url('../imagenes/Logo.png');
     margin: 10%;
 }
 
+/* Logo para inicio registro */
 .menu.move-to-top-inicioregistro {
     background-image: url('../imagenes/Logo.png');
     margin: 6%;
     padding: 10px;
 }
 
+/* Efecto hover para logos */
 .menu.move-to-top-inicio:hover,
 .menu.move-to-top-inicioregistro:hover {
     background-image: url(../imagenes/Atras_hover.png);
     transform: scale(1.05);
 }
 
+/* ==============================
+   Estilos para los elementos <li> del menú
+   ============================== */
 .menu ul li {
     list-style: none;
     display: inline-block;
     padding: 10px 20px;
     margin: 10px;
     border-radius: 15px;
-    background: linear-gradient(to bottom, #aee2f9, #d6f6ff); /* tonos azul pastel */
+    background: linear-gradient(to bottom, #aee2f9, #d6f6ff); /* Tonos azul pastel */
     color: #2a4d69;
     font-weight: 600;
     font-size: 18px;
@@ -118,12 +141,14 @@ body {
     transition: all 0.3s ease;
 }
 
+/* Estilos para enlaces dentro de <li> */
 .menu ul li a {
     text-decoration: none;
     color: #2a4d69;
     font-size: 18px;
 }
 
+/* Efecto hover para items del menú */
 .menu ul li:hover {
     background: #e1f5fe;
     transform: translateY(-4px);

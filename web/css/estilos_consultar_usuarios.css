@@ -1,4 +1,6 @@
-/* Estilos generales */
+/* ===========================================
+   Estilos generales del cuerpo
+=========================================== */
 body {
     background-image: url(../imagenes/login.png);
     background-size: cover;
@@ -14,15 +16,33 @@ body {
     color: #f5f5f5;
 }
 
-/* Encabezados */
-h1, h2 {
+/* ===========================================
+   Encabezados h1 y h2
+=========================================== */
+h1 {
     color: #222;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    font-size: 28px;
     text-align: center;
-    font-weight: 600;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 10px 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+h2 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 24px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 10px 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
-/* Formulario de filtro */
+/* ===========================================
+   Formulario de filtro
+=========================================== */
 form {
     background-color: rgba(255, 255, 255, 0.9);
     padding: 20px 30px;
@@ -46,6 +66,9 @@ label {
     font-size: 15px;
 }
 
+/* ===========================================
+   Selectores de opciones
+=========================================== */
 select {
     width: 100%;
     padding: 10px 12px;
@@ -61,7 +84,9 @@ select:focus {
     outline: none;
 }
 
-/* Botón de búsqueda */
+/* ===========================================
+   Botón de envío del formulario
+=========================================== */
 button[type="submit"] {
     padding: 12px 20px;
     background-color: #007bff;
@@ -77,14 +102,19 @@ button[type="submit"]:hover {
     background-color: #0056b3;
 }
 
-/* Mensajes de error */
+/* ===========================================
+   Mensajes de error
+=========================================== */
 .error-message {
     color: #d9534f;
     font-weight: bold;
     text-align: center;
     margin-top: 15px;
 }
-/* Tablas */
+
+/* ===========================================
+   Tabla de resultados
+=========================================== */
 table {
     width: 90%;
     max-width: 1000px;
@@ -96,13 +126,14 @@ table {
     overflow: hidden;
 }
 
+/* Etiquetas adicionales (redefinidas para la tabla) */
 label {
     margin-bottom: 5px;
     color: #222;
     font-size: 14px;
 }
 
-/* Celdas */
+/* Celdas de la tabla */
 th, td {
     padding: 14px 18px;
     border-bottom: 1px solid #e0e0e0;
@@ -110,6 +141,7 @@ th, td {
     font-size: 15px;
 }
 
+/* Cabecera de la tabla */
 th {
     background-color: #0069d9;
     color: white;
@@ -118,11 +150,13 @@ th {
     letter-spacing: 0.5px;
 }
 
+/* Contenido de las celdas */
 td {
     background-color: #fff;
     color: #333;
 }
 
+/* Filas alternas y efecto hover */
 tr:nth-child(even) {
     background-color: #f9f9f9;
 }
@@ -130,7 +164,10 @@ tr:nth-child(even) {
 tr:hover {
     background-color: #f1f1f1;
 }
-/* Enlaces */
+
+/* ===========================================
+   Enlaces
+=========================================== */
 a {
     color: #5ea7f5;
     text-decoration: none;
@@ -141,10 +178,14 @@ a:hover {
     text-decoration: underline;
     color: #0056b3;
 }
+
 a:visited {
     color: #0056b3;
 }
 
+/* ===========================================
+   Botón tipo imagen para regresar (área)
+=========================================== */
 area {
     width: 80px;
     height: 80px;

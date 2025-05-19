@@ -1,9 +1,6 @@
-/*
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
-
-/* estilos_historial_pacientes.css */
-
+/* =========================
+   Estilos generales del body
+   ========================= */
 body {
     font-family: sans-serif;
     background-color: #f4f4f4;
@@ -17,17 +14,24 @@ body {
     background-position: center;
 }
 
-
+/* =========================
+   Título principal (h1)
+   ========================= */
 h1 {
-    background: rgba(33,180,226,1); /* Uno de los colores finales del gradiente */
-    color: white;
-    padding: 20px 0;
-    border-radius: 20px; /* Bordes redondeados */
+    color: #222;
+    margin-bottom: 30px;
+    font-size: 28px;
     text-align: center;
-    width: 80%;
-    max-width: 600px;
-    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 10px 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
+
+
+/* =========================
+   Contenedor principal (div)
+   ========================= */
 div {
     background-color: white;
     padding: 20px;
@@ -37,12 +41,18 @@ div {
     max-width: 600px;
 }
 
+/* =========================
+   Etiquetas (labels)
+   ========================= */
 label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
 }
 
+/* =========================
+   Campos de texto (inputs)
+   ========================= */
 input[type="text"] {
     width: calc(100% - 12px);
     padding: 8px;
@@ -52,12 +62,15 @@ input[type="text"] {
     box-sizing: border-box;
 }
 
+/* =========================
+   Botón submit
+   ========================= */
 button[type="submit"] {
-    background: rgba(113,206,239,1); /* Un color intermedio del gradiente */
+    background: rgba(113,206,239,1); /* Color azul claro */
     color: black;
     padding: 10px 30px;
     border: none;
-    border-radius: 15px; /* Usando el mismo radio que los botones */
+    border-radius: 15px;
     font-size: 20px;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -65,9 +78,12 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-    background-color: #2e86d8;
+    background-color: #2e86d8; /* Azul más oscuro al hacer hover */
 }
 
+/* =========================
+   Área de resultado (div) con id resultado_historial
+   ========================= */
 #resultado_historial {
     margin-top: 20px;
     padding: 15px;
@@ -76,21 +92,23 @@ button[type="submit"]:hover {
     background-color: #f9f9f9;
 }
 
+/* =========================
+   Enlace con imagen "Atrás"
+   ========================= */
 a {
     width: 80px;
     height: 80px;
     background-image: url('../imagenes/Atras.png');
-    background-size: cover;
+    background-size: 80px 80px;
     background-position: center;
     border-radius: 30px;
-    border: 0px;
+    border: 0;
     cursor: pointer;
     transition: background 0.3s;
     position: absolute;
-    left:0%;
+    left: 0%;
     top: 0%;
     margin: 5%;
-    background-size: 80px 80px;
 }
 
 a:hover {

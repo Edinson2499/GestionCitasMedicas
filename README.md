@@ -121,7 +121,7 @@ GestionCitasMedicas/
 1. **Clona este repositorio:**
 
 bash
-git clone [https://github.com/tu-usuario/GestionCitasMedicas](https://github.com/Shadowfiend2504/GestionCitasMedicas).git
+git clone [https://github.com/Shadowfiend2504/GestionCitasMedicas](https://github.com/Shadowfiend2504/GestionCitasMedicas).git
 
 ## 👤 Roles de Usuario
 

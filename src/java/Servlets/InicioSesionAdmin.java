@@ -25,15 +25,44 @@ public class InicioSesionAdmin extends HttpServlet {
         String contrasena = request.getParameter("txtContrasena");
         String mensajeError = null;
 
-        if ("admin".equals(usuario) && "12345".equals(contrasena)) {
-            HttpSession session = request.getSession();
-            session.setAttribute("rol", "administrador");
-            session.setAttribute("nombre", "Administrador"); // Puedes personalizar esto
-            response.sendRedirect("menu_admin.jsp");
-        } else {
-            mensajeError = "Credenciales de administrador incorrectas.";
-            request.setAttribute("error", mensajeError);
-            request.getRequestDispatcher("login_admin.jsp").forward(request, response);
+        Connection conexion = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try {
+            conexion = ConexionBD.conectar();
+            String sql = "SELECT nombre, tipo_usuario FROM Usuario WHERE usuario_generado = ? AND contrasena = ?";
+            ps = conexion.prepareStatement(sql);
+            ps.setString(1, usuario);
+            ps.setString(2, contrasena);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                String tipoUsuario = rs.getString("tipo_usuario");
+                String nombre = rs.getString("nombre");
+                if ("administrador".equalsIgnoreCase(tipoUsuario)) {
+                    HttpSession session = request.getSession();
+                    session.setAttribute("rol", tipoUsuario);
+                    session.setAttribute("nombre", nombre);
+                    session.setAttribute("usuario_generado", usuario);
+                    response.sendRedirect("menu_admin.jsp");
+                    return;
+                } else {
+                    mensajeError = "El usuario no tiene permisos de administrador.";
+                }
+            } else {
+                mensajeError = "Credenciales incorrectas.";
+            }
+        } catch (SQLException e) {
+            mensajeError = "Error al conectar con la base de datos.";
+            e.printStackTrace();
+        } finally {
+            try { if (rs != null) rs.close(); } catch (SQLException e) {}
+            try { if (ps != null) ps.close(); } catch (SQLException e) {}
+            try { if (conexion != null) conexion.close(); } catch (SQLException e) {}
         }
+
+        request.setAttribute("error", mensajeError);
+        request.getRequestDispatcher("login_admin.jsp").forward(request, response);
     }
 }

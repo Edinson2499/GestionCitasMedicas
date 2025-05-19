@@ -64,7 +64,20 @@ input[type="text"]:focus, select:focus {
     margin-top: 25px;
     gap: 10px;
 }
+button[type="submit"] {
+    padding: 12px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
 
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
 .btn {
     flex: 1;
     padding: 12px;
@@ -83,6 +96,24 @@ input[type="text"]:focus, select:focus {
     transform: scale(1.03);
 }
 
+td form input[type="submit"]:hover {
+    background: #217b91;
+}
+input[type="submit"] {
+    background: linear-gradient(to right, #5dade2, #3498db); /* Azul claro moderno */
+    color: white;
+    padding: 12px;
+    font-weight: bold;
+    font-size: 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+input[type="submit"]:hover {
+    background: linear-gradient(to right, #3498db, #2e86c1); /* Un poco más profundo al hacer hover */
+    transform: scale(1.03);
+}
 area {
     width: 80px;
     height: 80px;
@@ -102,4 +133,80 @@ area {
 
 area:hover {
     background-image: url(../imagenes/Atras_hover.png);
+}
+/* Tablas */
+table {
+    width: 90%;
+    max-width: 1000px;
+    margin: 20px auto;
+    border-collapse: collapse;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+label {
+    margin-bottom: 5px;
+    color: #222;
+    font-size: 14px;
+}
+
+/* Celdas */
+th, td {
+    padding: 14px 18px;
+    border-bottom: 1px solid #e0e0e0;
+    text-align: left;
+    font-size: 15px;
+}
+
+th {
+    background-color: #0069d9;
+    color: white;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+}
+
+td {
+    background-color: #fff;
+    color: #333;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+
+/* Mensajes de error */
+.error-message {
+    color: #d9534f;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 15px;
+}
+
+/* Estilos para el modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0; top: 0; width: 100vw; height: 100vh;
+    background: rgba(0,0,0,0.4);
+    justify-content: center;
+    align-items: center;
+}
+.modal[style*="display: flex"] {
+    display: flex !important;
+}
+.contenido-modal {
+    background: #fff;
+    padding: 30px 40px;
+    border-radius: 10px;
+    text-align: center;
+    min-width: 300px;
 }

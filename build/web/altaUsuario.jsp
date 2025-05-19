@@ -33,6 +33,8 @@
             <label style="display: inline-block; width: 100px; text-align: left; margin-right: 5px;">Direccion:</label> 
             <input type="text" class="txt" id="txtDireccion" required="" onkeyup="usuarioGeneradoAutomaticamente()" name="txtDireccion" style="display: inline-block; margin-bottom: 5px;">
             <br>
+            <label style="display: inline-block; width: 100px; text-align: left; margin-right: 5px;">Correo:</label> 
+            <input type="text" class="txt" id="txtEmail" required="" onkeyup="usuarioGeneradoAutomaticamente()" name="txtEmail" style="display: inline-block; margin-bottom: 5px;">
             <br>
             <label style="display: inline-block; width: 100px; text-align: left; margin-right: 5px;">Contraseña:</label> 
             <input type="password" class="txt" id="txtContrasena" required="" onkeyup="coincidirContrasena()" style="display: inline-block; margin-bottom: 5px;">

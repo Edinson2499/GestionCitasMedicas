@@ -13,6 +13,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 @WebServlet("/AgendarCitaServlet")
 public class AgendarCitaServlet extends HttpServlet {
 
@@ -83,16 +85,19 @@ public class AgendarCitaServlet extends HttpServlet {
             } else {
                 mensaje = "Error al conectar a la base de datos.";
             }
-
         } catch (SQLException e) {
             mensaje = "Error al agendar la cita: " + e.getMessage();
-            e.printStackTrace();
+            Logger.getLogger(AgendarCitaServlet.class.getName()).log(Level.SEVERE, null, e);
         } finally {
             try {
                 if (sentencia != null) sentencia.close();
+            } catch (SQLException e) {
+                Logger.getLogger(AgendarCitaServlet.class.getName()).log(Level.SEVERE, "Error al cerrar sentencia", e);
+            }
+            try {
                 if (conexion != null && !conexion.isClosed()) conexion.close();
             } catch (SQLException e) {
-                e.printStackTrace();
+                Logger.getLogger(AgendarCitaServlet.class.getName()).log(Level.SEVERE, "Error al cerrar conexion", e);
             }
         }
 

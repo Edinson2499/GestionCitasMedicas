@@ -34,6 +34,8 @@
                 <label style="display: inline-block; width: 100px; text-align: left; margin-right: 5px; margin-bottom: 5px;">Direccion:</label> 
                 <input type="text" class="txt" id="txtDireccion" required="" onkeyup="usuarioGeneradoAutomaticamente()" name="txtDireccion" style="margin-bottom: 5px;">
                 <br>
+                <label style="display: inline-block; width: 100px; text-align: left; margin-right: 5px; margin-bottom: 5px;">Correo:</label>
+                <input type="text" class="txt" id="txtEmail" required="" onkeyup="usuarioGeneradoAutomaticamente()" name="txtEmail" style="margin-bottom: 5px;">
                 <br>
                 <label>Especialidad:</label>
                 <input list="especialidad" placeholder="Seleccione una especialidad" class="txt" id="txtEspecialidad" name="txtEspecialidad" required="">

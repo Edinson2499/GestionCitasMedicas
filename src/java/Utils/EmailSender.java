@@ -3,10 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
-/**
- *
- * @author javie
-
 package Utils;
 
 import java.util.Properties;
@@ -57,4 +53,3 @@ public class EmailSender {
         }
     }
 }
-     */

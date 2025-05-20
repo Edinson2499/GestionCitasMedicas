@@ -10,9 +10,11 @@ Esta aplicación permite gestionar citas médicas entre pacientes y médicos a t
    - Una vez registrado, puedes iniciar sesión.
 
    *Registro Especialista*
+   
  ![image](https://github.com/user-attachments/assets/95627b54-0e78-416b-8088-fe88c5136782)
 
    *Resgistro Paciente*
+   
 ![image](https://github.com/user-attachments/assets/ee914c12-86bf-499b-8d7d-6392242e8b65)
 
 3. **Inicio de Sesión:**

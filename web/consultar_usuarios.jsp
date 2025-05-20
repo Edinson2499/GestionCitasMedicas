@@ -66,6 +66,6 @@
     </c:if>
 
     <br>
-    <area href="menu_admin.jsp"></area>
+    <area href="menu_admin.jsp" title="Volver al menú administrador"></area>
 </body>
 </html>

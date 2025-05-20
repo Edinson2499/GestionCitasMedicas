@@ -155,3 +155,117 @@ body {
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
     cursor: pointer;
 }
+
+/* ==============================
+   Media Queries para Responsividad
+   ============================== */
+
+/* Para pantallas medianas (tablets) */
+@media (max-width: 768px) {
+    body {
+        padding: 15px;
+        margin: 5px;
+    }
+
+    .menu {
+        width: 90%;
+        font-size: 16px;
+        border-radius: 15px;
+        padding: 10px 0;
+        position: fixed; /* Mantener visible */
+        top: 10%;
+        left: 50%;
+        transform: translateX(-50%);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .menu ul {
+        flex-direction: column;
+        gap: 8px;
+        padding: 0 10px;
+    }
+
+    .menu ul li {
+        display: block;
+        margin: 5px auto;
+        padding: 10px;
+        width: 90%;
+        text-align: center;
+        font-size: 16px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .menu ul li a {
+        font-size: 16px;
+    }
+
+    .menu.move-to-top-registro,
+    .menu.move-to-top-login {
+        width: 90%;
+        top: 5%;
+        transform: translateX(-50%);
+    }
+
+    /* Ajustes para logos en móvil */
+    .menu.move-to-top-inicio,
+    .menu.move-to-top-inicioregistro {
+        width: 80px;
+        height: 80px;
+        margin: 5%;
+    }
+}
+
+/* Para pantallas pequeñas (móviles) */
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+        margin: 0;
+        font-size: 14px;
+    }
+
+    .menu {
+        width: 100%;
+        font-size: 14px;
+        border-radius: 0;
+        padding: 8px 0;
+        position: fixed;
+        top: 8%;
+        left: 50%;
+        transform: translateX(-50%);
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .menu ul {
+        flex-direction: column;
+        gap: 6px;
+        padding: 0 5px;
+    }
+
+    .menu ul li {
+        width: 100%;
+        margin: 3px auto;
+        padding: 8px 5px;
+        font-size: 14px;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+    }
+
+    .menu ul li a {
+        font-size: 14px;
+    }
+
+    .menu.move-to-top-inicio,
+    .menu.move-to-top-inicioregistro {
+        width: 60px;
+        height: 60px;
+        margin: 3%;
+    }
+
+    /* Ajustes para mover menú hacia arriba en móvil */
+    .menu.move-to-top-registro,
+    .menu.move-to-top-login {
+        top: 3%;
+        width: 100%;
+        transform: translateX(-50%);
+    }
+}

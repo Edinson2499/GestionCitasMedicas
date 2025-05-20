@@ -22,7 +22,7 @@ body {
 h1 {
     color: #222;
     margin-bottom: 30px;
-    font-size: 28px;
+    font-size: clamp(20px, 6vw, 28px);
     text-align: center;
     background: rgba(255, 255, 255, 0.85);
     padding: 10px 20px;
@@ -275,4 +275,98 @@ a:hover {
 
 a:visited {
     color: #0056b3;
+}
+
+
+/* =========================
+   Responsive Design
+   ========================= */
+@media (max-width: 1024px) {
+    form {
+        width: 95%;
+        padding: 20px;
+    }
+
+    table {
+        width: 95%;
+        font-size: 14px;
+    }
+
+    th, td {
+        padding: 10px 12px;
+    }
+
+    .buttonGroup {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    .contenido-modal {
+        width: 90%;
+        padding: 20px;
+    }
+
+    area {
+        width: 60px;
+        height: 60px;
+        background-size: 60px 60px;
+    }
+
+    h1 {
+        font-size: 22px;
+        padding: 8px 16px;
+    }
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+        height: auto;
+    }
+
+    form {
+        width: 100%;
+        padding: 15px 20px;
+    }
+
+    table {
+        font-size: 13px;
+    }
+
+    th, td {
+        padding: 8px 10px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    .modal .contenido-modal {
+        padding: 15px 20px;
+    }
+
+    .form-group label {
+        font-size: 13px;
+    }
+
+    input[type="text"], select, button, .btn {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .btn-back {
+        width: 50px;
+        height: 50px;
+        background-size: 50px 50px;
+    }
+
+    area {
+        width: 50px;
+        height: 50px;
+        background-size: 50px 50px;
+    }
 }

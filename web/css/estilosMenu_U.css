@@ -72,3 +72,56 @@ h1 {
     background-color: #e0f7fa; /* Fondo celeste claro */
     color: #007bff;            /* Texto azul brillante */
 }
+
+/* ==============================
+   RESPONSIVE PARA MENÚ DE USUARIO
+   ============================== */
+@media screen and (max-width: 480px) {
+    body {
+        padding: 10px;
+        background-size: cover;
+        background-position: top;
+        justify-content: flex-start; /* Empieza desde arriba */
+    }
+
+    h1 {
+        font-size: 1.8em;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .menu-usuario {
+        width: 100%;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: none;
+        margin-top: 20px;
+    }
+
+    .menu-usuario ul {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .menu-usuario li {
+        margin: 10px 0;
+        width: 100%;
+    }
+
+    .menu-usuario a {
+        font-size: 16px;
+        padding: 12px;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        background-color: #ffffff;
+        color: #333;
+    }
+
+    .menu-usuario a:hover {
+        background-color: #d6f5ff;
+        color: #007bff;
+    }
+}

@@ -27,7 +27,7 @@
     </nav>
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const menuLinks = document.querySelectorAll('.menu-u a');
+        const menuLinks = document.querySelectorAll('.menu-usuario a');
 
         menuLinks.forEach((link, index) => {
             // Retraso ligero para cada enlace

@@ -27,5 +27,24 @@
             <li><a href="<%= request.getContextPath() %>/CerrarSesion">Cerrar Sesión</a></li>
         </ul>
     </nav>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuLinks = document.querySelectorAll('.menu-usuario a');
+
+            menuLinks.forEach((link, index) => {
+                const delay = index * 50;
+
+                setTimeout(() => {
+                    link.style.transform = 'translateY(0)';
+                    link.style.opacity = '1';
+                }, delay);
+
+                link.style.transform = 'translateY(10px)';
+                link.style.opacity = '0';
+                link.style.transition = 'transform 0.3s ease-out, opacity 0.3s ease-out';
+            });
+        });
+    </script>
 </body>
 </html>

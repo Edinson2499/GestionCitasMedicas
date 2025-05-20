@@ -1,4 +1,6 @@
-/* Estilos generales */
+/* ===========================================
+   Estilos generales del body
+=========================================== */
 body {
     background-image: url(../imagenes/login.png);
     background-size: cover;
@@ -8,30 +10,49 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 100vh;
+    min-height: 100vh;
     margin: 0;
-    padding: 0;
+    padding: 20px;
     color: #f5f5f5;
+    box-sizing: border-box;
 }
 
-/* Encabezados */
+/* ===========================================
+   Encabezados h1 y h2
+=========================================== */
 h1, h2 {
     color: #222;
-    margin-bottom: 20px;
     text-align: center;
-    font-weight: 600;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 10px 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 600px;
 }
 
-/* Formulario de filtro */
+h1 {
+    font-size: clamp(22px, 5vw, 28px);
+}
+
+h2 {
+    font-size: clamp(18px, 4.5vw, 24px);
+}
+
+/* ===========================================
+   Formulario de filtro
+=========================================== */
 form {
     background-color: rgba(255, 255, 255, 0.9);
-    padding: 20px 30px;
+    padding: 20px;
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 30px;
     text-align: center;
-    width: 90%;
-    max-width: 300px;
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 30px;
+    box-sizing: border-box;
 }
 
 .form-group {
@@ -43,16 +64,19 @@ label {
     font-weight: 600;
     color: #333;
     margin-bottom: 8px;
-    font-size: 15px;
+    font-size: clamp(14px, 2vw, 15px);
 }
 
+/* ===========================================
+   Selectores de opciones
+=========================================== */
 select {
     width: 100%;
     padding: 10px 12px;
     border: 1px solid #ccc;
     border-radius: 8px;
     background-color: #f9f9f9;
-    font-size: 14px;
+    font-size: clamp(13px, 2vw, 14px);
     transition: border 0.3s;
 }
 
@@ -61,76 +85,87 @@ select:focus {
     outline: none;
 }
 
-/* Botón de búsqueda */
+/* ===========================================
+   Botón de envío del formulario
+=========================================== */
 button[type="submit"] {
     padding: 12px 20px;
     background-color: #007bff;
     color: white;
     border: none;
     border-radius: 8px;
-    font-size: 15px;
+    font-size: clamp(14px, 2vw, 15px);
     cursor: pointer;
     transition: background-color 0.3s;
+    width: 100%;
 }
 
 button[type="submit"]:hover {
     background-color: #0056b3;
 }
 
-/* Mensajes de error */
+/* ===========================================
+   Mensajes de error
+=========================================== */
 .error-message {
     color: #d9534f;
     font-weight: bold;
     text-align: center;
     margin-top: 15px;
 }
-/* Tablas */
+
+/* ===========================================
+   Tabla de resultados
+=========================================== */
 table {
-    width: 90%;
+    width: 100%;
     max-width: 1000px;
     margin: 20px auto;
     border-collapse: collapse;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     background-color: white;
     border-radius: 10px;
-    overflow: hidden;
+    overflow-x: auto;
+    display: block;
 }
 
-label {
-    margin-bottom: 5px;
-    color: #222;
-    font-size: 14px;
+thead {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
 }
 
-/* Celdas */
+tbody {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
 th, td {
     padding: 14px 18px;
     border-bottom: 1px solid #e0e0e0;
     text-align: left;
-    font-size: 15px;
+    font-size: clamp(12px, 2vw, 15px);
 }
 
 th {
     background-color: #0069d9;
     color: white;
     text-transform: uppercase;
-    font-size: 14px;
     letter-spacing: 0.5px;
 }
 
-td {
-    background-color: #fff;
-    color: #333;
-}
-
-tr:nth-child(even) {
+tr:nth-child(even) td {
     background-color: #f9f9f9;
 }
 
-tr:hover {
+tr:hover td {
     background-color: #f1f1f1;
 }
-/* Enlaces */
+
+/* ===========================================
+   Enlaces
+=========================================== */
 a {
     color: #5ea7f5;
     text-decoration: none;
@@ -141,27 +176,68 @@ a:hover {
     text-decoration: underline;
     color: #0056b3;
 }
+
 a:visited {
     color: #0056b3;
 }
 
+/* ===========================================
+   Botón tipo imagen para regresar
+=========================================== */
 area {
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
     background-image: url('../imagenes/Atras.png');
     background-size: cover;
     background-position: center;
     border-radius: 30px;
-    border: 0px;
+    border: none;
     cursor: pointer;
-    transition: background 0.3s;
     position: absolute;
-    left: 0;
-    margin: 5%;
-    top: 0;
-    background-size: 80px 80px;
+    left: 10px;
+    top: 10px;
+    transition: background 0.3s;
 }
 
 area:hover {
-    background-image: url(../imagenes/Atras_hover.png);
+    background-image: url('../imagenes/Atras_hover.png');
+}
+
+/* ===========================================
+   Responsive extra para dispositivos pequeños
+=========================================== */
+@media (max-width: 768px) {
+    form {
+        padding: 15px;
+    }
+
+    th, td {
+        padding: 10px 12px;
+    }
+
+    area {
+        width: 50px;
+        height: 50px;
+        background-size: 50px 50px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    form {
+        padding: 10px;
+    }
+
+    th, td {
+        padding: 8px 10px;
+    }
+
+    area {
+        width: 40px;
+        height: 40px;
+        background-size: 40px 40px;
+    }
 }

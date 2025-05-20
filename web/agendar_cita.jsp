@@ -70,6 +70,6 @@
             <% } %>
         </form>
     </main>
-    <a href="menu_paciente.jsp"></a>
+    <a href="menu_paciente.jsp" title="Volver al menú paciente"></a>
 </body>
 </html>

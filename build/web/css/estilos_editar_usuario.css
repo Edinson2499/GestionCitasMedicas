@@ -1,3 +1,6 @@
+/* =========================
+   Estilos generales del body
+   ========================= */
 body {
     background-image: url(../imagenes/login.png);
     background-size: cover;
@@ -13,14 +16,22 @@ body {
     color: #333;
 }
 
+/* =========================
+   Títulos principales (h1)
+   ========================= */
 h1 {
-    color: #5c4c4c;
-    margin-bottom: 20px;
+    color: #222;
+    margin-bottom: 30px;
+    font-size: clamp(20px, 6vw, 28px);
     text-align: center;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+    background: rgba(255, 255, 255, 0.85);
+    padding: 10px 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
-
-/* Formulario principal */
+/* =========================
+   Formulario principal
+   ========================= */
 form {
     background-color: rgba(255, 255, 255, 0.95);
     padding: 30px 40px;
@@ -30,10 +41,12 @@ form {
     max-width: 400px;
 }
 
+/* Grupo de campos del formulario */
 .form-group {
     margin-bottom: 20px;
 }
 
+/* Etiquetas dentro del formulario */
 label {
     font-weight: bold;
     display: block;
@@ -41,6 +54,7 @@ label {
     color: #333;
 }
 
+/* Inputs de texto y selects */
 input[type="text"], select {
     width: 100%;
     padding: 12px;
@@ -52,18 +66,25 @@ input[type="text"], select {
     transition: border-color 0.3s;
 }
 
+/* Focus en inputs y selects */
 input[type="text"]:focus, select:focus {
     border-color: #007bff;
     outline: none;
 }
 
-/* Botones */
+/* =========================
+   Botones
+   ========================= */
+
+/* Contenedor de grupo de botones */
 .buttonGroup {
     display: flex;
     justify-content: space-between;
     margin-top: 25px;
     gap: 10px;
 }
+
+/* Botón submit principal */
 button[type="submit"] {
     padding: 12px 20px;
     background-color: #007bff;
@@ -78,6 +99,8 @@ button[type="submit"] {
 button[type="submit"]:hover {
     background-color: #0056b3;
 }
+
+/* Botones con clase .btn */
 .btn {
     flex: 1;
     padding: 12px;
@@ -86,21 +109,24 @@ button[type="submit"]:hover {
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    background: linear-gradient(to right, #5dade2, #3498db); /* Azul claro moderno */
+    background: linear-gradient(to right, #5dade2, #3498db);
     color: white;
     transition: background 0.3s, transform 0.2s;
 }
 
 .btn:hover {
-    background: linear-gradient(to right, #3498db, #2e86c1); /* Un poco más profundo al hacer hover */
+    background: linear-gradient(to right, #3498db, #2e86c1);
     transform: scale(1.03);
 }
 
+/* Hover específico para inputs tipo submit dentro de forms en td */
 td form input[type="submit"]:hover {
     background: #217b91;
 }
+
+/* Inputs tipo submit estándar */
 input[type="submit"] {
-    background: linear-gradient(to right, #5dade2, #3498db); /* Azul claro moderno */
+    background: linear-gradient(to right, #5dade2, #3498db);
     color: white;
     padding: 12px;
     font-weight: bold;
@@ -110,15 +136,20 @@ input[type="submit"] {
     cursor: pointer;
     transition: background 0.3s, transform 0.2s;
 }
+
 input[type="submit"]:hover {
-    background: linear-gradient(to right, #3498db, #2e86c1); /* Un poco más profundo al hacer hover */
+    background: linear-gradient(to right, #3498db, #2e86c1);
     transform: scale(1.03);
 }
+
+/* =========================
+   Área con imagen de botón "Atrás"
+   ========================= */
 area {
     width: 80px;
     height: 80px;
     background-image: url('../imagenes/Atras.png');
-    background-size: cover;
+    background-size: 80px 80px;
     background-position: center;
     border-radius: 30px;
     border: 0px;
@@ -128,13 +159,15 @@ area {
     left: 0;
     margin: 5%;
     top: 0;
-    background-size: 80px 80px;
 }
 
 area:hover {
     background-image: url(../imagenes/Atras_hover.png);
 }
-/* Tablas */
+
+/* =========================
+   Tablas
+   ========================= */
 table {
     width: 90%;
     max-width: 1000px;
@@ -146,13 +179,14 @@ table {
     overflow: hidden;
 }
 
+/* Etiquetas dentro de tablas y formularios */
 label {
     margin-bottom: 5px;
     color: #222;
     font-size: 14px;
 }
 
-/* Celdas */
+/* Celdas de tabla */
 th, td {
     padding: 14px 18px;
     border-bottom: 1px solid #e0e0e0;
@@ -160,6 +194,7 @@ th, td {
     font-size: 15px;
 }
 
+/* Encabezados de tabla */
 th {
     background-color: #0069d9;
     color: white;
@@ -168,21 +203,25 @@ th {
     letter-spacing: 0.5px;
 }
 
+/* Celdas normales */
 td {
     background-color: #fff;
     color: #333;
 }
 
+/* Filas pares */
 tr:nth-child(even) {
     background-color: #f9f9f9;
 }
 
+/* Hover sobre filas */
 tr:hover {
     background-color: #f1f1f1;
 }
 
-
-/* Mensajes de error */
+/* =========================
+   Mensajes de error
+   ========================= */
 .error-message {
     color: #d9534f;
     font-weight: bold;
@@ -190,23 +229,144 @@ tr:hover {
     margin-top: 15px;
 }
 
-/* Estilos para el modal */
+/* =========================
+   Modal (ventana emergente)
+   ========================= */
 .modal {
     display: none;
     position: fixed;
     z-index: 9999;
-    left: 0; top: 0; width: 100vw; height: 100vh;
+    left: 0; 
+    top: 0; 
+    width: 100vw; 
+    height: 100vh;
     background: rgba(0,0,0,0.4);
     justify-content: center;
     align-items: center;
 }
+
+/* Mostrar modal con display flex cuando tiene inline style */
 .modal[style*="display: flex"] {
     display: flex !important;
 }
+
+/* Contenido dentro del modal */
 .contenido-modal {
     background: #fff;
     padding: 30px 40px;
     border-radius: 10px;
     text-align: center;
     min-width: 300px;
+}
+
+/* =========================
+   Enlaces
+   ========================= */
+a {
+    color: #5ea7f5;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #0056b3;
+}
+
+a:visited {
+    color: #0056b3;
+}
+
+
+/* =========================
+   Responsive Design
+   ========================= */
+@media (max-width: 1024px) {
+    form {
+        width: 95%;
+        padding: 20px;
+    }
+
+    table {
+        width: 95%;
+        font-size: 14px;
+    }
+
+    th, td {
+        padding: 10px 12px;
+    }
+
+    .buttonGroup {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    .contenido-modal {
+        width: 90%;
+        padding: 20px;
+    }
+
+    area {
+        width: 60px;
+        height: 60px;
+        background-size: 60px 60px;
+    }
+
+    h1 {
+        font-size: 22px;
+        padding: 8px 16px;
+    }
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+        height: auto;
+    }
+
+    form {
+        width: 100%;
+        padding: 15px 20px;
+    }
+
+    table {
+        font-size: 13px;
+    }
+
+    th, td {
+        padding: 8px 10px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    .modal .contenido-modal {
+        padding: 15px 20px;
+    }
+
+    .form-group label {
+        font-size: 13px;
+    }
+
+    input[type="text"], select, button, .btn {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .btn-back {
+        width: 50px;
+        height: 50px;
+        background-size: 50px 50px;
+    }
+
+    area {
+        width: 50px;
+        height: 50px;
+        background-size: 50px 50px;
+    }
 }

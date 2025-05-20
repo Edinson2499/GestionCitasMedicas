@@ -1,5 +1,6 @@
-/* estilos_citas_asignadas.css */
-
+/* ===========================================
+   Estilos generales del cuerpo
+=========================================== */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f4f4f4;
@@ -12,13 +13,16 @@ body {
     background-size: cover;
     background-position: center;
     min-height: 100vh;
-    backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px); /* Suaviza el fondo */
 }
 
+/* ===========================================
+   Título principal
+=========================================== */
 h1 {
     color: #222;
     margin-bottom: 30px;
-    font-size: 28px;
+    font-size: clamp(20px, 6vw, 28px);
     text-align: center;
     background: rgba(255, 255, 255, 0.85);
     padding: 10px 20px;
@@ -26,6 +30,9 @@ h1 {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
+/* ===========================================
+   Contenedor principal
+=========================================== */
 div {
     background-color: rgba(255, 255, 255, 0.95);
     padding: 30px;
@@ -33,15 +40,21 @@ div {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     width: 90%;
     max-width: 1000px;
-    overflow-x: auto;
+    overflow-x: auto; /* Permite desplazamiento horizontal si es necesario */
 }
 
+/* ===========================================
+   Párrafos
+=========================================== */
 p {
     margin-bottom: 15px;
     font-size: 16px;
     color: #333;
 }
 
+/* ===========================================
+   Tabla y sus estilos generales
+=========================================== */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -55,20 +68,26 @@ th, td {
     border-bottom: 1px solid #e0e0e0;
 }
 
+/* Cabecera de tabla */
 th {
     background-color: #f0f0f0;
     font-weight: 600;
     color: #444;
 }
 
+/* Filas pares con color alternado */
 tbody tr:nth-child(even) {
     background-color: #fafafa;
 }
 
+/* Efecto hover en filas */
 tbody tr:hover {
     background-color: #f1f1f1;
 }
 
+/* ===========================================
+   Botón de regreso con imagen
+=========================================== */
 a {
     width: 60px;
     height: 60px;
@@ -85,13 +104,30 @@ a {
     z-index: 10;
 }
 
+/* Hover del botón de regreso */
 a:hover {
     background-image: url('../imagenes/Atras_hover.png');
     transform: scale(1.05);
 }
 
-/* Responsive table scroll for mobile */
-@media (max-width: 600px) {
+/* ===========================================
+   Estilos responsive adicionales
+=========================================== */
+@media (max-width: 768px) {
+    body {
+        padding: 30px 15px;
+    }
+
+    h1 {
+        font-size: 20px;
+        padding: 10px;
+    }
+
+    div {
+        padding: 20px;
+        width: 100%;
+    }
+
     table {
         font-size: 14px;
     }
@@ -100,11 +136,37 @@ a:hover {
         padding: 10px;
     }
 
+    a {
+        width: 50px;
+        height: 50px;
+        top: 15px;
+        left: 15px;
+        background-size: contain;
+    }
+}
+
+@media (max-width: 480px) {
     h1 {
-        font-size: 22px;
+        font-size: 18px;
+    }
+
+    table {
+        font-size: 13px;
+    }
+
+    th, td {
+        padding: 8px;
     }
 
     div {
-        padding: 20px;
+        padding: 15px;
+    }
+
+    a {
+        width: 45px;
+        height: 45px;
+        top: 10px;
+        left: 10px;
     }
 }
+

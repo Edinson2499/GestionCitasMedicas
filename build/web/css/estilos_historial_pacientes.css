@@ -1,9 +1,6 @@
-/*
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
-
-/* estilos_historial_pacientes.css */
-
+/* =========================
+   Estilos generales del body
+   ========================= */
 body {
     font-family: sans-serif;
     background-color: #f4f4f4;
@@ -17,17 +14,23 @@ body {
     background-position: center;
 }
 
-
+/* =========================
+   Título principal (h1)
+   ========================= */
 h1 {
-    background: rgba(33,180,226,1); /* Uno de los colores finales del gradiente */
-    color: white;
-    padding: 20px 0;
-    border-radius: 20px; /* Bordes redondeados */
+    color: #222;
+    margin-bottom: 30px;
+    font-size: 28px;
     text-align: center;
-    width: 80%;
-    max-width: 600px;
-    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 10px 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
+
+/* =========================
+   Contenedor principal (div)
+   ========================= */
 div {
     background-color: white;
     padding: 20px;
@@ -35,14 +38,21 @@ div {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     width: 80%;
     max-width: 600px;
+    box-sizing: border-box;
 }
 
+/* =========================
+   Etiquetas (labels)
+   ========================= */
 label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
 }
 
+/* =========================
+   Campos de texto (inputs)
+   ========================= */
 input[type="text"] {
     width: calc(100% - 12px);
     padding: 8px;
@@ -52,12 +62,15 @@ input[type="text"] {
     box-sizing: border-box;
 }
 
+/* =========================
+   Botón submit
+   ========================= */
 button[type="submit"] {
-    background: rgba(113,206,239,1); /* Un color intermedio del gradiente */
+    background: rgba(113,206,239,1);
     color: black;
     padding: 10px 30px;
     border: none;
-    border-radius: 15px; /* Usando el mismo radio que los botones */
+    border-radius: 15px;
     font-size: 20px;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -68,6 +81,9 @@ button[type="submit"]:hover {
     background-color: #2e86d8;
 }
 
+/* =========================
+   Área de resultado (div) con id resultado_historial
+   ========================= */
 #resultado_historial {
     margin-top: 20px;
     padding: 15px;
@@ -76,24 +92,97 @@ button[type="submit"]:hover {
     background-color: #f9f9f9;
 }
 
+/* =========================
+   Enlace con imagen "Atrás"
+   ========================= */
 a {
     width: 80px;
     height: 80px;
     background-image: url('../imagenes/Atras.png');
-    background-size: cover;
+    background-size: 80px 80px;
     background-position: center;
     border-radius: 30px;
-    border: 0px;
+    border: 0;
     cursor: pointer;
     transition: background 0.3s;
     position: absolute;
-    left:0%;
-    top: 0%;
-    margin: 5%;
-    background-size: 80px 80px;
+    left: 5%;
+    top: 5%;
 }
 
 a:hover {
     text-decoration: underline;
     background-image: url(../imagenes/Atras_hover.png);
+}
+
+/* =========================
+   Media Queries para Responsividad
+   ========================= */
+
+/* Para pantallas medianas y pequeñas (tablets y móviles grandes) */
+@media (max-width: 768px) {
+    div {
+        width: 90%;
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 24px;
+        padding: 8px 15px;
+        margin-bottom: 25px;
+    }
+
+    button[type="submit"] {
+        font-size: 18px;
+        padding: 10px 25px;
+    }
+}
+
+/* Para móviles pequeños */
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    div {
+        width: 100%;
+        padding: 10px;
+        box-shadow: none;
+        border-radius: 0;
+    }
+
+    h1 {
+        font-size: 20px;
+        padding: 6px 10px;
+        margin-bottom: 20px;
+    }
+
+    label, input[type="text"] {
+        font-size: 16px;
+    }
+
+    input[type="text"] {
+        width: 100%;
+    }
+
+    button[type="submit"] {
+        width: 100%;
+        padding: 12px 0;
+        font-size: 18px;
+        border-radius: 10px;
+    }
+
+    #resultado_historial {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    a {
+        width: 50px;
+        height: 50px;
+        background-size: 50px 50px;
+        left: 3%;
+        top: 3%;
+        border-radius: 15px;
+    }
 }

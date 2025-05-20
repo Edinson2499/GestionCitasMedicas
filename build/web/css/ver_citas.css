@@ -1,5 +1,6 @@
-/* Estilos para la página de Ver mis Cita */
-
+/* =========================
+   Estilos generales del body
+   ========================= */
 body {
     background-image: url(../imagenes/Menus.png);
     background-size: cover;
@@ -9,77 +10,147 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 100vh;
+    min-height: 100vh;
     margin: 0;
     color: white;
+    padding: 20px;
+    box-sizing: border-box;
 }
+
+/* =========================
+   Contenedor principal (main)
+   ========================= */
 main {
     background-color: white;
     padding: 30px;
     border-radius: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: auto;/* Cambié el ancho a 80% */
+    width: 100%;
     max-width: 600px;
+    color: #1d1414;
+    box-sizing: border-box;
 }
-header {
-    background: rgba(33,180,226,1); /* Uno de los colores finales del gradiente */
-    color: white;
-    padding: 20px 0;
-    border-radius: 20px; /* Bordes redondeados */
+
+/* =========================
+   Encabezado de la sección
+   ========================= */
+h1 {
+    color: #222;
+    margin-bottom: 30px;
+    font-size: clamp(20px, 6vw, 28px);
     text-align: center;
-    width: 40%;
-    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 10px 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
+
+/* =========================
+   Mensajes de estado
+   ========================= */
+.no-citas, .error {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    color: #e63731;
+}
+
 .no-citas {
-    margin-top: 20px;
-    font-size: 18px;
-    font-weight: bold;
-    color: #1d1414; /* Un color verde para mensajes de éxito */
-    text-align: center;
+    color: #1d1414;
 }
-.citas-container {
-    margin-top: 20px;
-    font-size: 18px;
-    font-weight: bold;
-    color: #1d1414; /* Un color verde para mensajes de éxito */
-    text-align: center;
+
+/* =========================
+   Lista de citas
+   ========================= */
+.cita-container {
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
 }
 
 .cita-container li {
     list-style: none;
-    padding: 0;
     margin: 0;
-    display: inline-block;
+    padding: 0;
+    display: block;
 }
 
 .cita-container p {
-    margin: 15px 0;
+    margin: 8px 0;
+    font-size: 16px;
 }
-.error {
-    margin-top: 20px;
-    font-size: 18px;
-    font-weight: bold;
-    color: #e63731; /* Un color verde para mensajes de éxito */
-    text-align: center;
-}
+
+/* =========================
+   Botón de regreso
+   ========================= */
 a {
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
     background-image: url('../imagenes/Atras.png');
     background-size: cover;
     background-position: center;
-    border-radius: 30px;
-    border: 0px;
+    border-radius: 50%;
+    border: none;
     cursor: pointer;
     transition: background 0.3s;
     position: absolute;
-    left: 0%;
-    top: 0%;
-    margin: 5%;
-    background-size: 80px 80px;
+    top: 20px;
+    left: 20px;
 }
 
 a:hover {
-    text-decoration: underline;
-    background-image: url(../imagenes/Atras_hover.png);
+    background-image: url('../imagenes/Atras_hover.png');
+}
+
+/* =========================
+   Responsividad para pantallas pequeñas
+   ========================= */
+@media screen and (max-width: 768px) {
+    h1 {
+        font-size: 5vw;
+    }
+
+    main {
+        padding: 20px;
+    }
+
+    .cita-container p {
+        font-size: 14px;
+    }
+
+    a {
+        width: 50px;
+        height: 50px;
+        top: 15px;
+        left: 15px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    h1 {
+        font-size: 18px;
+    }
+
+    main {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .cita-container {
+        padding: 12px;
+    }
+
+    .cita-container p {
+        font-size: 13px;
+    }
+
+    a {
+        width: 40px;
+        height: 40px;
+        top: 10px;
+        left: 10px;
+    }
 }

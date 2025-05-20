@@ -8,14 +8,19 @@ Esta aplicación permite gestionar citas médicas entre pacientes y médicos a t
    - Accede a `altaUsuario.jsp` si eres paciente o a `altaUsuarioE.jsp` si eres especialista.
    - Completa el formulario con tus datos personales.
    - Una vez registrado, puedes iniciar sesión.
-   
-   _[Espacio para captura de pantalla del formulario de registro]_
 
-2. **Inicio de Sesión:**
+   *Registro Especialista*
+ ![image](https://github.com/user-attachments/assets/95627b54-0e78-416b-8088-fe88c5136782)
+
+   *Resgistro Paciente*
+![image](https://github.com/user-attachments/assets/ee914c12-86bf-499b-8d7d-6392242e8b65)
+
+3. **Inicio de Sesión:**
    - Ingresa tus credenciales en la página de login.
    - Según el rol (paciente o médico), serás redirigido al panel correspondiente.
    
-   _[Espacio para captura de pantalla de la página de login]_
+![image](https://github.com/user-attachments/assets/6b150900-3072-48c7-b9a6-258ff7fdad70)
+
    
 ## 👤 🏥Registro de Nuevo Paciente
 
@@ -38,7 +43,8 @@ para que pueda acceder al sistema y agendar mis citas médicas.
 2. Selecciona el especialista, fecha y hora disponible.
 3. Confirma tu cita. Recibirás una notificación de éxito.
 
-_[Espacio para captura de pantalla de la página de agendamiento]_
+![image](https://github.com/user-attachments/assets/76ef36ee-1a63-475d-916b-45f57096f2ce)
+
 
 ### 🕒 Gestionar Disponibilidad (Especialista)
 
@@ -46,14 +52,15 @@ _[Espacio para captura de pantalla de la página de agendamiento]_
 2. Indica los días y horas en que estás disponible para atender citas.
 3. Guarda los cambios para que los pacientes puedan agendar en esos espacios.
 
-_[Espacio para captura de pantalla de la gestión de disponibilidad]_
+![image](https://github.com/user-attachments/assets/b7cdd284-f8ed-4ec1-846f-de7e3dd3cd28)
+
 
 ### 📋 Ver y Administrar Citas
 
 - Tanto pacientes como médicos pueden consultar sus citas programadas.
 - Es posible cancelar o modificar citas según los permisos establecidos.
 
-_[Espacio para captura de pantalla del listado de citas]_
+![image](https://github.com/user-attachments/assets/5c78416c-af6b-4078-b511-608d8a6cc091)
 
 ### 🛠 Requisitos Técnicos
 

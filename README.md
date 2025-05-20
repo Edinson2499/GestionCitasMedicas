@@ -11,17 +11,20 @@ Esta aplicación permite gestionar citas médicas entre pacientes y médicos a t
 
    *Registro Especialista*
    
- ![image](https://github.com/user-attachments/assets/95627b54-0e78-416b-8088-fe88c5136782)
+ ![image](https://github.com/user-attachments/assets/4f9ce6f2-5aa7-40f8-affa-dc950c9f05cb)
+
 
    *Resgistro Paciente*
    
-![image](https://github.com/user-attachments/assets/ee914c12-86bf-499b-8d7d-6392242e8b65)
+![image](https://github.com/user-attachments/assets/54935df7-9a2a-435a-a873-f26bea4c27a7)
+
 
 3. **Inicio de Sesión:**
    - Ingresa tus credenciales en la página de login.
    - Según el rol (paciente o médico), serás redirigido al panel correspondiente.
    
-![image](https://github.com/user-attachments/assets/6b150900-3072-48c7-b9a6-258ff7fdad70)
+![image](https://github.com/user-attachments/assets/b9fd8410-4e0d-428f-82e5-c25140e44f57)
+
 
    
 ## 👤 🏥Registro de Nuevo Paciente

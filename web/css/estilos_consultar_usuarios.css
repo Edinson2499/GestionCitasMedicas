@@ -1,34 +1,33 @@
-/* ===========================================
-   Estilos generales del body
-=========================================== */
+/* ================================
+   Estilos generales del cuerpo
+================================ */
 body {
-    background-image: url(../imagenes/login.png);
-    background-size: cover;
-    background-position: center;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    min-height: 100vh;
+    font-family: var(--bs-body-font-family, sans-serif);
+    background-color: #f8f9fa;
     margin: 0;
     padding: 20px;
-    color: #f5f5f5;
+    min-height: 100vh;
+    background-image: url(../imagenes/Menus.png);
+    background-size: cover;
+    background-position: center;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-/* ===========================================
-   Encabezados h1 y h2
-=========================================== */
+/* ================================
+   Título principal (h1 y h2)
+================================ */
 h1, h2 {
     color: #222;
     text-align: center;
     background: rgba(255, 255, 255, 0.85);
-    padding: 10px 20px;
+    padding: 12px 20px;
     border-radius: 12px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     margin-bottom: 20px;
-    width: 100%;
+    width: 90%;
     max-width: 600px;
 }
 
@@ -38,19 +37,30 @@ h1 {
 
 h2 {
     font-size: clamp(18px, 4.5vw, 24px);
+    color: #222;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 10px 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    margin-bottom: 20px;
+    width: 90%;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-/* ===========================================
+
+/* ================================
    Formulario de filtro
-=========================================== */
+================================ */
 form {
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 20px;
-    border-radius: 12px;
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 2rem;
+    border-radius: 1rem;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    width: 100%;
-    max-width: 400px;
+    width: 90%;
+    max-width: 500px;
     margin-bottom: 30px;
     box-sizing: border-box;
 }
@@ -59,7 +69,7 @@ form {
     margin-bottom: 20px;
 }
 
-label {
+label, .form-label {
     display: block;
     font-weight: 600;
     color: #333;
@@ -67,17 +77,17 @@ label {
     font-size: clamp(14px, 2vw, 15px);
 }
 
-/* ===========================================
-   Selectores de opciones
-=========================================== */
+/* ================================
+   Select personalizado
+================================ */
 select {
     width: 100%;
     padding: 10px 12px;
-    border: 1px solid #ccc;
+    border: 1px solid #ced4da;
     border-radius: 8px;
     background-color: #f9f9f9;
     font-size: clamp(13px, 2vw, 14px);
-    transition: border 0.3s;
+    transition: border-color 0.3s;
 }
 
 select:focus {
@@ -85,60 +95,38 @@ select:focus {
     outline: none;
 }
 
-/* ===========================================
-   Botón de envío del formulario
-=========================================== */
+/* ================================
+   Botón de envío
+================================ */
 button[type="submit"] {
+    background: rgba(113, 206, 239, 1);
+    color: black;
     padding: 12px 20px;
-    background-color: #007bff;
-    color: white;
     border: none;
-    border-radius: 8px;
-    font-size: clamp(14px, 2vw, 15px);
+    border-radius: 12px;
+    font-size: 1rem;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease;
     width: 100%;
 }
 
 button[type="submit"]:hover {
-    background-color: #0056b3;
+    background-color: rgba(5, 86, 179, 1);
+    color: white;
 }
 
-/* ===========================================
-   Mensajes de error
-=========================================== */
-.error-message {
-    color: #d9534f;
-    font-weight: bold;
-    text-align: center;
-    margin-top: 15px;
-}
-
-/* ===========================================
+/* ================================
    Tabla de resultados
-=========================================== */
+================================ */
 table {
-    width: 100%;
+    width: 90%;
     max-width: 1000px;
-    margin: 20px auto;
+    margin: 0 auto 30px auto;
     border-collapse: collapse;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     background-color: white;
     border-radius: 10px;
-    overflow-x: auto;
-    display: block;
-}
-
-thead {
-    display: table;
-    width: 100%;
-    table-layout: fixed;
-}
-
-tbody {
-    display: table;
-    width: 100%;
-    table-layout: fixed;
+    overflow: hidden;
 }
 
 th, td {
@@ -149,7 +137,7 @@ th, td {
 }
 
 th {
-    background-color: #0069d9;
+    background-color: #007bff;
     color: white;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -163,11 +151,11 @@ tr:hover td {
     background-color: #f1f1f1;
 }
 
-/* ===========================================
-   Enlaces
-=========================================== */
+/* ================================
+   Enlace de acción (editar)
+================================ */
 a {
-    color: #5ea7f5;
+    color: #007bff;
     text-decoration: none;
     transition: color 0.3s;
 }
@@ -177,48 +165,55 @@ a:hover {
     color: #0056b3;
 }
 
-a:visited {
-    color: #0056b3;
-}
-
-/* ===========================================
-   Botón tipo imagen para regresar
-=========================================== */
-area {
+/* ================================
+   Botón de regreso
+================================ */
+a.btn-back {
     width: 60px;
     height: 60px;
     background-image: url('../imagenes/Atras.png');
     background-size: cover;
     background-position: center;
-    border-radius: 30px;
+    border-radius: 50%;
     border: none;
     cursor: pointer;
-    position: absolute;
-    left: 10px;
-    top: 10px;
     transition: background 0.3s;
+    position: absolute;
+    left: 30px;
+    top: 30px;
+    display: inline-block;
 }
 
-area:hover {
+a.btn-back:hover {
     background-image: url('../imagenes/Atras_hover.png');
 }
 
-/* ===========================================
-   Responsive extra para dispositivos pequeños
-=========================================== */
+/* ================================
+   Mensaje de error
+================================ */
+.alert-danger {
+    text-align: center;
+    width: 90%;
+    max-width: 600px;
+    margin: 10px auto;
+    font-weight: bold;
+}
+
+/* ================================
+   Media queries (Responsive)
+================================ */
 @media (max-width: 768px) {
     form {
-        padding: 15px;
+        padding: 1rem;
     }
 
     th, td {
         padding: 10px 12px;
     }
 
-    area {
+    a.btn-back {
         width: 50px;
         height: 50px;
-        background-size: 50px 50px;
     }
 }
 
@@ -228,16 +223,15 @@ area:hover {
     }
 
     form {
-        padding: 10px;
+        padding: 1rem;
     }
 
     th, td {
         padding: 8px 10px;
     }
 
-    area {
+    a.btn-back {
         width: 40px;
         height: 40px;
-        background-size: 40px 40px;
     }
 }

@@ -13,6 +13,7 @@ function cargarAltaUsuario(){
     document.getElementById('contenidoDinamico').innerHTML += '<br><a href="index.html" class="menu move-to-top-inicioregistro"></a>';
 }
 
+// Ejemplo para mostrar login
 function cargarLogin() {
     fetch('login.jsp')
         .then(response => response.text())
@@ -30,6 +31,7 @@ function cargarLogin() {
             const menu = document.getElementById("menu");
             if (menu) {
                 console.log("Aplicando clase move-to-top-login");
+                menu.classList.remove('move-to-top-registro');
                 menu.classList.add('move-to-top-login');
             } else {
                 console.log("El elemento con ID 'menu' no se encontró");
@@ -44,6 +46,7 @@ function cargarLogin() {
         });
 }
 
+// Ejemplo para mostrar registro
 function mostrarSeleccionRegistro() {
     const modal = document.createElement("div");
     modal.style.position = "fixed";
@@ -125,4 +128,14 @@ function mostrarSeleccionRegistro() {
     form.appendChild(button);
     modal.appendChild(form);
     document.body.appendChild(modal);
+}
+
+// Si quieres volver al estado centrado original:
+function volverMenuCentrado() {
+    const menu = document.getElementById("menu");
+    if (menu) {
+        menu.classList.remove('move-to-top-login', 'move-to-top-registro');
+    }
+    // Aquí puedes limpiar el contenido dinámico si lo deseas
+    document.getElementById("contenidoDinamico").innerHTML = "";
 }

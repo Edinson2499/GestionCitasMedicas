@@ -77,7 +77,8 @@
     <%
             }
         } catch (Exception e) {
-            out.println("<p>Error al cargar las citas: " + e.getMessage() + "</p>");
+            out.println("<div class='alert alert-danger'>Error al cargar las citas: " + e.getMessage() + "</div>");
+            
         } finally {
             try { if (rs != null) rs.close(); } catch (Exception e) {}
             try { if (ps != null) ps.close(); } catch (Exception e) {}
@@ -85,8 +86,7 @@
         }
     %>
     <br>
-    <a href="menu_paciente.jsp">Volver al menú</a>
-
+    <a href="menu_paciente.jsp" class="btn-back" title="Volver al menú de Paciente"></a>
     <!-- Bootstrap JS Bundle CDN -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

@@ -1,17 +1,146 @@
+/* ================================
+   Estilos generales del cuerpo
+================================== */
 body {
-    background: #f8f9fa;
+    font-family: var(--bs-body-font-family, sans-serif);
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+    background-image: url(../imagenes/Menus.png);
+    background-size: cover;
+    background-position: center;
+    box-sizing: border-box;
 }
+
+/* ================================
+   Contenedor principal
+================================== */
 .container {
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-    padding: 32px 24px;
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 500px;
+    margin: 0 auto;
+    box-sizing: border-box;
 }
+
+/* ================================
+   Título
+================================== */
+h1 {
+    color: #222;
+    margin-bottom: 20px;
+    font-size: clamp(20px, 6vw, 28px);
+    text-align: center;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 12px 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    width: 90%;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ================================
+   Etiquetas y campos de formulario
+================================== */
+label, .form-label {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="email"] {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ced4da;
+    border-radius: 0.375rem;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+/* ================================
+   Botón de envío
+================================== */
+button[type="submit"],
+.btn-primary {
+    background: rgba(113, 206, 239, 1);
+    color: black;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 12px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+button[type="submit"]:hover,
+.btn-primary:hover {
+    background-color: rgba(5, 86, 179, 1);
+    color: white;
+}
+
+/* ================================
+   Botón secundario
+================================== */
+a.btn-back {
+    width: 60px;
+    height: 60px;
+    background-image: url('../imagenes/Atras.png');
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s;
+    position: absolute;
+    left: 30px;
+    top: 30px;
+    display: inline-block;
+}
+
+a.btn-back:hover {
+    background-image: url(../imagenes/Atras_hover.png);
+}
+
+
+/* ================================
+   Alertas
+================================== */
+.alert-info {
+    background-color: #e3f7fc;
+    border-color: #bee5eb;
+    color: #0c5460;
+    border-radius: 8px;
+    padding: 0.75rem;
+}
+
+/* ================================
+   Responsividad
+================================== */
 @media (max-width: 600px) {
-    .container {
-        padding: 16px 4px;
-    }
     h2 {
-        font-size: 1.3rem;
+        font-size: 20px;
+        padding: 10px;
+    }
+
+    .container {
+        padding: 1rem;
+    }
+
+    input[type="text"],
+    input[type="tel"],
+    input[type="email"],
+    button[type="submit"],
+    .btn-secondary {
+        font-size: 1rem;
+        padding: 0.5rem;
     }
 }

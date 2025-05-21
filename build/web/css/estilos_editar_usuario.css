@@ -6,14 +6,14 @@ body {
     background-size: cover;
     background-position: center;
     font-family: 'Segoe UI', sans-serif;
+    color: #333;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 100vh;
-    margin: 0;
-    padding: 0;
-    color: #333;
 }
 
 /* =========================
@@ -29,6 +29,7 @@ h1 {
     border-radius: 12px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
+
 /* =========================
    Formulario principal
    ========================= */
@@ -75,16 +76,6 @@ input[type="text"]:focus, select:focus {
 /* =========================
    Botones
    ========================= */
-
-/* Contenedor de grupo de botones */
-.buttonGroup {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 25px;
-    gap: 10px;
-}
-
-/* Botón submit principal */
 button[type="submit"] {
     padding: 12px 20px;
     background-color: #007bff;
@@ -94,75 +85,11 @@ button[type="submit"] {
     font-size: 15px;
     cursor: pointer;
     transition: background-color 0.3s;
+    width: 100%;
 }
 
 button[type="submit"]:hover {
     background-color: #0056b3;
-}
-
-/* Botones con clase .btn */
-.btn {
-    flex: 1;
-    padding: 12px;
-    font-weight: bold;
-    font-size: 15px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    background: linear-gradient(to right, #5dade2, #3498db);
-    color: white;
-    transition: background 0.3s, transform 0.2s;
-}
-
-.btn:hover {
-    background: linear-gradient(to right, #3498db, #2e86c1);
-    transform: scale(1.03);
-}
-
-/* Hover específico para inputs tipo submit dentro de forms en td */
-td form input[type="submit"]:hover {
-    background: #217b91;
-}
-
-/* Inputs tipo submit estándar */
-input[type="submit"] {
-    background: linear-gradient(to right, #5dade2, #3498db);
-    color: white;
-    padding: 12px;
-    font-weight: bold;
-    font-size: 15px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.3s, transform 0.2s;
-}
-
-input[type="submit"]:hover {
-    background: linear-gradient(to right, #3498db, #2e86c1);
-    transform: scale(1.03);
-}
-
-/* =========================
-   Área con imagen de botón "Atrás"
-   ========================= */
-area {
-    width: 80px;
-    height: 80px;
-    background-image: url('../imagenes/Atras.png');
-    background-size: 80px 80px;
-    background-position: center;
-    border-radius: 30px;
-    border: 0px;
-    cursor: pointer;
-    transition: background 0.3s;
-    position: absolute;
-    left: 0;
-    margin: 5%;
-    top: 0;
-}
-
-area:hover {
-    background-image: url(../imagenes/Atras_hover.png);
 }
 
 /* =========================
@@ -245,12 +172,10 @@ tr:hover {
     align-items: center;
 }
 
-/* Mostrar modal con display flex cuando tiene inline style */
 .modal[style*="display: flex"] {
     display: flex !important;
 }
 
-/* Contenido dentro del modal */
 .contenido-modal {
     background: #fff;
     padding: 30px 40px;
@@ -259,24 +184,28 @@ tr:hover {
     min-width: 300px;
 }
 
-/* =========================
-   Enlaces
-   ========================= */
-a {
-    color: #5ea7f5;
-    text-decoration: none;
-    transition: color 0.3s;
+/* ================================
+   Botón de regreso
+================================ */
+a.btn-back {
+    width: 60px;
+    height: 60px;
+    background-image: url('../imagenes/Atras.png');
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s;
+    position: absolute;
+    left: 30px;
+    top: 30px;
+    display: inline-block;
 }
 
-a:hover {
-    text-decoration: underline;
-    color: #0056b3;
+a.btn-back:hover {
+    background-image: url(../imagenes/Atras_hover.png);
 }
-
-a:visited {
-    color: #0056b3;
-}
-
 
 /* =========================
    Responsive Design
@@ -308,17 +237,6 @@ a:visited {
     .contenido-modal {
         width: 90%;
         padding: 20px;
-    }
-
-    area {
-        width: 60px;
-        height: 60px;
-        background-size: 60px 60px;
-    }
-
-    h1 {
-        font-size: 22px;
-        padding: 8px 16px;
     }
 }
 
@@ -353,20 +271,8 @@ a:visited {
         font-size: 13px;
     }
 
-    input[type="text"], select, button, .btn {
+    input[type="text"], select, button {
         font-size: 14px;
         padding: 10px;
-    }
-
-    .btn-back {
-        width: 50px;
-        height: 50px;
-        background-size: 50px 50px;
-    }
-
-    area {
-        width: 50px;
-        height: 50px;
-        background-size: 50px 50px;
     }
 }

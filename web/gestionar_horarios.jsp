@@ -19,7 +19,7 @@
 </head>
 <body>
     <div class="container mt-5 mb-5" style="max-width: 900px;">
-        <h2 class="mb-4 text-center">Gestión de Horarios de Especialistas</h2>
+        <h1 class="mb-4 text-center">Gestión de Horarios de Especialistas</h1>
         <% if (request.getAttribute("mensaje") != null) { %>
             <div class="alert alert-info text-center"><%= request.getAttribute("mensaje") %></div>
         <% } %>
@@ -133,7 +133,7 @@
                 </tbody>
             </table>
         </div>
-        <a href="menu_admin.jsp" class="btn btn-secondary w-100 mt-3">Volver al menú</a>
+        <a href="menu_admin.jsp" class="btn-back" title="Volver al menú de administración"></a>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

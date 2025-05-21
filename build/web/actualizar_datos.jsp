@@ -47,8 +47,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+    <h1 class="mb-4 text-center">Actualizar Datos Personales</h1>
     <div class="container mt-5 mb-5" style="max-width: 500px;">
-        <h2 class="mb-4 text-center">Actualizar Datos Personales</h2>
+        
         <% if (request.getAttribute("mensaje") != null) { %>
             <div class="alert alert-info text-center"><%= request.getAttribute("mensaje") %></div>
         <% } %>
@@ -75,7 +76,7 @@
             </div>
             <button type="submit" class="btn btn-primary w-100">Actualizar</button>
         </form>
-        <a href="menu_paciente.jsp" class="btn btn-secondary w-100 mt-3">Volver al menú</a>
+        <a href="menu_paciente.jsp" class="btn-back"  title="Volver al menú de Paciente"></a>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

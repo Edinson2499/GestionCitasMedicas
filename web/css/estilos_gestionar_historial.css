@@ -1,17 +1,163 @@
+/* ====================================
+   Estilos generales
+==================================== */
 body {
-    background: #f8f9fa;
+    font-family: var(--bs-body-font-family, sans-serif);
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 20px;
+    background-image: url('../imagenes/Menus.png');
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    box-sizing: border-box;
 }
+
+/* ====================================
+   Contenedor principal
+==================================== */
 .container {
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-    padding: 32px 24px;
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    max-width: 1100px;
+    margin: 0 auto;
 }
-@media (max-width: 600px) {
+
+/* ====================================
+   Título principal
+==================================== */
+h1 {
+    color: #212529;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    background: rgba(255, 255, 255, 0.85);
+    padding: 12px 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+/* ====================================
+   Formulario de filtro
+==================================== */
+form {
+    background-color: #f1f5f9;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+label.form-label {
+    font-weight: 600;
+}
+
+select.form-select {
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+}
+
+/* ====================================
+   Botón de filtrar
+==================================== */
+button[type="submit"] {
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease-in-out;
+}
+
+button[type="submit"]:hover {
+    opacity: 0.9;
+}
+
+/* ====================================
+   Tabla de historial
+==================================== */
+.table {
+    margin-top: 1rem;
+    font-size: 0.95rem;
+}
+
+.table thead {
+    background-color: #e3f2fd;
+    font-weight: 600;
+}
+
+.table th,
+.table td {
+    text-align: center;
+    vertical-align: middle;
+    padding: 0.75rem;
+}
+
+.table td:first-child {
+    text-align: left;
+}
+
+/* ====================================
+   Badges de estado
+==================================== */
+.badge.bg-success {
+    background-color: #198754 !important;
+}
+
+.badge.bg-danger {
+    background-color: #dc3545 !important;
+}
+
+/* ====================================
+   Botón de volver
+==================================== */
+a.btn-back {
+    width: 60px;
+    height: 60px;
+    background-image: url('../imagenes/Atras.png');
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s;
+    position: absolute;
+    left: 30px;
+    top: 30px;
+    display: inline-block;
+}
+
+a.btn-back:hover {
+    background-image: url(../imagenes/Atras_hover.png);
+}
+
+/* ====================================
+   Media queries: responsividad
+==================================== */
+@media (max-width: 768px) {
     .container {
-        padding: 16px 4px;
+        padding: 1rem;
     }
+
     h2 {
         font-size: 1.3rem;
+        padding: 0.75rem;
+    }
+
+    .table {
+        font-size: 0.875rem;
+    }
+
+    .form-label {
+        font-size: 0.9rem;
+    }
+
+    select.form-select {
+        font-size: 0.9rem;
+    }
+
+    button[type="submit"],
+    a.btn-back {
+        font-size: 0.95rem;
     }
 }

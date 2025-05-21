@@ -25,7 +25,6 @@
             <li><a href="registrar_usuario.jsp">Registrar Nuevo Usuario</a></li>
             <li><a href="editar_usuario.jsp">Editar Usuario</a></li>
             <li><a href="gestionar_citas.jsp">Gestionar Citas</a></li>
-            <li><a href="gestionar_disponibilidad.jsp">Gestionar Disponibilidad</a></li>
             <li><a href="gestionar_especialidades.jsp">Gestionar Especialidades</a></li>
             <li><a href="gestionar_horarios.jsp">Gestionar Horarios</a></li>
             <li><a href="gestionar_historial.jsp">Historial Médico</a></li>

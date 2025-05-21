@@ -19,7 +19,7 @@
 </head>
 <body>
     <div class="container mt-5 mb-5" style="max-width: 1100px;">
-        <h2 class="mb-4 text-center">Historial Médico de Pacientes</h2>
+        <h1 class="mb-4 text-center">Historial Médico de Pacientes</h1>
         <!-- Filtro por paciente -->
         <form method="get" class="mb-4 row g-3">
             <div class="col-md-8">
@@ -129,7 +129,7 @@
                 </tbody>
             </table>
         </div>
-        <a href="menu_admin.jsp" class="btn btn-secondary w-100 mt-3">Volver al menú</a>
+        <a href="menu_admin.jsp" class="btn-back" title="Volver al menú de administración"></a>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

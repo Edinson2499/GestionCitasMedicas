@@ -1,188 +1,119 @@
-/* =========================
+/* ================================
    Estilos generales del body
-   ========================= */
+================================== */
 body {
-    font-family: sans-serif;
-    background-color: #f4f4f4;
+    font-family: var(--bs-body-font-family, sans-serif);
+    background-color: #f8f9fa;
     margin: 0;
     padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     background-image: url(../imagenes/Menus.png);
     background-size: cover;
     background-position: center;
+    min-height: 100vh;
 }
 
-/* =========================
+/* ================================
    Título principal (h1)
-   ========================= */
+================================== */
 h1 {
-    color: #222;
-    margin-bottom: 30px;
-    font-size: 28px;
-    text-align: center;
     background: rgba(255, 255, 255, 0.85);
-    padding: 10px 20px;
+    color: #222;
+    padding: 12px 20px;
     border-radius: 12px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    font-size: clamp(22px, 5vw, 32px);
 }
 
-/* =========================
-   Contenedor principal (div)
-   ========================= */
-div {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 80%;
-    max-width: 600px;
-    box-sizing: border-box;
+/* ================================
+   Estilo para la tarjeta principal
+================================== */
+.card {
+    background-color: #ffffff;
+    border-radius: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* =========================
-   Etiquetas (labels)
-   ========================= */
-label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-
-/* =========================
-   Campos de texto (inputs)
-   ========================= */
+/* ================================
+   Campo de entrada (input)
+================================== */
 input[type="text"] {
-    width: calc(100% - 12px);
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
+    font-size: 1rem;
+    padding: 0.5rem;
 }
 
-/* =========================
-   Botón submit
-   ========================= */
-button[type="submit"] {
-    background: rgba(113,206,239,1);
-    color: black;
-    padding: 10px 30px;
-    border: none;
-    border-radius: 15px;
-    font-size: 20px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-top: 10px;
-}
-
-button[type="submit"]:hover {
-    background-color: #2e86d8;
-}
-
-/* =========================
-   Área de resultado (div) con id resultado_historial
-   ========================= */
+/* ================================
+   Área de resultado del historial
+================================== */
 #resultado_historial {
-    margin-top: 20px;
-    padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    border: 1px solid #dee2e6;
     background-color: #f9f9f9;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    min-height: 80px;
 }
 
-/* =========================
-   Enlace con imagen "Atrás"
-   ========================= */
-a {
-    width: 80px;
-    height: 80px;
+/* ================================
+   Botón de regreso con imagen
+================================== */
+a.btn-back {
+    width: 60px;
+    height: 60px;
     background-image: url('../imagenes/Atras.png');
-    background-size: 80px 80px;
+    background-size: cover;
     background-position: center;
-    border-radius: 30px;
-    border: 0;
+    border-radius: 50%;
+    border: none;
     cursor: pointer;
-    transition: background 0.3s;
     position: absolute;
-    left: 5%;
-    top: 5%;
+    left: 30px;
+    top: 30px;
+    display: inline-block;
+    transition: background 0.3s;
 }
 
-a:hover {
-    text-decoration: underline;
-    background-image: url(../imagenes/Atras_hover.png);
+a.btn-back:hover {
+    background-image: url('../imagenes/Atras_hover.png');
 }
 
-/* =========================
-   Media Queries para Responsividad
-   ========================= */
-
-/* Para pantallas medianas y pequeñas (tablets y móviles grandes) */
+/* ================================
+   Media Queries para responsividad
+================================== */
 @media (max-width: 768px) {
-    div {
-        width: 90%;
-        padding: 15px;
-    }
-
     h1 {
-        font-size: 24px;
-        padding: 8px 15px;
-        margin-bottom: 25px;
+        font-size: 22px;
+        padding: 10px;
     }
 
-    button[type="submit"] {
-        font-size: 18px;
-        padding: 10px 25px;
+    a.btn-back {
+        width: 50px;
+        height: 50px;
+        left: 20px;
+        top: 20px;
+        background-size: 50px 50px;
+    }
+
+    .card {
+        padding: 1.2rem !important;
     }
 }
 
-/* Para móviles pequeños */
 @media (max-width: 480px) {
-    body {
+    .btn {
+        font-size: 1rem;
         padding: 10px;
-    }
-
-    div {
-        width: 100%;
-        padding: 10px;
-        box-shadow: none;
-        border-radius: 0;
-    }
-
-    h1 {
-        font-size: 20px;
-        padding: 6px 10px;
-        margin-bottom: 20px;
-    }
-
-    label, input[type="text"] {
-        font-size: 16px;
     }
 
     input[type="text"] {
-        width: 100%;
-    }
-
-    button[type="submit"] {
-        width: 100%;
-        padding: 12px 0;
-        font-size: 18px;
-        border-radius: 10px;
+        font-size: 1rem;
     }
 
     #resultado_historial {
-        padding: 10px;
-        font-size: 14px;
+        font-size: 0.9rem;
     }
 
-    a {
-        width: 50px;
-        height: 50px;
-        background-size: 50px 50px;
-        left: 3%;
-        top: 3%;
-        border-radius: 15px;
+    a.btn-back {
+        width: 45px;
+        height: 45px;
+        background-size: 45px 45px;
     }
 }

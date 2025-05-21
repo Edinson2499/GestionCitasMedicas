@@ -28,6 +28,8 @@
     <title>Mis Citas</title>
     <link rel="icon" href="imagenes/Logo.png" type="image/png">
     <link rel="stylesheet" href="css/ver_citas.css">
+        <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -74,13 +76,13 @@
                 }
             } else {
     %>
-                <p class="error">Error al conectar a la base de datos.</p>
+                <div class='alert alert-danger'>Error al conectar a la base de datos</div>
     <%
             }
         } catch (SQLException e) {
             e.printStackTrace();
     %>
-        <p class="error">Error al consultar las citas: <%= e.getMessage() %></p>
+        <div class='alert alert-danger'>Error al consultar las citas: " + e.getMessage() + "</div>
     <%
         } finally {
             try { if (resultSet != null) resultSet.close(); } catch (SQLException e) { e.printStackTrace(); }
@@ -91,5 +93,8 @@
     
     </main>
     <a href="menu_paciente.jsp" title="Volver al menú paciente"></a>
+    
+    <!-- Bootstrap JS Bundle CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -16,11 +16,13 @@
 %>
 <!DOCTYPE html>
 <html lang="es">
-<head>
+<>
     <meta charset="UTF-8">
     <title>Editar Usuario</title>
     <link rel="stylesheet" href="css/estilos_editar_usuario.css">
     <link rel="icon" href="imagenes/Logo.png" type="image/png">
+        <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <h1>Editar Usuario</h1>
@@ -117,11 +119,12 @@
 <%
 } else {
 %>
-            <p class="error-message">No se encontraron usuarios con los criterios indicados.</p>
+            <div class='error-message'><div class='alert alert-danger'>Error al consultar los usuarios: " + e.getMessage() + "</div></div>
 <%
 }
         } catch (Exception e) {
-            out.println("<p class='error-message'>Error al consultar usuarios: " + e.getMessage() + "</p>");
+            out.println("<div class='error-message'><div class='alert alert-danger'>Error al consultar los usuarios: " + e.getMessage() + "</div></div>");
+
         } finally {
             try { if (rs != null) rs.close(); } catch (Exception e) {}
             try { if (ps != null) ps.close(); } catch (Exception e) {}
@@ -129,7 +132,7 @@
         }
     %>
     <a href="menu_admin.jsp" class="btn-back" title="Volver al menú"></a>
-    <area href="menu_admin.jsp"></area>
+    <a href="menu_admin.jsp" class="btn-back" title="Volver al menú"></a>
 
     <!-- Modal personalizado para eliminar usuario -->
     <div id="modalEliminar" class="modal" style="display:none;">
@@ -172,6 +175,8 @@ document.addEventListener("DOMContentLoaded", function() {
 </html>
 
     <br>
-    <area href="menu_admin.jsp" title="Volver al menú administrador"></area>
+    <a href="menu_admin.jsp" class="btn-back" title="Volver al menú de Administrador"></a>
+    <!-- Bootstrap JS Bundle CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

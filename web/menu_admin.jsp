@@ -22,13 +22,17 @@
     <nav class="menu-usuario" id="menu-usuario">
         <ul>
             <li><a href="consultar_usuarios.jsp">Consultar Usuarios</a></li>
+            <li><a href="registrar_usuario.jsp">Registrar Nuevo Usuario</a></li>
             <li><a href="editar_usuario.jsp">Editar Usuario</a></li>
-            <li><a href="#">Gestionar Citas</a></li>
-            <li><a href="#">Gestionar Especialistas</a></li>
-            <li><a href="#">Gestionar Pacientes</a></li>
+            <li><a href="gestionar_citas.jsp">Gestionar Citas</a></li>
+            <li><a href="gestionar_disponibilidad.jsp">Gestionar Disponibilidad</a></li>
+            <li><a href="gestionar_especialidades.jsp">Gestionar Especialidades</a></li>
+            <li><a href="gestionar_horarios.jsp">Gestionar Horarios</a></li>
+            <li><a href="gestionar_historial.jsp">Historial Médico</a></li>
             <li><a href="<%= request.getContextPath() %>/CerrarSesion">Cerrar Sesión</a></li>
         </ul>
     </nav>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const menuLinks = document.querySelectorAll('.menu-usuario a');

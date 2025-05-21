@@ -72,18 +72,8 @@ button[type="submit"]:hover {
     background-color: #f9f9f9;
 }
 
+
 a {
-    display: inline-block;
-    margin-top: 20px;
-    text-decoration: none;
-    color: #007bff;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-/*a {
     width: 80px;
     height: 80px;
     background-image: url('../imagenes/Atras.png');
@@ -103,4 +93,3 @@ a:hover {
     text-decoration: underline;
     background-image: url(../imagenes/Atras_hover.png);
 }
-*/

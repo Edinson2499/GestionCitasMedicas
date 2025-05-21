@@ -2,17 +2,14 @@
    Estilos generales del cuerpo
 ================================== */
 body {
-    font-family: sans-serif;
-    background-color: #f4f4f4;
+    font-family: var(--bs-body-font-family, sans-serif);
+    background-color: #f8f9fa;
     margin: 0;
     padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    min-height: 100vh;
     background-image: url(../imagenes/Menus.png);
     background-size: cover;
     background-position: center;
-    min-height: 100vh;
     box-sizing: border-box;
 }
 
@@ -30,28 +27,31 @@ h1 {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     width: 90%;
     max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* ================================
    Contenedor principal
 ================================== */
-div {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
+div.container-disponibilidad {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 1rem;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     width: 90%;
     max-width: 600px;
+    margin: 0 auto;
     box-sizing: border-box;
 }
 
 /* ================================
    Etiquetas de formulario
 ================================== */
-label {
+label, .form-label {
     display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
 }
 
 /* ================================
@@ -60,18 +60,20 @@ label {
 input[type="date"],
 input[type="time"] {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ced4da;
+    border-radius: 0.375rem;
+    font-size: 1rem;
     box-sizing: border-box;
-    font-size: 16px;
 }
 
 /* ================================
    Botón de envío
 ================================== */
-button[type="submit"] {
+button[type="submit"], .btn-guardar {
+    @extend .btn;
+    @extend .btn-primary;
     background: rgba(113, 206, 239, 1);
     color: black;
     padding: 12px 20px;
@@ -83,31 +85,30 @@ button[type="submit"] {
     width: 100%;
     margin-top: 10px;
 }
-
 button[type="submit"]:hover {
-    background-color: #0056b3;
+    background-color: rgba(5, 86, 179, 1);
     color: white;
 }
-
 /* ================================
    Botón de regreso
 ================================== */
-a {
+a.btn-back {
     width: 60px;
     height: 60px;
     background-image: url('../imagenes/Atras.png');
     background-size: cover;
     background-position: center;
-    border-radius: 30px;
+    border-radius: 50%;
     border: none;
     cursor: pointer;
     transition: background 0.3s;
     position: absolute;
-    left: 20px;
-    top: 20px;
+    left: 30px;
+    top: 30px;
+    display: inline-block;
 }
 
-a:hover {
+a.btn-back:hover {
     background-image: url(../imagenes/Atras_hover.png);
 }
 
@@ -120,22 +121,18 @@ a:hover {
         padding: 10px;
     }
 
-    div {
-        padding: 15px;
+    div.container-disponibilidad {
+        padding: 1rem;
     }
 
     input[type="date"],
     input[type="time"],
-    button[type="submit"] {
-        font-size: 15px;
-        padding: 10px;
+    button[type="submit"], .btn-guardar {
+        font-size: 1rem;
+        padding: 0.5rem;
     }
 
-    button[type="submit"] {
-        font-size: 16px;
-    }
-
-    a {
+    a.btn-back {
         width: 50px;
         height: 50px;
         background-size: 50px 50px;

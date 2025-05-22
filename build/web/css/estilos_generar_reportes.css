@@ -89,22 +89,24 @@ select.form-select:focus {
 /* ==========================================
    BOTÓN GENERAR REPORTE
 ========================================== */
-button[type="submit"],
-.btn-primary {
-    background: rgba(113, 206, 239, 1);
+button[type="submit"].btn-primary {
+    background-color: rgba(113,206,239,1);
     color: black;
-    padding: 12px 20px;
+    padding: 12px 30px;
     border: none;
-    border-radius: 12px;
+    border-radius: 20px;
     font-size: 18px;
+    font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.3s ease;
     width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+    display: block;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-button[type="submit"]:hover,
-.btn-primary:hover {
-    background-color: rgba(5, 86, 179, 1);
+button[type="submit"].btn-primary:hover {
+    background-color: #5a6268;
     color: white;
 }
 
@@ -163,8 +165,8 @@ tr:nth-child(even) {
    BOTÓN DE REGRESO (IMAGEN REDONDA)
 ========================================== */
 a.btn-back {
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
     background-image: url('../imagenes/Atras.png');
     background-size: cover;
     background-position: center;

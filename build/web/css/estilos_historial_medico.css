@@ -62,24 +62,17 @@ h2 {
 /* ================================
    Botón de volver al menú
 ================================== */
-a.btn-back {
-    width: 80px;
-    height: 80px;
-    background-image: url('../imagenes/Atras.png');
-    background-size: cover;
-    background-position: center;
-    border-radius: 50%;
-    border: none;
-    cursor: pointer;
-    transition: background 0.3s;
-    position: absolute;
-    left: 30px;
-    top: 30px;
-    display: inline-block;
+.btn-secondary {
+    font-size: 1rem;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
 }
 
-a.btn-back:hover {
-    background-image: url('../imagenes/Atras_hover.png');
+.btn-secondary:hover {
+    background-color: #5c636a;
+    color: #fff;
 }
 
 /* ================================

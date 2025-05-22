@@ -87,8 +87,8 @@ h1 {
    Botón de regreso
    ========================= */
 a {
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
     background-image: url('../imagenes/Atras.png');
     background-size: cover;
     background-position: center;

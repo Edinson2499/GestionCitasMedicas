@@ -33,6 +33,8 @@ function cargarLogin() {
 
             const menu = document.getElementById("menu");
             if (menu) {
+
+                console.log("Aplicando clase move-to-top-login");
                 menu.classList.remove('move-to-top-registro');
                 menu.classList.add('move-to-top-login');
             }
@@ -135,8 +137,14 @@ function volverMenuCentrado() {
     if (menu) {
         menu.classList.remove('move-to-top-login', 'move-to-top-registro');
     }
+
     document.getElementById("contenidoDinamico").innerHTML = "";
 
     // Ocultar el botón volver
     document.querySelector('.btn-volver').style.display = 'none';
 }
+
+    // Aquí puedes limpiar el contenido dinámico si lo deseas
+    document.getElementById("contenidoDinamico").innerHTML = "";
+}
+

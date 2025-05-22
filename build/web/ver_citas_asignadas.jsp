@@ -20,14 +20,13 @@
     <title>Citas Asignadas</title>
     <link rel="icon" href="imagenes/Logo.png" type="image/png">
     <link rel="stylesheet" href="css/estilos_citas_asignadas.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <h1>Citas Asignadas a <%= nombreEspecialista %></h1>
 
     <div>
         <c:if test="${not empty error}">
-            <div class='alert alert-danger'>Error</div>
+            <p style="color: red;">${error}</p>
         </c:if>
 
         <c:if test="${not empty citasAsignadas}">
@@ -59,7 +58,6 @@
     </div>
 
     <br>
-    <a href="menu_especialista.jsp" title="Volver al menú del especialista"></a>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <a href="menu_especialista.jsp" title="Volver al menú del especialista">Volver</a>
 </body>
 </html>

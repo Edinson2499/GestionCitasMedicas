@@ -85,7 +85,7 @@
                 try { if (conn != null) conn.close(); } catch (Exception e) {}
             }
         %>
-        <a href="menu_paciente.jsp" class="btn-back " title="Volver al menu de paciete"></a>
+        <a href="menu_paciente.jsp" class="btn btn-secondary w-100 mt-3">Volver al menú</a>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

@@ -68,10 +68,6 @@ body {
    Botón Volver (siempre visible arriba del registro)
    ============================== */
 .btn-volver {
-    display: none; /* oculto por defecto */
-}
-
-.btn-volver {
     position: fixed;
     top: 12vh;
     left: 2vw;
@@ -83,6 +79,7 @@ body {
     color: #fff;
     border-radius: 50%;
     border: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
     cursor: pointer;
     outline: none;
@@ -90,7 +87,7 @@ body {
     padding: 0;
 }
 .btn-volver:hover {
-    background:  url('../imagenes/Atras_hover.png') center center no-repeat;
+    background: #084298 url('../imagenes/Atras_hover.png') center center no-repeat;
     background-size: 80% 80%;
     box-shadow: 0 4px 16px rgba(0,0,0,0.15);
     transform: scale(1.07);

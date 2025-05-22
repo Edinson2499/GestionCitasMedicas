@@ -120,10 +120,9 @@ button.btn {
     margin-top: 20px;
     font-size: 16px;
     font-weight: bold;
-    color:  rgba(5, 86, 179, 1);
+    color: #28a745;
     text-align: center;
 }
-
 
 /* ================================
    Lista de especialistas
@@ -142,8 +141,8 @@ ul li {
    Botón de regreso
 ================================== */
 a[href="menu_paciente.jsp"] {
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
     background-image: url('../imagenes/Atras.png');
     background-size: cover;
     background-position: center;

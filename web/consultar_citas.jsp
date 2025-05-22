@@ -40,7 +40,7 @@
         try {
             connection = ConexionBD.conectar();
             if (connection != null) {
-                String sql = "SELECT c.fecha_hora, es.especialidad, esp_u.nombre AS nombre_especialista, esp_u.apellidos AS apellidos_especialista " +
+                String sql = "SELECT c.fecha_hora, es.especialidad, esp_u.nombre AS nombre_especialista, esp_u.apellidos AS apellidos_especialista, c.estado " +
                             "FROM Cita c " +
                             "JOIN Usuario pac_u ON c.id_paciente = pac_u.id " +
                             "JOIN Usuario esp_u ON c.id_especialista = esp_u.id " +
@@ -61,11 +61,13 @@
                         String especialidad = resultSet.getString("especialidad");
                         String nombreEspecialista = resultSet.getString("nombre_especialista");
                         String apellidosEspecialista = resultSet.getString("apellidos_especialista");
+                        String estado = resultSet.getString("estado");
     %>
                         <div class="cita-container">
                             <li><p><strong>Fecha y Hora:</strong> <%= fechaHoraFormateada %></p></li>
                             <li><p><strong>Especialidad:</strong> <%= especialidad %></p></li>
                             <li><p><strong>Especialista:</strong> <%= nombreEspecialista %> <%= apellidosEspecialista %></p></li>
+                            <li><p><strong>Estado:</strong> <%= estado.substring(0,1).toUpperCase() + estado.substring(1).toLowerCase() %></p></li>
                         </div>
     <%
                     }

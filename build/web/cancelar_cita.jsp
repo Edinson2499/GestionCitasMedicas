@@ -66,7 +66,7 @@
                                 <li><p><strong>Especialidad:</strong> <%= rs.getString("especialidad") %></p></li>
                                 <li><p><strong>Especialista:</strong> <%= rs.getString("nombre_especialista") %> <%= rs.getString("apellidos_especialista") %></p></li>
                             </ul>
-                            <button type="submit" class="btn btn-danger" name="idCita" value="<%= rs.getInt("id") %>" onclick="return confirm('¿Seguro que deseas cancelar esta cita?');">Cancelar</button>
+                            <button type="button" class="btn btn-danger btnCancelar" data-id="<%= rs.getInt("id") %>">Cancelar</button>
                         </div>
                         <%
                             }
@@ -87,9 +87,47 @@
             try { if (conn != null) conn.close(); } catch (Exception e) {}
         }
     %>
+    <!-- Modal personalizado para cancelar cita -->
+    <div id="modalCancelarCita" class="modal" style="display:none;">
+        <div class="contenido-modal">
+            <h2>Confirmar cancelación</h2>
+            <p>¿Seguro que deseas cancelar esta cita?</p>
+            <div class="buttonGroup">
+                <button class="btn btn-danger" id="btnConfirmarCancelar">Cancelar cita</button>
+                <button class="btn btn-secondary" id="btnCancelarCancelar">No cancelar</button>
+            </div>
+        </div>
+    </div>
     </main>
     <a href="menu_paciente.jsp" class="btn-back" title="Volver al menú de Paciente"></a>
     <!-- Bootstrap JS Bundle CDN -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.querySelectorAll('.btnCancelar').forEach(button => {
+            button.addEventListener('click', function() {
+                const idCita = this.getAttribute('data-id');
+                document.getElementById('btnConfirmarCancelar').setAttribute('data-id', idCita);
+                document.getElementById('modalCancelarCita').style.display = 'flex';
+            });
+        });
+
+        document.getElementById('btnCancelarCancelar').addEventListener('click', function() {
+            document.getElementById('modalCancelarCita').style.display = 'none';
+        });
+
+        document.getElementById('btnConfirmarCancelar').addEventListener('click', function() {
+            const idCita = this.getAttribute('data-id');
+            const form = document.createElement('form');
+            form.method = 'post';
+            form.action = 'CancelarCitaServlet';
+            const hiddenField = document.createElement('input');
+            hiddenField.type = 'hidden';
+            hiddenField.name = 'idCita';
+            hiddenField.value = idCita;
+            form.appendChild(hiddenField);
+            document.body.appendChild(form);
+            form.submit();
+        });
+    </script>
 </body>
 </html>

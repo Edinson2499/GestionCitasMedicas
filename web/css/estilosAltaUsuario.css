@@ -1,7 +1,7 @@
 /* ==============================
    Reset básico
    ============================== */
-   * {
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
@@ -9,8 +9,12 @@
 
 /* ==============================
    Contenedor principal
-   ============================== */
-.cuerpoFormulario {
+   ==============================
+   Usar Bootstrap container para centrar y limitar el ancho,
+   pero mantenemos el estilo personalizado.
+*/
+.cuerpoFormulario,
+.container.cuerpoFormulario {
     margin: 40px auto;
     max-width: 600px;
     padding: 10px;
@@ -20,7 +24,9 @@
 
 /* ==============================
    Formulario
-   ============================== */
+   ==============================
+   Se puede usar 'form' de Bootstrap, pero mantenemos el diseño visual.
+*/
 .formularioAlta {
     padding: 30px;
     border: 2px solid #ccc;
@@ -39,8 +45,12 @@
 
 /* ==============================
    Campos de entrada
-   ============================== */
-.txt {
+   ==============================
+   Bootstrap usa .form-control, pero mantenemos .txt para el diseño.
+*/
+.txt,
+input.form-control, 
+select.form-select {
     font-size: 16px;
     border-radius: 10px;
     padding: 8px 12px;
@@ -48,12 +58,19 @@
     margin: 10px 0;
     width: 60%;
     max-width: 400px;
+    /* Sobrescribe Bootstrap si es necesario */
+    box-shadow: none;
 }
 
 /* ==============================
    Botones
-   ============================== */
-.btn {
+   ==============================
+   Bootstrap usa .btn, pero personalizamos el diseño.
+*/
+.btn,
+button.btn,
+input[type="submit"].btn,
+input[type="button"].btn {
     margin: 15px;
     padding: 12px 25px;
     border-radius: 25px;
@@ -64,9 +81,14 @@
     color: white;
     transition: all 0.3s ease;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    width: auto;
+    min-width: 120px;
 }
 
-.btn:hover {
+.btn:hover,
+button.btn:hover,
+input[type="submit"].btn:hover,
+input[type="button"].btn:hover {
     background-color: #1976D2;
     transform: translateY(-5px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
@@ -75,7 +97,9 @@
 
 /* ==============================
    Aviso contraseña
-   ============================== */
+   ==============================
+   Mantiene el diseño visual, pero se adapta a Bootstrap.
+*/
 .avisoContrasena {
     background-color: #fff;
     padding: 12px;
@@ -87,23 +111,66 @@
     max-width: 500px;
     margin-left: auto;
     margin-right: auto;
+    /* Bootstrap alert-info puede usarse, pero mantenemos el color */
 }
 
 /* ==============================
-   Estilos para pantallas pequeñas (RESPONSIVE)
-   ============================== */
+   Etiquetas
+   ==============================
+   Asegura alineación y espaciado en responsive.
+*/
+label,
+.form-label {
+    display: block;
+    text-align: left;
+    margin: 8px 0 4px 0;
+}
+/* ================================
+   Botón de regreso
+================================== */
+a.btn-back {
+    width: 80px;
+    height: 80px;
+    background-image: url('../imagenes/Atras.png');
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s;
+    position: absolute;
+    left: 30px;
+    top: 30px;
+    display: inline-block;
+}
+
+a.btn-back:hover {
+    background-image: url(../imagenes/Atras_hover.png);
+}
+
+/* ==============================
+   Responsive con Bootstrap y media queries
+   ==============================
+   Se adapta a pantallas pequeñas, combinando Bootstrap y reglas propias.
+*/
+
 @media (max-width: 768px) {
     .formularioAlta {
         padding: 20px;
         font-size: 16px;
     }
 
-    .txt {
+    .txt,
+    input.form-control, 
+    select.form-select {
         width: 90%;
         font-size: 16px;
     }
 
-    .btn {
+    .btn,
+    button.btn,
+    input[type="submit"].btn,
+    input[type="button"].btn {
         width: 90%;
         font-size: 16px;
         padding: 10px 20px;
@@ -114,13 +181,15 @@
         padding: 10px;
     }
 
-    label {
+    label,
+    .form-label {
         display: block;
         text-align: left;
         margin: 8px 0 4px 0;
     }
 
-    .cuerpoFormulario {
+    .cuerpoFormulario,
+    .container.cuerpoFormulario {
         padding: 10px;
         margin: 20px auto;
     }
@@ -131,12 +200,17 @@
         font-size: 22px;
     }
 
-    .btn {
+    .btn,
+    button.btn,
+    input[type="submit"].btn,
+    input[type="button"].btn {
         font-size: 15px;
         padding: 10px;
     }
 
-    .txt {
+    .txt,
+    input.form-control, 
+    select.form-select {
         font-size: 15px;
     }
 
@@ -144,3 +218,7 @@
         font-size: 12px;
     }
 }
+
+/* ==============================
+   Fin de estilos personalizados
+   ============================== */

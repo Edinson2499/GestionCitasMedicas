@@ -18,7 +18,7 @@
                 <input type="hidden" name="rol" value="especialista">
                 <h1>Registro de Usuarios</h1>
                 <br>
-                <label>ID:</label> <input type="text" class="txt" id="txtId" required="" name="txtiD">
+                <label style="display: inline-block; width: 100px; text-align: left; margin-right: 5px; margin-bottom: 5px;">ID:</label> <input type="text" class="txt" id="txtId" required="" name="txtiD">
                 <br>
                 <br>
                 <label style="display: inline-block; width: 100px; text-align: left; margin-right: 5px; margin-bottom: 5px;">Nombre:</label> 
@@ -36,7 +36,7 @@
                 <label style="display: inline-block; width: 100px; text-align: left; margin-right: 5px; margin-bottom: 5px;">Correo:</label>
                 <input type="text" class="txt" id="txtEmail" required="" onkeyup="usuarioGeneradoAutomaticamente()" name="txtEmail" style="margin-bottom: 5px;">
                 <br>
-                <label>Especialidad:</label>
+                <label style="display: contents; width: 100px; text-align: left; margin-right: 5px; margin-bottom: 5px;">Especialidad:</label>
                 <input list="especialidad" placeholder="Seleccione una especialidad" class="txt" id="txtEspecialidad" name="txtEspecialidad" required="">
                 <datalist id="especialidad">
                     <option value="Cardiología"></option>

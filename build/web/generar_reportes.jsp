@@ -48,7 +48,7 @@
             </div>
         </div>
         <div class="mt-4 text-center">
-            <button type="submit" class="btn btn-primary px-4">Generar Reporte</button>
+            <button type="submit" class="btn btn-primary w-100">Generar Reporte</button>
         </div>
     </form>
 

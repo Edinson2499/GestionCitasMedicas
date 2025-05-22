@@ -48,15 +48,30 @@ input.form-control {
     font-size: 1rem;
 }
 
-button[type="submit"] {
-    padding: 0.6rem 1.2rem;
-    font-size: 1rem;
-    border-radius: 0.5rem;
-    transition: all 0.3s ease-in-out;
+button[type="submit"],
+.btn-primary {
+    background: rgba(113, 206, 239, 1);
+    color: black;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 12px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
 }
 
-button[type="submit"]:hover {
-    opacity: 0.9;
+button[type="submit"]:hover,
+.btn-primary:hover {
+    background-color: rgba(5, 86, 179, 1);
+    color: white;
+}
+
+button.btn-danger {
+    background-color: #e66572;
+}
+button.btn-danger:hover {
+    background-color: #c82333;
 }
 
 .table {
@@ -81,8 +96,8 @@ button[type="submit"]:hover {
 }
 
 a.btn-back {
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 80px;
     background-image: url('../imagenes/Atras.png');
     background-size: cover;
     background-position: center;

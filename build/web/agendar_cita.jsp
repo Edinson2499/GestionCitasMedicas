@@ -67,7 +67,7 @@
                     <% } %>
                 </select>
             </div>
-            <button type="submit" formaction="AgendarCitaServlet" class="btn btn-success w-100">Agendar Cita</button>
+            <button type="submit" formaction="AgendarCitaServlet" class="btn btn-primary w-100">Agendar Cita</button>
         <% } %>
     </form>
 </main>

@@ -11,6 +11,7 @@ CREATE TABLE IF NOT EXISTS Usuario (
     apellidos VARCHAR(100) NOT NULL,
     telefono VARCHAR(20),
     direccion VARCHAR(255),
+    correo VARCHAR(150) NOT NULL UNIQUE,
     contrasena VARCHAR(255) NOT NULL,
     usuario_generado VARCHAR(100) UNIQUE,
     tipo_usuario ENUM('especialista', 'paciente', 'administrador') NOT NULL
@@ -52,6 +53,11 @@ CREATE TABLE IF NOT EXISTS Factura (
     monto DECIMAL(10, 2) NOT NULL,
     estado ENUM('pendiente', 'pagada', 'anulada') DEFAULT 'pendiente',
     FOREIGN KEY (id_cita) REFERENCES Cita(id)
+);
+
+CREATE TABLE IF NOT EXISTS Especialidades (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL UNIQUE
 );
 
 CREATE TABLE DisponibilidadEspecialista (

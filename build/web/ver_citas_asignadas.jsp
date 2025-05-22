@@ -1,9 +1,3 @@
-<%-- 
-    Document   : ver_citas_asignadas
-    Created on : 22/04/2025, 3:36:54 p. m.
-    Author     : javie
---%>
-
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
@@ -24,18 +18,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Citas Asignadas</title>
+    <link rel="icon" href="imagenes/Logo.png" type="image/png">
     <link rel="stylesheet" href="css/estilos_citas_asignadas.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <h1>Citas Asignadas a <%= nombreEspecialista %></h1>
 
     <div>
         <c:if test="${not empty error}">
-            <p style="color: red;">${error}</p>
+            <div class='alert alert-danger'>Error</div>
         </c:if>
 
         <c:if test="${not empty citasAsignadas}">
-            <table>
+            <table class="table-citas-asignadas">
                 <thead>
                     <tr>
                         <th>Fecha y Hora</th>
@@ -63,6 +59,7 @@
     </div>
 
     <br>
-    <a href="menu_especialista.jsp">Volver al Menú del Especialista</a>
+    <a href="menu_especialista.jsp" title="Volver al menú del especialista"></a>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

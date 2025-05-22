@@ -1,70 +1,202 @@
-/*
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
-*/
-/* 
-    Created on : 22/04/2025, 3:45:14 p. m.
-    Author     : javie
-*/
-
-/* estilos_citas_asignadas.css */
-
+/* ===========================================
+   Estilos generales del cuerpo
+=========================================== */
 body {
-    font-family: sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f4f4f4;
     margin: 0;
-    padding: 20px;
+    padding: 40px 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-image: url(../imagenes/Menus.png);
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    backdrop-filter: blur(2px); /* Suaviza el fondo */
 }
 
+/* ===========================================
+   Título principal
+=========================================== */
 h1 {
-    color: #333;
-    margin-bottom: 20px;
+    color: #222;
+    margin-bottom: 30px;
+    font-size: clamp(20px, 6vw, 28px);
+    text-align: center;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 10px 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
+/* ===========================================
+   Contenedor principal
+=========================================== */
 div {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 80%;
-    max-width: 800px;
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 1000px;
+    overflow-x: auto; /* Permite desplazamiento horizontal si es necesario */
 }
 
+/* ===========================================
+   Párrafos
+=========================================== */
 p {
     margin-bottom: 15px;
+    font-size: 16px;
+    color: #333;
 }
 
+/* ===========================================
+   Tabla y sus estilos generales
+=========================================== */
 table {
-    width: 100%;
+    width: 90%;
+    max-width: 1000px;
+    margin: 20px auto;
     border-collapse: collapse;
-    margin-top: 15px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
+/* Etiquetas dentro de tablas y formularios */
+label {
+    margin-bottom: 5px;
+    color: #222;
+    font-size: 14px;
+}
+
+/* Celdas de tabla */
 th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
+    padding: 14px 18px;
+    border-bottom: 1px solid #e0e0e0;
     text-align: left;
+    font-size: 15px;
 }
 
+/* Encabezados de tabla */
 th {
-    background-color: #f2f2f2;
-    font-weight: bold;
+    background-color: #0069d9;
+    color: white;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 0.5px;
 }
 
-tbody tr:nth-child(even) {
+/* Celdas normales */
+td {
+    background-color: #fff;
+    color: #333;
+}
+
+/* Filas pares */
+tr:nth-child(even) {
     background-color: #f9f9f9;
 }
 
-a {
-    display: inline-block;
-    margin-top: 20px;
-    text-decoration: none;
-    color: #007bff;
+/* Hover sobre filas */
+tr:hover {
+    background-color: #f1f1f1;
+}
+/* Filas pares con color alternado */
+tbody tr:nth-child(even) {
+    background-color: #fafafa;
 }
 
-a:hover {
-    text-decoration: underline;
+/* Efecto hover en filas */
+tbody tr:hover {
+    background-color: #f1f1f1;
 }
+
+/* ===========================================
+   Botón de regreso con imagen
+=========================================== */
+a {
+    width: 80px;
+    height: 80px;
+    background-image: url('../imagenes/Atras.png');
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-image 0.3s ease;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 10;
+}
+
+/* Hover del botón de regreso */
+a:hover {
+    background-image: url('../imagenes/Atras_hover.png');
+    transform: scale(1.05);
+}
+
+/* ===========================================
+   Estilos responsive adicionales
+=========================================== */
+@media (max-width: 768px) {
+    body {
+        padding: 30px 15px;
+    }
+
+    h1 {
+        font-size: 20px;
+        padding: 10px;
+    }
+
+    div {
+        padding: 20px;
+        width: 100%;
+    }
+
+    table {
+        font-size: 14px;
+    }
+
+    th, td {
+        padding: 10px;
+    }
+
+    a {
+        width: 50px;
+        height: 50px;
+        top: 15px;
+        left: 15px;
+        background-size: contain;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 18px;
+    }
+
+    table {
+        font-size: 13px;
+    }
+
+    th, td {
+        padding: 8px;
+    }
+
+    div {
+        padding: 15px;
+    }
+
+    a {
+        width: 45px;
+        height: 45px;
+        top: 10px;
+        left: 10px;
+    }
+}
+

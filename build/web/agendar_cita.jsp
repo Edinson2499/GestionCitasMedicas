@@ -66,10 +66,63 @@
                         <option value="<%= especialista %>"><%= especialista %></option>
                     <% } %>
                 </select>
-                <button type="submit" formaction="AgendarCitaServlet">Agendar Cita</button>
-            <% } %>
-        </form>
-    </main>
-    <a href="menu_paciente.jsp"></a>
+            </div>
+            <button type="submit" formaction="AgendarCitaServlet" class="btn btn-success w-100">Agendar Cita</button>
+        <% } %>
+    </form>
+</main>
+
+<!-- Contenedor para carga dinámica vía JS -->
+<div id="especialistas-dinamicos"></div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const selectEspecialidad = document.getElementById("especialidad");
+    const container = document.getElementById("especialistas-dinamicos");
+
+    // Cargar especialidades dinámicamente
+    fetch("${pageContext.request.contextPath}/Especialidades")
+        .then(response => response.json())
+        .then(data => {
+            console.log("Especialidades recibidas:", data);
+            selectEspecialidad.innerHTML = '<option value="" >Seleccione una especialidad</option>';
+            data.forEach(especialidad => {
+                if (typeof especialidad === "string" && especialidad.trim() !== "") {
+                    const valor = especialidad.trim();
+                    selectEspecialidad.innerHTML += `<option value="${valor}">${valor}</option>`;
+                }
+            });
+        });
+
+    // Al cambiar especialidad, cargar horarios disponibles
+    selectEspecialidad.addEventListener("change", function () {
+        console.log("Seleccionaste:", this.value);
+        const especialidad = this.value;
+        if (!especialidad) return;
+
+        fetch("HorariosPorEspecialidad?especialidad=" + encodeURIComponent(especialidad))
+            .then(response => response.json())
+            .then(data => {
+                if (data.length === 0) {
+                    container.innerHTML = "<p class='text-danger mt-3'>No hay horarios disponibles para esta especialidad.</p>";
+                    return;
+                }
+                let html = '<h2 class="mt-4">Horarios Disponibles:</h2>';
+                html += '<ul class="list-group mb-3">';
+                data.forEach(horario => {
+                    html += `<li class="list-group-item">Fecha: ${horario.fecha} | De: ${horario.hora_inicio} a ${horario.hora_fin}</li>`;
+                });
+                html += '</ul>';
+                container.innerHTML = html;
+            })
+            .catch(error => {
+                console.error("Error al obtener horarios:", error);
+                container.innerHTML = "<p class='text-danger mt-3'>Error al cargar horarios.</p>";
+            });
+    });
+});
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

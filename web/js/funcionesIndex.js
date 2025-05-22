@@ -20,6 +20,8 @@ function cargarAltaUsuario(){
     document.querySelector('.btn-volver').style.display = 'block';
 }
 
+
+// Ejemplo para mostrar login
 function cargarLogin() {
     fetch('login.jsp')
         .then(response => response.text())
@@ -31,7 +33,7 @@ function cargarLogin() {
 
             const menu = document.getElementById("menu");
             if (menu) {
-                console.log("Aplicando clase move-to-top-login");
+                menu.classList.remove('move-to-top-registro');
                 menu.classList.add('move-to-top-login');
             }
 
@@ -125,4 +127,16 @@ function mostrarSeleccionRegistro() {
     form.appendChild(button);
     modal.appendChild(form);
     document.body.appendChild(modal);
+}
+
+// Si quieres volver al estado centrado original:
+function volverMenuCentrado() {
+    const menu = document.getElementById("menu");
+    if (menu) {
+        menu.classList.remove('move-to-top-login', 'move-to-top-registro');
+    }
+    document.getElementById("contenidoDinamico").innerHTML = "";
+
+    // Ocultar el botón volver
+    document.querySelector('.btn-volver').style.display = 'none';
 }

@@ -71,4 +71,4 @@ public class GuardarUsuarioServlet extends HttpServlet {
         request.setAttribute("mensaje", mensaje);
         request.getRequestDispatcher("registrar_usuario.jsp").forward(request, response);
     }
-}
+}jhjhjh

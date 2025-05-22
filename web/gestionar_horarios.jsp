@@ -107,10 +107,7 @@
                         <td><%= rs.getTime("hora_inicio") %></td>
                         <td><%= rs.getTime("hora_fin") %></td>
                         <td>
-                            <form method="post" action="GestionarHorariosServlet" style="display:inline;">
-                                <input type="hidden" name="idHorario" value="<%= rs.getInt("id") %>">
-                                <button type="submit" name="accion" value="eliminar" class="btn btn-danger btn-sm" onclick="return confirm('¿Eliminar este horario?');">Eliminar</button>
-                            </form>
+                            <button type="button" class="btn btn-danger btn-sm btn-eliminar-horario" data-id="<%= rs.getInt("id") %>">Eliminar</button>
                         </td>
                     </tr>
                 <%
@@ -135,6 +132,56 @@
         </div>
         <a href="menu_admin.jsp" class="btn-back" title="Volver al menú de administración"></a>
     </div>
+    <div id="modalEliminarHorario" class="modal" style="display:none;">
+        <div class="contenido-modal">
+            <h2>Confirmar eliminación</h2>
+            <p>¿Seguro que deseas eliminar este horario?</p>
+            <div class="buttonGroup">
+                <button class="btn btn-danger" id="btnConfirmarEliminar">Eliminar</button>
+                <button class="btn btn-secondary" id="btnCancelarEliminar">Cancelar</button>
+            </div>
+        </div>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+let idHorarioEliminar = null;
+
+document.addEventListener("DOMContentLoaded", function() {
+    document.querySelectorAll('.btn-eliminar-horario').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            idHorarioEliminar = this.getAttribute('data-id');
+            document.getElementById('modalEliminarHorario').style.display = 'flex';
+        });
+    });
+
+    document.getElementById('btnCancelarEliminar').onclick = function() {
+        document.getElementById('modalEliminarHorario').style.display = 'none';
+        idHorarioEliminar = null;
+    };
+
+    document.getElementById('btnConfirmarEliminar').onclick = function() {
+        if (idHorarioEliminar) {
+            let form = document.createElement('form');
+            form.method = 'post';
+            form.action = 'GestionarHorariosServlet';
+
+            let inputId = document.createElement('input');
+            inputId.type = 'hidden';
+            inputId.name = 'idHorario';
+            inputId.value = idHorarioEliminar;
+            form.appendChild(inputId);
+
+            let inputAccion = document.createElement('input');
+            inputAccion.type = 'hidden';
+            inputAccion.name = 'accion';
+            inputAccion.value = 'eliminar';
+            form.appendChild(inputAccion);
+
+            document.body.appendChild(form);
+            form.submit();
+        }
+    };
+});
+</script>
 </body>
 </html>

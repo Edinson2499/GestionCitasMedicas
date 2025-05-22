@@ -71,7 +71,7 @@
         </form>
         <!-- Tabla de horarios -->
         <div class="table-responsive">
-            <table class="table table-bordered table-hover align-middle">
+            <table class="table-gestionar-horarios">
                 <thead class="table-primary">
                     <tr>
                         <th>Especialista</th>

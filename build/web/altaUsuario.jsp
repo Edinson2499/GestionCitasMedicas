@@ -18,7 +18,7 @@
             <input type="hidden" name="rol" value="paciente">
             <h1>Registro de Usuarios</h1>
             <br>
-            <label>ID:</label> <input type="text" class="txt" id="txtId" required="" name="txtId" style="margin-bottom: 5px;">
+            <label style="display: inline-block; width: 100px; text-align: left; margin-right: 5px;">ID:</label> <input type="text" class="txt" id="txtId" required="" name="txtId" style="margin-bottom: 5px;">
             <br>
             <br>
             <label style="display: inline-block; width: 100px; text-align: left; margin-right: 5px;">Nombre:</label> 
@@ -46,7 +46,8 @@
                 <label class="avisoContrasena" id="avisoContrasena"> ------- </label>
                 <br>
                 <br>
-                <label>Usuario Generado Automaticamente:</label> <input type="text" class="txt" id="txtUsuarioGeneradoAutomaticamente" required="" readonly="" name="txtUsuarioGeneradoAutomaticamente">
+                <label style="display: contents; width: 100px; text-align: left; margin-right: 5px;">Usuario Generado Automaticamente:</label> 
+                <input type="text" class="txt" id="txtUsuarioGeneradoAutomaticamente" name="txtUsuarioGeneradoAutomaticamente" readonly>
                 <br>
                 <br>
                 

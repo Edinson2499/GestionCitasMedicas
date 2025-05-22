@@ -80,7 +80,7 @@ public class EliminarUsuarioServlet extends HttpServlet {
         }
 
         request.setAttribute("mensaje", mensaje);
-        response.sendRedirect("consultar_usuarios.jsp");
+        response.sendRedirect("editar_usuario.jsp");
     }
 
    

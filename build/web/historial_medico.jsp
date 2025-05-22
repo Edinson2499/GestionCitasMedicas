@@ -44,7 +44,7 @@
                 } else {
         %>
         <div class="table-responsive">
-            <table class="table table-bordered table-hover align-middle">
+            <table class="table-historial-medico">
                 <thead class="table-primary">
                     <tr>
                         <th>Fecha y Hora</th>

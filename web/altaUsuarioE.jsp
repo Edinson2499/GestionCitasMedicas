@@ -36,7 +36,7 @@
                 <label style="display: inline-block; width: 100px; text-align: left; margin-right: 5px; margin-bottom: 5px;">Correo:</label>
                 <input type="text" class="txt" id="txtEmail" required="" onkeyup="usuarioGeneradoAutomaticamente()" name="txtEmail" style="margin-bottom: 5px;">
                 <br>
-                <label style="display: contents; width: 100px; text-align: left; margin-right: 5px; margin-bottom: 5px;">Especialidad:</label>
+                <label>Especialidad:</label>
                 <input list="especialidad" placeholder="Seleccione una especialidad" class="txt" id="txtEspecialidad" name="txtEspecialidad" required="">
                 <datalist id="especialidad">
                     <option value="Cardiología"></option>
@@ -75,7 +75,8 @@
                 <label class="avisoContrasena" id="avisoContrasena"> ------- </label>
                 <br>
                 <br>
-                <label>Usuario Generado:</label> <input type="text" class="txt" id="txtUsuarioGeneradoAutomaticamente" required="" readonly="" name="txtUsuarioGeneradoAutomaticamente">
+                <label style="display: inline-block; width: 100px; text-align: left; margin-right: 5px; margin-bottom: 5px;">Usuario Generado:</label> 
+                <input type="text" class="txt" id="txtUsuarioGeneradoAutomaticamente" required="" readonly="" name="txtUsuarioGeneradoAutomaticamente">
                 <br>
                 <br>
                 

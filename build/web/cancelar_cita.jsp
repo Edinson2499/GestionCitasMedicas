@@ -12,18 +12,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Cancelar Cita</title>
-    <link rel="stylesheet" href="css/estilosCancelarCita.css">
+    <link rel="stylesheet" href="css/ver_citas.css">
     <link rel="icon" href="imagenes/Logo.png" type="image/png">
     <!-- Bootstrap CSS CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <h1>Cancelar Cita</h1>
+    <header>
+        <h1>Cancelar Cita</h1>
+    </header>
+    <main>
     <%
         String mensaje = (String) request.getAttribute("mensaje");
         if (mensaje != null) {
     %>
-        <p id="mensaje"><%= mensaje %></p>
+        <div class="alert alert-info text-center my-3"><%= mensaje %></div>
     <%
         }
         Connection conn = null;
@@ -42,50 +45,49 @@
             rs = ps.executeQuery();
             if (!rs.isBeforeFirst()) {
     %>
-                <p>No tienes citas pendientes para cancelar.</p>
+                <p class="no-citas">No tienes citas pendientes para cancelar.</p>
     <%
             } else {
     %>
-    <form method="post" action="CancelarCitaServlet">
-        <table>
-            <thead>
-                <tr>
-                    <th>Fecha y Hora</th>
-                    <th>Especialidad</th>
-                    <th>Especialista</th>
-                    <th>Cancelar</th>
-                </tr>
-            </thead>
-            <tbody>
-            <%
-                while (rs.next()) {
-            %>
-                <tr>
-                    <td><%= rs.getTimestamp("fecha_hora") %></td>
-                    <td><%= rs.getString("especialidad") %></td>
-                    <td><%= rs.getString("nombre_especialista") %> <%= rs.getString("apellidos_especialista") %></td>
-                    <td>
-                        <button type="submit" name="idCita" value="<%= rs.getInt("id") %>" onclick="return confirm('¿Seguro que deseas cancelar esta cita?');">Cancelar</button>
-                    </td>
-                </tr>
-            <%
-                }
-            %>
-            </tbody>
-        </table>
-    </form>
+        <form method="post" action="CancelarCitaServlet" style="width:100%;max-width:100%;">
+            <div class="container-fluid px-0">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-10">
+                        <%
+                            while (rs.next()) {
+                                java.sql.Timestamp fechaHoraCita = rs.getTimestamp("fecha_hora");
+                                java.time.LocalDateTime ldt = fechaHoraCita.toLocalDateTime();
+                                java.time.format.DateTimeFormatter formatter = java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+                                String fechaHoraFormateada = ldt.format(formatter);
+                        %>
+                        <div class="cita-container mb-3">
+                            <ul class="list-unstyled mb-2">
+                                <li><p><strong>Fecha y Hora:</strong> <%= fechaHoraFormateada %></p></li>
+                                <li><p><strong>Especialidad:</strong> <%= rs.getString("especialidad") %></p></li>
+                                <li><p><strong>Especialista:</strong> <%= rs.getString("nombre_especialista") %> <%= rs.getString("apellidos_especialista") %></p></li>
+                            </ul>
+                            <button type="submit" class="btn btn-danger" name="idCita" value="<%= rs.getInt("id") %>" onclick="return confirm('¿Seguro que deseas cancelar esta cita?');">Cancelar</button>
+                        </div>
+                        <%
+                            }
+                        %>
+                    </div>
+                </div>
+            </div>
+        </form>
     <%
             }
         } catch (Exception e) {
-            out.println("<div class='alert alert-danger'>Error al cargar las citas: " + e.getMessage() + "</div>");
-            
+    %>
+        <div class='alert alert-danger'>Error al cargar las citas: <%= e.getMessage() %></div>
+    <%
         } finally {
             try { if (rs != null) rs.close(); } catch (Exception e) {}
             try { if (ps != null) ps.close(); } catch (Exception e) {}
             try { if (conn != null) conn.close(); } catch (Exception e) {}
         }
     %>
-    <br>
+    </main>
     <a href="menu_paciente.jsp" class="btn-back" title="Volver al menú de Paciente"></a>
     <!-- Bootstrap JS Bundle CDN -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

@@ -4,16 +4,19 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class MetodosSQL {
 
     private Connection conexion;
     private PreparedStatement sentenciaPreparada;
 
-    public boolean registrarUsuario(String id, String nombre, String apellido, String telefono, String direccion, String contrasena,
+    public boolean registrarUsuario(String id, String nombre, String apellido, String telefono, String direccion, String correo, String contrasena,
                                     String usuarioGeneradoAutomaticamente, String rol,
                                     String especialidad, String numeroTarjetaProfesional) {
         boolean registroExitoso = false;
+        Connection conexion = null;
+        PreparedStatement sentenciaPreparada = null;
 
         try {
             conexion = ConexionBD.conectar();
@@ -22,16 +25,17 @@ public class MetodosSQL {
                 return false;
             }
 
-            // 1. Insertar datos en la tabla Usuario
-            String consultaUsuario = "INSERT INTO Usuario (nombre, apellidos, telefono, direccion, contrasena, usuario_generado, tipo_usuario) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            // 1. Insertar datos en la tabla Usuario (ahora con correo)
+            String consultaUsuario = "INSERT INTO Usuario (nombre, apellidos, telefono, direccion, correo, contrasena, usuario_generado, tipo_usuario) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             sentenciaPreparada = conexion.prepareStatement(consultaUsuario, PreparedStatement.RETURN_GENERATED_KEYS);
             sentenciaPreparada.setString(1, nombre);
             sentenciaPreparada.setString(2, apellido);
             sentenciaPreparada.setString(3, telefono);
             sentenciaPreparada.setString(4, direccion);
-            sentenciaPreparada.setString(5, contrasena); // Considera usar hashing para la contraseña
-            sentenciaPreparada.setString(6, usuarioGeneradoAutomaticamente);
-            sentenciaPreparada.setString(7, rol);
+            sentenciaPreparada.setString(5, correo);
+            sentenciaPreparada.setString(6, contrasena);
+            sentenciaPreparada.setString(7, usuarioGeneradoAutomaticamente);
+            sentenciaPreparada.setString(8, rol);
 
             int filasAfectadasUsuario = sentenciaPreparada.executeUpdate();
 
@@ -41,35 +45,33 @@ public class MetodosSQL {
 
                 // Obtener el ID generado para el usuario recién insertado
                 int idUsuario = -1;
-                try (java.sql.ResultSet generatedKeys = sentenciaPreparada.getGeneratedKeys()) {
+                try (ResultSet generatedKeys = sentenciaPreparada.getGeneratedKeys()) {
                     if (generatedKeys.next()) {
                         idUsuario = generatedKeys.getInt(1);
                     } else {
                         System.err.println("Error: No se pudo obtener el ID del usuario insertado.");
-                        registroExitoso = false; // No se pudo obtener el ID, así que el registro no es completamente exitoso
+                        registroExitoso = false;
                     }
                 }
 
                 if (registroExitoso && idUsuario != -1) {
-                    // 2. Insertar datos en la tabla específica según el rol
+                    // 2. Insertar datos en la tabla Especialista si corresponde
                     if ("especialista".equals(rol)) {
                         String consultaEspecialista = "INSERT INTO Especialista (id_usuario, especialidad, numero_tarjeta_profesional) VALUES (?, ?, ?)";
-                        sentenciaPreparada = conexion.prepareStatement(consultaEspecialista);
-                        sentenciaPreparada.setInt(1, idUsuario);
-                        sentenciaPreparada.setString(2, especialidad);
-                        sentenciaPreparada.setString(3, numeroTarjetaProfesional);
+                        try (PreparedStatement psEspecialista = conexion.prepareStatement(consultaEspecialista)) {
+                            psEspecialista.setInt(1, idUsuario);
+                            psEspecialista.setString(2, especialidad);
+                            psEspecialista.setString(3, numeroTarjetaProfesional);
 
-                        int filasAfectadasEspecialista = sentenciaPreparada.executeUpdate();
-                        if (filasAfectadasEspecialista > 0) {
-                            System.out.println("Datos de especialista registrados.");
-                        } else {
-                            System.err.println("Error al registrar datos de especialista.");
-                            registroExitoso = false; // Falló la inserción en Especialista
-                            // Considera hacer un rollback de la transacción aquí si es importante la integridad total
+                            int filasAfectadasEspecialista = psEspecialista.executeUpdate();
+                            if (filasAfectadasEspecialista > 0) {
+                                System.out.println("Datos de especialista registrados.");
+                            } else {
+                                System.err.println("Error al registrar datos de especialista.");
+                                registroExitoso = false;
+                            }
                         }
                     } else if ("paciente".equals(rol)) {
-                        // No hay campos adicionales específicos para la tabla Paciente según tu diseño inicial.
-                        // Si en el futuro agregas campos a la tabla Paciente, aquí iría la lógica de inserción.
                         System.out.println("Paciente registrado.");
                     }
                 }

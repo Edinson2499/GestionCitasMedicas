@@ -118,22 +118,55 @@ button[type="submit"]:hover,
     padding: 1rem;
     box-sizing: border-box;
 }
-
 table {
-    width: 100%;
+    width: 90%;
+    max-width: 1000px;
+    margin: 20px auto;
     border-collapse: collapse;
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    border-radius: 10px;
     overflow: hidden;
 }
 
+/* Etiquetas dentro de tablas y formularios */
+label {
+    margin-bottom: 5px;
+    color: #222;
+    font-size: 14px;
+}
+
+/* Celdas de tabla */
 th, td {
-    text-align: center;
-    padding: 12px 8px;
-    font-size: 1rem;
-    color: #444;
-    border-bottom: 1px solid #ddd;
+    padding: 14px 18px;
+    border-bottom: 1px solid #e0e0e0;
+    text-align: left;
+    font-size: 15px;
+}
+
+/* Encabezados de tabla */
+th {
+    background-color: #0069d9;
+    color: white;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+}
+
+/* Celdas normales */
+td {
+    background-color: #fff;
+    color: #333;
+}
+
+/* Filas pares */
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Hover sobre filas */
+tr:hover {
+    background-color: #f1f1f1;
 }
 
 thead.table-primary {

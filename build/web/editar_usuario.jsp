@@ -9,33 +9,33 @@
     String filtroNombre = request.getParameter("filtroNombre") != null ? request.getParameter("filtroNombre") : "";
     String filtroApellido = request.getParameter("filtroApellido") != null ? request.getParameter("filtroApellido") : "";
     String filtroTipo = request.getParameter("filtroTipo") != null ? request.getParameter("filtroTipo") : "";
-    
+
     Connection conexion = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
 %>
 <!DOCTYPE html>
 <html lang="es">
-<>
+<head>
     <meta charset="UTF-8">
     <title>Editar Usuario</title>
     <link rel="stylesheet" href="css/estilos_editar_usuario.css">
     <link rel="icon" href="imagenes/Logo.png" type="image/png">
-        <!-- Bootstrap CSS CDN -->
+    <!-- Bootstrap CSS CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <h1>Editar Usuario</h1>
-    <form method="get" action="editar_usuario.jsp">
-        <div class="form-group">
+    <form method="get" action="editar_usuario.jsp" class="mb-4">
+        <div class="form-group mb-2">
             <label for="filtroNombre">Nombre:</label>
             <input type="text" id="filtroNombre" name="filtroNombre" value="<%= filtroNombre %>">
         </div>
-        <div class="form-group">
+        <div class="form-group mb-2">
             <label for="filtroApellido">Apellido:</label>
             <input type="text" id="filtroApellido" name="filtroApellido" value="<%= filtroApellido %>">
         </div>
-        <div class="form-group">
+        <div class="form-group mb-2">
             <label for="filtroTipo">Tipo de Usuario:</label>
             <select id="filtroTipo" name="filtroTipo">
                 <option value="" <%= filtroTipo.equals("") ? "selected" : "" %>>Todos</option>
@@ -44,7 +44,7 @@
                 <option value="administrador" <%= filtroTipo.equals("administrador") ? "selected" : "" %>>Administrador</option>
             </select>
         </div>
-        <button type="submit">Buscar</button>
+        <button type="submit" class="btn btn-primary">Buscar</button>
     </form>
 
     <%
@@ -76,10 +76,11 @@
             }
 
             rs = ps.executeQuery();
-            if (rs.next()) {
+            if (rs.next()) { // Cambia aquí: usamos rs.next() para el do-while
     %>
-        <h2>Resultados de la Búsqueda</h2>
-        <table>
+    <h2>Resultados de la Búsqueda</h2>
+    <div class="table-responsive">
+        <table class="tabla-editar-usuario">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -91,6 +92,7 @@
                     <th>Teléfono</th>
                     <th>Dirección</th>
                     <th>Correo</th>
+                    <th>Acción</th>
                 </tr>
             </thead>
             <tbody>
@@ -103,6 +105,7 @@
                     <td><%= rs.getString("apellidos") %></td>
                     <td><%= rs.getString("tipo_usuario") %></td>
                     <td><%= rs.getString("contrasena") != null ? rs.getString("contrasena") : "-" %></td>
+                    <td><%= rs.getString("especialidad") != null ? rs.getString("especialidad") : "-" %></td>
                     <td><%= rs.getString("telefono") != null ? rs.getString("telefono") : "-" %></td>
                     <td><%= rs.getString("direccion") != null ? rs.getString("direccion") : "-" %></td>
                     <td><%= rs.getString("correo") != null ? rs.getString("correo") : "-" %></td>
@@ -116,22 +119,23 @@
 %>
             </tbody>
         </table>
+    </div>
 <%
-} else {
+    } else {
 %>
-            <div class='error-message'><div class='alert alert-danger'>Error al consultar los usuarios: " + e.getMessage() + "</div></div>
+    <div class="alert alert-info">No se encontraron usuarios con los criterios indicados.</div>
 <%
+    }
+} catch (Exception e) {
+%>
+    <div class='alert alert-danger'>Error al consultar usuarios: <%= e.getMessage() %></div>
+<%
+} finally {
+    try { if (rs != null) rs.close(); } catch (Exception e) {}
+    try { if (ps != null) ps.close(); } catch (Exception e) {}
+    try { if (conexion != null) conexion.close(); } catch (Exception e) {}
 }
-        } catch (Exception e) {
-            out.println("<div class='error-message'><div class='alert alert-danger'>Error al consultar los usuarios: " + e.getMessage() + "</div></div>");
-
-        } finally {
-            try { if (rs != null) rs.close(); } catch (Exception e) {}
-            try { if (ps != null) ps.close(); } catch (Exception e) {}
-            try { if (conexion != null) conexion.close(); } catch (Exception e) {}
-        }
-    %>
-    <a href="menu_admin.jsp" class="btn-back" title="Volver al menú"></a>
+%>
     <a href="menu_admin.jsp" class="btn-back" title="Volver al menú"></a>
 
     <!-- Modal personalizado para eliminar usuario -->
@@ -140,8 +144,8 @@
             <h2>Confirmar eliminación</h2>
             <p>¿Estás seguro de que deseas eliminar este usuario?</p>
             <div class="buttonGroup">
-                <button class="btn" id="btnConfirmarEliminar">Eliminar</button>
-                <button class="btn" id="btnCancelarEliminar">Cancelar</button>
+                <button class="btn btn-danger" id="btnConfirmarEliminar">Eliminar</button>
+                <button class="btn btn-secondary" id="btnCancelarEliminar">Cancelar</button>
             </div>
         </div>
     </div>
@@ -170,12 +174,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     };
 });
-</script>
-</body>
-</html>
-
-    <br>
-    <a href="menu_admin.jsp" class="btn-back" title="Volver al menú de Administrador"></a>
+    </script>
     <!-- Bootstrap JS Bundle CDN -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

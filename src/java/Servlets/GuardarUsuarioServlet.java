@@ -18,7 +18,7 @@ public class GuardarUsuarioServlet extends HttpServlet {
         String correo = request.getParameter("correo");
         String contrasena = request.getParameter("contrasena");
         String tipoUsuario = request.getParameter("tipo_usuario");
-        String especialidad = request.getParameter("especialidad");
+        String especialidad = request.getParameter("txtEspecialidad");
         String tarjeta = request.getParameter("tarjeta");
         String mensaje = "";
 
@@ -28,7 +28,9 @@ public class GuardarUsuarioServlet extends HttpServlet {
         try {
             conn = ConexionBD.conectar();
             // Insertar en Usuario
-            String sql = "INSERT INTO Usuario (nombre, apellidos, telefono, direccion, correo, contrasena, tipo_usuario) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            String usuarioGenerado = request.getParameter("usuario_generado"); // Asegúrate de que el formulario lo envía
+
+            String sql = "INSERT INTO Usuario (nombre, apellidos, telefono, direccion, correo, contrasena, usuario_generado, tipo_usuario) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, nombre);
             ps.setString(2, apellidos);
@@ -36,7 +38,8 @@ public class GuardarUsuarioServlet extends HttpServlet {
             ps.setString(4, direccion);
             ps.setString(5, correo);
             ps.setString(6, contrasena);
-            ps.setString(7, tipoUsuario);
+            ps.setString(7, usuarioGenerado);
+            ps.setString(8, tipoUsuario);
             int filas = ps.executeUpdate();
             int idUsuario = -1;
             if (filas > 0) {

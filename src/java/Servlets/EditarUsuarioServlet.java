@@ -24,8 +24,7 @@ public class EditarUsuarioServlet extends HttpServlet {
         try {
             conexion = ConexionBD.conectar();
             String sql = "SELECT u.id, u.nombre, u.apellidos, u.tipo_usuario, u.contrasena, u.telefono, u.direccion, u.correo, e.especialidad " +
-            "FROM Usuario u LEFT JOIN Especialista e ON u.id = e.id_usuario WHERE 1=1";
-
+                        "FROM Usuario u LEFT JOIN Especialista e ON u.id = e.id_usuario WHERE u.id = ?";
             ps = conexion.prepareStatement(sql);
             ps.setInt(1, Integer.parseInt(idUsuario));
             rs = ps.executeQuery();
@@ -35,8 +34,23 @@ public class EditarUsuarioServlet extends HttpServlet {
 
             if (rs.next()) {
                 out.println("<!DOCTYPE html>");
-                out.println("<html lang='es'><head><meta charset='UTF-8'><title>Editar Usuario</title>");
-                out.println("<link rel='stylesheet' href='css/estilos_editar_usuario.css'></head><body>");
+                out.println("<html lang='es'>");
+                out.println("<head>");
+                out.println("<meta charset='UTF-8'>");
+                out.println("<title>Editar Usuario</title>");
+                out.println("<link rel='stylesheet' href='css/estilos_editar_usuario.css'>");
+                out.println("<link rel='icon' href='imagenes/Logo.png' type='image/png'>");
+                // Agrega el script para mostrar/ocultar especialidad
+                out.println("<script>");
+                out.println("function mostrarEspecialidad() {");
+                out.println("  var tipo = document.getElementById('tipo_usuario').value;");
+                out.println("  var campoEsp = document.getElementById('campoEspecialidad');");
+                out.println("  campoEsp.style.display = (tipo === 'especialista') ? 'block' : 'none';");
+                out.println("}");
+                out.println("window.onload = function() { mostrarEspecialidad(); };");
+                out.println("</script>");
+                out.println("</head>");
+                out.println("<body>");
                 out.println("<h1>Editar Usuario</h1>");
                 out.println("<form action='GuardarEdicionUsuarioServlet' method='post'>");
                 out.println("<input type='hidden' name='id' value='" + rs.getInt("id") + "'>");
@@ -45,15 +59,29 @@ public class EditarUsuarioServlet extends HttpServlet {
                 out.println("<div class='form-group'><label>Apellido:</label>");
                 out.println("<input type='text' name='apellido' value='" + rs.getString("apellidos") + "' required></div>");
                 out.println("<div class='form-group'><label>Tipo de Usuario:</label>");
-                out.println("<select name='tipo_usuario'>");
+                out.println("<select name='tipo_usuario' id='tipo_usuario' onchange='mostrarEspecialidad()' required>");
                 String tipo = rs.getString("tipo_usuario");
                 out.println("<option value='paciente'" + ("paciente".equals(tipo) ? " selected" : "") + ">Paciente</option>");
                 out.println("<option value='especialista'" + ("especialista".equals(tipo) ? " selected" : "") + ">Especialista</option>");
                 out.println("<option value='administrador'" + ("administrador".equals(tipo) ? " selected" : "") + ">Administrador</option>");
                 out.println("</select></div>");
-                out.println("<input type='submit' value='Guardar Cambios' class='btn'>");
+                out.println("<div class='form-group'><label>Contraseña:</label>");
+                out.println("<input type='text' name='contrasena' value='" + (rs.getString("contrasena") != null ? rs.getString("contrasena") : "") + "' required></div>");
+                out.println("<div class='form-group'><label>Teléfono:</label>");
+                out.println("<input type='text' name='telefono' value='" + (rs.getString("telefono") != null ? rs.getString("telefono") : "") + "'></div>");
+                out.println("<div class='form-group'><label>Dirección:</label>");
+                out.println("<input type='text' name='direccion' value='" + (rs.getString("direccion") != null ? rs.getString("direccion") : "") + "'></div>");
+                out.println("<div class='form-group'><label>Correo:</label>");
+                out.println("<input type='text' name='correo' value='" + (rs.getString("correo") != null ? rs.getString("correo") : "") + "' required></div>");
+                // Campo especialidad, visible solo si es especialista
+                String displayEsp = "especialista".equals(tipo) ? "block" : "none";
+                out.println("<div class='form-group' id='campoEspecialidad' style='display:" + displayEsp + ";'>");
+                out.println("<label>Especialidad:</label>");
+                out.println("<input type='text' name='especialidad' value='" + (rs.getString("especialidad") != null ? rs.getString("especialidad") : "") + "'>");
+                out.println("</div>");
+                out.println("<button type='submit' class='btn btn-primary'>Guardar Cambios</button>");
                 out.println("</form>");
-                out.println("<br><a href='editar_usuario.jsp'>Volver</a>");
+                out.println("<a href='editar_usuario.jsp' class='btn-back' title='Volver al menú'></a>");
                 out.println("</body></html>");
             } else {
                 response.sendRedirect("editar_usuario.jsp");
@@ -61,8 +89,8 @@ public class EditarUsuarioServlet extends HttpServlet {
         } catch (Exception e) {
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();
-            out.println("<p>Error al cargar usuario: " + e.getMessage() + "</p>");
-            out.println("<a href='editar_usuario.jsp'>Volver</a>");
+            out.println("<p class='error-message'>Error al cargar usuario: " + e.getMessage() + "</p>");
+            out.println("<a href='editar_usuario.jsp' class='btn-back' title='Volver al menú'></a>");
         } finally {
             try { if (rs != null) rs.close(); } catch (Exception e) {}
             try { if (ps != null) ps.close(); } catch (Exception e) {}

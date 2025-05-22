@@ -1,4 +1,3 @@
-<!-- filepath: c:\Users\Vargas Cardenas\Desktop\GestionCitasMedicas\web\registrar_usuario.jsp -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
     if (session.getAttribute("rol") == null || !"administrador".equals(session.getAttribute("rol"))) {
@@ -66,18 +65,92 @@
             </div>
             <div id="camposEspecialista" style="display:none;">
                 <div class="mb-3">
-                    <label for="especialidad" class="form-label" style="display: inline-block; width: 140px; text-align: left; margin-right: 5px; margin-bottom: 5px;">Especialidad:</label>
-                    <input type="text" class="txt" id="especialidad" name="especialidad">
+                    <label for="txtEspecialidad" class="form-label" style="display: inline-block; width: 140px; text-align: left; margin-right: 5px; margin-bottom: 5px;">Especialidad:</label>
+                    <input list="especialidad" placeholder="Seleccione una especialidad" class="txt" id="txtEspecialidad" name="txtEspecialidad" required>
+                    <datalist id="especialidad">
+                        <option value="Cardiología"></option>
+                        <option value="Dermatología"></option>
+                        <option value="Pediatría"></option>
+                        <option value="Neurología"></option>
+                        <option value="Oncología"></option>
+                        <option value="Psiquiatría"></option>
+                        <option value="Ginecología"></option>
+                        <option value="Oftalmología"></option>
+                        <option value="Ortopedia"></option>
+                        <option value="Endocrinología"></option>
+                        <option value="Traumatología"></option>
+                        <option value="Otorrinolaringología"></option>
+                        <option value="Medicina Interna"></option>
+                        <option value="Urología"></option>
+                        <option value="Radiología"></option>
+                        <option value="Anestesiología"></option>
+                        <option value="Cirugía General"></option>
+                        <option value="Neumología"></option>
+                        <option value="Gastroenterología"></option>
+                        <option value="Nefrología"></option>
+                    </datalist>
                 </div>
                 <div class="mb-3">
                     <label for="tarjeta" class="form-label" style="display: inline-block; width: 180px; text-align: left; margin-right: 5px; margin-bottom: 5px;">N° Tarjeta Profesional:</label>
                     <input type="text" class="txt" id="tarjeta" name="tarjeta">
                 </div>
             </div>
+            <div class="mb-3">
+                <label for="usuario_generado" class="form-label" style="display: inline-block; width: 180px; text-align: left; margin-right: 5px; margin-bottom: 5px;">
+                    Usuario Generado:
+                </label>
+                <input type="text" class="txt" id="usuario_generado" name="usuario_generado" readonly>
+            </div>
             <input type="submit" class="btn" value="Registrar">
             <a href="menu_admin.jsp" class="btn-back" title="Volver al menu de administrador"></a>
         </form>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("nombre").addEventListener("input", generarUsuario);
+    document.getElementById("apellidos").addEventListener("input", generarUsuario);
+    generarUsuario();
+});
+
+async function generarUsuario() {
+    var nombre = document.getElementById("nombre").value.trim().toLowerCase();
+    var apellidos = document.getElementById("apellidos").value.trim().toLowerCase();
+    var usuarioBase = "";
+    var usuarioFinal = "";
+
+    if (nombre && apellidos) {
+        var nombreBase = nombre.split(" ")[0];
+        var apellidoBase = apellidos.split(" ")[0];
+        usuarioBase = nombreBase + "." + apellidoBase + "@bussineshealth.com";
+        usuarioFinal = usuarioBase;
+
+        let contador = 1;
+        let existe = true;
+
+        while (existe) {
+            let response = await fetch('VerificarUsuarioServlet?usuario=' + encodeURIComponent(usuarioFinal));
+            let result = await response.text();
+            console.log("Verificando usuario:", usuarioFinal, "Respuesta:", result.trim());
+            if (result.trim() === "false") {
+                existe = false;
+            } else {
+                usuarioFinal = nombreBase + "." + apellidoBase + contador + "@bussineshealth.com";
+                contador++;
+            }
+        }
+    } else {
+        usuarioFinal = "";
+    }
+
+    // Verifica si el campo existe antes de asignar el valor
+    var campoUsuario = document.getElementById("usuario_generado");
+    if (campoUsuario) {
+        campoUsuario.value = usuarioFinal;
+    } else {
+        console.error("No se encontró el campo con id 'usuario_generado'");
+    }
+}
+</script>
 </body>
 </html>

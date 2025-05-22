@@ -32,7 +32,7 @@
             </div>
         </form>
         <div class="table-responsive">
-            <table class="table table-bordered table-hover align-middle">
+            <table class="tabla-gestionar-especialidades">
                 <thead class="table-primary">
                     <tr>
                         <th>Especialidad</th>

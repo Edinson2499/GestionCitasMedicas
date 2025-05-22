@@ -39,17 +39,56 @@ h2 {
 /* ================================
    Tabla de historial
 ================================== */
-.table {
+table {
+    width: 90%;
+    max-width: 1000px;
+    margin: 20px auto;
+    border-collapse: collapse;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     background-color: white;
-    border-radius: 0.5rem;
+    border-radius: 10px;
     overflow: hidden;
 }
 
-.table th, .table td {
-    text-align: center;
-    vertical-align: middle;
+/* Etiquetas dentro de tablas y formularios */
+label {
+    margin-bottom: 5px;
+    color: #222;
+    font-size: 14px;
 }
 
+/* Celdas de tabla */
+th, td {
+    padding: 14px 18px;
+    border-bottom: 1px solid #e0e0e0;
+    text-align: left;
+    font-size: 15px;
+}
+
+/* Encabezados de tabla */
+th {
+    background-color: #0069d9;
+    color: white;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+}
+
+/* Celdas normales */
+td {
+    background-color: #fff;
+    color: #333;
+}
+
+/* Filas pares */
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Hover sobre filas */
+tr:hover {
+    background-color: #f1f1f1;
+}
 /* Badge personalizada para estado */
 .badge-success {
     background-color: #198754 !important;

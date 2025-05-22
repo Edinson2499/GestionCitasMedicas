@@ -57,7 +57,7 @@
         </form>
         <!-- Tabla de historial -->
         <div class="table-responsive">
-            <table class="table table-bordered table-hover align-middle">
+            <table class="tabla-gestionar-hitorial">
                 <thead class="table-primary">
                     <tr>
                         <th>Paciente</th>

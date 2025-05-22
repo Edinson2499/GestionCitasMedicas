@@ -31,7 +31,7 @@
         </c:if>
 
         <c:if test="${not empty citasAsignadas}">
-            <table>
+            <table class="table-citas-asignadas">
                 <thead>
                     <tr>
                         <th>Fecha y Hora</th>

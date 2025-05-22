@@ -72,8 +72,8 @@
                 rs = ps.executeQuery();
         %>
         <div class="table-responsive">
-            <table class="table table-bordered table-hover align-middle">
-                <thead class="table-primary">
+            <table class="tabla-editar-usuario">
+                <thead>
                     <tr>
                         <th>ID</th>
                         <th>Fecha y Hora</th>

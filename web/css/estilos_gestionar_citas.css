@@ -2,15 +2,14 @@
    Estilos Generales del Cuerpo
 ========================================== */
 body {
-    font-family: var(--bs-body-font-family, sans-serif);
-    background-color: #f8f9fa;
-    margin: 0;
-    padding: 20px;
-    min-height: 100vh;
-    background-image: url(../imagenes/Menus.png);
+    background-image: url(../imagenes/login.png);
     background-size: cover;
     background-position: center;
-    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+    color: #333;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
 }
 
 /* ==========================================
@@ -28,14 +27,14 @@ body {
    Título de la Página
 ========================================== */
 h2 {
-    color: #212529;
-    margin-bottom: 2rem;
-    font-size: clamp(1.5rem, 5vw, 2rem);
+    color: #222;
+    margin-bottom: 30px;
+    font-size: clamp(20px, 6vw, 28px);
     text-align: center;
-    background-color: rgba(255, 255, 255, 0.85);
-    padding: 12px 20px;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 10px 20px;
     border-radius: 12px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
 /* ==========================================
@@ -61,29 +60,65 @@ input[type="date"] {
 /* ==========================================
    Tabla de Resultados
 ========================================== */
-.table {
-    border: 1px solid #dee2e6;
+table {
+    width: 90%;
+    max-width: 1000px;
+    margin: 20px auto;
+    border-collapse: collapse;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
-.table thead {
-    background-color: #e9f2fb;
+/* Etiquetas dentro de tablas y formularios */
+label {
+    margin-bottom: 5px;
+    color: #222;
+    font-size: 14px;
 }
 
-.table th, .table td {
-    vertical-align: middle;
-    text-align: center;
-    font-size: 0.95rem;
-    padding: 0.75rem;
+/* Celdas de tabla */
+th, td {
+    padding: 14px 18px;
+    border-bottom: 1px solid #e0e0e0;
+    text-align: left;
+    font-size: 15px;
 }
 
+/* Encabezados de tabla */
+th {
+    background-color: #0069d9;
+    color: white;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+}
+
+/* Celdas normales */
+td {
+    background-color: #fff;
+    color: #333;
+}
+
+/* Filas pares */
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Hover sobre filas */
+tr:hover {
+    background-color: #f1f1f1;
+}
 /* ==========================================
    Etiquetas de Estado (Badges)
 ========================================== */
 .badge {
-    font-size: 0.85rem;
-    padding: 0.5em 0.75em;
-    border-radius: 0.5rem;
-    text-transform: capitalize;
+    font-size: 0.95em;
+    padding: 0.5em 0.8em;
+    border-radius: 8px;
+    font-weight: 500;
+    letter-spacing: 0.03em;
 }
 
 /* ==========================================
@@ -116,19 +151,21 @@ button.btn-sm {
 }
 
 button.btn-danger {
-    background-color: #e66572;
-}
-
-button.btn-success {
-    background-color: #3ab655;
+    background: #e74c3c;
+    color: #fff;
 }
 
 button.btn-danger:hover {
-    background-color: #c82333;
+    background: #c0392b;
+}
+
+button.btn-success {
+    background: #27ae60;
+    color: #fff;
 }
 
 button.btn-success:hover {
-    background-color: #218838;
+    background: #1e8449;
 }
 
 /* ==========================================
@@ -154,22 +191,17 @@ a.btn-back:hover {
     background-image: url(../imagenes/Atras_hover.png);
 }
 
-
 /* ==========================================
    Media Queries: Responsividad
 ========================================== */
 @media (max-width: 768px) {
     .container {
-        padding: 1.5rem;
-    }
-
-    h2 {
-        font-size: 1.4rem;
+        padding: 0 5px;
     }
 
     .table th, .table td {
-        font-size: 0.85rem;
-        padding: 0.5rem;
+        font-size: 0.95em;
+        padding: 8px 4px;
     }
 
     button.btn-sm {

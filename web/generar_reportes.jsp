@@ -85,7 +85,7 @@
     <div id="resultado_reporte" class="mb-5">
         <h2 class="mb-3">Reporte de Citas</h2>
         <div class="table-responsive">
-            <table class="table table-bordered table-hover align-middle">
+            <table class="table-reporte-citas">
                 <thead class="table-primary">
                     <tr>
                         <th>Fecha</th>

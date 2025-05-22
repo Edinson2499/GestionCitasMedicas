@@ -72,8 +72,6 @@ input[type="time"] {
    Botón de envío
 ================================== */
 button[type="submit"], .btn-guardar {
-    @extend .btn;
-    @extend .btn-primary;
     background: rgba(113, 206, 239, 1);
     color: black;
     padding: 12px 20px;

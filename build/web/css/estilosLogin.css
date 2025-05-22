@@ -1,3 +1,6 @@
+/* =========================
+   Estilos generales del body
+   ========================= */
 body {
     background-image: url(../imagenes/login.png);
     background-size: cover;
@@ -13,7 +16,9 @@ body {
     color: white;
 }
 
-/* Contenedor del formulario */
+/* =========================
+   Contenedor principal del formulario
+   ========================= */
 .cuerpoFormulario {
     background: rgba(255, 255, 255, 0.95);
     padding: 30px 30px;
@@ -21,12 +26,14 @@ body {
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
     width: 100%;
     max-width: 300px;
-    margin: 25px auto ;
+    margin: 25px auto;
     display: flex;
     flex-direction: column;
 }
 
-/* Formulario login */
+/* =========================
+   Formulario de login
+   ========================= */
 .formularioLogin {
     display: flex;
     flex-direction: column;
@@ -56,14 +63,16 @@ body {
     outline: none;
 }
 
-/* Botones principales */
+/* =========================
+   Grupo de botones principal
+   ========================= */
 .buttonGroup {
     display: flex;
     flex-direction: row;
     gap: 8px;
     margin: 0 auto;
-    justify-content: center; /* Añadido para centrar los botones */
-    width: 100%; /* Ocupar todo el ancho disponible del contenedor */
+    justify-content: center; /* Centra los botones */
+    width: 100%; /* Ocupa todo el ancho disponible */
     max-width: 300px;
 }
 
@@ -84,8 +93,9 @@ body {
     transform: translateY(-2px);
 }
 
-
-/* Modal de admin */
+/* =========================
+   Modal de administrador
+   ========================= */
 #modalAdmin {
     display: none;
     position: fixed;
@@ -98,6 +108,8 @@ body {
     justify-content: center;
     align-items: center;
 }
+
+/* Formulario dentro del modal */
 .formularioAdmin label {
     font-weight: 600;
     color: #37474f;
@@ -105,6 +117,7 @@ body {
     margin-bottom: 6px;
     text-align: left;
 }
+
 .formularioAdmin input[type="text"],
 .formularioAdmin input[type="password"] {
     padding: 10px 14px;
@@ -125,6 +138,8 @@ body {
     border-color: #00acc1;
     outline: none;
 }
+
+/* Contenido del modal */
 #modalAdmin .contenido-modal {
     background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
     color: #000000;
@@ -136,6 +151,7 @@ body {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
+/* Botones dentro del modal */
 #modalAdmin .contenido-modal .buttonGroup {
     display: flex;
     flex-direction: row;
@@ -166,6 +182,7 @@ body {
     transform: translateY(-2px);
 }
 
+/* Botón específico dentro del modal */
 #modalAdmin button {
     background-color: rgba(113, 206, 239, 1);
     border: none;
@@ -177,8 +194,9 @@ body {
     border-radius: 8px;
 }
 
-/* ===== NUEVO: Menú Normal Estilizado ===== */
-
+/* =========================
+   Menú de usuario estilizado
+   ========================= */
 .menu-usuario {
     background: rgba(255, 255, 255, 0.95);
     padding: 20px 30px;
@@ -221,8 +239,9 @@ body {
     transform: translateY(-2px);
 }
 
-
-/* Botón de regreso (ícono redondo) */
+/* =========================
+   Botón de regreso (ícono redondo)
+   ========================= */
 a.btn-atras {
     width: 80px;
     height: 80px;
@@ -243,9 +262,100 @@ a.btn-atras:hover {
     background-image: url('../imagenes/Atras_hover.png');
 }
 
+/* =========================
+   Estilo para título principal (h1)
+   ========================= */
 h1 {
     font-size: 2.5em;
     margin-bottom: 20px;
     color: #37474f;
     text-align: center;
+}
+
+
+/* =========================
+   RESPONSIVE DESIGN PARA DISPOSITIVOS MÓVILES
+   ========================= */
+@media screen and (max-width: 480px) {
+    body {
+        padding: 10px;
+        background-position: top center;
+        background-size: cover;
+    }
+
+    /* LOGO ATRÁS */
+    a.btn-atras {
+        width: 50px;
+        height: 50px;
+        top: 10px;
+        left: 10px;
+        margin: 0;
+        background-size: contain;
+        background-repeat: no-repeat;
+        border-radius: 50%;
+    }
+
+    /* FORMULARIO PRINCIPAL */
+    .cuerpoFormulario {
+        padding: 20px;
+        width: 100%;
+        max-width: 100%;
+        border-radius: 15px;
+        box-shadow: none;
+    }
+
+    .formularioAdmin input[type="text"],
+    .formularioAdmin input[type="password"] {
+        width: 100%;
+        font-size: 16px;
+    }
+
+    .buttonGroup {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .buttonGroup .btn {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+    }
+
+    h1 {
+        font-size: 1.8em;
+        margin-bottom: 15px;
+    }
+
+    /* MENÚ DE USUARIO RESPONSIVE */
+    .menu-usuario {
+        width: 100%;
+        padding: 15px;
+        border-radius: 15px;
+    }
+
+    .menu-usuario h2 {
+        font-size: 1.4em;
+    }
+
+    .menu-usuario .opciones {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .menu-usuario .opciones a {
+        font-size: 15px;
+        padding: 10px;
+    }
+
+    /* MODAL EN TELÉFONOS */
+    #modalAdmin .contenido-modal {
+        padding: 20px;
+        width: 95%;
+    }
+
+    #modalAdmin .contenido-modal .btn {
+        width: 100%;
+        font-size: 16px;
+    }
 }

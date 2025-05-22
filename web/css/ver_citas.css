@@ -7,12 +7,14 @@ body {
     background-position: center;
     font-family: sans-serif;
     display: flex;
-    justify-content: center;   /* Centrar horizontalmente */
-    align-items: center;       /* Centrar verticalmente */
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
-    height: 100vh;
+    min-height: 100vh;
     margin: 0;
     color: white;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 /* =========================
@@ -23,9 +25,10 @@ main {
     padding: 30px;
     border-radius: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 80%;               /* Ajuste ancho para mejor responsividad */
+    width: 100%;
     max-width: 600px;
-    color: #1d1414;           /* Texto oscuro para contraste en fondo blanco */
+    color: #1d1414;
+    box-sizing: border-box;
 }
 
 /* =========================
@@ -34,7 +37,7 @@ main {
 h1 {
     color: #222;
     margin-bottom: 30px;
-    font-size: 28px;
+    font-size: clamp(20px, 6vw, 28px);
     text-align: center;
     background: rgba(255, 255, 255, 0.85);
     padding: 10px 20px;
@@ -42,60 +45,112 @@ h1 {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
-
 /* =========================
-   Mensajes de estado (sin citas, error, etc)
+   Mensajes de estado
    ========================= */
-.no-citas, .citas-container {
+.no-citas, .error {
     margin-top: 20px;
     font-size: 18px;
     font-weight: bold;
-    color: #1d1414;          /* Texto oscuro */
     text-align: center;
+    color: #e63731;
 }
 
-.error {
-    margin-top: 20px;
-    font-size: 18px;
-    font-weight: bold;
-    color: #e63731;          /* Rojo para mensajes de error */
-    text-align: center;
+.no-citas {
+    color: #1d1414;
 }
 
 /* =========================
    Lista de citas
    ========================= */
+.cita-container {
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+}
+
 .cita-container li {
     list-style: none;
-    padding: 0;
     margin: 0;
-    display: inline-block;
+    padding: 0;
+    display: block;
 }
 
 .cita-container p {
-    margin: 15px 0;
+    margin: 8px 0;
+    font-size: 16px;
 }
 
 /* =========================
-   Botón de regreso (ícono redondo)
+   Botón de regreso
    ========================= */
 a {
     width: 80px;
     height: 80px;
     background-image: url('../imagenes/Atras.png');
-    background-size: 80px 80px;
+    background-size: cover;
     background-position: center;
-    border-radius: 30px;
+    border-radius: 50%;
     border: none;
     cursor: pointer;
     transition: background 0.3s;
     position: absolute;
-    top: 0;
-    left: 0;
-    margin: 5%;
+    top: 20px;
+    left: 20px;
 }
 
 a:hover {
-    text-decoration: underline;
     background-image: url('../imagenes/Atras_hover.png');
+}
+
+/* =========================
+   Responsividad para pantallas pequeñas
+   ========================= */
+@media screen and (max-width: 768px) {
+    h1 {
+        font-size: 5vw;
+    }
+
+    main {
+        padding: 20px;
+    }
+
+    .cita-container p {
+        font-size: 14px;
+    }
+
+    a {
+        width: 50px;
+        height: 50px;
+        top: 15px;
+        left: 15px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    h1 {
+        font-size: 18px;
+    }
+
+    main {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .cita-container {
+        padding: 12px;
+    }
+
+    .cita-container p {
+        font-size: 13px;
+    }
+
+    a {
+        width: 40px;
+        height: 40px;
+        top: 10px;
+        left: 10px;
+    }
 }

@@ -2,16 +2,15 @@
    Estilos generales del cuerpo
 ================================== */
 body {
-    font-family: sans-serif;
-    background-color: #f4f4f4;
+    font-family: var(--bs-body-font-family, sans-serif);
+    background-color: #f8f9fa;
     margin: 0;
     padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    min-height: 100vh;
     background-image: url(../imagenes/Menus.png);
     background-size: cover;
     background-position: center;
+    box-sizing: border-box;
 }
 
 /* ================================
@@ -19,35 +18,40 @@ body {
 ================================== */
 h1 {
     color: #222;
-    margin-bottom: 30px;
-    font-size: 28px;
+    margin-bottom: 20px;
+    font-size: clamp(20px, 6vw, 28px);
     text-align: center;
     background: rgba(255, 255, 255, 0.85);
-    padding: 10px 20px;
+    padding: 12px 20px;
     border-radius: 12px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    width: 90%;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
-
 
 /* ================================
    Contenedor principal
 ================================== */
-div {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 80%;
+div.container-disponibilidad {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    width: 90%;
     max-width: 600px;
+    margin: 0 auto;
+    box-sizing: border-box;
 }
 
 /* ================================
    Etiquetas de formulario
 ================================== */
-label {
+label, .form-label {
     display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
 }
 
 /* ================================
@@ -55,59 +59,82 @@ label {
 ================================== */
 input[type="date"],
 input[type="time"] {
-    width: calc(100% - 12px);
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    width: 100%;
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ced4da;
+    border-radius: 0.375rem;
+    font-size: 1rem;
     box-sizing: border-box;
 }
 
 /* ================================
-   Botón de envío del formulario
+   Botón de envío
 ================================== */
-button[type="submit"] {
-    background: rgba(113,206,239,1); /* Un color intermedio del gradiente */
+button[type="submit"], .btn-guardar {
+    @extend .btn;
+    @extend .btn-primary;
+    background: rgba(113, 206, 239, 1);
     color: black;
-    padding: 10px 30px;
+    padding: 12px 20px;
     border: none;
-    border-radius: 15px; /* Usando el mismo radio que los botones */
-    font-size: 20px;
+    border-radius: 12px;
+    font-size: 18px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    width: 100%;
     margin-top: 10px;
 }
-
-/* ================================
-   Efecto hover del botón de envío
-================================== */
 button[type="submit"]:hover {
-    background-color: #0056b3;
+    background-color: rgba(5, 86, 179, 1);
+    color: white;
 }
-
 /* ================================
-   Botón de regreso con imagen
+   Botón de regreso
 ================================== */
-a {
+a.btn-back {
     width: 80px;
     height: 80px;
     background-image: url('../imagenes/Atras.png');
     background-size: cover;
     background-position: center;
-    border-radius: 30px;
-    border: 0px;
+    border-radius: 50%;
+    border: none;
     cursor: pointer;
     transition: background 0.3s;
     position: absolute;
-    left: 0%;
-    top: 0%;
-    margin: 5%;
-    background-size: 80px 80px;
+    left: 30px;
+    top: 30px;
+    display: inline-block;
+}
+
+a.btn-back:hover {
+    background-image: url(../imagenes/Atras_hover.png);
 }
 
 /* ================================
-   Efecto hover del botón de regreso
+   Media queries: Responsividad
 ================================== */
-a:hover {
-    background-image: url(../imagenes/Atras_hover.png);
+@media (max-width: 600px) {
+    h1 {
+        font-size: 20px;
+        padding: 10px;
+    }
+
+    div.container-disponibilidad {
+        padding: 1rem;
+    }
+
+    input[type="date"],
+    input[type="time"],
+    button[type="submit"], .btn-guardar {
+        font-size: 1rem;
+        padding: 0.5rem;
+    }
+
+    a.btn-back {
+        width: 50px;
+        height: 50px;
+        background-size: 50px 50px;
+    }
 }

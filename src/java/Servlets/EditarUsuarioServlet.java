@@ -23,7 +23,9 @@ public class EditarUsuarioServlet extends HttpServlet {
         ResultSet rs = null;
         try {
             conexion = ConexionBD.conectar();
-            String sql = "SELECT id, nombre, apellidos, tipo_usuario FROM Usuario WHERE id = ?";
+            String sql = "SELECT u.id, u.nombre, u.apellidos, u.tipo_usuario, u.contrasena, u.telefono, u.direccion, u.correo, e.especialidad " +
+            "FROM Usuario u LEFT JOIN Especialista e ON u.id = e.id_usuario WHERE 1=1";
+
             ps = conexion.prepareStatement(sql);
             ps.setInt(1, Integer.parseInt(idUsuario));
             rs = ps.executeQuery();

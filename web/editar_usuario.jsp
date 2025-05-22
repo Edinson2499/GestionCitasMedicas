@@ -9,18 +9,20 @@
     String filtroNombre = request.getParameter("filtroNombre") != null ? request.getParameter("filtroNombre") : "";
     String filtroApellido = request.getParameter("filtroApellido") != null ? request.getParameter("filtroApellido") : "";
     String filtroTipo = request.getParameter("filtroTipo") != null ? request.getParameter("filtroTipo") : "";
-
+    
     Connection conexion = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
 %>
 <!DOCTYPE html>
 <html lang="es">
-<head>
+<>
     <meta charset="UTF-8">
     <title>Editar Usuario</title>
     <link rel="stylesheet" href="css/estilos_editar_usuario.css">
     <link rel="icon" href="imagenes/Logo.png" type="image/png">
+        <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <h1>Editar Usuario</h1>
@@ -49,15 +51,16 @@
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conexion = SQL.ConexionBD.conectar();
-            String sql = "SELECT id, nombre, apellidos, tipo_usuario FROM Usuario WHERE 1=1";
+            String sql = "SELECT u.id, u.nombre, u.apellidos, u.tipo_usuario, u.contrasena, u.telefono, u.direccion, u.correo, e.especialidad " +
+                         "FROM Usuario u LEFT JOIN Especialista e ON u.id = e.id_usuario WHERE 1=1";
             if (!filtroNombre.isEmpty()) {
-                sql += " AND nombre LIKE ?";
+                sql += " AND u.nombre LIKE ?";
             }
             if (!filtroApellido.isEmpty()) {
-                sql += " AND apellidos LIKE ?";
+                sql += " AND u.apellidos LIKE ?";
             }
             if (!filtroTipo.isEmpty()) {
-                sql += " AND tipo_usuario = ?";
+                sql += " AND u.tipo_usuario = ?";
             }
             ps = conexion.prepareStatement(sql);
 
@@ -73,7 +76,7 @@
             }
 
             rs = ps.executeQuery();
-            if (rs.isBeforeFirst()) {
+            if (rs.next()) {
     %>
         <h2>Resultados de la Búsqueda</h2>
         <table>
@@ -83,43 +86,53 @@
                     <th>Nombre</th>
                     <th>Apellido</th>
                     <th>Tipo de Usuario</th>
-                    <th>Acción</th>
+                    <th>Contraseña</th>
+                    <th>Especialidad</th>
+                    <th>Teléfono</th>
+                    <th>Dirección</th>
+                    <th>Correo</th>
                 </tr>
             </thead>
             <tbody>
-    <%
-                while (rs.next()) {
-    %>
+<%
+    do {
+%>
                 <tr>
                     <td><%= rs.getInt("id") %></td>
                     <td><%= rs.getString("nombre") %></td>
                     <td><%= rs.getString("apellidos") %></td>
                     <td><%= rs.getString("tipo_usuario") %></td>
+                    <td><%= rs.getString("contrasena") != null ? rs.getString("contrasena") : "-" %></td>
+                    <td><%= rs.getString("telefono") != null ? rs.getString("telefono") : "-" %></td>
+                    <td><%= rs.getString("direccion") != null ? rs.getString("direccion") : "-" %></td>
+                    <td><%= rs.getString("correo") != null ? rs.getString("correo") : "-" %></td>
                     <td>
                         <a href="EditarUsuarioServlet?id=<%= rs.getInt("id") %>">Editar</a> |
                         <a href="#" class="btn-eliminar" data-id="<%= rs.getInt("id") %>">Eliminar</a>
                     </td>
                 </tr>
-    <%
-                }
-            } else {
-    %>
-                <p class="error-message">No se encontraron usuarios con los criterios indicados.</p>
-    <%
-            }
+<%
+    } while (rs.next());
+%>
+            </tbody>
+        </table>
+<%
+} else {
+%>
+            <div class='error-message'><div class='alert alert-danger'>Error al consultar los usuarios: " + e.getMessage() + "</div></div>
+<%
+}
         } catch (Exception e) {
-            out.println("<p class='error-message'>Error al consultar usuarios: " + e.getMessage() + "</p>");
+            out.println("<div class='error-message'><div class='alert alert-danger'>Error al consultar los usuarios: " + e.getMessage() + "</div></div>");
+
         } finally {
             try { if (rs != null) rs.close(); } catch (Exception e) {}
             try { if (ps != null) ps.close(); } catch (Exception e) {}
             try { if (conexion != null) conexion.close(); } catch (Exception e) {}
         }
     %>
-            </tbody>
-        </table>
-
     <a href="menu_admin.jsp" class="btn-back" title="Volver al menú"></a>
-    <area href="menu_admin.jsp"></area>
+    <a href="menu_admin.jsp" class="btn-back" title="Volver al menú"></a>
 
     <!-- Modal personalizado para eliminar usuario -->
     <div id="modalEliminar" class="modal" style="display:none;">
@@ -162,6 +175,8 @@ document.addEventListener("DOMContentLoaded", function() {
 </html>
 
     <br>
-    <area href="menu_admin.jsp"></area>
+    <a href="menu_admin.jsp" class="btn-back" title="Volver al menú de Administrador"></a>
+    <!-- Bootstrap JS Bundle CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -1,17 +1,26 @@
-/* Estilos para el formulario de registro del usuario */
-* {
+/* ==============================
+   Reset básico
+   ============================== */
+   * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
+/* ==============================
+   Contenedor principal
+   ============================== */
 .cuerpoFormulario {
     margin: 40px auto;
     max-width: 600px;
+    padding: 10px;
     color: #333;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* ==============================
+   Formulario
+   ============================== */
 .formularioAlta {
     padding: 30px;
     border: 2px solid #ccc;
@@ -28,6 +37,9 @@
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
 
+/* ==============================
+   Campos de entrada
+   ============================== */
 .txt {
     font-size: 16px;
     border-radius: 10px;
@@ -38,6 +50,9 @@
     max-width: 400px;
 }
 
+/* ==============================
+   Botones
+   ============================== */
 .btn {
     margin: 15px;
     padding: 12px 25px;
@@ -58,6 +73,9 @@
     cursor: pointer;
 }
 
+/* ==============================
+   Aviso contraseña
+   ============================== */
 .avisoContrasena {
     background-color: #fff;
     padding: 12px;
@@ -69,4 +87,60 @@
     max-width: 500px;
     margin-left: auto;
     margin-right: auto;
+}
+
+/* ==============================
+   Estilos para pantallas pequeñas (RESPONSIVE)
+   ============================== */
+@media (max-width: 768px) {
+    .formularioAlta {
+        padding: 20px;
+        font-size: 16px;
+    }
+
+    .txt {
+        width: 90%;
+        font-size: 16px;
+    }
+
+    .btn {
+        width: 90%;
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+
+    .avisoContrasena {
+        font-size: 13px;
+        padding: 10px;
+    }
+
+    label {
+        display: block;
+        text-align: left;
+        margin: 8px 0 4px 0;
+    }
+
+    .cuerpoFormulario {
+        padding: 10px;
+        margin: 20px auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .formularioAlta h1 {
+        font-size: 22px;
+    }
+
+    .btn {
+        font-size: 15px;
+        padding: 10px;
+    }
+
+    .txt {
+        font-size: 15px;
+    }
+
+    .avisoContrasena {
+        font-size: 12px;
+    }
 }

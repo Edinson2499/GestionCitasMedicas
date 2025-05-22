@@ -1,0 +1,218 @@
+/* ==========================================
+   Estilos Generales del Cuerpo
+========================================== */
+body {
+    font-family: var(--bs-body-font-family, sans-serif);
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+    background-image: url(../imagenes/Menus.png);
+    background-size: cover;
+    background-position: center;
+    box-sizing: border-box;
+}
+
+/* ==========================================
+   Contenedor Principal
+========================================== */
+.container {
+    background-color: #ffffff;
+    border-radius: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    max-width: 1100px;
+}
+
+/* ==========================================
+   Título de la Página
+========================================== */
+h2 {
+    color: #212529;
+    margin-bottom: 2rem;
+    font-size: clamp(1.5rem, 5vw, 2rem);
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 12px 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* ==========================================
+   Etiquetas de Formulario
+========================================== */
+label.form-label {
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+}
+
+/* ==========================================
+   Selects y Inputs
+========================================== */
+select.form-select,
+input[type="date"] {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: none;
+    border: 1px solid #ced4da;
+}
+
+/* ==========================================
+   Tabla de Resultados
+========================================== */
+.table {
+    border: 1px solid #dee2e6;
+}
+
+.table thead {
+    background-color: #e9f2fb;
+}
+
+.table th, .table td {
+    vertical-align: middle;
+    text-align: center;
+    font-size: 0.95rem;
+    padding: 0.75rem;
+}
+
+/* ==========================================
+   Etiquetas de Estado (Badges)
+========================================== */
+.badge {
+    font-size: 0.85rem;
+    padding: 0.5em 0.75em;
+    border-radius: 0.5rem;
+    text-transform: capitalize;
+}
+
+/* ==========================================
+   Botones de Acción
+========================================== */
+button[type="submit"],
+.btn-primary {
+    background: rgba(113, 206, 239, 1);
+    color: black;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 12px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+button[type="submit"]:hover,
+.btn-primary:hover {
+    background-color: rgba(5, 86, 179, 1);
+    color: white;
+}
+
+button.btn-sm {
+    padding: 0.4rem 0.7rem;
+    font-size: 0.85rem;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+button.btn-danger {
+    background-color: #e66572;
+}
+
+button.btn-success {
+    background-color: #3ab655;
+}
+
+button.btn-danger:hover {
+    background-color: #c82333;
+}
+
+button.btn-success:hover {
+    background-color: #218838;
+}
+
+/* ==========================================
+   Botón de Volver al Menú
+========================================== */
+a.btn-back {
+    width: 80px;
+    height: 80px;
+    background-image: url('../imagenes/Atras.png');
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s;
+    position: absolute;
+    left: 30px;
+    top: 30px;
+    display: inline-block;
+}
+
+a.btn-back:hover {
+    background-image: url(../imagenes/Atras_hover.png);
+}
+
+
+/* ==========================================
+   Media Queries: Responsividad
+========================================== */
+@media (max-width: 768px) {
+    .container {
+        padding: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.4rem;
+    }
+
+    .table th, .table td {
+        font-size: 0.85rem;
+        padding: 0.5rem;
+    }
+
+    button.btn-sm {
+        margin-bottom: 0.3rem;
+        width: 100%;
+    }
+
+    form[method="post"] {
+        display: block !important;
+    }
+    
+    a {
+        width: 50px;
+        height: 50px;
+        top: 15px;
+        left: 15px;
+        background-size: contain;
+    }
+}
+
+@media (max-width: 480px) {
+    h2 {
+        font-size: 1.2rem;
+    }
+
+    .container {
+        padding: 1rem;
+    }
+
+    .form-select,
+    input[type="date"] {
+        font-size: 0.9rem;
+    }
+
+    .btn {
+        font-size: 0.9rem;
+    }
+
+    a {
+        width: 45px;
+        height: 45px;
+        top: 10px;
+        left: 10px;
+    }
+}
+

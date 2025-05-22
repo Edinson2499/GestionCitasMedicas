@@ -1,24 +1,25 @@
 /* ==============================
-   Reset básico para todos los elementos
+   Reset básico
    ============================== */
-* {
+   * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
 /* ==============================
-   Contenedor principal del formulario
+   Contenedor principal
    ============================== */
 .cuerpoFormulario {
     margin: 40px auto;
     max-width: 600px;
+    padding: 10px;
     color: #333;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* ==============================
-   Estilos para el formulario de registro
+   Formulario
    ============================== */
 .formularioAlta {
     padding: 30px;
@@ -32,13 +33,12 @@
     transition: box-shadow 0.3s ease;
 }
 
-/* Efecto hover para el formulario */
 .formularioAlta:hover {
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
 
 /* ==============================
-   Campos de texto dentro del formulario
+   Campos de entrada
    ============================== */
 .txt {
     font-size: 16px;
@@ -51,7 +51,7 @@
 }
 
 /* ==============================
-   Botones del formulario
+   Botones
    ============================== */
 .btn {
     margin: 15px;
@@ -60,22 +60,21 @@
     font-size: 16px;
     font-family: inherit;
     border: none;
-    background-color: #2196F3; /* Azul base */
+    background-color: #2196F3;
     color: white;
     transition: all 0.3s ease;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
-/* Efecto hover para botones */
 .btn:hover {
-    background-color: #1976D2; /* Azul más oscuro */
+    background-color: #1976D2;
     transform: translateY(-5px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
     cursor: pointer;
 }
 
 /* ==============================
-   Mensaje de aviso para contraseña
+   Aviso contraseña
    ============================== */
 .avisoContrasena {
     background-color: #fff;
@@ -88,4 +87,60 @@
     max-width: 500px;
     margin-left: auto;
     margin-right: auto;
+}
+
+/* ==============================
+   Estilos para pantallas pequeñas (RESPONSIVE)
+   ============================== */
+@media (max-width: 768px) {
+    .formularioAlta {
+        padding: 20px;
+        font-size: 16px;
+    }
+
+    .txt {
+        width: 90%;
+        font-size: 16px;
+    }
+
+    .btn {
+        width: 90%;
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+
+    .avisoContrasena {
+        font-size: 13px;
+        padding: 10px;
+    }
+
+    label {
+        display: block;
+        text-align: left;
+        margin: 8px 0 4px 0;
+    }
+
+    .cuerpoFormulario {
+        padding: 10px;
+        margin: 20px auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .formularioAlta h1 {
+        font-size: 22px;
+    }
+
+    .btn {
+        font-size: 15px;
+        padding: 10px;
+    }
+
+    .txt {
+        font-size: 15px;
+    }
+
+    .avisoContrasena {
+        font-size: 12px;
+    }
 }

@@ -1,132 +1,165 @@
-/* Estilos para el Index */
+/* ==============================
+   Reset y fuente general
+   ============================== */
 * {
-    padding: 0;
-    margin: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
 
+/* ==============================
+   Body general
+   ============================== */
 body {
-    padding: 20px;
-    margin: 10px;
     background-image: url(../imagenes/fondoBlanco.png);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    color: #2a4d69; /* azul grisáceo suave para texto */
+    color: #2a4d69;
+    min-height: 100vh;
 }
 
-/* Estilo del menú con tonos azulados pastel */
+/* ==============================
+   Menú principal centrado (por defecto)
+   ============================== */
 .menu {
-    padding: 0;
-    margin: 0 auto;
-    text-align: center;
-    background: linear-gradient(135deg, #d6f1ff, #cce6f6); /* azul cielo muy claro */
+    background: linear-gradient(135deg, #d6f1ff, #cce6f6);
     border-radius: 20px;
-    width: fit-content;
+    max-width: 500px;
+    width: 90vw;
+    margin: 0 auto;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    display: inline-block;
     font-size: 18px;
     font-weight: 500;
     letter-spacing: 0.5px;
     color: #333;
     transition: all 0.3s ease;
+    z-index: 10;
 }
 
-.menu ul {
-    top: 10vh;
-    display: flex;
-    justify-content: center;
-    padding: 0;
-    margin: 0;
-    gap: 10px;
-    box-shadow: #333 0px 0px 10px;
-    border-radius: 20px;
-}
-
-.menu.move-to-top-registro {
-    position: relative;
-    top: 2vh;
-    transform: translate(-50%, 0);
-    margin: 0 auto 20px auto;
-    width: fit-content;
-    z-index: 1;
-}
-
+/* ==============================
+   Menú sobre el formulario de login
+   ============================== */
 .menu.move-to-top-login {
-    position: fixed;
-    top: 18%;
-    transform: translateX(-50%);
-    left: 50%;
-    width: fit-content;
+    position: fixed !important;
+    top: 10vh !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    margin: 0 !important;
     z-index: 1000;
 }
 
-/* LOGOS como imagenes puras sin fondo ni bordes */
-.menu.move-to-top-inicio,
-.menu.move-to-top-inicioregistro {
-    background: none;
-    border: none;
-    padding: 0;
-    margin: 0;
+/* ==============================
+   Menú sobre el formulario de registro
+   ============================== */
+.menu.move-to-top-registro {
+    position: fixed !important;
+    top: 2vh !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    margin: 0 !important;
+    z-index: 1000;
+}
+
+/* ==============================
+   Botón Volver (siempre visible arriba del registro)
+   ============================== */
+.btn-volver {
+    display: none; /* oculto por defecto */
+}
+
+.btn-volver {
+    position: fixed;
+    top: 12vh;
+    left: 2vw;
+    z-index: 1100;
     width: 100px;
     height: 100px;
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    position: absolute;
-    left: 0%;
-    top: 0%;
+    background: url('../imagenes/Logo.png') center center no-repeat;
+    background-size: 80% 80%;
+    color: #fff;
+    border-radius: 50%;
+    border: none;
+    transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
     cursor: pointer;
-    transition: transform 0.3s ease;
+    outline: none;
+    font-size: 0; /* Oculta texto si lo hay */
+    padding: 0;
+}
+.btn-volver:hover {
+    background:  url('../imagenes/Atras_hover.png') center center no-repeat;
+    background-size: 80% 80%;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    transform: scale(1.07);
 }
 
-
-.menu.move-to-top-inicio {
-    background-image: url('../imagenes/Logo.png');
-    margin: 10%;
+/* ==============================
+   Responsive
+   ============================== */
+@media (max-width: 768px) {
+    .menu {
+        max-width: 98vw;
+        font-size: 16px;
+        border-radius: 15px;
+        padding: 10px 0;
+    }
+    .menu .navbar-nav {
+        flex-direction: column !important;
+        gap: 8px;
+    }
+    .menu .nav-link {
+        width: 90vw;
+        margin: 0.25rem auto;
+        font-size: 1rem;
+    }
+    .menu.move-to-top-login,
+    .menu.move-to-top-registro {
+        width: 98vw;
+        left: 50% !important;
+        top: 1vh !important;
+        transform: translateX(-50%) !important;
+    }
+    .btn-volver {
+        top: 8vh;
+        left: 2vw;
+        font-size: 1rem;
+        padding: 0.4rem 1rem;
+    }
+}
+@media (max-width: 480px) {
+    .menu {
+        width: 100vw;
+        font-size: 14px;
+        border-radius: 0;
+        padding: 8px 0;
+    }
+    .menu .nav-link {
+        font-size: 0.95rem;
+        padding: 0.5rem 1rem;
+        width: 98vw;
+    }
+    .menu.move-to-top-login,
+    .menu.move-to-top-registro {
+        width: 100vw;
+        left: 50% !important;
+        top: 0.5vh !important;
+        transform: translateX(-50%) !important;
+    }
+    .btn-volver {
+        top: 4vh;
+        left: 2vw;
+        font-size: 0.95rem;
+        padding: 0.3rem 0.8rem;
+    }
 }
 
-.menu.move-to-top-inicioregistro {
-    background-image: url('../imagenes/Logo.png');
-    margin: 6%;
-    padding: 10px;
-}
-
-.menu.move-to-top-inicio:hover,
-.menu.move-to-top-inicioregistro:hover {
-    background-image: url(../imagenes/Atras_hover.png);
-    transform: scale(1.05);
-}
-
-.menu ul li {
-    list-style: none;
-    display: inline-block;
-    padding: 10px 20px;
-    margin: 10px;
-    border-radius: 15px;
-    background: linear-gradient(to bottom, #aee2f9, #d6f6ff); /* tonos azul pastel */
-    color: #2a4d69;
-    font-weight: 600;
-    font-size: 18px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.4);
-    transition: all 0.3s ease;
-}
-
-.menu ul li a {
-    text-decoration: none;
-    color: #2a4d69;
-    font-size: 18px;
-}
-
-.menu ul li:hover {
-    background: #e1f5fe;
-    transform: translateY(-4px);
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
+/* ==============================
+   Sección de contenido dinámico
+   ============================== */
+.contenidoDinamico {
+    margin-top: 2rem;
+    min-height: 200px;
 }

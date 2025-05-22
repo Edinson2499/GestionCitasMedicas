@@ -1,0 +1,129 @@
+/* ================================
+   Estilos generales del cuerpo
+================================== */
+body {
+    font-family: var(--bs-body-font-family, sans-serif);
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+    background-image: url(../imagenes/Menus.png);
+    background-size: cover;
+    background-position: center;
+    box-sizing: border-box;
+}
+
+/* ================================
+   Contenedor principal
+================================== */
+.container {
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* ================================
+   Título principal
+================================== */
+h2 {
+    font-size: clamp(1.5rem, 5vw, 2rem);
+    font-weight: 600;
+    color: #0d6efd;
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 0.75rem 1rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* ================================
+   Tabla de historial
+================================== */
+.table {
+    background-color: white;
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.table th, .table td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* Badge personalizada para estado */
+.badge-success {
+    background-color: #198754 !important;
+}
+
+.badge-secondary {
+    background-color: #6c757d !important;
+}
+
+/* ================================
+   Botón de volver al menú
+================================== */
+a.btn-back {
+    width: 80px;
+    height: 80px;
+    background-image: url('../imagenes/Atras.png');
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s;
+    position: absolute;
+    left: 30px;
+    top: 30px;
+    display: inline-block;
+}
+
+a.btn-back:hover {
+    background-image: url('../imagenes/Atras_hover.png');
+}
+
+/* ================================
+   Mensajes y alertas
+================================== */
+.alert {
+    font-size: 1rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+}
+
+/* ================================
+   Media queries: Responsividad
+================================== */
+@media (max-width: 768px) {
+    .container {
+        padding: 1.5rem;
+    }
+
+    .table th, .table td {
+        font-size: 0.9rem;
+        padding: 0.5rem;
+    }
+
+    .btn-secondary {
+        font-size: 0.95rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+        padding: 0.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .table-responsive {
+        font-size: 0.85rem;
+    }
+
+    .btn-secondary {
+        width: 100%;
+    }
+}

@@ -32,7 +32,7 @@ public class GuardarDisponibilidadServlet extends HttpServlet {
             return;
         }
 
-        String diaStr = request.getParameter("dia");
+        String diaStr = request.getParameter("fecha");
         String horaInicioStr = request.getParameter("hora_inicio");
         String horaFinStr = request.getParameter("hora_fin");
 

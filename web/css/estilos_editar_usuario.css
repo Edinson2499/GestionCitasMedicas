@@ -6,14 +6,14 @@ body {
     background-size: cover;
     background-position: center;
     font-family: 'Segoe UI', sans-serif;
+    color: #333;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 100vh;
-    margin: 0;
-    padding: 0;
-    color: #333;
 }
 
 /* =========================
@@ -22,13 +22,14 @@ body {
 h1 {
     color: #222;
     margin-bottom: 30px;
-    font-size: 28px;
+    font-size: clamp(20px, 6vw, 28px);
     text-align: center;
     background: rgba(255, 255, 255, 0.85);
     padding: 10px 20px;
     border-radius: 12px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
+
 /* =========================
    Formulario principal
    ========================= */
@@ -75,95 +76,24 @@ input[type="text"]:focus, select:focus {
 /* =========================
    Botones
    ========================= */
-
-/* Contenedor de grupo de botones */
-.buttonGroup {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 25px;
-    gap: 10px;
-}
-
-/* Botón submit principal */
-button[type="submit"] {
-    padding: 12px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 15px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-button[type="submit"]:hover {
-    background-color: #0056b3;
-}
-
-/* Botones con clase .btn */
-.btn {
-    flex: 1;
-    padding: 12px;
-    font-weight: bold;
-    font-size: 15px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    background: linear-gradient(to right, #5dade2, #3498db);
-    color: white;
-    transition: background 0.3s, transform 0.2s;
-}
-
-.btn:hover {
-    background: linear-gradient(to right, #3498db, #2e86c1);
-    transform: scale(1.03);
-}
-
-/* Hover específico para inputs tipo submit dentro de forms en td */
-td form input[type="submit"]:hover {
-    background: #217b91;
-}
-
-/* Inputs tipo submit estándar */
-input[type="submit"] {
-    background: linear-gradient(to right, #5dade2, #3498db);
-    color: white;
-    padding: 12px;
-    font-weight: bold;
-    font-size: 15px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.3s, transform 0.2s;
-}
-
-input[type="submit"]:hover {
-    background: linear-gradient(to right, #3498db, #2e86c1);
-    transform: scale(1.03);
-}
-
-/* =========================
-   Área con imagen de botón "Atrás"
-   ========================= */
-area {
-    width: 80px;
-    height: 80px;
-    background-image: url('../imagenes/Atras.png');
-    background-size: 80px 80px;
-    background-position: center;
-    border-radius: 30px;
-    border: 0px;
-    cursor: pointer;
-    transition: background 0.3s;
-    position: absolute;
-    left: 0;
-    margin: 5%;
-    top: 0;
-}
-
-area:hover {
-    background-image: url(../imagenes/Atras_hover.png);
-}
+   button[type="submit"],
+   .btn-primary {
+       background: rgba(113, 206, 239, 1);
+       color: black;
+       padding: 12px 20px;
+       border: none;
+       border-radius: 12px;
+       font-size: 18px;
+       cursor: pointer;
+       transition: background-color 0.3s ease;
+       width: 100%;
+   }
+   
+   button[type="submit"]:hover,
+   .btn-primary:hover {
+       background-color: rgba(5, 86, 179, 1);
+       color: white;
+   }
 
 /* =========================
    Tablas
@@ -245,12 +175,10 @@ tr:hover {
     align-items: center;
 }
 
-/* Mostrar modal con display flex cuando tiene inline style */
 .modal[style*="display: flex"] {
     display: flex !important;
 }
 
-/* Contenido dentro del modal */
 .contenido-modal {
     background: #fff;
     padding: 30px 40px;
@@ -259,20 +187,95 @@ tr:hover {
     min-width: 300px;
 }
 
+/* ================================
+   Botón de regreso
+================================ */
+a.btn-back {
+    width: 80px;
+    height: 80px;
+    background-image: url('../imagenes/Atras.png');
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s;
+    position: absolute;
+    left: 30px;
+    top: 30px;
+    display: inline-block;
+}
+
+a.btn-back:hover {
+    background-image: url(../imagenes/Atras_hover.png);
+}
+
 /* =========================
-   Enlaces
+   Responsive Design
    ========================= */
-a {
-    color: #5ea7f5;
-    text-decoration: none;
-    transition: color 0.3s;
+@media (max-width: 1024px) {
+    form {
+        width: 95%;
+        padding: 20px;
+    }
+
+    table {
+        width: 95%;
+        font-size: 14px;
+    }
+
+    th, td {
+        padding: 10px 12px;
+    }
+
+    .buttonGroup {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    .contenido-modal {
+        width: 90%;
+        padding: 20px;
+    }
 }
 
-a:hover {
-    text-decoration: underline;
-    color: #0056b3;
-}
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+        height: auto;
+    }
 
-a:visited {
-    color: #0056b3;
+    form {
+        width: 100%;
+        padding: 15px 20px;
+    }
+
+    table {
+        font-size: 13px;
+    }
+
+    th, td {
+        padding: 8px 10px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    .modal .contenido-modal {
+        padding: 15px 20px;
+    }
+
+    .form-group label {
+        font-size: 13px;
+    }
+
+    input[type="text"], select, button {
+        font-size: 14px;
+        padding: 10px;
+    }
 }

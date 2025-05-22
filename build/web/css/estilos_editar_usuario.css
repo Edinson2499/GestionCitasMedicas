@@ -1,26 +1,38 @@
+/* =========================
+   Estilos generales del body
+   ========================= */
 body {
     background-image: url(../imagenes/login.png);
     background-size: cover;
     background-position: center;
     font-family: 'Segoe UI', sans-serif;
+    color: #333;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 100vh;
-    margin: 0;
-    padding: 0;
-    color: #333;
 }
 
+/* =========================
+   Títulos principales (h1)
+   ========================= */
 h1 {
-    color: #5c4c4c;
-    margin-bottom: 20px;
+    color: #222;
+    margin-bottom: 30px;
+    font-size: clamp(20px, 6vw, 28px);
     text-align: center;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+    background: rgba(255, 255, 255, 0.85);
+    padding: 10px 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
-/* Formulario principal */
+/* =========================
+   Formulario principal
+   ========================= */
 form {
     background-color: rgba(255, 255, 255, 0.95);
     padding: 30px 40px;
@@ -30,10 +42,12 @@ form {
     max-width: 400px;
 }
 
+/* Grupo de campos del formulario */
 .form-group {
     margin-bottom: 20px;
 }
 
+/* Etiquetas dentro del formulario */
 label {
     font-weight: bold;
     display: block;
@@ -41,6 +55,7 @@ label {
     color: #333;
 }
 
+/* Inputs de texto y selects */
 input[type="text"], select {
     width: 100%;
     padding: 12px;
@@ -52,89 +67,37 @@ input[type="text"], select {
     transition: border-color 0.3s;
 }
 
+/* Focus en inputs y selects */
 input[type="text"]:focus, select:focus {
     border-color: #007bff;
     outline: none;
 }
 
-/* Botones */
-.buttonGroup {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 25px;
-    gap: 10px;
-}
-button[type="submit"] {
-    padding: 12px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 15px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
+/* =========================
+   Botones
+   ========================= */
+   button[type="submit"],
+   .btn-primary {
+       background: rgba(113, 206, 239, 1);
+       color: black;
+       padding: 12px 20px;
+       border: none;
+       border-radius: 12px;
+       font-size: 18px;
+       cursor: pointer;
+       transition: background-color 0.3s ease;
+       width: 100%;
+   }
+   
+   button[type="submit"]:hover,
+   .btn-primary:hover {
+       background-color: rgba(5, 86, 179, 1);
+       color: white;
+   }
 
-button[type="submit"]:hover {
-    background-color: #0056b3;
-}
-.btn {
-    flex: 1;
-    padding: 12px;
-    font-weight: bold;
-    font-size: 15px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    background: linear-gradient(to right, #5dade2, #3498db); /* Azul claro moderno */
-    color: white;
-    transition: background 0.3s, transform 0.2s;
-}
-
-.btn:hover {
-    background: linear-gradient(to right, #3498db, #2e86c1); /* Un poco más profundo al hacer hover */
-    transform: scale(1.03);
-}
-
-td form input[type="submit"]:hover {
-    background: #217b91;
-}
-input[type="submit"] {
-    background: linear-gradient(to right, #5dade2, #3498db); /* Azul claro moderno */
-    color: white;
-    padding: 12px;
-    font-weight: bold;
-    font-size: 15px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.3s, transform 0.2s;
-}
-input[type="submit"]:hover {
-    background: linear-gradient(to right, #3498db, #2e86c1); /* Un poco más profundo al hacer hover */
-    transform: scale(1.03);
-}
-area {
-    width: 80px;
-    height: 80px;
-    background-image: url('../imagenes/Atras.png');
-    background-size: cover;
-    background-position: center;
-    border-radius: 30px;
-    border: 0px;
-    cursor: pointer;
-    transition: background 0.3s;
-    position: absolute;
-    left: 0;
-    margin: 5%;
-    top: 0;
-    background-size: 80px 80px;
-}
-
-area:hover {
-    background-image: url(../imagenes/Atras_hover.png);
-}
-/* Tablas */
+/* =========================
+   Tablas
+   ========================= */
 table {
     width: 90%;
     max-width: 1000px;
@@ -146,13 +109,14 @@ table {
     overflow: hidden;
 }
 
+/* Etiquetas dentro de tablas y formularios */
 label {
     margin-bottom: 5px;
     color: #222;
     font-size: 14px;
 }
 
-/* Celdas */
+/* Celdas de tabla */
 th, td {
     padding: 14px 18px;
     border-bottom: 1px solid #e0e0e0;
@@ -160,6 +124,7 @@ th, td {
     font-size: 15px;
 }
 
+/* Encabezados de tabla */
 th {
     background-color: #0069d9;
     color: white;
@@ -168,21 +133,25 @@ th {
     letter-spacing: 0.5px;
 }
 
+/* Celdas normales */
 td {
     background-color: #fff;
     color: #333;
 }
 
+/* Filas pares */
 tr:nth-child(even) {
     background-color: #f9f9f9;
 }
 
+/* Hover sobre filas */
 tr:hover {
     background-color: #f1f1f1;
 }
 
-
-/* Mensajes de error */
+/* =========================
+   Mensajes de error
+   ========================= */
 .error-message {
     color: #d9534f;
     font-weight: bold;
@@ -190,23 +159,123 @@ tr:hover {
     margin-top: 15px;
 }
 
-/* Estilos para el modal */
+/* =========================
+   Modal (ventana emergente)
+   ========================= */
 .modal {
     display: none;
     position: fixed;
     z-index: 9999;
-    left: 0; top: 0; width: 100vw; height: 100vh;
+    left: 0; 
+    top: 0; 
+    width: 100vw; 
+    height: 100vh;
     background: rgba(0,0,0,0.4);
     justify-content: center;
     align-items: center;
 }
+
 .modal[style*="display: flex"] {
     display: flex !important;
 }
+
 .contenido-modal {
     background: #fff;
     padding: 30px 40px;
     border-radius: 10px;
     text-align: center;
     min-width: 300px;
+}
+
+/* ================================
+   Botón de regreso
+================================ */
+a.btn-back {
+    width: 80px;
+    height: 80px;
+    background-image: url('../imagenes/Atras.png');
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s;
+    position: absolute;
+    left: 30px;
+    top: 30px;
+    display: inline-block;
+}
+
+a.btn-back:hover {
+    background-image: url(../imagenes/Atras_hover.png);
+}
+
+/* =========================
+   Responsive Design
+   ========================= */
+@media (max-width: 1024px) {
+    form {
+        width: 95%;
+        padding: 20px;
+    }
+
+    table {
+        width: 95%;
+        font-size: 14px;
+    }
+
+    th, td {
+        padding: 10px 12px;
+    }
+
+    .buttonGroup {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    .contenido-modal {
+        width: 90%;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+        height: auto;
+    }
+
+    form {
+        width: 100%;
+        padding: 15px 20px;
+    }
+
+    table {
+        font-size: 13px;
+    }
+
+    th, td {
+        padding: 8px 10px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    .modal .contenido-modal {
+        padding: 15px 20px;
+    }
+
+    .form-group label {
+        font-size: 13px;
+    }
+
+    input[type="text"], select, button {
+        font-size: 14px;
+        padding: 10px;
+    }
 }

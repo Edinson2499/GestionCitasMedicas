@@ -15,6 +15,8 @@
     <title>Consultar Usuarios</title>
     <link rel="stylesheet" href="css/estilos_consultar_usuarios.css">
     <link rel="icon" href="imagenes/Logo.png" type="image/png">
+        <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <h1>Consultar Usuarios</h1>
@@ -32,7 +34,7 @@
     </form>
 
     <c:if test="${not empty error}">
-        <p class="error-message">${error}</p>
+        <div class='alert alert-danger'>${error}</div>
     </c:if>
 
     <c:if test="${not empty listaUsuarios}">
@@ -66,6 +68,10 @@
     </c:if>
 
     <br>
-    <area href="menu_admin.jsp"></area>
+    <a class="btn-back" href="menu_admin.jsp" title="Volver al menú administrador" title="Volver al menu anterior"></a>
+    <!-- Bootstrap JS Bundle CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
 </body>
 </html>

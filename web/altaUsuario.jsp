@@ -56,5 +56,5 @@
             </form>
         </div>
     </body>
-    <script src="js/funcionesAltaUsuario.js"></script>
+    <script src="js/funcionesAltaUsuario.js" ></script>
 </html>

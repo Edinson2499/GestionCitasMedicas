@@ -98,3 +98,46 @@ h1 {
     color: #37474f;
     text-align: center;
 }
+
+/* =========================
+   Diseño responsive
+   ========================= */
+@media (max-width: 768px) {
+    .contenidoInicio {
+        margin: 10% 10%;
+        padding: 30px 20px;
+        font-size: 18px;
+        width: 95%;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    input[type=submit] {
+        padding: 10px 20px;
+        font-size: 0.95em;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .contenidoInicio {
+        margin: 5% 5%;
+        padding: 25px 15px;
+        font-size: 16px;
+    }
+
+    h1 {
+        font-size: 1.6em;
+    }
+
+    input[type=submit] {
+        padding: 10px;
+        font-size: 0.9em;
+    }
+
+    a {
+        font-size: 0.95em;
+    }
+}

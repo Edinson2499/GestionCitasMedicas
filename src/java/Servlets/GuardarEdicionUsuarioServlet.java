@@ -29,7 +29,9 @@ public class GuardarEdicionUsuarioServlet extends HttpServlet {
         String idUsuario = request.getParameter("id");
         String nombre = request.getParameter("nombre");
         String apellido = request.getParameter("apellido");
-        // Obtén los demás parámetros del formulario
+        String tipoUsuario = request.getParameter("tipo_usuario");
+        String especialidad = request.getParameter("especialidad");
+        int id = Integer.parseInt(request.getParameter("id"));
 
         Connection conexion = null;
         PreparedStatement sentencia = null;
@@ -48,6 +50,28 @@ public class GuardarEdicionUsuarioServlet extends HttpServlet {
                     mensaje = "Usuario actualizado con éxito.";
                 } else {
                     mensaje = "No se pudo actualizar el usuario.";
+                }
+
+                // Actualiza especialidad solo si es especialista
+                if ("especialista".equals(tipoUsuario)) {
+                    // Si ya existe, actualiza; si no, inserta
+                    PreparedStatement psEsp = conexion.prepareStatement(
+                        "INSERT INTO Especialista (id_usuario, especialidad) VALUES (?, ?) " +
+                        "ON DUPLICATE KEY UPDATE especialidad = ?"
+                    );
+                    psEsp.setInt(1, id);
+                    psEsp.setString(2, especialidad);
+                    psEsp.setString(3, especialidad);
+                    psEsp.executeUpdate();
+                    psEsp.close();
+                } else {
+                    // Si cambió a otro tipo, elimina la especialidad si existe
+                    PreparedStatement psDel = conexion.prepareStatement(
+                        "DELETE FROM Especialista WHERE id_usuario = ?"
+                    );
+                    psDel.setInt(1, id);
+                    psDel.executeUpdate();
+                    psDel.close();
                 }
             } else {
                 mensaje = "Error al conectar a la base de datos.";

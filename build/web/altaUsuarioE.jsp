@@ -6,6 +6,8 @@
         <title>Registro E</title>
         <link rel="icon" href="imagenes/Logo.png" type="image/png">
         <link rel="stylesheet" href="css/estilosAltaUsuario.css" type="text/css" media="all">
+        <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
         <%
             response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
             response.setHeader("Pragma", "no-cache");
@@ -36,7 +38,7 @@
                 <label style="display: inline-block; width: 100px; text-align: left; margin-right: 5px; margin-bottom: 5px;">Correo:</label>
                 <input type="text" class="txt" id="txtEmail" required="" onkeyup="usuarioGeneradoAutomaticamente()" name="txtEmail" style="margin-bottom: 5px;">
                 <br>
-                <label>Especialidad:</label>
+                <label style="display: inline-block; width: 100px; text-align: left; margin-right: 5px; margin-bottom: 5px;">Especialidad:</label>
                 <input list="especialidad" placeholder="Seleccione una especialidad" class="txt" id="txtEspecialidad" name="txtEspecialidad" required="">
                 <datalist id="especialidad">
                     <option value="Cardiología"></option>
@@ -74,10 +76,10 @@
                 <br>
                 <label class="avisoContrasena" id="avisoContrasena"> ------- </label>
                 <br>
-                <br>
-                <label style="display: inline-block; width: 100px; text-align: left; margin-right: 5px; margin-bottom: 5px;">Usuario Generado:</label> 
-                <input type="text" class="txt" id="txtUsuarioGeneradoAutomaticamente" required="" readonly="" name="txtUsuarioGeneradoAutomaticamente">
-                <br>
+                <div style="margin-bottom: 10px;">
+                    <label style="display: inline-block; width: 150px; text-align: left; margin-right: 10px;">Usuario Generado:</label>
+                    <input type="text" class="txt" id="txtUsuarioGeneradoAutomaticamente" required readonly name="txtUsuarioGeneradoAutomaticamente">
+                </div>
                 <br>
                 
                 <input type="submit" value="Enviar Datos" class="btn" id="btnEnviarDatos" disabled="">
@@ -85,6 +87,8 @@
                 
             </form>
         </div>
-    </body>
+    <!-- Bootstrap JS Bundle CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
     <script src="js/funcionesAltaUsuario.js"></script>
 </html>

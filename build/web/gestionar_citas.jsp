@@ -105,11 +105,7 @@
                         </td>
                         <td>
                             <% if (!"cancelada".equals(rs.getString("estado"))) { %>
-                                <form method="post" action="GestionarCitasServlet" style="display:inline;">
-                                    <input type="hidden" name="idCita" value="<%= rs.getInt("id") %>">
-                                    <input type="hidden" name="accion" value="cancelar">
-                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Cancelar esta cita?');">Cancelar</button>
-                                </form>
+                                <button type="button" class="btn btn-danger btn-sm btn-cancelar-modal" data-id="<%= rs.getInt("id") %>">Cancelar</button>
                             <% } %>
                             <% if ("confirmada".equals(rs.getString("estado"))) { %>
                                 <form method="post" action="GestionarCitasServlet" style="display:inline;">
@@ -133,6 +129,18 @@
                 </tbody>
             </table>
         </div>
+
+        <!-- Modal para cancelar cita -->
+        <div id="modalCancelarCita" class="modal" style="display:none;">
+            <div class="contenido-modal">
+                <h2>Confirmar cancelación</h2>
+                <p>¿Seguro que deseas cancelar esta cita?</p>
+                <div class="buttonGroup">
+                    <button class="btn btn-danger" id="btnConfirmarCancelar">Cancelar cita</button>
+                    <button class="btn btn-secondary" id="btnCancelarCancelar">No cancelar</button>
+                </div>
+            </div>
+        </div>
         <%
             } catch (Exception e) {
                 out.println("<div class='alert alert-danger'>Error al consultar citas: " + e.getMessage() + "</div>");
@@ -145,5 +153,46 @@
         <a href="menu_admin.jsp" class="btn-back" title="Volver al menú de Administrador"></a>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    let idCitaCancelar = null;
+
+    document.addEventListener("DOMContentLoaded", function() {
+        document.querySelectorAll('.btn-cancelar-modal').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                idCitaCancelar = this.getAttribute('data-id');
+                document.getElementById('modalCancelarCita').style.display = 'flex';
+            });
+        });
+
+        document.getElementById('btnCancelarCancelar').onclick = function() {
+            document.getElementById('modalCancelarCita').style.display = 'none';
+            idCitaCancelar = null;
+        };
+
+        document.getElementById('btnConfirmarCancelar').onclick = function() {
+            if (idCitaCancelar) {
+                // Crear y enviar el formulario para cancelar la cita
+                let form = document.createElement('form');
+                form.method = 'post';
+                form.action = 'GestionarCitasServlet';
+
+                let inputId = document.createElement('input');
+                inputId.type = 'hidden';
+                inputId.name = 'idCita';
+                inputId.value = idCitaCancelar;
+                form.appendChild(inputId);
+
+                let inputAccion = document.createElement('input');
+                inputAccion.type = 'hidden';
+                inputAccion.name = 'accion';
+                inputAccion.value = 'cancelar';
+                form.appendChild(inputAccion);
+
+                document.body.appendChild(form);
+                form.submit();
+            }
+        };
+    });
+    </script>
 </body>
 </html>

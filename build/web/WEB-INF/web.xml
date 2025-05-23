@@ -12,6 +12,10 @@
         <servlet-name>CerrarSesion</servlet-name>
         <servlet-class>Servlets.CerrarSesion</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>BuscarPacienteServlet</servlet-name>
+        <servlet-class>Servlets.BuscarPacienteServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Guardar</servlet-name>
         <url-pattern>/GuardarServlet</url-pattern>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>CerrarSesion</servlet-name>
         <url-pattern>/CerrarSesion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BuscarPacienteServlet</servlet-name>
+        <url-pattern>/BuscarPacienteServlet</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>index.html</welcome-file>

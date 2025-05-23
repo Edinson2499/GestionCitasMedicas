@@ -9,23 +9,22 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @WebServlet("/AgendarCitaServlet")
 public class AgendarCitaServlet extends HttpServlet {
 
+    private static final Logger LOGGER = Logger.getLogger(AgendarCitaServlet.class.getName());
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String mensaje = "";
         HttpSession session = request.getSession();
         Integer idPaciente = (Integer) session.getAttribute("idUsuario");
 
@@ -33,154 +32,219 @@ public class AgendarCitaServlet extends HttpServlet {
         String horaStr = request.getParameter("hora");
         String especialidad = request.getParameter("especialidad");
         String especialistaSeleccionadoStr = request.getParameter("especialistaSeleccionado");
+        String motivo = request.getParameter("motivo");
 
-        LocalDate fechaCita = LocalDate.parse(fechaStr);
-        LocalTime horaCita = LocalTime.parse(horaStr);
-        java.sql.Timestamp fechaHoraCita = java.sql.Timestamp.valueOf(fechaCita.atTime(horaCita));
-
-        Connection conexion = null;
-        PreparedStatement sentenciaInsertar = null;
-        PreparedStatement sentenciaObtenerContacto = null;
-        PreparedStatement sentenciaObtenerInfoCita = null;
-        ResultSet resultadoContacto = null;
-        ResultSet resultadoInfoCita = null;
-        String mensaje = "";
-        int idCitaGenerada = -1;
-
-        try {
-            conexion = ConexionBD.conectar();
-            if (conexion != null) {
-                Integer idEspecialista = null;
-                // Obtener el ID del especialista seleccionado
-                if (especialistaSeleccionadoStr != null && !especialistaSeleccionadoStr.isEmpty()) {
-                    String sqlObtenerIdEspecialista = "SELECT u.id FROM Usuario u " +
-                        "JOIN Especialista e ON u.id = e.id_usuario " +
-                        "JOIN DisponibilidadEspecialista d ON u.id = d.id_especialista " +
-                        "WHERE CONCAT(u.nombre, ' ', u.apellidos) = ? " +
-                        "AND e.especialidad = ? " +
-                        "AND d.fecha = ? " +
-                        "AND d.hora_inicio <= ? " +
-                        "AND d.hora_fin >= ? " +
-                        "LIMIT 1";
-                    try (PreparedStatement sentenciaIdEspecialista = conexion.prepareStatement(sqlObtenerIdEspecialista)) {
-                        sentenciaIdEspecialista.setString(1, especialistaSeleccionadoStr);
-                        sentenciaIdEspecialista.setString(2, especialidad);
-                        sentenciaIdEspecialista.setDate(3, java.sql.Date.valueOf(fechaCita));
-                        sentenciaIdEspecialista.setTime(4, java.sql.Time.valueOf(horaCita));
-                        sentenciaIdEspecialista.setTime(5, java.sql.Time.valueOf(horaCita));
-                        try (ResultSet resultadoIdEspecialista = sentenciaIdEspecialista.executeQuery()) {
-                            if (resultadoIdEspecialista.next()) {
-                                idEspecialista = resultadoIdEspecialista.getInt("id");
-                            }
-                        }
-                    }
-                } else {
-                    String sqlBuscarEspecialistaDisponible = "SELECT u.id FROM Usuario u " +
-    "JOIN Especialista e ON u.id = e.id_usuario " +
-    "JOIN DisponibilidadEspecialista d ON u.id = d.id_especialista " +
-    "WHERE e.especialidad = ? AND d.fecha = ? AND d.hora_inicio <= ? AND d.hora_fin >= ? LIMIT 1";
-                    try (PreparedStatement sentenciaBuscarEspecialista = conexion.prepareStatement(sqlBuscarEspecialistaDisponible)) {
-                        sentenciaBuscarEspecialista.setString(1, especialidad);
-                        sentenciaBuscarEspecialista.setDate(2, java.sql.Date.valueOf(fechaCita));
-                        sentenciaBuscarEspecialista.setTime(3, java.sql.Time.valueOf(horaCita));
-                        sentenciaBuscarEspecialista.setTime(4, java.sql.Time.valueOf(horaCita));
-                        try (ResultSet resultadoBuscarEspecialista = sentenciaBuscarEspecialista.executeQuery()) {
-                            if (resultadoBuscarEspecialista.next()) {
-                                idEspecialista = resultadoBuscarEspecialista.getInt("id");
-                            }
-                        }
-                    }
-                }
-
-                if (idPaciente != null && idEspecialista != null) {
-                    // Insertar la nueva cita
-                    String sqlInsertarCita = "INSERT INTO Cita (id_paciente, id_especialista, fecha_hora, estado) VALUES (?, ?, ?, 'pendiente')";
-                    sentenciaInsertar = conexion.prepareStatement(sqlInsertarCita, PreparedStatement.RETURN_GENERATED_KEYS);
-                    sentenciaInsertar.setInt(1, idPaciente);
-                    sentenciaInsertar.setInt(2, idEspecialista);
-                    sentenciaInsertar.setTimestamp(3, fechaHoraCita);
-                    int filasAfectadas = sentenciaInsertar.executeUpdate();
-
-                    if (filasAfectadas > 0) {
-                        mensaje = "Cita agendada con éxito.";
-                        // Obtener el ID de la cita recién insertada
-                        try (ResultSet generatedKeys = sentenciaInsertar.getGeneratedKeys()) {
-                            if (generatedKeys.next()) {
-                                idCitaGenerada = generatedKeys.getInt(1);
-
-                                // Obtener email y teléfono del paciente
-                                String sqlObtenerContacto = "SELECT u.correo AS email, u.telefono AS telefono1, u.nombre AS nombre_paciente FROM Usuario u WHERE u.id = ? AND u.tipo_usuario = 'paciente'";
-                                sentenciaObtenerContacto = conexion.prepareStatement(sqlObtenerContacto);
-                                sentenciaObtenerContacto.setInt(1, idPaciente);
-                                resultadoContacto = sentenciaObtenerContacto.executeQuery();
-
-                                if (resultadoContacto.next()) {
-                                    String emailPaciente = resultadoContacto.getString("email");
-                                    String telefonoPaciente = resultadoContacto.getString("telefono1");
-                                    String nombrePaciente = resultadoContacto.getString("nombre_paciente");
-
-                                    // Obtener información de la cita para el mensaje
-                                    String sqlObtenerInfo = "SELECT es_u.nombre AS nombre_especialista, esp.especialidad FROM Cita c " +
-                                            "JOIN Usuario es_u ON c.id_especialista = es_u.id " +
-                                            "JOIN Especialista esp ON es_u.id = esp.id_usuario " +
-                                            "WHERE c.id = ?";
-                                    sentenciaObtenerInfoCita = conexion.prepareStatement(sqlObtenerInfo);
-                                    sentenciaObtenerInfoCita.setInt(1, idCitaGenerada);
-                                    resultadoInfoCita = sentenciaObtenerInfoCita.executeQuery();
-
-                                    if (resultadoInfoCita.next()) {
-                                        String nombreEspecialista = resultadoInfoCita.getString("nombre_especialista");
-                                        String especialidadCita = resultadoInfoCita.getString("especialidad");
-
-                                        // Enviar correo de confirmación
-                                        String asuntoEmail = "Confirmación de Cita Médica";
-                                        String contenidoEmail = "Hola " + nombrePaciente + ",\n\n" +
-                                                "Tu cita ha sido agendada exitosamente para el día " + fechaCita + " a las " + horaCita +
-                                                " con el especialista " + nombreEspecialista + " de la especialidad de " + especialidadCita + ".\n\n" +
-                                                "¡Gracias por usar nuestro servicio!";
-                                        EmailSender.enviarEmail(emailPaciente, asuntoEmail, contenidoEmail);
-                                        mensaje += " Se ha enviado un correo a " + emailPaciente + ".";
-
-                                        // Enviar SMS de confirmación
-                                        String mensajeSMS = "Cita agendada: " + fechaCita + " " + horaCita + " con " + nombreEspecialista + " (" + especialidadCita + ").";
-                                        if (telefonoPaciente != null && !telefonoPaciente.isEmpty()) {
-                                            SMSSender.enviarSMS(telefonoPaciente, mensajeSMS);
-                                            mensaje += " Se ha enviado un SMS al " + telefonoPaciente + ".";
-                                        } else {
-                                            mensaje += " (No se pudo enviar SMS, teléfono no registrado).";
-                                        }
-                                    } else {
-                                        mensaje += " (No se pudo obtener info del especialista para el mensaje).";
-                                    }
-                                } else {
-                                    mensaje += " (No se pudo obtener contacto del paciente).";
-                                }
-                            } else {
-                                mensaje += " (No se pudo obtener ID de cita para confirmación).";
-                            }
-                        }
-                    } else {
-                        mensaje = "Error al agendar la cita.";
-                    }
-                } else {
-                    mensaje = "No se pudo encontrar un especialista disponible.";
-                }
-            } else {
-                mensaje = "Error al conectar a la base de datos.";
-            }
-        } catch (SQLException e) {
-            mensaje = "Error al agendar la cita: " + e.getMessage();
-            Logger.getLogger(AgendarCitaServlet.class.getName()).log(Level.SEVERE, null, e);
-        } finally {
-            try { if (resultadoContacto != null) resultadoContacto.close(); } catch (SQLException e) { e.printStackTrace(); }
-            try { if (resultadoInfoCita != null) resultadoInfoCita.close(); } catch (SQLException e) { e.printStackTrace(); }
-            try { if (sentenciaObtenerContacto != null) sentenciaObtenerContacto.close(); } catch (SQLException e) { e.printStackTrace(); }
-            try { if (sentenciaObtenerInfoCita != null) sentenciaObtenerInfoCita.close(); } catch (SQLException e) { e.printStackTrace(); }
-            try { if (sentenciaInsertar != null) sentenciaInsertar.close(); } catch (SQLException e) { e.printStackTrace(); }
-            try { if (conexion != null && !conexion.isClosed()) conexion.close(); } catch (SQLException e) { e.printStackTrace(); }
+        if (idPaciente == null) {
+            mensaje = "Debe iniciar sesión para agendar una cita.";
+            forwardMensaje(request, response, mensaje);
+            return;
         }
 
+        if (fechaStr == null || fechaStr.isEmpty() ||
+            horaStr == null || horaStr.isEmpty() ||
+            especialidad == null || especialidad.isEmpty()) {
+            mensaje = "Fecha, hora y especialidad son campos obligatorios.";
+            forwardMensaje(request, response, mensaje);
+            return;
+        }
+
+        LocalDate fechaCita;
+        LocalTime horaCita;
+        try {
+            fechaCita = LocalDate.parse(fechaStr);
+            horaCita = LocalTime.parse(horaStr);
+        } catch (Exception e) {
+            mensaje = "Formato de fecha u hora inválido.";
+            forwardMensaje(request, response, mensaje);
+            return;
+        }
+
+        Timestamp fechaHoraCita = Timestamp.valueOf(fechaCita.atTime(horaCita));
+
+        try (Connection conexion = ConexionBD.conectar()) {
+            if (conexion == null) {
+                mensaje = "No se pudo conectar a la base de datos.";
+                forwardMensaje(request, response, mensaje);
+                return;
+            }
+
+            Integer idEspecialista = obtenerIdEspecialista(conexion, especialistaSeleccionadoStr, especialidad, fechaCita, horaCita);
+
+            if (idEspecialista == null) {
+                mensaje = "No se encontró especialista disponible para esa fecha, hora y especialidad.";
+                forwardMensaje(request, response, mensaje);
+                return;
+            }
+
+            // Insertar cita
+            int idCitaGenerada = insertarCita(conexion, idPaciente, idEspecialista, fechaHoraCita, motivo);
+            if (idCitaGenerada == -1) {
+                mensaje = "Error al agendar la cita.";
+                forwardMensaje(request, response, mensaje);
+                return;
+            }
+
+            // Obtener datos para notificaciones
+            DatosPaciente datosPaciente = obtenerDatosPaciente(conexion, idPaciente);
+            DatosEspecialista datosEspecialista = obtenerDatosEspecialista(conexion, idEspecialista);
+
+            if (datosPaciente == null || datosEspecialista == null) {
+                mensaje = "Cita agendada, pero no se pudo obtener información para notificaciones.";
+                forwardMensaje(request, response, mensaje);
+                return;
+            }
+
+            // Enviar notificaciones
+            enviarNotificaciones(datosPaciente, datosEspecialista, fechaCita, horaCita);
+            mensaje = "Cita agendada exitosamente. Se enviaron las notificaciones correspondientes.";
+
+        } catch (SQLException e) {
+            mensaje = "Error al agendar la cita: " + e.getMessage();
+            LOGGER.log(Level.SEVERE, null, e);
+        }
+
+        forwardMensaje(request, response, mensaje);
+    }
+
+    private Integer obtenerIdEspecialista(Connection conexion, String especialistaSeleccionadoStr, String especialidad, LocalDate fechaCita, LocalTime horaCita) throws SQLException {
+        String sql;
+        PreparedStatement ps;
+
+        if (especialistaSeleccionadoStr != null && !especialistaSeleccionadoStr.trim().isEmpty()) {
+            sql = "SELECT u.id FROM Usuario u " +
+                  "JOIN Especialista e ON u.id = e.id_usuario " +
+                  "JOIN DisponibilidadEspecialista d ON u.id = d.id_especialista " +
+                  "WHERE CONCAT(u.nombre, ' ', u.apellidos) = ? " +
+                  "AND e.especialidad = ? " +
+                  "AND d.fecha = ? " +
+                  "AND d.hora_inicio <= ? " +
+                  "AND d.hora_fin >= ? " +
+                  "LIMIT 1";
+            ps = conexion.prepareStatement(sql);
+            ps.setString(1, especialistaSeleccionadoStr);
+            ps.setString(2, especialidad);
+            ps.setDate(3, Date.valueOf(fechaCita));
+            ps.setTime(4, Time.valueOf(horaCita));
+            ps.setTime(5, Time.valueOf(horaCita));
+        } else {
+            sql = "SELECT u.id FROM Usuario u " +
+                  "JOIN Especialista e ON u.id = e.id_usuario " +
+                  "JOIN DisponibilidadEspecialista d ON u.id = d.id_especialista " +
+                  "WHERE e.especialidad = ? " +
+                  "AND d.fecha = ? " +
+                  "AND d.hora_inicio <= ? " +
+                  "AND d.hora_fin >= ? " +
+                  "LIMIT 1";
+            ps = conexion.prepareStatement(sql);
+            ps.setString(1, especialidad);
+            ps.setDate(2, Date.valueOf(fechaCita));
+            ps.setTime(3, Time.valueOf(horaCita));
+            ps.setTime(4, Time.valueOf(horaCita));
+        }
+
+        try (ps) {
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("id");
+                }
+            }
+        }
+        return null;
+    }
+
+    private int insertarCita(Connection conexion, int idPaciente, int idEspecialista, Timestamp fechaHora, String motivo) throws SQLException {
+        String sqlInsertar = "INSERT INTO Cita (id_paciente, id_especialista, fecha_hora, motivo, estado) VALUES (?, ?, ?, ?, 'pendiente')";
+        try (PreparedStatement ps = conexion.prepareStatement(sqlInsertar, PreparedStatement.RETURN_GENERATED_KEYS)) {
+            ps.setInt(1, idPaciente);
+            ps.setInt(2, idEspecialista);
+            ps.setTimestamp(3, fechaHora);
+            ps.setString(4, motivo);
+            int filas = ps.executeUpdate();
+            if (filas > 0) {
+                try (ResultSet keys = ps.getGeneratedKeys()) {
+                    if (keys.next()) {
+                        return keys.getInt(1);
+                    }
+                }
+            }
+        }
+        return -1;
+    }
+
+    private DatosPaciente obtenerDatosPaciente(Connection conexion, int idPaciente) throws SQLException {
+        String sql = "SELECT correo, telefono, nombre FROM Usuario WHERE id = ? AND tipo_usuario = 'paciente'";
+        try (PreparedStatement ps = conexion.prepareStatement(sql)) {
+            ps.setInt(1, idPaciente);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return new DatosPaciente(
+                            rs.getString("correo"),
+                            rs.getString("telefono"),
+                            rs.getString("nombre")
+                    );
+                }
+            }
+        }
+        return null;
+    }
+
+    private DatosEspecialista obtenerDatosEspecialista(Connection conexion, int idEspecialista) throws SQLException {
+        String sql = "SELECT u.nombre, u.apellidos, e.especialidad FROM Usuario u " +
+                     "JOIN Especialista e ON u.id = e.id_usuario WHERE u.id = ?";
+        try (PreparedStatement ps = conexion.prepareStatement(sql)) {
+            ps.setInt(1, idEspecialista);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return new DatosEspecialista(
+                            rs.getString("nombre") + " " + rs.getString("apellidos"),
+                            rs.getString("especialidad")
+                    );
+                }
+            }
+        }
+        return null;
+    }
+
+    private void enviarNotificaciones(DatosPaciente paciente, DatosEspecialista especialista, LocalDate fecha, LocalTime hora) {
+        try {
+            if (paciente.email != null && !paciente.email.isEmpty()) {
+                String asunto = "Confirmación de Cita Médica";
+                String cuerpo = String.format("Hola %s,\n\nTu cita ha sido agendada para el %s a las %s con %s (%s).\nGracias por usar nuestro servicio.",
+                        paciente.nombre, fecha, hora, especialista.nombre, especialista.especialidad);
+                EmailSender.enviarEmail(paciente.email, asunto, cuerpo);
+            }
+            if (paciente.telefono != null && !paciente.telefono.isEmpty()) {
+                String sms = String.format("Cita agendada: %s %s con %s (%s).", fecha, hora, especialista.nombre, especialista.especialidad);
+                SMSSender.enviarSMS(paciente.telefono, sms);
+            }
+        } catch (Exception e) {
+            LOGGER.log(Level.WARNING, "Error enviando notificaciones", e);
+        }
+    }
+
+    private void forwardMensaje(HttpServletRequest request, HttpServletResponse response, String mensaje) throws ServletException, IOException {
         request.setAttribute("mensaje", mensaje);
         request.getRequestDispatcher("agendar_cita.jsp").forward(request, response);
+    }
+
+    // Clases auxiliares para agrupar datos
+    private static class DatosPaciente {
+        String email;
+        String telefono;
+        String nombre;
+        DatosPaciente(String email, String telefono, String nombre) {
+            this.email = email;
+            this.telefono = telefono;
+            this.nombre = nombre;
+        }
+    }
+
+    private static class DatosEspecialista {
+        String nombre;
+        String especialidad;
+        DatosEspecialista(String nombre, String especialidad) {
+            this.nombre = nombre;
+            this.especialidad = especialidad;
+        }
     }
 }

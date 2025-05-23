@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.util.List,java.util.Map" %>
 <%
     if (session.getAttribute("idUsuario") == null || !"especialista".equals(session.getAttribute("rol"))) {
         response.sendRedirect("login.jsp");
@@ -35,7 +35,37 @@
                 <button type="submit" class="btn btn-primary w-100">Buscar Paciente</button>
             </form>
 
-            <div id="resultado_historial" class="mt-4"></div>
+            <div id="resultado_historial" class="mt-4">
+<%
+    List<Map<String, Object>> pacientes = (List<Map<String, Object>>) request.getAttribute("pacientes");
+    if (pacientes != null) {
+        if (pacientes.isEmpty()) {
+%>
+            <div class="alert alert-warning">No se encontraron pacientes con ese nombre.</div>
+<%
+        } else {
+%>
+            <ul class="list-group">
+<%
+            for (Map<String, Object> paciente : pacientes) {
+                Integer id = (Integer) paciente.get("id");
+                String nombre = (String) paciente.get("nombre");
+                String apellidos = (String) paciente.get("apellidos");
+%>
+                <li class="list-group-item">
+                    <a href="historial_medico_paciente.jsp?id=<%= id %>">
+                        <%= nombre %> <%= apellidos %>
+                    </a>
+                </li>
+<%
+            }
+%>
+            </ul>
+<%
+        }
+    }
+%>
+            </div>
         </div>
     </div>
 

@@ -58,8 +58,14 @@
             </select>
         </div>
 
+        <!-- Motivo de la cita -->
+        <div class="mb-3">
+            <label for="motivo" class="form-label">Motivo de la cita:</label>
+            <textarea id="motivo" name="motivo" class="form-control" rows="2" maxlength="255" required></textarea>
+        </div>
+
         <!-- Botón para verificar disponibilidad -->
-        <button type="submit" class="btn btn-primary w-100">Verificar Disponibilidad</button>
+        <button type="submit" class="btn btn-primary w-100" onclick="document.getElementById('accion').value='verificar';">Verificar Disponibilidad</button>
 
         <!-- Mensaje -->
         <div id="mensaje">
@@ -87,7 +93,8 @@
                     <% } %>
                 </select>
             </div>
-            <button type="submit" formaction="AgendarCitaServlet" class="btn btn-primary w-100">Agendar Cita</button>
+            <button type="submit" class="btn btn-primary w-100" onclick="document.getElementById('accion').value='agendar';">Agendar Cita</button>
+            <input type="hidden" id="accion" name="accion" value="verificar">
         <% } %>
     </form>
 </main>

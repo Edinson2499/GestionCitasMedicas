@@ -5,12 +5,7 @@
         response.sendRedirect("login.jsp");
         return;
     }
-
     String nombreEspecialista = (String) session.getAttribute("nombre");
-    // No necesitamos obtener el idEspecialista aquí, se maneja en el Servlet
-
-    // Redirigir al Servlet para obtener las citas
-    request.getRequestDispatcher("VerCitasAsignadasServlet").forward(request, response);
 %>
 <!DOCTYPE html>
 <html lang="es">
@@ -27,7 +22,7 @@
 
     <div>
         <c:if test="${not empty error}">
-            <div class='alert alert-danger'>Error</div>
+            <div class='alert alert-danger'>${error}</div>
         </c:if>
 
         <c:if test="${not empty citasAsignadas}">
@@ -54,12 +49,12 @@
         </c:if>
 
         <c:if test="${empty citasAsignadas and empty error}">
-            <p>No tienes citas asignadas.</p>
+            <p>No tienes citas pendientes o en proceso.</p>
         </c:if>
     </div>
 
     <br>
-    <a href="menu_especialista.jsp" title="Volver al menú del especialista"></a>
+    <a href="menu_especialista.jsp" class="btn-back" title="Volver al menú del especialista"></a>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

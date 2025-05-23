@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.util.List" %>
 <%
     if (session.getAttribute("idUsuario") == null || !"especialista".equals(session.getAttribute("rol"))) {
         response.sendRedirect("login.jsp");
@@ -22,7 +22,7 @@
         <h1 class="mb-4 text-center">Bienvenido, Especialista <%= nombreEspecialista %></h1>
         <nav class="menu-usuario shadow-lg p-3 mb-5 bg-body rounded" id="menu-usuario">
             <ul class="list-unstyled">
-                <li class="mb-2"><a class="w-100" href="ver_citas_asignadas.jsp">Ver Citas Asignadas</a></li>
+                <li class="mb-2"><a class="w-100" href="VerCitasAsignadasServlet">Ver Citas Asignadas</a></li>
                 <li class="mb-2"><a class="w-100" href="actualizar_disponibilidad.jsp">Actualizar Disponibilidad</a></li>
                 <li class="mb-2"><a class="w-100" href="historial_pacientes.jsp">Historial de Pacientes</a></li>
                 <li class="mb-2"><a class="w-100" href="generar_reportes.jsp">Generar Reportes</a></li>

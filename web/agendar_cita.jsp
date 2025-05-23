@@ -34,7 +34,27 @@
         <div class="mb-3">
             <label for="especialidad" class="form-label">Especialidad:</label>
             <select id="especialidad" name="especialidad" class="form-select" required>
-                <!-- Opciones agregadas por JS -->
+                <option value="">Seleccione una especialidad</option>
+                <option value="Cardiología">Cardiología</option>
+                <option value="Dermatología">Dermatología</option>
+                <option value="Pediatría">Pediatría</option>
+                <option value="Neurología">Neurología</option>
+                <option value="Oncología">Oncología</option>
+                <option value="Psiquiatría">Psiquiatría</option>
+                <option value="Ginecología">Ginecología</option>
+                <option value="Oftalmología">Oftalmología</option>
+                <option value="Ortopedia">Ortopedia</option>
+                <option value="Endocrinología">Endocrinología</option>
+                <option value="Traumatología">Traumatología</option>
+                <option value="Otorrinolaringología">Otorrinolaringología</option>
+                <option value="Medicina Interna">Medicina Interna</option>
+                <option value="Urología">Urología</option>
+                <option value="Radiología">Radiología</option>
+                <option value="Anestesiología">Anestesiología</option>
+                <option value="Cirugía General">Cirugía General</option>
+                <option value="Neumología">Neumología</option>
+                <option value="Gastroenterología">Gastroenterología</option>
+                <option value="Nefrología">Nefrología</option>
             </select>
         </div>
 
@@ -72,55 +92,9 @@
     </form>
 </main>
 
-<!-- Contenedor para carga dinámica vía JS -->
-<div id="especialistas-dinamicos"></div>
 
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-    const selectEspecialidad = document.getElementById("especialidad");
-    const container = document.getElementById("especialistas-dinamicos");
 
-    // Cargar especialidades dinámicamente
-    fetch("${pageContext.request.contextPath}/Especialidades")
-        .then(response => response.json())
-        .then(data => {
-            console.log("Especialidades recibidas:", data);
-            selectEspecialidad.innerHTML = '<option value="" >Seleccione una especialidad</option>';
-            data.forEach(especialidad => {
-                if (typeof especialidad === "string" && especialidad.trim() !== "") {
-                    const valor = especialidad.trim();
-                    selectEspecialidad.innerHTML += `<option value="${valor}">${valor}</option>`;
-                }
-            });
-        });
-
-    // Al cambiar especialidad, cargar horarios disponibles
-    selectEspecialidad.addEventListener("change", function () {
-        console.log("Seleccionaste:", this.value);
-        const especialidad = this.value;
-        if (!especialidad) return;
-
-        fetch("HorariosPorEspecialidad?especialidad=" + encodeURIComponent(especialidad))
-            .then(response => response.json())
-            .then(data => {
-                if (data.length === 0) {
-                    container.innerHTML = "<p class='text-danger mt-3'>No hay horarios disponibles para esta especialidad.</p>";
-                    return;
-                }
-                let html = '<h2 class="mt-4">Horarios Disponibles:</h2>';
-                html += '<ul class="list-group mb-3">';
-                data.forEach(horario => {
-                    html += `<li class="list-group-item">Fecha: ${horario.fecha} | De: ${horario.hora_inicio} a ${horario.hora_fin}</li>`;
-                });
-                html += '</ul>';
-                container.innerHTML = html;
-            })
-            .catch(error => {
-                console.error("Error al obtener horarios:", error);
-                container.innerHTML = "<p class='text-danger mt-3'>Error al cargar horarios.</p>";
-            });
-    });
-});
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

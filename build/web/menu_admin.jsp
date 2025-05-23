@@ -28,6 +28,7 @@
                 <li class="mb-2"><a class="w-100" href="registrar_usuario.jsp">Registrar Nuevo Usuario</a></li>
                 <li class="mb-2"><a class="w-100" href="editar_usuario.jsp">Editar Usuario</a></li>
                 <li class="mb-2"><a class="w-100" href="gestionar_citas.jsp">Gestionar Citas</a></li>
+                <li class="mb-2"><a class="w-100" href="gestionar_especialidades.jsp">Gestionar Especialidades</a></li>
                 <li class="mb-2"><a class="w-100" href="gestionar_horarios.jsp">Gestionar Horarios</a></li>
                 <li class="mb-2"><a class="w-100" href="gestionar_historial.jsp">Historial Médico</a></li>
                 <li class="mb-2"><a class="w-100" href="<%= request.getContextPath() %>/CerrarSesion">Cerrar Sesión</a></li>

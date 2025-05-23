@@ -6,6 +6,7 @@ package Servlets;
 
 import SQL.ConexionBD;
 import Utils.EmailSender;
+import Utils.SMSSender;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -39,14 +40,14 @@ public class ConfirmarCitaServlet extends HttpServlet {
                     int filasAfectadas = sentenciaActualizar.executeUpdate();
 
                     if (filasAfectadas > 0) {
-                        // 2. Obtener la información del paciente y la cita para el correo electrónico
-                        String sqlObtenerInfo = "SELECT u.nombre AS nombre_paciente, u.apellidos AS apellidos_paciente, p.email AS email_paciente, c.fecha_hora, esp.especialidad " +
-                                                "FROM Cita c " +
-                                                "JOIN Usuario u ON c.id_paciente = u.id " +
-                                                "JOIN Paciente p ON u.id = p.id_usuario " +
-                                                "JOIN Usuario es_u ON c.id_especialista = es_u.id " +
-                                                "JOIN Especialista esp ON es_u.id = esp.id_usuario " +
-                                                "WHERE c.id = ?";
+                        // 2. Obtener la información del paciente y la cita para notificaciones
+                        String sqlObtenerInfo = "SELECT u.nombre AS nombre_paciente, u.apellidos AS apellidos_paciente, p.email AS email_paciente, u.telefono1, c.fecha_hora, esp.especialidad, es_u.nombre AS nombre_especialista " +
+                                "FROM Cita c " +
+                                "JOIN Usuario u ON c.id_paciente = u.id " +
+                                "JOIN Paciente p ON u.id = p.id_usuario " +
+                                "JOIN Usuario es_u ON c.id_especialista = es_u.id " +
+                                "JOIN Especialista esp ON es_u.id = esp.id_usuario " +
+                                "WHERE c.id = ?";
                         sentenciaObtenerInfo = conexion.prepareStatement(sqlObtenerInfo);
                         sentenciaObtenerInfo.setInt(1, idCita);
                         resultadoInfo = sentenciaObtenerInfo.executeQuery();
@@ -54,20 +55,46 @@ public class ConfirmarCitaServlet extends HttpServlet {
                         if (resultadoInfo.next()) {
                             String nombrePaciente = resultadoInfo.getString("nombre_paciente") + " " + resultadoInfo.getString("apellidos_paciente");
                             String emailPaciente = resultadoInfo.getString("email_paciente");
+                            String telefonoPaciente = resultadoInfo.getString("telefono1");
                             String fechaHoraCita = resultadoInfo.getTimestamp("fecha_hora").toString();
                             String especialidadCita = resultadoInfo.getString("especialidad");
+                            String nombreEspecialista = resultadoInfo.getString("nombre_especialista");
 
                             // 3. Enviar el correo electrónico de confirmación
-                            if (emailPaciente != null) {
-                                boolean emailEnviado = EmailSender.enviarEmailConfirmacionCita(emailPaciente, nombrePaciente, fechaHoraCita, especialidadCita);
-                                if (emailEnviado) {
-                                    request.setAttribute("mensaje", "Cita confirmada y correo electrónico enviado a " + nombrePaciente + ".");
+                            boolean emailEnviado = false;
+                            if (emailPaciente != null && !emailPaciente.isEmpty()) {
+                                emailEnviado = EmailSender.enviarEmailConfirmacionCita(
+                                    emailPaciente,
+                                    nombrePaciente,
+                                    fechaHoraCita,
+                                    especialidadCita
+                                );
+                            }
+
+                            // 4. Enviar SMS de confirmación si hay teléfono
+                            boolean smsEnviado = false;
+                            if (telefonoPaciente != null && !telefonoPaciente.isEmpty()) {
+                                String mensajeSMS = "Cita confirmada: " + fechaHoraCita + " con " + nombreEspecialista + " (" + especialidadCita + ").";
+                                smsEnviado = SMSSender.enviarSMS(telefonoPaciente, mensajeSMS);
+                            }
+
+                            // 5. Mensaje de resultado
+                            StringBuilder mensaje = new StringBuilder("Cita confirmada.");
+                            if (emailEnviado) {
+                                mensaje.append(" Correo enviado a ").append(emailPaciente).append(".");
+                            } else {
+                                mensaje.append(" (No se pudo enviar correo electrónico).");
+                            }
+                            if (telefonoPaciente != null && !telefonoPaciente.isEmpty()) {
+                                if (smsEnviado) {
+                                    mensaje.append(" SMS enviado a ").append(telefonoPaciente).append(".");
                                 } else {
-                                    request.setAttribute("mensaje", "Cita confirmada, pero hubo un error al enviar el correo electrónico.");
+                                    mensaje.append(" (No se pudo enviar SMS).");
                                 }
                             } else {
-                                request.setAttribute("mensaje", "Cita confirmada, pero no se pudo obtener el correo electrónico del paciente.");
+                                mensaje.append(" (Paciente sin teléfono registrado).");
                             }
+                            request.setAttribute("mensaje", mensaje.toString());
                         } else {
                             request.setAttribute("error", "Error al obtener la información de la cita.");
                         }
@@ -90,6 +117,6 @@ public class ConfirmarCitaServlet extends HttpServlet {
             request.setAttribute("error", "ID de cita inválido.");
         }
         // Decide a dónde redirigir después de la confirmación
-        response.sendRedirect("ver_citas_asignadas.jsp"); // Ejemplo de redirección
+        response.sendRedirect("ver_citas_asignadas.jsp");
     }
 }

@@ -41,10 +41,10 @@ public class ConfirmarCitaServlet extends HttpServlet {
 
                     if (filasAfectadas > 0) {
                         // 2. Obtener la información del paciente y la cita para notificaciones
-                        String sqlObtenerInfo = "SELECT u.nombre AS nombre_paciente, u.apellidos AS apellidos_paciente, p.email AS email_paciente, u.telefono1, c.fecha_hora, esp.especialidad, es_u.nombre AS nombre_especialista " +
+                        String sqlObtenerInfo = "SELECT u.nombre AS nombre_paciente, u.apellidos AS apellidos_paciente, u.correo AS email_paciente, u.telefono AS telefono_paciente, " +
+                                "c.fecha_hora, esp.especialidad, es_u.nombre AS nombre_especialista " +
                                 "FROM Cita c " +
                                 "JOIN Usuario u ON c.id_paciente = u.id " +
-                                "JOIN Paciente p ON u.id = p.id_usuario " +
                                 "JOIN Usuario es_u ON c.id_especialista = es_u.id " +
                                 "JOIN Especialista esp ON es_u.id = esp.id_usuario " +
                                 "WHERE c.id = ?";
@@ -55,7 +55,7 @@ public class ConfirmarCitaServlet extends HttpServlet {
                         if (resultadoInfo.next()) {
                             String nombrePaciente = resultadoInfo.getString("nombre_paciente") + " " + resultadoInfo.getString("apellidos_paciente");
                             String emailPaciente = resultadoInfo.getString("email_paciente");
-                            String telefonoPaciente = resultadoInfo.getString("telefono1");
+                            String telefonoPaciente = resultadoInfo.getString("telefono_paciente");
                             String fechaHoraCita = resultadoInfo.getTimestamp("fecha_hora").toString();
                             String especialidadCita = resultadoInfo.getString("especialidad");
                             String nombreEspecialista = resultadoInfo.getString("nombre_especialista");

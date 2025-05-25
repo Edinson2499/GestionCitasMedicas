@@ -38,10 +38,10 @@
                 <tbody>
                     <c:forEach var="cita" items="${citasAsignadas}">
                         <tr>
-                            <td>${cita.fechaHora}</td>
-                            <td>${cita.nombrePaciente}</td>
-                            <td>${cita.especialidad}</td>
-                            <td>${cita.estado}</td>
+                            <td data-label="Fecha y Hora">${cita.fechaHora}</td>
+                            <td data-label="Paciente">${cita.nombrePaciente}</td>
+                            <td data-label="Especialidad">${cita.especialidad}</td>
+                            <td data-label="Estado">${cita.estado}</td>
                         </tr>
                     </c:forEach>
                 </tbody>

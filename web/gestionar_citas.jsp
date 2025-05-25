@@ -92,13 +92,13 @@
                         hayResultados = true;
                 %>
                     <tr>
-                        <td><%= rs.getInt("id") %></td>
-                        <td><%= rs.getTimestamp("fecha_hora") %></td>
-                        <td><%= rs.getString("nombre_paciente") %> <%= rs.getString("apellidos_paciente") %></td>
-                        <td><%= rs.getString("nombre_especialista") %> <%= rs.getString("apellidos_especialista") %></td>
-                        <td><%= rs.getString("especialidad") %></td>
-                        <td><%= rs.getString("motivo") %></td>
-                        <td>
+                        <td data-label="ID"><%= rs.getInt("id") %></td>
+                        <td data-label="Fecha"><%= rs.getTimestamp("fecha_hora") %></td>
+                        <td data-label="Paciente"><%= rs.getString("nombre_paciente") %> <%= rs.getString("apellidos_paciente") %></td>
+                        <td data-label="Especialista"><%= rs.getString("nombre_especialista") %> <%= rs.getString("apellidos_especialista") %></td>
+                        <td data-label="Especialidad"><%= rs.getString("especialidad") %></td>
+                        <td data-label="Motivo"><%= rs.getString("motivo") %></td>
+                        <td data-label="Estado">
                             <span class="badge bg-<%= "realizada".equals(rs.getString("estado")) ? "success" : ("cancelada".equals(rs.getString("estado")) ? "danger" : ("confirmada".equals(rs.getString("estado")) ? "info" : "secondary")) %>">
                                 <%= rs.getString("estado") %>
                             </span>

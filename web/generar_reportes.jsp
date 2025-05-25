@@ -105,11 +105,11 @@
                             String hora = new java.text.SimpleDateFormat("HH:mm").format(ts);
                     %>
                     <tr>
-                        <td><%= fecha %></td>
-                        <td><%= hora %></td>
-                        <td><%= rs.getString("nombre_paciente") %> <%= rs.getString("apellidos_paciente") %></td>
-                        <td><%= rs.getString("motivo") %></td>
-                        <td>
+                        <td data-label="Fecha"><%= fecha %></td>
+                        <td data-label="Hora"><%= hora %></td>
+                        <td data-label="Paciente"><%= rs.getString("nombre_paciente") %> <%= rs.getString("apellidos_paciente") %></td>
+                        <td data-label="Motivo"><%= rs.getString("motivo") %></td>
+                        <td data-label="Estado">
                             <span class="badge bg-<%= "realizada".equals(rs.getString("estado")) ? "success" : ("cancelada".equals(rs.getString("estado")) ? "danger" : ("confirmada".equals(rs.getString("estado")) ? "primary" : "secondary")) %> text-capitalize">
                                 <%= rs.getString("estado") %>
                             </span>

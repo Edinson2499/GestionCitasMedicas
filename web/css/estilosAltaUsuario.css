@@ -32,9 +32,7 @@ body {
 
 /* ==============================
    Formulario
-   ==============================
-   Se puede usar 'form' de Bootstrap, pero mantenemos el diseño visual.
-*/
+   ============================== */
 .formularioAlta {
     padding: 30px;
     border: 2px solid #ccc;
@@ -53,9 +51,7 @@ body {
 
 /* ==============================
    Campos de entrada
-   ==============================
-   Bootstrap usa .form-control, pero mantenemos .txt para el diseño.
-*/
+   ============================== */
 .txt,
 input.form-control, 
 select.form-select {
@@ -66,15 +62,12 @@ select.form-select {
     margin: 10px 0;
     width: 60%;
     max-width: 400px;
-    /* Sobrescribe Bootstrap si es necesario */
     box-shadow: none;
 }
 
 /* ==============================
    Botones
-   ==============================
-   Bootstrap usa .btn, pero personalizamos el diseño.
-*/
+   ============================== */
 .btn,
 button.btn,
 input[type="submit"].btn,
@@ -105,9 +98,7 @@ input[type="button"].btn:hover {
 
 /* ==============================
    Aviso contraseña
-   ==============================
-   Mantiene el diseño visual, pero se adapta a Bootstrap.
-*/
+   ============================== */
 .avisoContrasena {
     background-color: #fff;
     padding: 12px;
@@ -119,27 +110,25 @@ input[type="button"].btn:hover {
     max-width: 500px;
     margin-left: auto;
     margin-right: auto;
-    /* Bootstrap alert-info puede usarse, pero mantenemos el color */
 }
 
 /* ==============================
    Etiquetas
-   ==============================
-   Asegura alineación y espaciado en responsive.
-*/
+   ============================== */
 label,
 .form-label {
     display: block;
     text-align: left;
     margin: 8px 0 4px 0;
 }
+
 /* ================================
    Botón de regreso
 ================================== */
 a.btn-back {
     width: 80px;
     height: 80px;
-    background-image: url('../imagenes/Atras.png');
+    background-image: url('../imagenes/Logo.png');
     background-size: cover;
     background-position: center;
     border-radius: 50%;
@@ -158,10 +147,7 @@ a.btn-back:hover {
 
 /* ==============================
    Responsive con Bootstrap y media queries
-   ==============================
-   Se adapta a pantallas pequeñas, combinando Bootstrap y reglas propias.
-*/
-
+   ============================== */
 @media (max-width: 768px) {
     .formularioAlta {
         padding: 20px;
@@ -182,6 +168,7 @@ a.btn-back:hover {
         width: 90%;
         font-size: 16px;
         padding: 10px 20px;
+        min-width: unset;
     }
 
     .avisoContrasena {
@@ -200,6 +187,15 @@ a.btn-back:hover {
     .container.cuerpoFormulario {
         padding: 10px;
         margin: 20px auto;
+        max-width: 98vw;
+    }
+
+    a.btn-back {
+        width: 50px;
+        height: 50px;
+        left: 10px;
+        top: 10px;
+        background-size: contain;
     }
 }
 
@@ -224,6 +220,17 @@ a.btn-back:hover {
 
     .avisoContrasena {
         font-size: 12px;
+    }
+
+    body {
+        padding: 5px;
+        background-image: url('../imagenes/Menus_C.png'); /* Usa la versión móvil si la tienes */
+        background-size: 100vw 100vh;
+        background-repeat: no-repeat;
+        background-position: center center;
+        min-height: 100vh;
+        min-width: 100vw;
+        overflow-x: hidden;
     }
 }
 

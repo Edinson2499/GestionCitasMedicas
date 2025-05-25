@@ -17,6 +17,17 @@
 <body>
     <div class="cuerpoFormulario">
         <h1>Administrador</h1>
+        <!-- Mensaje de error si hay parámetro error -->
+        <%
+            String error = request.getParameter("error");
+            if (error != null) {
+        %>
+            <div class="alert alert-danger" style="color:#b94a48; background:#f2dede; border:1px solid #ebccd1; border-radius:8px; padding:10px; margin-bottom:15px; text-align:center;">
+                Usuario o contraseña incorrectos. Intente nuevamente.
+            </div>
+        <%
+            }
+        %>
         <form class="formularioAdmin" id="formularioAdmin" method="post" action="InicioSesionAdmin">
             <label for="username">Usuario:</label>
             <input type="text" id="username" name="txtUsuario" placeholder="Ingrese su usuario" required />
@@ -26,7 +37,7 @@
 
             <div class="buttonGroup">
                 <input type="submit" value="Iniciar Sesión" class="btn">
-                <input type="button" value="Borrar Datos" class="btn" onclick="resetearFormularioLogin()">
+                <input type="button" value="Borrar Datos" class="btn" onclick="resetearFormulario()">
             </div>
         </form>
     </div>

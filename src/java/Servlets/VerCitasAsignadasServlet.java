@@ -26,9 +26,11 @@ public class VerCitasAsignadasServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         Integer idEspecialista = (Integer) session.getAttribute("idUsuario");
+        String rol = (String) session.getAttribute("rol");
 
-        if (idEspecialista == null) {
-            response.sendRedirect("login.jsp"); // Redirigir si no hay sesión
+        // Debe tener rol de paciente para entrar
+        if (idEspecialista == null || rol == null || !"paciente".equals(rol)) {
+            response.sendRedirect("login.jsp");
             return;
         }
 

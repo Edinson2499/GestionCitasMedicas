@@ -6,7 +6,7 @@ function cargarElementoDinamicamente(url, elemento){
 }
 function cargarAltaUsuarioE(){
     cargarElementoDinamicamente("altaUsuarioE.jsp", document.getElementById("contenidoDinamico"));
-    document.getElementById('contenidoDinamico').innerHTML += '<br><a href="index.html" class="menu move-to-top-inicioregistro"></a>';
+    document.getElementById('contenidoDinamico').innerHTML += '<br><a href="index.html" class="menu move-to-top-inicio"></a>';
 
     // Mostrar el botón volver
     document.querySelector('.btn-volver').style.display = 'block'; // para mostrar
@@ -14,7 +14,7 @@ function cargarAltaUsuarioE(){
 
 function cargarAltaUsuario(){
     cargarElementoDinamicamente("altaUsuario.jsp", document.getElementById("contenidoDinamico"));
-    document.getElementById('contenidoDinamico').innerHTML += '<br><a href="index.html" class="menu move-to-top-inicioregistro"></a>';
+    document.getElementById('contenidoDinamico').innerHTML += '<br><a href="index.html" class="menu move-to-top-inicio"></a>';
 
     // Mostrar el botón volver
     document.querySelector('.btn-volver').style.display = 'block'; // para mostrar

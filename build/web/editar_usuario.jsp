@@ -99,25 +99,25 @@
 <%
     do {
 %>
-                <tr>
-                    <td><%= rs.getInt("id") %></td>
-                    <td><%= rs.getString("nombre") %></td>
-                    <td><%= rs.getString("apellidos") %></td>
-                    <td><%= rs.getString("tipo_usuario") %></td>
-                    <td><%= rs.getString("contrasena") != null ? rs.getString("contrasena") : "-" %></td>
-                    <td><%= rs.getString("especialidad") != null ? rs.getString("especialidad") : "-" %></td>
-                    <td><%= rs.getString("telefono") != null ? rs.getString("telefono") : "-" %></td>
-                    <td><%= rs.getString("direccion") != null ? rs.getString("direccion") : "-" %></td>
-                    <td><%= rs.getString("correo") != null ? rs.getString("correo") : "-" %></td>
-                    <td>
-                        <a href="EditarUsuarioServlet?id=<%= rs.getInt("id") %>">Editar</a> |
-                        <a href="#" class="btn-eliminar" data-id="<%= rs.getInt("id") %>">Eliminar</a>
-                    </td>
-                </tr>
+    <tr>
+        <td data-label="ID"><%= rs.getInt("id") %></td>
+        <td data-label="Nombre"><%= rs.getString("nombre") %></td>
+        <td data-label="Apellido"><%= rs.getString("apellidos") %></td>
+        <td data-label="Tipo de Usuario"><%= rs.getString("tipo_usuario") %></td>
+        <td data-label="Contraseña"><%= rs.getString("contrasena") != null ? rs.getString("contrasena") : "-" %></td>
+        <td data-label="Especialidad"><%= rs.getString("especialidad") != null ? rs.getString("especialidad") : "-" %></td>
+        <td data-label="Teléfono"><%= rs.getString("telefono") != null ? rs.getString("telefono") : "-" %></td>
+        <td data-label="Dirección"><%= rs.getString("direccion") != null ? rs.getString("direccion") : "-" %></td>
+        <td data-label="Correo"><%= rs.getString("correo") != null ? rs.getString("correo") : "-" %></td>
+        <td data-label="Acción">
+            <a href="EditarUsuarioServlet?id=<%= rs.getInt("id") %>">Editar</a> |
+            <a href="#" class="btn-eliminar" data-id="<%= rs.getInt("id") %>">Eliminar</a>
+        </td>
+    </tr>
 <%
     } while (rs.next());
 %>
-            </tbody>
+</tbody>
         </table>
     </div>
 <%

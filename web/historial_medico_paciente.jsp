@@ -76,11 +76,11 @@
                     while (rs.next()) {
                 %>
                     <tr>
-                        <td><%= rs.getTimestamp("fecha_hora") %></td>
-                        <td><%= rs.getString("especialidad") %></td>
-                        <td><%= rs.getString("nombre_especialista") %> <%= rs.getString("apellidos_especialista") %></td>
-                        <td><%= rs.getString("motivo") %></td>
-                        <td>
+                        <td data-label="Fecha y Hora"><%= rs.getTimestamp("fecha_hora") %></td>
+                        <td data-label="Especialidad"><%= rs.getString("especialidad") %></td>
+                        <td data-label="Especialista"><%= rs.getString("nombre_especialista") %> <%= rs.getString("apellidos_especialista") %></td>
+                        <td data-label="Motivo"><%= rs.getString("motivo") %></td>
+                        <td data-label="Estado">
                             <span class="badge bg-<%= "realizada".equals(rs.getString("estado")) ? "success" : "secondary" %>">
                                 <%= rs.getString("estado") %>
                             </span>

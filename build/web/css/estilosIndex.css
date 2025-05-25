@@ -77,7 +77,7 @@ body {
     left: 20px;
     width: 50px;
     height: 50px;
-    background: url('../imagenes/Atras.png') no-repeat center center;
+    background: url('../imagenes/Logo.png') no-repeat center center;
     background-size: contain;
     border: none;
     border-radius: 50%;
@@ -116,10 +116,11 @@ body {
         transform: translateX(-50%) !important;
     }
     .btn-volver {
-        top: 8vh;
-        left: 2vw;
-        font-size: 1rem;
-        padding: 0.4rem 1rem;
+        display: none !important;
+    }
+    /* Oculta el menú de inicio fijo en móvil */
+    .menu.move-to-top-inicio {
+        display: none !important;
     }
 }
 @media (max-width: 480px) {
@@ -142,22 +143,29 @@ body {
         transform: translateX(-50%) !important;
     }
     .btn-volver {
-        top: 4vh;
-        left: 2vw;
-        font-size: 0.95rem;
-        padding: 0.3rem 0.8rem;
+        display: none !important;
+    }
+    /* Oculta el menú de inicio fijo en móvil */
+    .menu.move-to-top-inicio {
+        display: none !important;
     }
 }
 @media (max-width: 600px) {
-    .btn-volver {
-        width: 40px;
-        height: 40px;
-        top: 10px;
-        left: 10px;
-        background-image: url('../imagenes/Atras_C.png');
+    body {
+        background-image: url('../imagenes/fondoBlanco_C.png');
+        background-size: 100vw 100vh;
+        background-repeat: no-repeat;
+        background-position: center center;
+        min-height: 100vh;
+        min-width: 100vw;
+        overflow-x: hidden;
     }
-    .btn-volver:hover {
-        background-image: url('../imagenes/Atras_hover_C.png');
+    .btn-volver {
+        display: none !important;
+    }
+    /* Oculta el menú de inicio fijo en móvil */
+    .menu.move-to-top-inicio {
+        display: none !important;
     }
 }
 

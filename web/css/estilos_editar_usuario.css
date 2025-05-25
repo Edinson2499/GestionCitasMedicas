@@ -245,37 +245,165 @@ a.btn-back:hover {
 
 @media (max-width: 600px) {
     body {
-        padding: 10px;
-        height: auto;
+        padding: 8px;
+        background-image: url('../imagenes/Menus_C.png');
+        background-size: 100vw 100vh;
+        background-repeat: no-repeat;
+        background-position: center center;
+        min-height: 100vh;
+        min-width: 100vw;
+        overflow-x: hidden;
+    }
+
+    h1 {
+        font-size: 18px;
+        padding: 8px 4px;
+        margin-bottom: 12px;
     }
 
     form {
         width: 100%;
-        padding: 15px 20px;
+        padding: 10px 5px;
+        min-width: unset;
     }
 
-    table {
-        font-size: 13px;
-    }
-
-    th, td {
-        padding: 8px 10px;
-    }
-
-    h1 {
-        font-size: 20px;
-    }
-
-    .modal .contenido-modal {
-        padding: 15px 20px;
-    }
-
-    .form-group label {
-        font-size: 13px;
-    }
-
-    input[type="text"], select, button {
+    .contenido-modal {
+        min-width: 90vw;
+        padding: 10px 5px;
         font-size: 14px;
+    }
+
+    .btn-back {
+        width: 45px !important;
+        height: 45px !important;
+        left: 10px !important;
+        top: 10px !important;
+        background-size: contain !important;
+    }
+
+    /* Tabla responsive tipo tarjeta */
+    table, thead, tbody, th, td, tr {
+        display: block;
+        width: 100%;
+    }
+    thead {
+        display: none;
+    }
+    tr {
+        margin-bottom: 1.5rem;
+        border: 1px solid #0069d9;
+        border-radius: 10px;
+        background: #fff;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+        padding: 10px 0;
+        overflow: hidden;
+    }
+    td {
+        padding: 8px 16px;
+        text-align: left;
+        position: relative;
+        border: none !important;
+        border-left: 4px solid #0069d9;
+        margin-bottom: 6px;
+        background: #f5faff;
+        font-size: 13px;
+    }
+    td:before {
+        content: attr(data-label);
+        font-weight: bold;
+        display: block;
+        margin-bottom: 4px;
+        color: #0069d9;
+    }
+    td:first-child {
+        background: #0069d9;
+        color: #fff;
+        border-left: 4px solid #0069d9;
+    }
+    td:first-child:before {
+        color: #fff;
+    }
+}
+
+/* =========================
+   Estilos para la tabla de usuarios
+   ========================= */
+.tabla-usuarios {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.tabla-usuarios th {
+    background-color: #007bff;
+    color: white;
+    padding: 12px;
+    text-align: left;
+    font-size: 16px;
+}
+
+.tabla-usuarios td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    font-size: 14px;
+    position: relative;
+}
+
+/* Estilos para los botones de acción en la tabla */
+.tabla-usuarios .btn-eliminar,
+.tabla-usuarios .btn-editar {
+    display: inline-block;
+    padding: 6px 12px;
+    margin: 2px;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.tabla-usuarios .btn-editar {
+    background-color: #28a745;
+    color: white;
+    text-decoration: none;
+}
+
+.tabla-usuarios .btn-eliminar {
+    background-color: #dc3545;
+    color: white;
+    text-decoration: none;
+}
+
+.tabla-usuarios .btn-editar:hover {
+    background-color: #218838;
+}
+
+.tabla-usuarios .btn-eliminar:hover {
+    background-color: #c82333;
+}
+
+/* Estilos para las celdas de la tabla de usuarios en pantallas pequeñas */
+@media (max-width: 600px) {
+    .tabla-usuarios td {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
         padding: 10px;
+        text-align: left;
+        position: relative;
+        border: none;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .tabla-usuarios td:before {
+        content: attr(data-label);
+        font-weight: bold;
+        display: block;
+        margin-bottom: 4px;
+        color: #007bff;
+    }
+
+    .tabla-usuarios td:last-child {
+        border-bottom: none;
     }
 }

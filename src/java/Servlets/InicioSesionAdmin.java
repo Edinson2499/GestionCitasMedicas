@@ -20,6 +20,7 @@ import java.sql.SQLException;
 @WebServlet("/InicioSesionAdmin")
 public class InicioSesionAdmin extends HttpServlet {
 
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String usuario = request.getParameter("txtUsuario");
         String contrasena = request.getParameter("txtContrasena");
@@ -48,21 +49,24 @@ public class InicioSesionAdmin extends HttpServlet {
                     response.sendRedirect("menu_admin.jsp");
                     return;
                 } else {
-                    mensajeError = "El usuario no tiene permisos de administrador.";
+                    // Redirige con mensaje de error por parámetro GET
+                    response.sendRedirect("login_admin.jsp?error=permisos");
+                    return;
                 }
             } else {
-                mensajeError = "Credenciales incorrectas.";
+                // Redirige con mensaje de error por parámetro GET
+                response.sendRedirect("login_admin.jsp?error=credenciales");
+                return;
             }
         } catch (SQLException e) {
-            mensajeError = "Error al conectar con la base de datos.";
+            // Redirige con mensaje de error por parámetro GET
+            response.sendRedirect("login_admin.jsp?error=conexion");
             e.printStackTrace();
+            return;
         } finally {
             try { if (rs != null) rs.close(); } catch (SQLException e) {}
             try { if (ps != null) ps.close(); } catch (SQLException e) {}
             try { if (conexion != null) conexion.close(); } catch (SQLException e) {}
         }
-
-        request.setAttribute("error", mensajeError);
-        request.getRequestDispatcher("login_admin.jsp").forward(request, response);
     }
 }

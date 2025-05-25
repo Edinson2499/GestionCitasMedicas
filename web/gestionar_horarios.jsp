@@ -1,11 +1,13 @@
 <!-- filepath: c:\Users\Vargas Cardenas\Desktop\GestionCitasMedicas\web\gestionar_horarios.jsp -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*, SQL.ConexionBD" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <%
     if (session.getAttribute("rol") == null || !"administrador".equals(session.getAttribute("rol"))) {
         response.sendRedirect("login_admin.jsp");
         return;
     }
+    SimpleDateFormat sdfHora = new SimpleDateFormat("HH:mm");
 %>
 <!DOCTYPE html>
 <html lang="es">
@@ -101,11 +103,11 @@
                             hayResultados = true;
                 %>
                     <tr>
-                        <td><%= rs.getString("nombre") %> <%= rs.getString("apellidos") %></td>
-                        <td><%= rs.getString("especialidad") %></td>
-                        <td><%= rs.getDate("fecha") %></td>
-                        <td><%= rs.getTime("hora_inicio") %></td>
-                        <td><%= rs.getTime("hora_fin") %></td>
+                        <td data-label="Nombre"><%= rs.getString("nombre") %> <%= rs.getString("apellidos") %></td>
+                        <td data-label="Especialidad"><%= rs.getString("especialidad") %></td>
+                        <td data-label="Fecha"><%= rs.getDate("fecha") %></td>
+                        <td data-label="Hora Inicio"><%= sdfHora.format(rs.getTime("hora_inicio")) %></td>
+                        <td data-label="Hora Fin"><%= sdfHora.format(rs.getTime("hora_fin")) %></td>
                         <td>
                             <button type="button" class="btn btn-danger btn-sm btn-eliminar-horario" data-id="<%= rs.getInt("id") %>">Eliminar</button>
                         </td>

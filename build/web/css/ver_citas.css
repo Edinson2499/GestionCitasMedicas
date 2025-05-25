@@ -5,7 +5,7 @@ body {
     background-image: url(../imagenes/Menus.png);
     background-size: cover;
     background-position: center;
-    font-family: sans-serif;
+    font-family: var(--bs-body-font-family, sans-serif);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -99,6 +99,7 @@ a {
     position: absolute;
     top: 20px;
     left: 20px;
+    display: inline-block;
 }
 
 a:hover {
@@ -145,12 +146,24 @@ a:hover {
    Responsividad para pantallas pequeñas
    ========================= */
 @media screen and (max-width: 768px) {
+    body {
+        padding: 8px;
+    }
+
     h1 {
         font-size: 5vw;
+        padding: 8px 8px;
     }
 
     main {
-        padding: 20px;
+        padding: 15px;
+        border-radius: 14px;
+        max-width: 98vw;
+    }
+
+    .cita-container {
+        padding: 10px;
+        border-radius: 10px;
     }
 
     .cita-container p {
@@ -160,33 +173,61 @@ a:hover {
     a {
         width: 50px;
         height: 50px;
-        top: 15px;
-        left: 15px;
+        top: 10px;
+        left: 10px;
+        background-size: contain;
+    }
+
+    .modal .contenido-modal {
+        padding: 18px 10px 12px 10px;
+        min-width: 180px;
+        font-size: 15px;
     }
 }
 
 @media screen and (max-width: 480px) {
+    body {
+        padding: 2px;
+        background-image: url('../imagenes/Menus_C.png'); /* Usa la versión móvil si la tienes */
+        background-size: 100vw 100vh;
+        background-repeat: no-repeat;
+        background-position: center center;
+        min-height: 100vh;
+        min-width: 100vw;
+        overflow-x: hidden;
+    }
+
     h1 {
-        font-size: 18px;
+        font-size: 16px;
+        padding: 6px 4px;
+        margin-bottom: 15px;
     }
 
     main {
         width: 100%;
-        padding: 15px;
+        padding: 7px;
+        border-radius: 8px;
     }
 
     .cita-container {
-        padding: 12px;
+        padding: 7px;
+        border-radius: 7px;
     }
 
     .cita-container p {
-        font-size: 13px;
+        font-size: 12px;
     }
 
     a {
-        width: 40px;
-        height: 40px;
-        top: 10px;
-        left: 10px;
+        width: 36px;
+        height: 36px;
+        top: 6px;
+        left: 6px;
+    }
+
+    .modal .contenido-modal {
+        padding: 10px 4px 8px 4px;
+        min-width: 120px;
+        font-size: 13px;
     }
 }

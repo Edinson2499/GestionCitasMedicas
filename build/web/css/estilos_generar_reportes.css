@@ -249,6 +249,128 @@ a.btn-back:hover {
     }
 }
 
+@media (max-width: 600px) {
+    body {
+        padding: 4px;
+        background-image: url('../imagenes/Menus_C.png');
+        background-size: 100vw 100vh;
+        background-repeat: no-repeat;
+        background-position: center center;
+        min-height: 100vh;
+        min-width: 100vw;
+        overflow-x: hidden;
+    }
+
+    .reporte-container {
+        width: 100%;
+        padding: 0.5rem 0.2rem;
+        margin: 0;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    h1 {
+        font-size: 17px;
+        padding: 7px 2px;
+        margin-bottom: 10px;
+        border-radius: 8px;
+    }
+
+    h2 {
+        font-size: 15px;
+        margin-bottom: 8px;
+    }
+
+    form {
+        padding: 0;
+        margin-bottom: 1rem;
+    }
+
+    .form-label, label {
+        font-size: 13px;
+    }
+
+    input[type="date"],
+    select.form-select {
+        font-size: 13px;
+        padding: 0.4rem 0.5rem;
+        margin-bottom: 0.7rem;
+    }
+
+    button[type="submit"],
+    .btn-primary {
+        font-size: 13px;
+        padding: 8px 10px;
+        border-radius: 12px;
+        width: 100%;
+    }
+
+    #resultado_reporte {
+        padding: 0.5rem;
+        border-radius: 8px;
+    }
+
+    /* Tabla responsive tipo tarjeta */
+    table, thead, tbody, th, td, tr {
+        display: block;
+        width: 100%;
+    }
+    thead {
+        display: none;
+    }
+    tr {
+        margin-bottom: 1.2rem;
+        border: 1px solid #0069d9;
+        border-radius: 10px;
+        background: #fff;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+        padding: 8px 0;
+        overflow: hidden;
+    }
+    td {
+        padding: 7px 12px;
+        text-align: left;
+        position: relative;
+        border: none !important;
+        border-left: 4px solid #0069d9;
+        margin-bottom: 4px;
+        background: #f5faff;
+        font-size: 12px;
+    }
+    td:before {
+        content: attr(data-label);
+        font-weight: bold;
+        display: block;
+        margin-bottom: 2px;
+        color: #0069d9;
+        font-size: 12px;
+    }
+    td:first-child {
+        background: #0069d9;
+        color: #fff;
+        border-left: 4px solid #0069d9;
+    }
+    td:first-child:before {
+        color: #fff;
+    }
+
+    /* Ajuste para textarea y select en tabla */
+    textarea.form-control,
+    select.form-select {
+        font-size: 12px;
+        padding: 4px 6px;
+    }
+
+    /* Botón de regreso */
+    a.btn-back {
+        width: 40px;
+        height: 40px;
+        left: 8px;
+        top: 8px;
+        background-size: contain;
+    }
+}
+
 @media (max-width: 479px) {
     .reporte-container {
         padding: 1rem 1rem;

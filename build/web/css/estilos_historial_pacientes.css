@@ -117,6 +117,64 @@ a.btn-back:hover {
     }
 }
 
+@media (max-width: 600px) {
+    body {
+        padding: 4px;
+        background-image: url('../imagenes/Menus_C.png');
+        background-size: 100vw 100vh;
+        background-repeat: no-repeat;
+        background-position: center center;
+        min-height: 100vh;
+        min-width: 100vw;
+        overflow-x: hidden;
+    }
+
+    h1 {
+        font-size: 1.1rem;
+        padding: 7px 2px;
+        margin-bottom: 10px;
+        border-radius: 8px;
+    }
+
+    .card {
+        padding: 0.7rem !important;
+        border-radius: 0.7rem;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+        margin: 0 2px;
+    }
+
+    input[type="text"] {
+        font-size: 13px;
+        padding: 0.4rem 0.5rem;
+        margin-bottom: 0.7rem;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    #resultado_historial {
+        font-size: 0.95rem;
+        padding: 0.7rem;
+        border-radius: 0.5rem;
+    }
+
+    button[type="submit"],
+    .btn-primary {
+        font-size: 13px;
+        padding: 8px 10px;
+        border-radius: 12px;
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+
+    a.btn-back {
+        width: 40px;
+        height: 40px;
+        left: 8px;
+        top: 8px;
+        background-size: contain;
+    }
+}
+
 @media (max-width: 480px) {
     .btn {
         font-size: 1rem;

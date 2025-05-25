@@ -100,12 +100,12 @@
                 %>
                     <tr>
                         <td><%= rs.getString("nombre_paciente") %> <%= rs.getString("apellidos_paciente") %></td>
-                        <td><%= rs.getTimestamp("fecha_hora") %></td>
-                        <td><%= rs.getString("nombre_especialista") %> <%= rs.getString("apellidos_especialista") %></td>
-                        <td><%= rs.getString("especialidad") %></td>
-                        <td><%= rs.getString("motivo") %></td>
-                        <td><%= rs.getString("descripcion") != null ? rs.getString("descripcion") : "-" %></td>
-                        <td>
+                        <td data-label="Fecha"><%= rs.getTimestamp("fecha_hora") %></td>
+                        <td data-label="Especialista"><%= rs.getString("nombre_especialista") %> <%= rs.getString("apellidos_especialista") %></td>
+                        <td data-label="Especialidad"><%= rs.getString("especialidad") %></td>
+                        <td data-label="Motivo"><%= rs.getString("motivo") %></td>
+                        <td data-label="Descripción"><%= rs.getString("descripcion") != null ? rs.getString("descripcion") : "-" %></td>
+                        <td data-label="Estado">
                             <span class="badge bg-<%= "realizada".equals(rs.getString("estado")) ? "success" : "danger" %>">
                                 <%= rs.getString("estado") %>
                             </span>

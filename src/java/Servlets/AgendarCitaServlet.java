@@ -89,6 +89,14 @@ public class AgendarCitaServlet extends HttpServlet {
             LocalTime horaCita = LocalTime.parse(horaInicioStr);
             Timestamp fechaHoraCita = Timestamp.valueOf(fechaCita.atTime(horaCita));
 
+            // Validación: No permitir agendar en el pasado
+            java.time.LocalDateTime ahora = java.time.LocalDateTime.now();
+            if (fechaHoraCita.toLocalDateTime().isBefore(ahora)) {
+                mensaje = "No se puede agendar una cita en una fecha u hora pasada.";
+                forwardMensaje(request, response, mensaje);
+                return;
+            }
+
             try (Connection conexion = ConexionBD.conectar()) {
                 if (conexion == null) {
                     mensaje = "No se pudo conectar a la base de datos.";

@@ -20,17 +20,21 @@
                 <input type="hidden" name="rol" value="especialista">
                 <h1>Registro de Usuarios</h1>
                 <br>
-                <label style="display: inline-block; width: 100px; text-align: left; margin-right: 5px; margin-bottom: 5px;">ID:</label> <input type="text" class="txt" id="txtId" required="" name="txtiD">
+                <!-- ID SOLO NÚMEROS -->
+                <label style="display: inline-block; width: 100px; text-align: left; margin-right: 5px; margin-bottom: 5px;">ID:</label>
+                <input type="text" class="txt" id="txtId" required name="txtiD" pattern="\d+" title="Solo números" inputmode="numeric" oninput="this.value=this.value.replace(/[^0-9]/g,'');">
+                <br><br>
+                <!-- NOMBRE SOLO LETRAS -->
+                <label style="display: inline-block; width: 100px; text-align: left; margin-right: 5px; margin-bottom: 5px;">Nombre:</label>
+                <input type="text" class="txt" id="txtNombre" required onkeyup="usuarioGeneradoAutomaticamente()" name="txtNombre" style="margin-bottom: 5px;" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+" title="Solo letras" oninput="this.value=this.value.replace(/[^A-Za-zÁÉÍÓÚáéíóúÑñ\s]/g,'');">
                 <br>
+                <!-- APELLIDOS SOLO LETRAS -->
+                <label style="display: inline-block; width: 100px; text-align: left; margin-right: 5px; margin-bottom: 5px;">Apellidos:</label>
+                <input type="text" class="txt" id="txtApellidos" required onkeyup="usuarioGeneradoAutomaticamente()" name="txtApellidos" style="margin-bottom: 5px;" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+" title="Solo letras" oninput="this.value=this.value.replace(/[^A-Za-zÁÉÍÓÚáéíóúÑñ\s]/g,'');">
                 <br>
-                <label style="display: inline-block; width: 100px; text-align: left; margin-right: 5px; margin-bottom: 5px;">Nombre:</label> 
-                <input type="text" class="txt" id="txtNombre" required="" onkeyup="usuarioGeneradoAutomaticamente()" name="txtNombre" style="margin-bottom: 5px;">
-                <br>
-                <label style="display: inline-block; width: 100px; text-align: left; margin-right: 5px; margin-bottom: 5px;">Apellidos:</label> 
-                <input type="text" class="txt" id="txtApellidos" required="" onkeyup="usuarioGeneradoAutomaticamente()" name="txtApellidos" style="margin-bottom: 5px;">
-                <br>
-                <label style="display: inline-block; width: 100px; text-align: left; margin-right: 5px; margin-bottom: 5px;">Telefono:</label> 
-                <input type="tel" class="txt" id="txtTelefono" required="" onkeyup="usuarioGeneradoAutomaticamente()" name="txtTelefono" style="margin-bottom: 5px;">
+                <!-- TELÉFONO SOLO NÚMEROS -->
+                <label style="display: inline-block; width: 100px; text-align: left; margin-right: 5px; margin-bottom: 5px;">Telefono:</label>
+                <input type="tel" class="txt" id="txtTelefono" required onkeyup="usuarioGeneradoAutomaticamente()" name="txtTelefono" style="margin-bottom: 5px;" pattern="\d+" title="Solo números" inputmode="numeric" oninput="this.value=this.value.replace(/[^0-9]/g,'');">
                 <br>
                 <label style="display: inline-block; width: 100px; text-align: left; margin-right: 5px; margin-bottom: 5px;">Direccion:</label> 
                 <input type="text" class="txt" id="txtDireccion" required="" onkeyup="usuarioGeneradoAutomaticamente()" name="txtDireccion" style="margin-bottom: 5px;">
@@ -64,11 +68,12 @@
                     </datalist>
                 <br>
                 <br>
-                <label style="display: contents; width: 100px; text-align: left; margin-right: 5px; margin-bottom: 5px;">ID Tarjeta Profecional:</label> 
-                <input type="text" class="txt" id="txtTp" required="" name="txtTp"style="margin-bottom: 5px;">
+                <!-- ID TARJETA PROFESIONAL SOLO NÚMEROS -->
+                <label style="display: contents; width: 100px; text-align: left; margin-right: 5px; margin-bottom: 5px;">ID Tarjeta Profecional:</label>
+                <input type="text" class="txt" id="txtTp" required name="txtTp" style="margin-bottom: 5px;" pattern="\d+" title="Solo números" inputmode="numeric" oninput="this.value=this.value.replace(/[^0-9]/g,'');">
                 <br>
                 <label style="display: contents; width: 100px; text-align: left; margin-right: 5px; margin-bottom: 5px;">Contraseña:</label> 
-                <input type="password" class="txt" id="txtContrasena" required="" onkeyup="coincidirContrasena()"style="margin-bottom: 5px;">
+                <input type="password" class="txt" id="txtContrasena" required minlength="8" onkeyup="coincidirContrasena()" style="margin-bottom: 5px;">
                 <br>
                 <label style="display: contents; width: 100px; text-align: left; margin-right: 5px; margin-bottom: 5px;">Repita la Contraseña:</label> 
                 <input type="password" class="txt" id="txtRepetirContrasena" required="" onkeyup="coincidirContrasena()" name="txtContrasena"style="margin-bottom: 5px;">

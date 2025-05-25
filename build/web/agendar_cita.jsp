@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Map" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
     String rol = (String) session.getAttribute("rol");
     if (rol == null || !"paciente".equals(rol)) {
@@ -32,7 +31,9 @@
         <!-- Fecha -->
         <div class="mb-3">
             <label for="fecha" class="form-label">Fecha</label>
-            <input type="date" class="form-control" id="fecha" name="fecha" required value="<%= request.getParameter("fecha") != null ? request.getParameter("fecha") : "" %>">
+            <input type="date" class="form-control" id="fecha" name="fecha" required 
+    min="<%= java.time.LocalDate.now() %>"
+    value="<%= request.getParameter("fecha") != null ? request.getParameter("fecha") : "" %>">
         </div>
         <!-- Especialidad -->
         <div class="mb-3">

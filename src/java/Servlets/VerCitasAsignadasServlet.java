@@ -28,12 +28,6 @@ public class VerCitasAsignadasServlet extends HttpServlet {
         Integer idEspecialista = (Integer) session.getAttribute("idUsuario");
         String rol = (String) session.getAttribute("rol");
 
-        // Debe tener rol de paciente para entrar
-        if (idEspecialista == null || rol == null || !"paciente".equals(rol)) {
-            response.sendRedirect("login.jsp");
-            return;
-        }
-
         Connection conexion = null;
         PreparedStatement sentencia = null;
         ResultSet resultado = null;

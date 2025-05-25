@@ -132,9 +132,10 @@ async function generarUsuario() {
     var usuarioFinal = "";
 
     if (nombre && apellidos) {
-        var nombreBase = nombre.split(" ")[0];
-        var apellidoBase = apellidos.split(" ")[0];
-        usuarioBase = nombreBase + "." + apellidoBase + "@bussineshealth.com";
+        // Toma la primera letra del primer nombre y la primera letra del primer apellido
+        var nombreBase = nombre.split(" ")[0].charAt(0);
+        var apellidoBase = apellidos.split(" ")[0].charAt(0);
+        usuarioBase = nombreBase + apellidoBase + "@bussineshealth.com";
         usuarioFinal = usuarioBase;
 
         let contador = 1;
@@ -143,11 +144,10 @@ async function generarUsuario() {
         while (existe) {
             let response = await fetch('VerificarUsuarioServlet?usuario=' + encodeURIComponent(usuarioFinal));
             let result = await response.text();
-            console.log("Verificando usuario:", usuarioFinal, "Respuesta:", result.trim());
             if (result.trim() === "false") {
                 existe = false;
             } else {
-                usuarioFinal = nombreBase + "." + apellidoBase + contador + "@bussineshealth.com";
+                usuarioFinal = nombreBase + apellidoBase + contador + "@bussineshealth.com";
                 contador++;
             }
         }
@@ -155,7 +155,6 @@ async function generarUsuario() {
         usuarioFinal = "";
     }
 
-    // Verifica si el campo existe antes de asignar el valor
     var campoUsuario = document.getElementById("usuario_generado");
     if (campoUsuario) {
         campoUsuario.value = usuarioFinal;

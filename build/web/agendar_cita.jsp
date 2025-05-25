@@ -20,20 +20,20 @@
     <form action="AgendarCitaServlet" method="post">
         <!-- Fecha -->
         <div class="mb-3">
-            <label for="fecha" class="form-label">Fecha:</label>
-            <input type="date" id="fecha" name="fecha" class="form-control" required>
+            <label for="fecha" class="form-label">Fecha</label>
+            <input type="date" class="form-control" id="fecha" name="fecha" required>
         </div>
 
         <!-- Hora -->
         <div class="mb-3">
-            <label for="hora" class="form-label">Hora:</label>
-            <input type="time" id="hora" name="hora" class="form-control" required>
+            <label for="hora" class="form-label">Hora</label>
+            <input type="time" class="form-control" id="hora" name="hora" required>
         </div>
 
         <!-- Especialidad -->
         <div class="mb-3">
-            <label for="especialidad" class="form-label">Especialidad:</label>
-            <select id="especialidad" name="especialidad" class="form-select" required>
+            <label for="especialidad" class="form-label">Especialidad</label>
+            <select class="form-control" id="especialidad" name="especialidad" required>
                 <option value="">Seleccione una especialidad</option>
                 <option value="Cardiología">Cardiología</option>
                 <option value="Dermatología">Dermatología</option>
@@ -60,12 +60,12 @@
 
         <!-- Motivo de la cita -->
         <div class="mb-3">
-            <label for="motivo" class="form-label">Motivo de la cita:</label>
-            <textarea id="motivo" name="motivo" class="form-control" rows="2" maxlength="255" required></textarea>
+            <label for="motivo" class="form-label">Motivo de la cita</label>
+            <input type="text" class="form-control" id="motivo" name="motivo" required>
         </div>
 
         <!-- Botón para verificar disponibilidad -->
-        <button type="submit" class="btn btn-primary w-100" onclick="document.getElementById('accion').value='verificar';">Verificar Disponibilidad</button>
+        <button type="submit" class="btn btn-primary">Agendar Cita</button>
 
         <!-- Mensaje -->
         <div id="mensaje">

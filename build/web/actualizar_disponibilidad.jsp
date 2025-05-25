@@ -7,9 +7,6 @@
 
     Integer idEspecialista = (Integer) session.getAttribute("idUsuario");
     String nombreEspecialista = (String) session.getAttribute("nombre");
-
-    // Aquí iría la lógica para mostrar la disponibilidad actual del especialista
-    // y un formulario para que pueda modificarla.
 %>
 <!DOCTYPE html>
 <html lang="es">
@@ -26,18 +23,40 @@
     <h1>Actualizar Disponibilidad, <%= nombreEspecialista %></h1>
     <div class="container-disponibilidad">
         <p>Aquí podrás ver y modificar tu horario de atención.</p>
+        <!-- Mostrar disponibilidad actual -->
+        <%
+            String disponibilidadActual = (String) request.getAttribute("disponibilidadActual");
+            if (disponibilidadActual != null && !disponibilidadActual.isEmpty()) {
+        %>
+            <div class="alert alert-info">
+                <strong>Disponibilidad actual:</strong> <%= disponibilidadActual %>
+            </div>
+        <%
+            }
+        %>
+        <!-- Mensaje de éxito o error -->
+        <%
+            String mensaje = (String) request.getAttribute("mensaje");
+            if (mensaje != null && !mensaje.isEmpty()) {
+        %>
+            <div class="alert <%= mensaje.contains("éxito") ? "alert-success" : "alert-danger" %>">
+                <%= mensaje %>
+            </div>
+        <%
+            }
+        %>
         <form action="GuardarDisponibilidadServlet" method="post" class="row g-3">
             <div class="col-12">
                 <label for="fecha" class="form-label">Fecha</label>
-                <input type="date" class="form-control" id="fecha" name="fecha">
+                <input type="date" class="form-control" id="fecha" name="fecha" required>
             </div>
             <div class="col-12">
                 <label for="hora_inicio" class="form-label">Hora de Inicio</label>
-                <input type="time" class="form-control" id="hora_inicio" name="hora_inicio">
+                <input type="time" class="form-control" id="hora_inicio" name="hora_inicio" required>
             </div>
             <div class="col-12">
                 <label for="hora_fin" class="form-label">Hora de Fin</label>
-                <input type="time" class="form-control" id="hora_fin" name="hora_fin">
+                <input type="time" class="form-control" id="hora_fin" name="hora_fin" required>
             </div>
             <div class="col-12">
                 <button type="submit" class="btn btn-primary btn-guardar">Guardar Disponibilidad</button>

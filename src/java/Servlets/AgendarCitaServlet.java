@@ -209,9 +209,23 @@ public class AgendarCitaServlet extends HttpServlet {
         try {
             if (paciente.email != null && !paciente.email.isEmpty()) {
                 String asunto = "Confirmación de Cita Médica";
-                String cuerpo = String.format("Hola %s,\n\nTu cita ha sido agendada para el %s a las %s con %s (%s).\nGracias por usar nuestro servicio.",
-                        paciente.nombre, fecha, hora, especialista.nombre, especialista.especialidad);
-                EmailSender.enviarEmail(paciente.email, asunto, cuerpo);
+                String cuerpo = "<html><body style='font-family: Arial, sans-serif; color: #333;'>"
+                        + "<h2 style='color:#0069d9;'>Confirmación de su cita médica</h2>"
+                        + "<p>Estimado/a <strong>" + paciente.nombre + "</strong>,</p>"
+                        + "<p>Su cita ha sido agendada exitosamente con la siguiente información:</p>"
+                        + "<table style='border-collapse:collapse; margin-bottom: 15px;'>"
+                        + "<tr><td style='padding:4px 8px;'><b>Fecha:</b></td><td style='padding:4px 8px;'>" + fecha + "</td></tr>"
+                        + "<tr><td style='padding:4px 8px;'><b>Hora:</b></td><td style='padding:4px 8px;'>" + hora + "</td></tr>"
+                        + "<tr><td style='padding:4px 8px;'><b>Especialista:</b></td><td style='padding:4px 8px;'>" + especialista.nombre + "</td></tr>"
+                        + "<tr><td style='padding:4px 8px;'><b>Especialidad:</b></td><td style='padding:4px 8px;'>" + especialista.especialidad + "</td></tr>"
+                        + "</table>"
+                        + "<p>Le recomendamos presentarse al menos <b>10 minutos antes</b> de la hora programada.</p>"
+                        + "<p>Si necesita cancelar o reprogramar su cita, puede responder a este correo o comunicarse con nuestro centro de atención.</p>"
+                        + "<hr style='margin:20px 0;'>"
+                        + "<p style='color:#888;'>Gracias por confiar en nuestro sistema de gestión de citas médicas.</p>"
+                        + "<p>Atentamente,<br><b>Equipo de Gestión de Citas Médicas</b></p>"
+                        + "</body></html>";
+                EmailSender.enviarEmailHTML(paciente.email, asunto, cuerpo);
             }
             if (paciente.telefono != null && !paciente.telefono.isEmpty()) {
                 String sms = String.format("Cita agendada: %s %s con %s (%s).", fecha, hora, especialista.nombre, especialista.especialidad);

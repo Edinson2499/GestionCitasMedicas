@@ -31,6 +31,10 @@ public class GuardarEdicionUsuarioServlet extends HttpServlet {
         String apellido = request.getParameter("apellido");
         String tipoUsuario = request.getParameter("tipo_usuario");
         String especialidad = request.getParameter("especialidad");
+        String contrasena = request.getParameter("contrasena");
+        String telefono = request.getParameter("telefono");
+        String direccion = request.getParameter("direccion");
+        String correo = request.getParameter("correo");
         int id = Integer.parseInt(request.getParameter("id"));
 
         Connection conexion = null;
@@ -40,11 +44,16 @@ public class GuardarEdicionUsuarioServlet extends HttpServlet {
         try {
             conexion = ConexionBD.conectar();
             if (conexion != null) {
-                String consulta = "UPDATE Usuario SET nombre = ?, apellidos = ? WHERE id = ?";
+                String consulta = "UPDATE Usuario SET nombre = ?, apellidos = ?, tipo_usuario = ?, contrasena = ?, telefono = ?, direccion = ?, correo = ? WHERE id = ?";
                 sentencia = conexion.prepareStatement(consulta);
                 sentencia.setString(1, nombre);
                 sentencia.setString(2, apellido);
-                sentencia.setInt(3, Integer.parseInt(idUsuario));
+                sentencia.setString(3, tipoUsuario);
+                sentencia.setString(4, contrasena);
+                sentencia.setString(5, telefono);
+                sentencia.setString(6, direccion);
+                sentencia.setString(7, correo);
+                sentencia.setInt(8, Integer.parseInt(idUsuario));
                 int filasAfectadas = sentencia.executeUpdate();
                 if (filasAfectadas > 0) {
                     mensaje = "Usuario actualizado con éxito.";

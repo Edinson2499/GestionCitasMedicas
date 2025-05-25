@@ -83,21 +83,18 @@ public class EmailSender {
     public static boolean enviarEmailConfirmacionCita(String emailPaciente, String nombrePaciente, String fechaHoraCita, String especialidadCita) {
         String asunto = "Confirmación de cita médica";
         String contenidoHTML = "<html><body style='font-family: Arial, sans-serif; color: #333;'>"
-                + "<h2 style='color:#0069d9;'>Confirmación de su cita médica</h2>"
+                + "<h2 style='color:#0069d9;'>¡Su cita médica ha sido confirmada!</h2>"
                 + "<p>Estimado/a <strong>" + nombrePaciente + "</strong>,</p>"
-                + "<p>Nos complace informarle que su cita ha sido <b>confirmada</b> con los siguientes detalles:</p>"
-                + "<ul>"
-                + "<li><b>Fecha y hora:</b> " + fechaHoraCita + "</li>"
-                + "<li><b>Especialidad:</b> " + especialidadCita + "</li>"
-                + "</ul>"
-                + "<p>Le recomendamos presentarse al menos <b>10 minutos antes</b> de la hora programada.</p>"
-                + "<p>Si tiene alguna duda o necesita reprogramar su cita, por favor comuníquese con nuestro equipo de atención.</p>"
+                + "<p>Le informamos que su cita ha sido registrada exitosamente con los siguientes datos:</p>"
+                + "<table style='border-collapse:collapse;'>"
+                + "<tr><td style='padding:4px 8px;'><b>Fecha y hora:</b></td><td style='padding:4px 8px;'>" + fechaHoraCita + "</td></tr>"
+                + "<tr><td style='padding:4px 8px;'><b>Especialidad:</b></td><td style='padding:4px 8px;'>" + especialidadCita + "</td></tr>"
+                + "</table>"
+                + "<p>Por favor, preséntese al menos <b>10 minutos antes</b> de la hora programada.</p>"
+                + "<p>Si necesita cancelar o reprogramar su cita, contáctenos respondiendo a este correo o llamando a nuestro centro de atención.</p>"
                 + "<br>"
                 + "<p style='color:#888;'>Gracias por confiar en nuestro servicio.</p>"
                 + "<p>Atentamente,<br><b>Equipo de Gestión de Citas Médicas</b></p>"
-                // Logo al final (ruta relativa, debe ser accesible públicamente)
-                + "<div style='margin-top:30px;text-align:center;'>"
-                + "</div>"
                 + "</body></html>";
         try {
             enviarEmailHTML(emailPaciente, asunto, contenidoHTML);

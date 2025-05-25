@@ -72,7 +72,7 @@ CREATE TABLE DisponibilidadEspecialista (
 ALTER TABLE Cita ADD COLUMN descripcion TEXT;
 
 INSERT INTO Usuario (nombre, apellidos, telefono, direccion, correo, contrasena, usuario_generado, tipo_usuario)
-VALUES ('Administrador', 'Principal', '0000000000', 'Oficina Central', 'admin01@admin.com', 'admin01', 'admin01', 'administrador');
+VALUES ('Administrador', 'Principal', '0000000000', 'Oficina Central', 'admin01@admin.com', '12345678', 'admin01', 'administrador');
 
 INSERT INTO Administrador (id_usuario)
 SELECT id FROM Usuario WHERE usuario_generado = 'admin01';

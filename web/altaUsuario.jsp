@@ -1,15 +1,10 @@
-<%-- 
-    Document   : altaUsuario
-    Created on : 17/08/2020, 09:16:34 PM
-    Author     : Emmanuel
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Registro U</title>
+        <link rel="icon" href="imagenes/Logo.png" type="image/png">
         <link rel="stylesheet" href="css/estilosAltaUsuario.css" type="text/css" media="all">
         <%
             response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
@@ -23,7 +18,7 @@
             <input type="hidden" name="rol" value="paciente">
             <h1>Registro de Usuarios</h1>
             <br>
-            <label>ID:</label> <input type="text" class="txt" id="txtId" required="" name="txtId" style="margin-bottom: 5px;">
+            <label style="display: inline-block; width: 100px; text-align: left; margin-right: 5px;">ID:</label> <input type="text" class="txt" id="txtId" required="" name="txtId" style="margin-bottom: 5px;">
             <br>
             <br>
             <label style="display: inline-block; width: 100px; text-align: left; margin-right: 5px;">Nombre:</label> 
@@ -38,6 +33,8 @@
             <label style="display: inline-block; width: 100px; text-align: left; margin-right: 5px;">Direccion:</label> 
             <input type="text" class="txt" id="txtDireccion" required="" onkeyup="usuarioGeneradoAutomaticamente()" name="txtDireccion" style="display: inline-block; margin-bottom: 5px;">
             <br>
+            <label style="display: inline-block; width: 100px; text-align: left; margin-right: 5px;">Correo:</label> 
+            <input type="text" class="txt" id="txtEmail" required="" onkeyup="usuarioGeneradoAutomaticamente()" name="txtEmail" style="display: inline-block; margin-bottom: 5px;">
             <br>
             <label style="display: inline-block; width: 100px; text-align: left; margin-right: 5px;">Contraseña:</label> 
             <input type="password" class="txt" id="txtContrasena" required="" onkeyup="coincidirContrasena()" style="display: inline-block; margin-bottom: 5px;">
@@ -49,7 +46,8 @@
                 <label class="avisoContrasena" id="avisoContrasena"> ------- </label>
                 <br>
                 <br>
-                <label>Usuario Generado Automaticamente:</label> <input type="text" class="txt" id="txtUsuarioGeneradoAutomaticamente" required="" readonly="" name="txtUsuarioGeneradoAutomaticamente">
+                <label style="display: contents; width: 100px; text-align: left; margin-right: 5px;">Usuario Generado Automaticamente:</label> 
+                <input type="text" class="txt" id="txtUsuarioGeneradoAutomaticamente" name="txtUsuarioGeneradoAutomaticamente" readonly>
                 <br>
                 <br>
                 
@@ -59,5 +57,5 @@
             </form>
         </div>
     </body>
-    <script src="js/funcionesAltaUsuario.js"></script>
+    <script src="js/funcionesAltaUsuario.js" ></script>
 </html>

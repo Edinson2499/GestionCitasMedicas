@@ -11,8 +11,8 @@ import jakarta.mail.internet.MimeMessage;
 
 public class EmailSender {
 
-    private static final String USUARIO_GMAIL = "javiercito9456@gmail.com"; // Reemplaza con tu cuenta de Gmail
-    private static final String CONTRASENA_GMAIL = "mcnl ochd uqxs kruv"; // Reemplaza con tu contraseña de Gmail o contraseña de aplicación
+    private static final String USUARIO_GMAIL = "bussineshealthserviciosdesalud@gmail.com"; // Reemplaza con tu cuenta de Gmail
+    private static final String CONTRASENA_GMAIL = "rljh eriy ficm dvuz"; // Reemplaza con tu contraseña de Gmail o contraseña de aplicación
 
     // Método privado para obtener las propiedades SMTP
     private static Properties obtenerPropiedadesSMTP() {

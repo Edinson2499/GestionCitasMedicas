@@ -73,27 +73,20 @@ body {
 
 .btn-volver {
     position: fixed;
-    top: 12vh;
-    left: 2vw;
-    z-index: 1100;
-    width: 100px;
-    height: 100px;
-    background: url('../imagenes/Logo.png') center center no-repeat;
-    background-size: 80% 80%;
-    color: #fff;
-    border-radius: 50%;
+    top: 20px;
+    left: 20px;
+    width: 50px;
+    height: 50px;
+    background: url('../imagenes/Atras.png') no-repeat center center;
+    background-size: contain;
     border: none;
-    transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+    border-radius: 50%;
+    z-index: 2000;
     cursor: pointer;
-    outline: none;
-    font-size: 0; /* Oculta texto si lo hay */
-    padding: 0;
+    transition: background 0.3s;
 }
 .btn-volver:hover {
-    background:  url('../imagenes/Atras_hover.png') center center no-repeat;
-    background-size: 80% 80%;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
-    transform: scale(1.07);
+    background-image: url('../imagenes/Atras_hover.png');
 }
 
 /* ==============================
@@ -153,6 +146,18 @@ body {
         left: 2vw;
         font-size: 0.95rem;
         padding: 0.3rem 0.8rem;
+    }
+}
+@media (max-width: 600px) {
+    .btn-volver {
+        width: 40px;
+        height: 40px;
+        top: 10px;
+        left: 10px;
+        background-image: url('../imagenes/Atras_C.png');
+    }
+    .btn-volver:hover {
+        background-image: url('../imagenes/Atras_hover_C.png');
     }
 }
 

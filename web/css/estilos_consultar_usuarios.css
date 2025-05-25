@@ -14,6 +14,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-size: 100vw 100vh;
 }
 
 /* ================================
@@ -234,5 +235,73 @@ a.btn-back:hover {
     a.btn-back {
         width: 40px;
         height: 40px;
+    }
+}
+
+/* Bloque responsive para fondo y botón de regreso en móvil */
+@media (max-width: 600px) {
+    body {
+        background-image: url('../imagenes/Menus_C.png');
+        background-size: cover; /* Cambia esto */
+        background-repeat: no-repeat;
+        background-position: center center;
+        min-height: 100vh;
+        min-width: 100vw;
+        overflow-x: hidden;
+    }
+    a.btn-back {
+        width: 45px !important;
+        height: 45px !important;
+        background-image: url('../imagenes/Atras.png') !important;
+        background-size: contain !important;
+        background-repeat: no-repeat !important;
+        background-position: center !important;
+        left: 10px !important;
+        top: 10px !important;
+    }
+    a.btn-back:hover {
+        background-image: url('../imagenes/Atras_hover.png') !important;
+    }
+
+    table, thead, tbody, th, td, tr {
+        display: block;
+        width: 100%;
+    }
+    thead {
+        display: none;
+    }
+    tr {
+        margin-bottom: 1.5rem;
+        border: 1px solid #007bff; /* Color del encabezado */
+        border-radius: 10px;
+        background: #fff;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+        padding: 10px 0;
+        overflow: hidden;
+    }
+    td {
+        padding: 8px 16px;
+        text-align: left;
+        position: relative;
+        border: none !important;
+        border-left: 4px solid #007bff; /* Simula encabezado */
+        margin-bottom: 6px;
+        background: #f5faff; /* Suave azul para simular encabezado */
+    }
+    td:before {
+        content: attr(data-label);
+        font-weight: bold;
+        display: block;
+        margin-bottom: 4px;
+        color: #007bff;
+    }
+    /* Opcional: solo el primer td de cada tarjeta con fondo más fuerte */
+    td:first-child {
+        background: #007bff;
+        color: #fff;
+        border-left: 4px solid #007bff;
+    }
+    td:first-child:before {
+        color: #fff;
     }
 }

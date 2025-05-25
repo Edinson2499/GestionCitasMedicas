@@ -13,7 +13,9 @@ body {
     background-size: cover;
     background-position: center;
     min-height: 100vh;
-    backdrop-filter: blur(2px); /* Suaviza el fondo */
+    background-size: 100vw 100vh;
+    /* Quitar difuminación */
+    /* backdrop-filter: blur(2px); */
 }
 
 /* ===========================================
@@ -40,7 +42,7 @@ div {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     width: 90%;
     max-width: 1000px;
-    overflow-x: auto; /* Permite desplazamiento horizontal si es necesario */
+    overflow-x: auto;
 }
 
 /* ===========================================
@@ -175,28 +177,38 @@ a:hover {
     }
 }
 
-@media (max-width: 480px) {
-    h1 {
-        font-size: 18px;
+@media (max-width: 600px) {
+    body {
+        background-image: url('../imagenes/Menus_C.png');
+        background-size: 100vw 100vh;
+        background-repeat: no-repeat;
+        background-position: center center;
+        min-height: 100vh;
+        min-width: 100vw;
+        overflow-x: hidden;
     }
-
-    table {
-        font-size: 13px;
-    }
-
-    th, td {
-        padding: 8px;
-    }
-
-    div {
-        padding: 15px;
-    }
-
     a {
         width: 45px;
         height: 45px;
         top: 10px;
         left: 10px;
+        background-image: url('../imagenes/Atras.png');
+        background-size: contain;
+    }
+    a:hover {
+        background-image: url('../imagenes/Atras_hover.png');
+    }
+    h1 {
+        font-size: 18px;
+    }
+    div {
+        padding: 12px;
+    }
+    table {
+        font-size: 13px;
+    }
+    th, td {
+        padding: 7px;
     }
 }
 

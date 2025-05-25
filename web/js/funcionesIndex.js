@@ -9,7 +9,7 @@ function cargarAltaUsuarioE(){
     document.getElementById('contenidoDinamico').innerHTML += '<br><a href="index.html" class="menu move-to-top-inicioregistro"></a>';
 
     // Mostrar el botón volver
-    document.querySelector('.btn-volver').style.display = 'block';
+    document.querySelector('.btn-volver').style.display = 'block'; // para mostrar
 }
 
 function cargarAltaUsuario(){
@@ -17,7 +17,7 @@ function cargarAltaUsuario(){
     document.getElementById('contenidoDinamico').innerHTML += '<br><a href="index.html" class="menu move-to-top-inicioregistro"></a>';
 
     // Mostrar el botón volver
-    document.querySelector('.btn-volver').style.display = 'block';
+    document.querySelector('.btn-volver').style.display = 'block'; // para mostrar
 }
 
 
@@ -40,7 +40,7 @@ function cargarLogin() {
             contenido.insertAdjacentHTML('beforeend', '<br><a href="index.html" class="menu move-to-top-inicio"></a>');
 
             // Mostrar el botón volver
-            document.querySelector('.btn-volver').style.display = 'block';
+            document.querySelector('.btn-volver').style.display = 'block'; // para mostrar
         })
         .catch(error => console.error("Error al cargar login.jsp:", error));
 }
@@ -138,5 +138,5 @@ function volverMenuCentrado() {
     document.getElementById("contenidoDinamico").innerHTML = "";
 
     // Ocultar el botón volver
-    document.querySelector('.btn-volver').style.display = 'none';
+    document.querySelector('.btn-volver').style.display = 'none';  // para ocultar
 }

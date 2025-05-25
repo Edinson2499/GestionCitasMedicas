@@ -2,7 +2,8 @@
 <%@ page import="java.sql.*, SQL.ConexionBD" %>
 <%
     Integer idPaciente = (Integer) session.getAttribute("idUsuario");
-    if (idPaciente == null) {
+    String rol = (String) session.getAttribute("rol");
+    if (idPaciente == null || rol == null || !"paciente".equals(rol)) {
         response.sendRedirect("login.jsp");
         return;
     }

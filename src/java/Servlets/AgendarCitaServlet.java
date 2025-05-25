@@ -258,16 +258,29 @@ public class AgendarCitaServlet extends HttpServlet {
                         + "<p>Si necesita cancelar o reprogramar su cita, puede responder a este correo o comunicarse con nuestro centro de atención.</p>"
                         + "<hr style='margin:20px 0;'>"
                         + "<p style='color:#888;'>Gracias por confiar en nuestro sistema de gestión de citas médicas.</p>"
-                        + "<p>Atentamente,<br><b>Equipo de Gestión de Citas Médicas</b></p>"
+                        + "<br><hr style='margin:20px 0;'>"
+                        + "<div style='font-size:14px; color:#222;'>"
+                        + "<b>Business Health</b><br>"
+                        + "Centro de Salud<br>"
+                        + "<img src='https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png' alt='github icon' style='width:20px;vertical-align:middle;'>"
+                        + " <span style='color:#555;'>E: <a href='mailto:BusinessHealth@gmail.com'>BusinessHealth@gmail.com</a></span><br>"
+                        + "A: Business Health<br>"
+                        + "<a href='https://github.com/Shadowfiend2504/GestionCitasMedicas' style='color:#0069d9;'>www.BusynessHealth.com</a><br>"
+                        + "<img src='https://raw.githubusercontent.com/Shadowfiend2504/GestionCitasMedicas/refs/heads/main/web/imagenes/ChatGPT%20Image%2025%20may%202025%2C%2012_21_04.png' alt='Banner' style='width:400px; margin-top:10px;'>"
+                        + "</div>"
                         + "</body></html>";
                 EmailSender.enviarEmailHTML(paciente.email, asunto, cuerpo);
             }
             if (paciente.telefono != null && !paciente.telefono.isEmpty()) {
                 LOGGER.info("Enviando SMS a: " + paciente.telefono);
-                String sms = String.format("Cita agendada: %s %s con %s (%s).", fecha, hora, especialista.nombre, especialista.especialidad);
-                SMSSender.enviarSMS(paciente.telefono, sms);
-            } else {
-                LOGGER.warning("No se envió SMS: teléfono vacío o nulo.");
+                String sms = String.format(
+                    "Estimado/a %s, su cita médica ha sido agendada para el %s a las %s con el especialista %s (%s). Por favor, preséntese 10 minutos antes. Si requiere cancelar o reprogramar, contáctenos. Atentamente, Business Health.",
+                    paciente.nombre, fecha, hora, especialista.nombre, especialista.especialidad
+                );
+                boolean enviado = SMSSender.enviarSMS(paciente.telefono, sms);
+                if (!enviado) {
+                    LOGGER.warning("No se pudo enviar el SMS a " + paciente.telefono);
+                }
             }
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, "Error enviando notificaciones", e);

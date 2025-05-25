@@ -104,7 +104,7 @@
                             </span>
                         </td>
                         <td>
-                            <% if (!"cancelada".equals(rs.getString("estado"))) { %>
+                            <% if (!"cancelada".equals(rs.getString("estado")) && !"realizada".equals(rs.getString("estado"))) { %>
                                 <button type="button" class="btn btn-danger btn-sm btn-cancelar-modal" data-id="<%= rs.getInt("id") %>">Cancelar</button>
                             <% } %>
                             <% if ("confirmada".equals(rs.getString("estado"))) { %>

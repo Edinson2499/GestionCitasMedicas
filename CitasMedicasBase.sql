@@ -68,4 +68,11 @@ CREATE TABLE DisponibilidadEspecialista (
     hora_fin TIME NOT NULL,
     FOREIGN KEY (id_especialista) REFERENCES Usuario(id)
 );
-SELECT nombre, usuario_generado FROM Usuario;
+
+ALTER TABLE Cita ADD COLUMN descripcion TEXT;
+
+INSERT INTO Usuario (nombre, apellidos, telefono, direccion, correo, contrasena, usuario_generado, tipo_usuario)
+VALUES ('Administrador', 'Principal', '0000000000', 'Oficina Central', 'admin01@admin.com', 'admin01', 'admin01', 'administrador');
+
+INSERT INTO Administrador (id_usuario)
+SELECT id FROM Usuario WHERE usuario_generado = 'admin01';

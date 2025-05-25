@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.List" %>
+<%@ page import="java.util.Map" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,19 +18,14 @@
 <h1>Agendar Cita Médica</h1>
 
 <main>
+    <!-- Formulario para consultar disponibilidad -->
     <form action="AgendarCitaServlet" method="post">
+        <input type="hidden" name="accion" value="consultar">
         <!-- Fecha -->
         <div class="mb-3">
             <label for="fecha" class="form-label">Fecha</label>
-            <input type="date" class="form-control" id="fecha" name="fecha" required>
+            <input type="date" class="form-control" id="fecha" name="fecha" required value="<%= request.getParameter("fecha") != null ? request.getParameter("fecha") : "" %>">
         </div>
-
-        <!-- Hora -->
-        <div class="mb-3">
-            <label for="hora" class="form-label">Hora</label>
-            <input type="time" class="form-control" id="hora" name="hora" required>
-        </div>
-
         <!-- Especialidad -->
         <div class="mb-3">
             <label for="especialidad" class="form-label">Especialidad</label>
@@ -57,53 +53,86 @@
                 <option value="Nefrología">Nefrología</option>
             </select>
         </div>
-
         <!-- Motivo de la cita -->
         <div class="mb-3">
             <label for="motivo" class="form-label">Motivo de la cita</label>
-            <input type="text" class="form-control" id="motivo" name="motivo" required>
+            <input type="text" class="form-control" id="motivo" name="motivo" required value="<%= request.getParameter("motivo") != null ? request.getParameter("motivo") : "" %>">
         </div>
-
-        <!-- Botón para verificar disponibilidad -->
-        <button type="submit" class="btn btn-primary">Agendar Cita</button>
-
-        <!-- Mensaje -->
+        <button type="submit" class="btn btn-primary">Consultar Disponibilidad</button>
         <div id="mensaje">
             <% if (request.getAttribute("mensaje") != null) { %>
                 <p><%= request.getAttribute("mensaje") %></p>
             <% } %>
         </div>
+    </form>
 
-        <!-- Especialistas disponibles (solo si existen) -->
-        <% if (request.getAttribute("especialistasDisponibles") != null) {
-            List<String> especialistas = (List<String>) request.getAttribute("especialistasDisponibles");
-        %>
-            <h2 class="mt-4">Especialistas Disponibles:</h2>
-            <ul class="list-group mb-3">
-                <% for (String especialista : especialistas) { %>
-                    <li class="list-group-item"><%= especialista %></li>
-                <% } %>
-            </ul>
+    <!-- Mostrar horarios disponibles solo si existen -->
+    <% if (request.getAttribute("disponibilidadEspecialistas") != null) {
+        Map<String, List<String>> disponibilidad = (Map<String, List<String>>) request.getAttribute("disponibilidadEspecialistas");
+        boolean hayHorarios = false;
+        for (List<String> horarios : disponibilidad.values()) {
+            if (!horarios.isEmpty()) { hayHorarios = true; break; }
+        }
+    %>
+        <h2 class="mt-4">Horarios Disponibles:</h2>
+        <% if (hayHorarios) { %>
+        <form action="AgendarCitaServlet" method="post">
+            <input type="hidden" name="accion" value="agendar">
+            <input type="hidden" name="especialidad" value="<%= request.getParameter("especialidad") %>">
+            <input type="hidden" name="fecha" value="<%= request.getParameter("fecha") %>">
+            <input type="hidden" name="motivo" value="<%= request.getParameter("motivo") %>">
             <div class="mb-3">
-                <label for="especialistaSeleccionado" class="form-label">Seleccione un especialista (opcional):</label>
-                <select id="especialistaSeleccionado" name="especialistaSeleccionado" class="form-select">
-                    <option value="">Cualquier especialista disponible</option>
-                    <% for (String especialista : especialistas) { %>
+                <label for="especialistaSeleccionado" class="form-label">Especialista:</label>
+                <select id="especialistaSeleccionado" name="especialistaSeleccionado" class="form-select" required>
+                    <% for (String especialista : disponibilidad.keySet()) { %>
                         <option value="<%= especialista %>"><%= especialista %></option>
                     <% } %>
                 </select>
             </div>
-            <button type="submit" class="btn btn-primary w-100" onclick="document.getElementById('accion').value='agendar';">Agendar Cita</button>
-            <input type="hidden" id="accion" name="accion" value="verificar">
+            <div class="mb-3">
+                <label for="horarioSeleccionado" class="form-label">Horario:</label>
+                <select id="horarioSeleccionado" name="horarioSeleccionado" class="form-select" required>
+                    <% 
+                    // Por defecto, muestra los horarios del primer especialista
+                    List<String> horarios = disponibilidad.values().iterator().next();
+                    for (String horario : horarios) { %>
+                        <option value="<%= horario %>"><%= horario %></option>
+                    <% } %>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-success">Agendar Cita</button>
+        </form>
+        <% } else { %>
+            <div class="alert alert-warning">No hay horarios disponibles para los especialistas seleccionados en esa fecha.</div>
         <% } %>
-    </form>
+    <% } %>
 </main>
 
-
-<script>
-
-</script>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<% if (request.getAttribute("disponibilidadEspecialistas") != null) { %>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    var especialistaSelect = document.getElementById("especialistaSeleccionado");
+    var horarioSelect = document.getElementById("horarioSeleccionado");
+
+    function actualizarHorarios() {
+        var especialista = especialistaSelect.value;
+        var horarios = disponibilidadEspecialistas[especialista] || [];
+        horarioSelect.innerHTML = "";
+        horarios.forEach(function(horario) {
+            var opt = document.createElement("option");
+            opt.value = horario;
+            opt.textContent = horario;
+            horarioSelect.appendChild(opt);
+        });
+    }
+
+    if (especialistaSelect && horarioSelect) {
+        especialistaSelect.addEventListener("change", actualizarHorarios);
+        actualizarHorarios(); // Inicializa con el primero
+    }
+});
+</script>
+<% } %>
 </body>
 </html>

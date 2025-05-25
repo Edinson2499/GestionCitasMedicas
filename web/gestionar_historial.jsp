@@ -65,6 +65,7 @@
                         <th>Especialista</th>
                         <th>Especialidad</th>
                         <th>Motivo</th>
+                        <th>Descripción</th>
                         <th>Estado</th>
                     </tr>
                 </thead>
@@ -75,7 +76,7 @@
                     rs = null;
                     try {
                         conn = ConexionBD.conectar();
-                        String sql = "SELECT c.fecha_hora, c.motivo, c.estado, " +
+                        String sql = "SELECT c.fecha_hora, c.motivo, c.descripcion, c.estado, " +
                                      "pac.nombre AS nombre_paciente, pac.apellidos AS apellidos_paciente, " +
                                      "esp.nombre AS nombre_especialista, esp.apellidos AS apellidos_especialista, es.especialidad " +
                                      "FROM Cita c " +
@@ -103,6 +104,7 @@
                         <td><%= rs.getString("nombre_especialista") %> <%= rs.getString("apellidos_especialista") %></td>
                         <td><%= rs.getString("especialidad") %></td>
                         <td><%= rs.getString("motivo") %></td>
+                        <td><%= rs.getString("descripcion") != null ? rs.getString("descripcion") : "-" %></td>
                         <td>
                             <span class="badge bg-<%= "realizada".equals(rs.getString("estado")) ? "success" : "danger" %>">
                                 <%= rs.getString("estado") %>
@@ -114,7 +116,7 @@
                         if (!hayResultados) {
                 %>
                     <tr>
-                        <td colspan="6" class="text-center">No hay historial disponible.</td>
+                        <td colspan="7" class="text-center">No hay historial disponible.</td>
                     </tr>
                 <%
                         }

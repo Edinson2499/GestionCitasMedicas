@@ -17,8 +17,20 @@
     <script>
         function mostrarCamposEspecialista() {
             var tipo = document.getElementById("tipo_usuario").value;
-            document.getElementById("camposEspecialista").style.display = (tipo === "especialista") ? "block" : "none";
+            var campos = document.getElementById("camposEspecialista");
+            var especialidad = document.getElementById("txtEspecialidad");
+            if (tipo === "especialista") {
+                campos.style.display = "block";
+                especialidad.required = true;
+            } else {
+                campos.style.display = "none";
+                especialidad.required = false;
+            }
         }
+        // Ejecutar al cargar la página para mantener el estado correcto
+        document.addEventListener("DOMContentLoaded", function () {
+            mostrarCamposEspecialista();
+        });
     </script>
 </head>
 <body>

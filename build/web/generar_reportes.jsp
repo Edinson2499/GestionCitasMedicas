@@ -140,6 +140,119 @@
         }
     %>
 
+    <!-- Procesar actualización de cita si se envió el formulario -->
+    <%
+        String accion = request.getParameter("accion");
+        if ("actualizar".equals(accion)) {
+            String idCita = request.getParameter("id_cita");
+            String descripcion = request.getParameter("descripcion");
+            String nuevoEstado = request.getParameter("nuevo_estado");
+            if (idCita != null && ( "cancelada".equals(nuevoEstado) || "realizada".equals(nuevoEstado) )) {
+                Connection conn2 = null;
+                PreparedStatement ps2 = null;
+                try {
+                    conn2 = SQL.ConexionBD.conectar();
+                    String sqlUpdate = "UPDATE Cita SET estado = ?, descripcion = ? WHERE id = ?";
+                    ps2 = conn2.prepareStatement(sqlUpdate);
+                    ps2.setString(1, nuevoEstado);
+                    ps2.setString(2, descripcion);
+                    ps2.setInt(3, Integer.parseInt(idCita));
+                    ps2.executeUpdate();
+                    out.println("<div class='alert alert-success'>Cita actualizada correctamente.</div>");
+                } catch (Exception e) {
+                    out.println("<div class='alert alert-danger'>Error al actualizar la cita: " + e.getMessage() + "</div>");
+                } finally {
+                    try { if (ps2 != null) ps2.close(); } catch (Exception e) {}
+                    try { if (conn2 != null) conn2.close(); } catch (Exception e) {}
+                }
+            }
+        }
+    %>
+    <!-- Sección para mostrar solo citas pendientes y permitir actualizar -->
+    <%
+        // Solo mostrar citas pendientes
+        Connection connPend = null;
+        PreparedStatement psPend = null;
+        ResultSet rsPend = null;
+        try {
+            connPend = SQL.ConexionBD.conectar();
+            String sql = "SELECT c.id, c.fecha_hora, c.motivo, c.descripcion, u.nombre AS nombre_paciente, u.apellidos AS apellidos_paciente " +
+                         "FROM Cita c " +
+                         "JOIN Usuario u ON c.id_paciente = u.id " +
+                         "WHERE c.id_especialista = ? AND c.estado = 'pendiente' " +
+                         "ORDER BY c.fecha_hora ASC";
+            psPend = connPend.prepareStatement(sql);
+            psPend.setInt(1, idEspecialista);
+            rsPend = psPend.executeQuery();
+    %>
+<div id="citas_pendientes" class="mb-5">
+    <h2 class="mb-3">Citas Pendientes</h2>
+    <div class="table-responsive">
+        <table class="table-reporte-citas">
+            <thead class="table-warning">
+                <tr>
+                    <th>Fecha</th>
+                    <th>Hora</th>
+                    <th>Paciente</th>
+                    <th>Motivo</th>
+                    <th>Descripción</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%
+                    boolean hayPendientes = false;
+                    while (rsPend.next()) {
+                        hayPendientes = true;
+                        java.sql.Timestamp ts = rsPend.getTimestamp("fecha_hora");
+                        String fecha = new java.text.SimpleDateFormat("dd/MM/yyyy").format(ts);
+                        String hora = new java.text.SimpleDateFormat("HH:mm").format(ts);
+                %>
+                <tr>
+                    <form method="post">
+                        <td><%= fecha %></td>
+                        <td><%= hora %></td>
+                        <td><%= rsPend.getString("nombre_paciente") %> <%= rsPend.getString("apellidos_paciente") %></td>
+                        <td><%= rsPend.getString("motivo") %></td>
+                        <td>
+                            <textarea name="descripcion" class="form-control" rows="2" required><%= rsPend.getString("descripcion") != null ? rsPend.getString("descripcion") : "" %></textarea>
+                        </td>
+                        <td>
+                            <input type="hidden" name="id_cita" value="<%= rsPend.getInt("id") %>"/>
+                            <input type="hidden" name="accion" value="actualizar"/>
+                            <select name="nuevo_estado" class="form-select mb-2" required>
+                                <option value="">Seleccionar</option>
+                                <option value="realizada">Marcar como Realizada</option>
+                                <option value="cancelada">Marcar como Cancelada</option>
+                            </select>
+                            <button type="submit" class="btn btn-success btn-sm w-100">Actualizar</button>
+                        </td>
+                    </form>
+                </tr>
+                <%
+                    }
+                    if (!hayPendientes) {
+                %>
+                <tr>
+                    <td colspan="6" class="text-center fst-italic text-muted">No hay citas pendientes.</td>
+                </tr>
+                <%
+                    }
+                %>
+            </tbody>
+        </table>
+    </div>
+</div>
+<%
+        } catch (Exception e) {
+            out.println("<div class='alert alert-danger'>Error al mostrar citas pendientes: " + e.getMessage() + "</div>");
+        } finally {
+            try { if (rsPend != null) rsPend.close(); } catch (Exception e) {}
+            try { if (psPend != null) psPend.close(); } catch (Exception e) {}
+            try { if (connPend != null) connPend.close(); } catch (Exception e) {}
+        }
+    %>
+
 </div>
 
 <!-- Botón Volver -->

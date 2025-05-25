@@ -34,7 +34,7 @@
         ResultSet rs = null;
         try {
             conn = ConexionBD.conectar();
-            String sql = "SELECT c.id, c.fecha_hora, es.especialidad, u.nombre AS nombre_especialista, u.apellidos AS apellidos_especialista " +
+            String sql = "SELECT c.id, c.fecha_hora, c.motivo, es.especialidad, u.nombre AS nombre_especialista, u.apellidos AS apellidos_especialista " +
                          "FROM Cita c " +
                          "JOIN Usuario u ON c.id_especialista = u.id " +
                          "JOIN Especialista es ON u.id = es.id_usuario " +
@@ -65,6 +65,7 @@
                                 <li><p><strong>Fecha y Hora:</strong> <%= fechaHoraFormateada %></p></li>
                                 <li><p><strong>Especialidad:</strong> <%= rs.getString("especialidad") %></p></li>
                                 <li><p><strong>Especialista:</strong> <%= rs.getString("nombre_especialista") %> <%= rs.getString("apellidos_especialista") %></p></li>
+                                <li><p><strong>Motivo:</strong> <%= rs.getString("motivo") %></p></li>
                             </ul>
                             <button type="button" class="btn btn-danger btnCancelar" data-id="<%= rs.getInt("id") %>">Cancelar</button>
                         </div>

@@ -28,7 +28,7 @@
             ResultSet rs = null;
             try {
                 conn = ConexionBD.conectar();
-                String sql = "SELECT c.fecha_hora, c.motivo, c.estado, es.especialidad, u.nombre AS nombre_especialista, u.apellidos AS apellidos_especialista " +
+                String sql = "SELECT c.fecha_hora, c.motivo, c.descripcion, c.estado, es.especialidad, u.nombre AS nombre_especialista, u.apellidos AS apellidos_especialista " +
                              "FROM Cita c " +
                              "JOIN Usuario u ON c.id_especialista = u.id " +
                              "JOIN Especialista es ON u.id = es.id_usuario " +
@@ -51,6 +51,7 @@
                         <th>Especialidad</th>
                         <th>Especialista</th>
                         <th>Motivo</th>
+                        <th>Descripción</th>
                         <th>Estado</th>
                     </tr>
                 </thead>
@@ -63,6 +64,7 @@
                         <td><%= rs.getString("especialidad") %></td>
                         <td><%= rs.getString("nombre_especialista") %> <%= rs.getString("apellidos_especialista") %></td>
                         <td><%= rs.getString("motivo") %></td>
+                        <td><%= rs.getString("descripcion") != null ? rs.getString("descripcion") : "-" %></td>
                         <td>
                             <span class="badge bg-<%= "realizada".equals(rs.getString("estado")) ? "success" : "secondary" %>">
                                 <%= rs.getString("estado") %>

@@ -407,3 +407,14 @@ a.btn-back:hover {
         border-bottom: none;
     }
 }
+
+.txt {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-size: 15px;
+    background-color: #f5f5f5;
+    transition: border-color 0.3s;
+}

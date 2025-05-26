@@ -1,5 +1,5 @@
 -- Crear la base de datos
-CREATE DATABASE IF NOT EXISTS baseDatosCitasMedicasjj;
+CREATE DATABASE IF NOT EXISTS baseDatosCitasMedica252;
 
 -- Usar la base de datos
 USE baseDatosCitasMedicas252;
@@ -71,8 +71,29 @@ CREATE TABLE DisponibilidadEspecialista (
 
 ALTER TABLE Cita ADD COLUMN descripcion TEXT;
 
+-- Administrador
 INSERT INTO Usuario (nombre, apellidos, telefono, direccion, correo, contrasena, usuario_generado, tipo_usuario)
-VALUES ('Administrador', 'Principal', '0000000000', 'Oficina Central', 'admin01@admin.com', '12345678', 'admin01', 'administrador');
+VALUES (
+  'Administrador', 'Principal', '0000000000', 'Oficina Central', 'admin01@admin.com',
+  '$10$ejH7MKceK1V9seo7SMm5pOQEFzDamd2p.dyC.vVK/Cb7ge7zP5gTK',
+  'admin01', 'administrador'
+);
 
-INSERT INTO Administrador (id_usuario)
-SELECT id FROM Usuario WHERE usuario_generado = 'admin01';
+-- Paciente
+INSERT INTO Usuario (nombre, apellidos, telefono, direccion, correo, contrasena, usuario_generado, tipo_usuario)
+VALUES (
+  'Juan', 'Pérez', '3001234567', 'Calle 123', 'juan.perez@email.com',
+  '$10$ejH7MKceK1V9seo7SMm5pOQEFzDamd2p.dyC.vVK/Cb7ge7zP5gTK',
+  'juanperez', 'paciente'
+);
+
+-- Especialista
+INSERT INTO Usuario (nombre, apellidos, telefono, direccion, correo, contrasena, usuario_generado, tipo_usuario)
+VALUES (
+  'Ana', 'Gómez', '3007654321', 'Carrera 456', 'ana.gomez@email.com',
+  '$10$ejH7MKceK1V9seo7SMm5pOQEFzDamd2p.dyC.vVK/Cb7ge7zP5gTK',
+  'anagomez', 'especialista'
+);
+
+
+SELECT * FROM Usuario;

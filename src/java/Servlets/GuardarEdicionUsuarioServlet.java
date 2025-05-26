@@ -15,10 +15,12 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import org.mindrot.jbcrypt.BCrypt;
 
 @WebServlet("/GuardarEdicionUsuarioServlet")
 public class GuardarEdicionUsuarioServlet extends HttpServlet {
 
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         if (session.getAttribute("rol") == null || !"administrador".equals(session.getAttribute("rol"))) {
@@ -31,11 +33,12 @@ public class GuardarEdicionUsuarioServlet extends HttpServlet {
         String apellido = request.getParameter("apellido");
         String tipoUsuario = request.getParameter("tipo_usuario");
         String especialidad = request.getParameter("especialidad");
-        String contrasena = request.getParameter("contrasena");
+        String nuevaContrasena = request.getParameter("contrasena");
         String telefono = request.getParameter("telefono");
         String direccion = request.getParameter("direccion");
         String correo = request.getParameter("correo");
-        int id = Integer.parseInt(request.getParameter("id"));
+        String numeroTarjeta = request.getParameter("numero_tarjeta_profesional");
+        int id = Integer.parseInt(idUsuario);
 
         Connection conexion = null;
         PreparedStatement sentencia = null;
@@ -44,16 +47,31 @@ public class GuardarEdicionUsuarioServlet extends HttpServlet {
         try {
             conexion = ConexionBD.conectar();
             if (conexion != null) {
-                String consulta = "UPDATE Usuario SET nombre = ?, apellidos = ?, tipo_usuario = ?, contrasena = ?, telefono = ?, direccion = ?, correo = ? WHERE id = ?";
-                sentencia = conexion.prepareStatement(consulta);
-                sentencia.setString(1, nombre);
-                sentencia.setString(2, apellido);
-                sentencia.setString(3, tipoUsuario);
-                sentencia.setString(4, contrasena);
-                sentencia.setString(5, telefono);
-                sentencia.setString(6, direccion);
-                sentencia.setString(7, correo);
-                sentencia.setInt(8, Integer.parseInt(idUsuario));
+                // Si la contraseña está vacía, no la actualices
+                String consulta;
+                if (nuevaContrasena != null && !nuevaContrasena.trim().isEmpty()) {
+                    String hash = org.mindrot.jbcrypt.BCrypt.hashpw(nuevaContrasena, org.mindrot.jbcrypt.BCrypt.gensalt());
+                    consulta = "UPDATE Usuario SET nombre = ?, apellidos = ?, tipo_usuario = ?, contrasena = ?, telefono = ?, direccion = ?, correo = ? WHERE id = ?";
+                    sentencia = conexion.prepareStatement(consulta);
+                    sentencia.setString(1, nombre);
+                    sentencia.setString(2, apellido);
+                    sentencia.setString(3, tipoUsuario);
+                    sentencia.setString(4, hash);
+                    sentencia.setString(5, telefono);
+                    sentencia.setString(6, direccion);
+                    sentencia.setString(7, correo);
+                    sentencia.setInt(8, id);
+                } else {
+                    consulta = "UPDATE Usuario SET nombre = ?, apellidos = ?, tipo_usuario = ?, telefono = ?, direccion = ?, correo = ? WHERE id = ?";
+                    sentencia = conexion.prepareStatement(consulta);
+                    sentencia.setString(1, nombre);
+                    sentencia.setString(2, apellido);
+                    sentencia.setString(3, tipoUsuario);
+                    sentencia.setString(4, telefono);
+                    sentencia.setString(5, direccion);
+                    sentencia.setString(6, correo);
+                    sentencia.setInt(7, id);
+                }
                 int filasAfectadas = sentencia.executeUpdate();
                 if (filasAfectadas > 0) {
                     mensaje = "Usuario actualizado con éxito.";
@@ -61,20 +79,18 @@ public class GuardarEdicionUsuarioServlet extends HttpServlet {
                     mensaje = "No se pudo actualizar el usuario.";
                 }
 
-                // Actualiza especialidad solo si es especialista
+                // Manejo de especialidad
                 if ("especialista".equals(tipoUsuario)) {
-                    // Si ya existe, actualiza; si no, inserta
                     PreparedStatement psEsp = conexion.prepareStatement(
-                        "INSERT INTO Especialista (id_usuario, especialidad) VALUES (?, ?) " +
-                        "ON DUPLICATE KEY UPDATE especialidad = ?"
+                        "INSERT INTO Especialista (id_usuario, especialidad, numero_tarjeta_profesional) VALUES (?, ?, ?) " +
+                        "ON DUPLICATE KEY UPDATE especialidad = VALUES(especialidad), numero_tarjeta_profesional = VALUES(numero_tarjeta_profesional)"
                     );
                     psEsp.setInt(1, id);
                     psEsp.setString(2, especialidad);
-                    psEsp.setString(3, especialidad);
+                    psEsp.setString(3, numeroTarjeta);
                     psEsp.executeUpdate();
                     psEsp.close();
                 } else {
-                    // Si cambió a otro tipo, elimina la especialidad si existe
                     PreparedStatement psDel = conexion.prepareStatement(
                         "DELETE FROM Especialista WHERE id_usuario = ?"
                     );

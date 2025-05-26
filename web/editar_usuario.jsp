@@ -104,7 +104,7 @@
         <td data-label="Nombre"><%= rs.getString("nombre") %></td>
         <td data-label="Apellido"><%= rs.getString("apellidos") %></td>
         <td data-label="Tipo de Usuario"><%= rs.getString("tipo_usuario") %></td>
-        <td data-label="Contraseña"><%= rs.getString("contrasena") != null ? rs.getString("contrasena") : "-" %></td>
+        <td data-label="Contraseña">********</td>
         <td data-label="Especialidad"><%= rs.getString("especialidad") != null ? rs.getString("especialidad") : "-" %></td>
         <td data-label="Teléfono"><%= rs.getString("telefono") != null ? rs.getString("telefono") : "-" %></td>
         <td data-label="Dirección"><%= rs.getString("direccion") != null ? rs.getString("direccion") : "-" %></td>

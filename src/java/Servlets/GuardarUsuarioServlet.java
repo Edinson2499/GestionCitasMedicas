@@ -6,6 +6,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 import java.io.IOException;
 import java.sql.*;
+import org.mindrot.jbcrypt.BCrypt;
 
 @WebServlet("/GuardarUsuarioServlet")
 public class GuardarUsuarioServlet extends HttpServlet {
@@ -17,6 +18,7 @@ public class GuardarUsuarioServlet extends HttpServlet {
         String direccion = request.getParameter("direccion");
         String correo = request.getParameter("correo");
         String contrasena = request.getParameter("contrasena");
+        String hashed = BCrypt.hashpw(contrasena, BCrypt.gensalt());
         String tipoUsuario = request.getParameter("tipo_usuario");
         String especialidad = request.getParameter("txtEspecialidad");
         String tarjeta = request.getParameter("tarjeta");
@@ -37,7 +39,7 @@ public class GuardarUsuarioServlet extends HttpServlet {
             ps.setString(3, telefono);
             ps.setString(4, direccion);
             ps.setString(5, correo);
-            ps.setString(6, contrasena);
+            ps.setString(6, hashed);
             ps.setString(7, usuarioGenerado);
             ps.setString(8, tipoUsuario);
             int filas = ps.executeUpdate();

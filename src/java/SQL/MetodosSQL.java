@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import org.mindrot.jbcrypt.BCrypt;
 
 public class MetodosSQL {
 
@@ -25,6 +26,9 @@ public class MetodosSQL {
                 return false;
             }
 
+            // Hashear la contraseña antes de guardar
+            String hash = BCrypt.hashpw(contrasena, BCrypt.gensalt());
+
             // 1. Insertar datos en la tabla Usuario (ahora con correo)
             String consultaUsuario = "INSERT INTO Usuario (nombre, apellidos, telefono, direccion, correo, contrasena, usuario_generado, tipo_usuario) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             sentenciaPreparada = conexion.prepareStatement(consultaUsuario, PreparedStatement.RETURN_GENERATED_KEYS);
@@ -33,7 +37,7 @@ public class MetodosSQL {
             sentenciaPreparada.setString(3, telefono);
             sentenciaPreparada.setString(4, direccion);
             sentenciaPreparada.setString(5, correo);
-            sentenciaPreparada.setString(6, contrasena);
+            sentenciaPreparada.setString(6, hash); // Guardar el hash en el campo 'contrasena'
             sentenciaPreparada.setString(7, usuarioGeneradoAutomaticamente);
             sentenciaPreparada.setString(8, rol);
 
@@ -123,16 +127,18 @@ public class MetodosSQL {
     }
 
     public String buscarUsuarioInicioSesion(String usuario, String contrasena) {
-        String rol = null; // Inicializamos el rol como null (indicando fallo de autenticación)
+        String rol = null;
         try {
             conexion = ConexionBD.conectar();
-            String consulta = "SELECT usuario_generado, contrasena, tipo_usuario FROM Usuario WHERE usuario_generado = ? AND contrasena = ?";
+            String consulta = "SELECT contrasena, tipo_usuario FROM Usuario WHERE usuario_generado = ?";
             sentenciaPreparada = conexion.prepareStatement(consulta);
             sentenciaPreparada.setString(1, usuario);
-            sentenciaPreparada.setString(2, contrasena);
-            try (java.sql.ResultSet resultado = sentenciaPreparada.executeQuery()) {
+            try (ResultSet resultado = sentenciaPreparada.executeQuery()) {
                 if (resultado.next()) {
-                    rol = resultado.getString("tipo_usuario"); // Obtenemos el rol del usuario
+                    String hashAlmacenado = resultado.getString("contrasena");
+                    if (BCrypt.checkpw(contrasena, hashAlmacenado)) {
+                        rol = resultado.getString("tipo_usuario");
+                    }
                 }
             }
         } catch (SQLException e) {
@@ -146,7 +152,7 @@ public class MetodosSQL {
             }
         }
         System.out.println("El valor del rol en el metodo es: " + rol);
-        return rol; // Ahora retornamos el rol (o null si falla la autenticación)
+        return rol;
     }
 
     public String buscarNombre(String usuario) {

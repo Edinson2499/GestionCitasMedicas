@@ -32,16 +32,20 @@ public class InicioSesionAdmin extends HttpServlet {
 
         try {
             conexion = ConexionBD.conectar();
-            String sql = "SELECT nombre, tipo_usuario FROM Usuario WHERE usuario_generado = ? AND contrasena = ?";
+            if (conexion == null) {
+                response.sendRedirect("login_admin.jsp?error=conexionbd");
+                return;
+            }
+            String sql = "SELECT nombre, tipo_usuario, contrasena FROM Usuario WHERE usuario_generado = ?";
             ps = conexion.prepareStatement(sql);
             ps.setString(1, usuario);
-            ps.setString(2, contrasena);
             rs = ps.executeQuery();
 
             if (rs.next()) {
                 String tipoUsuario = rs.getString("tipo_usuario");
                 String nombre = rs.getString("nombre");
-                if ("administrador".equalsIgnoreCase(tipoUsuario)) {
+                String hashAlmacenado = rs.getString("contrasena");
+                if ("administrador".equalsIgnoreCase(tipoUsuario) && org.mindrot.jbcrypt.BCrypt.checkpw(contrasena, hashAlmacenado)) {
                     HttpSession session = request.getSession();
                     session.setAttribute("rol", tipoUsuario);
                     session.setAttribute("nombre", nombre);
@@ -49,17 +53,14 @@ public class InicioSesionAdmin extends HttpServlet {
                     response.sendRedirect("menu_admin.jsp");
                     return;
                 } else {
-                    // Redirige con mensaje de error por parámetro GET
                     response.sendRedirect("login_admin.jsp?error=permisos");
                     return;
                 }
             } else {
-                // Redirige con mensaje de error por parámetro GET
                 response.sendRedirect("login_admin.jsp?error=credenciales");
                 return;
             }
         } catch (SQLException e) {
-            // Redirige con mensaje de error por parámetro GET
             response.sendRedirect("login_admin.jsp?error=conexion");
             e.printStackTrace();
             return;

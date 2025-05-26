@@ -35,6 +35,11 @@ public class InicioSesion extends HttpServlet {
         String txtUsuario = request.getParameter("txtUsuario");
         String txtContrasena = request.getParameter("txtContrasena");
 
+        if (txtUsuario == null || txtContrasena == null || txtUsuario.isEmpty() || txtContrasena.isEmpty()) {
+            out.println("<h2>Error: Usuario o contraseña vacíos.</h2>");
+            return;
+        }
+
         out.println("<!DOCTYPE html>");
         out.println("<html>");
         out.println("<head>");
@@ -88,8 +93,10 @@ public class InicioSesion extends HttpServlet {
                 out.println("  window.location = 'menu_paciente.jsp';");
             } else if (rol.equals("especialista")) {
                 out.println("  window.location = 'menu_especialista.jsp';");
+            } else if (rol.equals("administrador")) {
+                out.println("  window.location = 'index.html';");
             } else {
-                out.println("  window.location = 'menu_otro.jsp';");
+                out.println("  window.location = 'index.html';");
             }
 
 

@@ -1,7 +1,6 @@
 # 🏥 Gestión de Citas Médicas
 
-![Ask DeepWiki](https://deepwiki.com/badge.svg)  
-[Consulta el artículo completo en DeepWiki](https://deepwiki.com/Shadowfiend2504/GestionCitasMedicas)
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/Shadowfiend2504/GestionCitasMedicas)
 
 ## 📘 Propósito y Alcance
 

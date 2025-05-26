@@ -1,3 +1,135 @@
+# 🏥 Gestión de Citas Médicas
+
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/Shadowfiend2504/GestionCitasMedicas)
+
+## 📘 Propósito y Alcance
+
+Este documento proporciona una visión general del sistema de gestión de citas médicas (**GestionCitasMedicas**), una aplicación web en Java que facilita la programación de citas entre pacientes y especialistas médicos. El sistema maneja el registro de usuarios, la reserva de citas, la gestión de disponibilidad y el envío automatizado de notificaciones por correo electrónico y SMS.
+
+> Para detalles sobre autenticación y seguridad, consulta **Authentication and Security**.  
+> Para información sobre el diseño de la base de datos, consulta **Database Design**.  
+> Para documentación de la interfaz de usuario, consulta **User Interfaces**.
+
+## 🧱 Arquitectura del Sistema
+
+El sistema sigue una arquitectura clásica de tres capas utilizando tecnologías Java EE:
+
+- **Capa de presentación**: JSP/HTML/CSS con Bootstrap
+- **Lógica de negocio**: Servlets Java
+- **Persistencia de datos**: MySQL
+- **Servicios externos**: Gmail SMTP (correo), Twilio API (SMS)
+
+## 🛠️ Tecnologías Utilizadas
+
+| Componente         | Tecnología            | Versión           |
+|--------------------|------------------------|-------------------|
+| Servidor web       | Apache Tomcat          | 11.0              |
+| Backend            | Java EE (Servlets, JSP)| Jakarta EE        |
+| Base de datos      | MySQL                  | —                 |
+| Servicio de correo | Gmail SMTP             | Jakarta Mail 2.0.1|
+| Servicio SMS       | Twilio API             | —                 |
+| Build tool         | Apache Ant             | —                 |
+| IDE                | NetBeans               | —                 |
+
+## 🧩 Componentes Principales
+
+### Capas del sistema
+
+- **Presentación**:  
+  - `agendar_cita.jsp`  
+  - `consultar_citas.jsp`  
+  - `actualizar_disponibilidad.jsp`
+
+- **Lógica de negocio (Servlets)**:  
+  - `AgendarCitaServlet`: programación de citas  
+  - `ActualizarDatosServlet`: gestión de perfil  
+  - `CancelarCitaServlet`: cancelación  
+  - `ConfirmarCitaServlet`: confirmación  
+  - `Authentication Servlets`: manejo de sesión
+
+- **Persistencia y utilitarios**:  
+  - `ConexionBD`: conexiones con MySQL  
+  - `MetodosSQL`: operaciones SQL  
+  - `EmailSender`: integración con Gmail  
+  - `SMSSender`: integración con Twilio
+
+## 👥 Roles de Usuario
+
+| Rol           | Registro               | Reservar Cita     | Gestión de Disponibilidad | Administración |
+|---------------|------------------------|-------------------|----------------------------|----------------|
+| **Paciente**   | ✓ (`altaUsuario.jsp`)   | ✓ (`AgendarCitaServlet`) | ✗                          | ✗              |
+| **Especialista** | ✓ (`altaUsuarioE.jsp`) | Solo lectura       | ✓ (`actualizar_disponibilidad.jsp`) | ✗              |
+| **Administrador** | Nivel sistema         | Acceso completo    | ✓                          | ✓ (`registrar_usuario.jsp`) |
+
+## 📅 Flujo de Agenda de Citas
+
+1. `POST /AgendarCitaServlet?action=consultar`  
+   → `obtenerDisponibilidad()`  
+   → devuelve especialistas y horarios disponibles
+
+2. `POST /AgendarCitaServlet?action=agendar`  
+   → `existeTraslape()` para evitar conflictos  
+   → `insertarCita()`, luego  
+   → `enviarEmailHTML()` y `enviarSMS()` con confirmación
+
+## 🌟 Funcionalidades Clave
+
+### Gestión de Citas
+- **Consulta de disponibilidad en tiempo real**: `obtenerDisponibilidad()` en intervalos de 20 minutos  
+- **Prevención de conflictos**: `existeTraslape()` evita doble reserva  
+- **Notificaciones automáticas**: con `EmailSender` y `SMSSender`
+
+### Gestión de Usuarios
+- **Registros separados** para pacientes y especialistas  
+- **Sesiones seguras** mediante `HttpSession` con control de acceso  
+- **Actualización de perfiles** mediante `ActualizarDatosServlet`
+
+### Persistencia de Datos
+- **Pooling de conexiones**: `ConexionBD`  
+- **Operaciones centralizadas SQL**: `MetodosSQL`  
+- **Transacciones** manejadas a nivel de servlet
+
+## 🧬 Esquema de Base de Datos (MySQL)
+
+### Tablas Principales
+
+#### `Usuario`
+- `id` (PK)
+- `nombre`, `apellidos`, `telefono`, `direccion`, `correo` (UK), `contrasena`, `usuario_generado` (UK)
+- `tipo_usuario` (enum)
+
+#### `Especialista`
+- `id_usuario` (PK, FK)
+- `especialidad`, `numero_tarjeta_profesional` (UK)
+
+#### `Cita`
+- `id` (PK)
+- `id_paciente` (FK), `id_especialista` (FK)
+- `fecha_hora`, `motivo`, `descripcion`, `estado` (enum)
+
+#### `DisponibilidadEspecialista`
+- `id` (PK)
+- `id_especialista` (FK), `fecha`, `hora_inicio`, `hora_fin`
+
+#### `Factura`
+- Relación con cita y datos de facturación (no detallado)
+
+## 🔗 Integraciones con Servicios Externos
+
+- **Correo Electrónico**: `EmailSender` usa Gmail SMTP, con plantillas HTML para confirmación
+- **Mensajes de Texto (SMS)**: `SMSSender` usa Twilio para envío de citas a dispositivos móviles
+
+## 🚀 Desarrollo y Despliegue
+
+- Construido como archivo WAR: `citasMedicas.war`
+- Desplegable en Tomcat mediante Ant
+- Dependencias clave:
+  - `mysql-connector-j-9.2.0.jar`
+  - `jakarta.mail-2.0.1.jar`
+  - `gson-2.13.1.jar`
+  - `httpclient-4.5.14.jar`
+---
+
 ## 📘 Tutorial de Funcionamiento de la Página Web
 
 Esta aplicación permite gestionar citas médicas entre pacientes y médicos a través de una interfaz web sencilla. A continuación se detalla cómo utilizar las principales funcionalidades:
@@ -82,10 +214,6 @@ para que pueda acceder al sistema y agendar mis citas médicas.
 4. Ejecuta el proyecto y accede a la app vía navegador.
 
 
-# 🏥 Gestión de Citas Médicas
-
-Sistema web para la gestión de citas médicas, desarrollado con JSP, Servlets y MySQL. Este proyecto permite a pacientes registrarse, iniciar sesión y agendar citas médicas, mientras que los administradores pueden gestionar usuarios y horarios disponibles.
-
 ## 📌 Características Principales
 
 - Registro de nuevos pacientes.
@@ -153,7 +281,6 @@ git clone [https://github.com/Shadowfiend2504/GestionCitasMedicas](https://githu
 
 - Validación de formularios del lado del cliente y servidor.
 - Control de acceso mediante sesiones.
-
 
 Repositorio gestionado con Git.
 

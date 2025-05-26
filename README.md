@@ -215,10 +215,6 @@ para que pueda acceder al sistema y agendar mis citas médicas.
 4. Ejecuta el proyecto y accede a la app vía navegador.
 
 
-# 🏥 Gestión de Citas Médicas
-
-Sistema web para la gestión de citas médicas, desarrollado con JSP, Servlets y MySQL. Este proyecto permite a pacientes registrarse, iniciar sesión y agendar citas médicas, mientras que los administradores pueden gestionar usuarios y horarios disponibles.
-
 ## 📌 Características Principales
 
 - Registro de nuevos pacientes.

@@ -2,7 +2,7 @@
    Estilos generales del body
    ========================= */
 body {
-    background-image: url(../imagenes/Menus.png);
+    background-color: rgb(233 246 253) !important; /* Fuerza el color de fondo */
     background-size: cover;
     background-position: center;
     font-family: var(--bs-body-font-family, sans-serif);
@@ -188,7 +188,7 @@ a:hover {
 @media screen and (max-width: 480px) {
     body {
         padding: 2px;
-        background-image: url('../imagenes/Menus_C.png'); /* Usa la versión móvil si la tienes */
+        background-color: rgb(233 246 253) !important; /* Fuerza el color de fondo */
         background-size: 100vw 100vh;
         background-repeat: no-repeat;
         background-position: center center;

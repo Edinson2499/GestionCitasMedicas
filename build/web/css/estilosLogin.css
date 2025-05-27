@@ -279,7 +279,7 @@ h1 {
    ========================= */
 @media screen and (max-width: 480px) {
     body {
-        background-image: url('../imagenes/fondoBlanco_C.png');
+        background-image: url('../imagenes/login_C.png');
         padding: 10px;
         background-position: top center;
         background-size: cover;

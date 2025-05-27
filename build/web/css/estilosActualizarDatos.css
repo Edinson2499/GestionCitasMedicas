@@ -3,11 +3,10 @@
 ================================== */
 body {
     font-family: var(--bs-body-font-family, sans-serif);
-    background-color: #f8f9fa;
+    background-color: rgb(233 246 253) !important; /* Fuerza el color de fondo */
     margin: 0;
     padding: 20px;
     min-height: 100vh;
-    background-image: url(../imagenes/Menus.png);
     background-size: cover;
     background-position: center;
     box-sizing: border-box;

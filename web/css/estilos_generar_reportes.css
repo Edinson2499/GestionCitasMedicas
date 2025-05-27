@@ -7,7 +7,7 @@ body {
     margin: 0;
     padding: 20px;
     min-height: 100vh;
-    background-image: url(../imagenes/Menus.png);
+    background-color: rgb(233 246 253) !important; /* Fuerza el color de fondo */
     background-size: cover;
     background-position: center;
     box-sizing: border-box;
@@ -252,7 +252,7 @@ a.btn-back:hover {
 @media (max-width: 600px) {
     body {
         padding: 4px;
-        background-image: url('../imagenes/Menus_C.png');
+        background-color: rgb(233 246 253) !important; /* Fuerza el color de fondo */
         background-size: 100vw 100vh;
         background-repeat: no-repeat;
         background-position: center center;

@@ -2,7 +2,7 @@
    Estilos generales del body
    ========================= */
 body {
-    background-image: url(../imagenes/login.png);
+    background-color: rgb(233 246 253) !important; /* Fuerza el color de fondo */
     background-size: cover;
     background-position: center;
     font-family: 'Segoe UI', sans-serif;
@@ -246,7 +246,7 @@ a.btn-back:hover {
 @media (max-width: 600px) {
     body {
         padding: 8px;
-        background-image: url('../imagenes/Menus_C.png');
+        background-color: rgb(233 246 253) !important; /* Fuerza el color de fondo */
         background-size: 100vw 100vh;
         background-repeat: no-repeat;
         background-position: center center;

@@ -78,10 +78,14 @@ h1 {
    ============================== */
 @media screen and (max-width: 480px) {
     body {
-        padding: 10px;
-        background-size: cover;
-        background-position: top;
-        justify-content: flex-start; /* Empieza desde arriba */
+        padding: 5px;
+        background-image: url(../imagenes/Menus_C.png); /* Fuerza el color de fondo */
+        background-size: 100vw 100vh;
+        background-repeat: no-repeat;
+        background-position: center center;
+        min-height: 100vh;
+        min-width: 100vw;
+        overflow-x: hidden; /* Empieza desde arriba */
     }
 
     h1 {

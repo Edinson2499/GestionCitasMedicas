@@ -3,11 +3,10 @@
 ================================== */
 body {
     font-family: var(--bs-body-font-family, sans-serif);
-    background-color: #f8f9fa;
+    background-color: rgb(233 246 253) !important; /* Fuerza el color de fondo */
     margin: 0;
     padding: 20px;
     min-height: 100vh;
-    background-image: url(../imagenes/Menus.png);
     background-size: cover;
     background-position: center;
     box-sizing: border-box;
@@ -144,7 +143,7 @@ a.btn-back:hover {
     }
 
     body {
-        background-image: url('../imagenes/Menus_C.png');
+        background-color: rgb(233 246 253) !important; /* Fuerza el color de fondo */
         background-size: 100vw 100vh;   /* Hace que la imagen cubra toda la pantalla */
         background-repeat: no-repeat;
         background-position: center center;

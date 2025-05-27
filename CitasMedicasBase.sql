@@ -75,25 +75,6 @@ ALTER TABLE Cita ADD COLUMN descripcion TEXT;
 INSERT INTO Usuario (nombre, apellidos, telefono, direccion, correo, contrasena, usuario_generado, tipo_usuario)
 VALUES (
   'Administrador', 'Principal', '0000000000', 'Oficina Central', 'admin01@admin.com',
-  '$10$ejH7MKceK1V9seo7SMm5pOQEFzDamd2p.dyC.vVK/Cb7ge7zP5gTK',
+  '$2a$12$FwVPrXOwYi7TYAtV9cdYX.wv5hW0JqdT/dD4aEBTTRHIOAo.YPF1u',
   'admin01', 'administrador'
 );
-
--- Paciente
-INSERT INTO Usuario (nombre, apellidos, telefono, direccion, correo, contrasena, usuario_generado, tipo_usuario)
-VALUES (
-  'Juan', 'Pérez', '3001234567', 'Calle 123', 'juan.perez@email.com',
-  '$10$ejH7MKceK1V9seo7SMm5pOQEFzDamd2p.dyC.vVK/Cb7ge7zP5gTK',
-  'juanperez', 'paciente'
-);
-
--- Especialista
-INSERT INTO Usuario (nombre, apellidos, telefono, direccion, correo, contrasena, usuario_generado, tipo_usuario)
-VALUES (
-  'Ana', 'Gómez', '3007654321', 'Carrera 456', 'ana.gomez@email.com',
-  '$10$ejH7MKceK1V9seo7SMm5pOQEFzDamd2p.dyC.vVK/Cb7ge7zP5gTK',
-  'anagomez', 'especialista'
-);
-
-
-SELECT * FROM Usuario;

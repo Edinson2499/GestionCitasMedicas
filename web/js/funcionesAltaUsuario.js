@@ -24,7 +24,10 @@ async function usuarioGeneradoAutomaticamente() {
         return;
     }
 
-    var base = nombre.split(" ")[0] + "." + apellidos.split(" ")[0];
+    // Toma la primera letra del primer nombre y la primera letra del primer apellido
+    var nombreBase = nombre.split(" ")[0].charAt(0);
+    var apellidoBase = apellidos.split(" ")[0].charAt(0);
+    var base = nombreBase + apellidoBase;
     var usuarioFinal = base + "@bussineshealth.com";
     let contador = 1;
 

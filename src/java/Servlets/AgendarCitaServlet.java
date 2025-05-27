@@ -274,7 +274,7 @@ public class AgendarCitaServlet extends HttpServlet {
                         + " <span style='color:#555;'>E: <a href='mailto:BusinessHealth@gmail.com'>BusinessHealth@gmail.com</a></span><br>"
                         + "A: Business Health<br>"
                         + "<a href='https://github.com/Shadowfiend2504/GestionCitasMedicas' style='color:#0069d9;'>www.BusynessHealth.com</a><br>"
-                        + "<img src='https://raw.githubusercontent.com/Shadowfiend2504/GestionCitasMedicas/refs/heads/main/web/imagenes/ChatGPT%20Image%2025%20may%202025%2C%2012_21_04.png' alt='Banner' style='width:400px; margin-top:10px;'>"
+                        + "<img src='https://raw.githubusercontent.com/Shadowfiend2504/GestionCitasMedicas/refs/heads/main/web/imagenes/Banner%20(1).png' alt='Banner' style='width:100%; max-width:400px; height:auto;'>"
                         + "</div>"
                         + "</body></html>";
                 EmailSender.enviarEmailHTML(paciente.email, asunto, cuerpo);

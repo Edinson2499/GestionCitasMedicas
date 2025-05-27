@@ -14,6 +14,8 @@ import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -90,7 +92,7 @@ public class AgendarCitaServlet extends HttpServlet {
             Timestamp fechaHoraCita = Timestamp.valueOf(fechaCita.atTime(horaCita));
 
             // Validación: No permitir agendar en el pasado
-            java.time.LocalDateTime ahora = java.time.LocalDateTime.now();
+            java.time.LocalDateTime ahora = ZonedDateTime.now(ZoneId.of("America/Bogota")).toLocalDateTime();
             if (fechaHoraCita.toLocalDateTime().isBefore(ahora)) {
                 mensaje = "No se puede agendar una cita en una fecha u hora pasada.";
                 forwardMensaje(request, response, mensaje);

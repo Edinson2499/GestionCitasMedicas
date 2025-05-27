@@ -1,5 +1,5 @@
 -- Crear la base de datos
-CREATE DATABASE IF NOT EXISTS baseDatosCitasMedica252;
+CREATE DATABASE IF NOT EXISTS baseDatosCitasMedicas252;
 
 -- Usar la base de datos
 USE baseDatosCitasMedicas252;

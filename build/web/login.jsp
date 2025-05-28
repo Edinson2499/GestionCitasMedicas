@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Iniciar Sesión</title>
-    <link rel="icon" href="imagenes/Logo.png" type="image/png">
+    <link rel="icon" href="imagenes/Logo.svg" type="image/svg+xml">
     <link rel="stylesheet" href="css/estilosLogin.css">
 
     <%

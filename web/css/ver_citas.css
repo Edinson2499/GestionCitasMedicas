@@ -89,7 +89,7 @@ h1 {
 a {
     width: 80px;
     height: 80px;
-    background-image: url('../imagenes/Atras.png');
+    background-image: url('../imagenes/Atras.webp');
     background-size: cover;
     background-position: center;
     border-radius: 50%;
@@ -103,7 +103,7 @@ a {
 }
 
 a:hover {
-    background-image: url('../imagenes/Atras_hover.png');
+    background-image: url('../imagenes/Atras_hover.webp');
 }
 
 /* =========================

@@ -2,7 +2,7 @@
    Estilos generales del body
    ============================== */
 body {
-    background-image: url(../imagenes/Menus.png);
+    background-image: url(../imagenes/Menus.webp);
     background-size: cover;
     background-position: center;
     font-family: sans-serif;
@@ -79,7 +79,7 @@ h1 {
 @media screen and (max-width: 480px) {
     body {
         padding: 5px;
-        background-image: url(../imagenes/Menus_C.png); /* Fuerza el color de fondo */
+        background-image: url(../imagenes/Menus_C.webp); /* Fuerza el color de fondo */
         background-size: 100vw 100vh;
         background-repeat: no-repeat;
         background-position: center center;

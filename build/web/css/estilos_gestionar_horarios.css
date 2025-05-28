@@ -128,7 +128,7 @@ tr:hover {
 a.btn-back {
     width: 80px;
     height: 80px;
-    background-image: url('../imagenes/Atras.png');
+    background-image: url('../imagenes/Atras.webp');
     background-size: cover;
     background-position: center;
     border-radius: 50%;
@@ -142,7 +142,7 @@ a.btn-back {
 }
 
 a.btn-back:hover {
-    background-image: url('../imagenes/Atras_hover.png');
+    background-image: url('../imagenes/Atras_hover.webp');
 }
 
 @media (max-width: 768px) {

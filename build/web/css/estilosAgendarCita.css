@@ -134,7 +134,7 @@ ul li {
 a[href="menu_paciente.jsp"] {
     width: 80px;
     height: 80px;
-    background-image: url('../imagenes/Atras.png');
+    background-image: url('../imagenes/Atras.webp');
     background-size: cover;
     background-position: center;
     border-radius: 50%;
@@ -148,7 +148,7 @@ a[href="menu_paciente.jsp"] {
 }
 
 a[href="menu_paciente.jsp"]:hover {
-    background-image: url('../imagenes/Atras_hover.png');
+    background-image: url('../imagenes/Atras_hover.webp');
 }
 
 /* ================================

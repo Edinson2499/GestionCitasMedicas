@@ -7,7 +7,7 @@ body {
     margin: 0;
     padding: 20px;
     min-height: 100vh;
-    background-image: url(../imagenes/Menus.png);
+    background-image: url(../imagenes/Menus.webp);
     background-size: cover;
     background-position: center;
     box-sizing: border-box;
@@ -119,7 +119,7 @@ button[type="submit"]:hover,
 a.btn-back {
     width: 80px;
     height: 80px;
-    background-image: url('../imagenes/Atras.png');
+    background-image: url('../imagenes/Atras.webp');
     background-size: cover;
     background-position: center;
     border-radius: 50%;
@@ -133,7 +133,7 @@ a.btn-back {
 }
 
 a.btn-back:hover {
-    background-image: url('../imagenes/Atras_hover.png');
+    background-image: url('../imagenes/Atras_hover.webp');
 }
 
 /* ==========================================

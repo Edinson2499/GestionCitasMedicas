@@ -14,7 +14,7 @@
     <meta charset="UTF-8">
     <title>Cancelar Cita</title>
     <link rel="stylesheet" href="css/ver_citas.css">
-    <link rel="icon" href="imagenes/Logo.png" type="image/png">
+    <link rel="icon" href="imagenes/Logo.svg" type="image/svg+xml">
     <!-- Bootstrap CSS CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>

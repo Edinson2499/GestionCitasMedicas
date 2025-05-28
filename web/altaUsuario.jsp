@@ -4,7 +4,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Registro U</title>
-        <link rel="icon" href="imagenes/Logo.png" type="image/png">
+        <link rel="icon" href="imagenes/Logo.svg" type="image/svg+xml">
         <link rel="stylesheet" href="css/estilosAltaUsuario.css" type="text/css" media="all">
         <%
             response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");

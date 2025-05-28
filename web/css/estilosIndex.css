@@ -10,7 +10,7 @@
    Body general
    ============================== */
 body {
-    background-image: url(../imagenes/fondoBlanco.png);
+    background-image: url(../imagenes/fondoBlanco.webp);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -77,7 +77,7 @@ body {
     position: fixed;
     top: 30px;
     left: 30px;
-    background: url('../imagenes/Logo.png') no-repeat center center;
+    background: url('../imagenes/Logo.webp') no-repeat center center;
     background-size: contain;
     border: none;
     border-radius: 50%;
@@ -86,7 +86,7 @@ body {
     transition: background 0.3s;
 }
 .btn-volver:hover {
-    background-image: url('../imagenes/Atras_hover.png');
+    background-image: url('../imagenes/Atras_hover.webp');
 }
 
 /* ==============================
@@ -152,7 +152,7 @@ body {
 }
 @media (max-width: 600px) {
     body {
-        background-image: url('../imagenes/fondoBlanco_C.png');
+        background-image: url('../imagenes/fondoBlanco_C.webp');
         background-size: 100vw 100vh;
         background-repeat: no-repeat;
         background-position: center center;

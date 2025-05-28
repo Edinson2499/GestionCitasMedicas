@@ -123,7 +123,7 @@ tbody tr:hover {
 a {
     width: 80px;
     height: 80px;
-    background-image: url('../imagenes/Atras.png');
+    background-image: url('../imagenes/Atras.webp');
     background-size: cover;
     background-position: center;
     border-radius: 50%;
@@ -138,7 +138,7 @@ a {
 
 /* Hover del botón de regreso */
 a:hover {
-    background-image: url('../imagenes/Atras_hover.png');
+    background-image: url('../imagenes/Atras_hover.webp');
     transform: scale(1.05);
 }
 
@@ -257,7 +257,7 @@ a:hover {
         position: fixed;
     }
     a:hover {
-        background-image: url('../imagenes/Atras_hover.png');
+        background-image: url('../imagenes/Atras_hover.webp');
     }
 }
 

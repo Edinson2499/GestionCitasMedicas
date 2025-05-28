@@ -14,7 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Consultar Usuarios</title>
     <link rel="stylesheet" href="css/estilos_consultar_usuarios.css">
-    <link rel="icon" href="imagenes/Logo.png" type="image/png">
+    <link rel="icon" href="imagenes/Logo.svg" type="image/svg+xml">
         <!-- Bootstrap CSS CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>

@@ -2,7 +2,7 @@
    Estilos generales del body
    ========================= */
 body {
-    background-image: url(../imagenes/login.png);
+    background-image: url(../imagenes/login.webp);
     background-size: cover;
     background-position: center;
     font-family: sans-serif;
@@ -246,7 +246,7 @@ body {
 a.btn-atras {
     width: 80px;
     height: 80px;
-    background-image: url('../imagenes/Atras.png');
+    background-image: url('../imagenes/Atras.webp');
     background-size: cover;
     background-position: center;
     border-radius: 30px;
@@ -260,7 +260,7 @@ a.btn-atras {
 }
 
 a.btn-atras:hover {
-    background-image: url('../imagenes/Atras_hover.png');
+    background-image: url('../imagenes/Atras_hover.webp');
 }
 
 /* =========================
@@ -279,7 +279,7 @@ h1 {
    ========================= */
 @media screen and (max-width: 480px) {
     body {
-        background-image: url('../imagenes/login_C.png');
+        background-image: url('../imagenes/login_C.webp');
         padding: 10px;
         background-position: top center;
         background-size: cover;

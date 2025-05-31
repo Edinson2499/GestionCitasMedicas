@@ -18,6 +18,29 @@
     PreparedStatement preparedStatement = null;
     ResultSet resultSet = null;
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    int limit = 10;
+    int pageNum = 1;
+    if (request.getParameter("page") != null) {
+        try {
+            pageNum = Integer.parseInt(request.getParameter("page"));
+            if (pageNum < 1) pageNum = 1;
+        } catch (Exception e) { pageNum = 1; }
+    }
+    int offset = (pageNum - 1) * limit;
+    int totalRegistros = 0;
+    try {
+        connection = ConexionBD.conectar();
+        String countSql = "SELECT COUNT(*) FROM Cita WHERE id_paciente = ? AND fecha_hora >= NOW()";
+        PreparedStatement psCount = connection.prepareStatement(countSql);
+        psCount.setInt(1, idPaciente);
+        ResultSet rsCount = psCount.executeQuery();
+        if (rsCount.next()) {
+            totalRegistros = rsCount.getInt(1);
+        }
+        rsCount.close();
+        psCount.close();
+    } catch (Exception e) { totalRegistros = 0; }
+    int totalPaginas = (int) Math.ceil((double) totalRegistros / limit);
 %>
 
 <!DOCTYPE html>
@@ -46,11 +69,12 @@
                             "JOIN Usuario esp_u ON c.id_especialista = esp_u.id " +
                             "JOIN Especialista es ON esp_u.id = es.id_usuario " +
                             "WHERE pac_u.id = ? " +
-                            "AND c.fecha_hora >= NOW() " + // Mostrar solo citas futuras
-                            "ORDER BY c.fecha_hora ASC";
-
+                            "AND c.fecha_hora >= NOW() " +
+                            "ORDER BY c.fecha_hora ASC LIMIT ? OFFSET ?";
                 preparedStatement = connection.prepareStatement(sql);
                 preparedStatement.setInt(1, idPaciente);
+                preparedStatement.setInt(2, limit);
+                preparedStatement.setInt(3, offset);
                 resultSet = preparedStatement.executeQuery();
 
                 if (resultSet.isBeforeFirst()) {
@@ -92,9 +116,25 @@
             try { if (connection != null && !connection.isClosed()) connection.close(); } catch (SQLException e) { e.printStackTrace(); }
         }
     %>
-    
+    <div class="d-flex justify-content-center align-items-center my-3">
+        <nav aria-label="Paginación">
+            <ul class="pagination">
+                <li class="page-item <%= (pageNum <= 1) ? "disabled" : "" %>">
+                    <a class="page-link" href="consultar_citas.jsp?page=<%= (pageNum-1) %>">Anterior</a>
+                </li>
+                <% for (int i = 1; i <= totalPaginas; i++) { %>
+                    <li class="page-item <%= (i == pageNum) ? "active" : "" %>">
+                        <a class="page-link" href="consultar_citas.jsp?page=<%= i %>"><%= i %></a>
+                    </li>
+                <% } %>
+                <li class="page-item <%= (pageNum >= totalPaginas) ? "disabled" : "" %>">
+                    <a class="page-link" href="consultar_citas.jsp?page=<%= (pageNum+1) %>">Siguiente</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
     </main>
-    <a href="menu_paciente.jsp" title="Volver al menú paciente"></a>
+    <a class="btn-back" href="menu_paciente.jsp" title="Volver al menú paciente"></a>
     
     <!-- Bootstrap JS Bundle CDN -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

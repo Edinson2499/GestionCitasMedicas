@@ -45,6 +45,41 @@
             Connection conn = null;
             PreparedStatement ps = null;
             ResultSet rs = null;
+            int limit = 10;
+            int pageNum = 1;
+            if (request.getParameter("page") != null) {
+                try {
+                    pageNum = Integer.parseInt(request.getParameter("page"));
+                    if (pageNum < 1) pageNum = 1;
+                } catch (Exception e) { pageNum = 1; }
+            }
+            int offset = (pageNum - 1) * limit;
+            int totalRegistros = 0;
+            try {
+                conn = ConexionBD.conectar();
+                String countSql = "SELECT COUNT(*) FROM Cita c JOIN Usuario pac ON c.id_paciente = pac.id JOIN Usuario esp ON c.id_especialista = esp.id JOIN Especialista es ON esp.id = es.id_usuario WHERE 1=1 ";
+                if (estado != null && !estado.isEmpty()) {
+                    countSql += "AND c.estado = ? ";
+                }
+                if (fecha != null && !fecha.isEmpty()) {
+                    countSql += "AND DATE(c.fecha_hora) = ? ";
+                }
+                PreparedStatement psCount = conn.prepareStatement(countSql);
+                int idxCount = 1;
+                if (estado != null && !estado.isEmpty()) {
+                    psCount.setString(idxCount++, estado);
+                }
+                if (fecha != null && !fecha.isEmpty()) {
+                    psCount.setString(idxCount++, fecha);
+                }
+                ResultSet rsCount = psCount.executeQuery();
+                if (rsCount.next()) {
+                    totalRegistros = rsCount.getInt(1);
+                }
+                rsCount.close();
+                psCount.close();
+            } catch (Exception e) { totalRegistros = 0; }
+            int totalPaginas = (int) Math.ceil((double) totalRegistros / limit);
             try {
                 conn = ConexionBD.conectar();
                 String sql = "SELECT c.id, c.fecha_hora, c.motivo, c.estado, " +
@@ -60,7 +95,7 @@
                 if (fecha != null && !fecha.isEmpty()) {
                     sql += "AND DATE(c.fecha_hora) = ? ";
                 }
-                sql += "ORDER BY c.fecha_hora DESC";
+                sql += "ORDER BY c.fecha_hora DESC LIMIT ? OFFSET ?";
                 ps = conn.prepareStatement(sql);
                 int idx = 1;
                 if (estado != null && !estado.isEmpty()) {
@@ -69,6 +104,8 @@
                 if (fecha != null && !fecha.isEmpty()) {
                     ps.setString(idx++, fecha);
                 }
+                ps.setInt(idx++, limit);
+                ps.setInt(idx++, offset);
                 rs = ps.executeQuery();
         %>
         <div class="table-responsive">
@@ -128,6 +165,24 @@
                 %>
                 </tbody>
             </table>
+        </div>
+        <!-- Controles de paginación -->
+        <div class="d-flex justify-content-center align-items-center my-3">
+            <nav aria-label="Paginación">
+                <ul class="pagination">
+                    <li class="page-item <%= (pageNum <= 1) ? "disabled" : "" %>">
+                        <a class="page-link" href="gestionar_citas.jsp?estado=<%= estado != null ? estado : "" %>&fecha=<%= fecha != null ? fecha : "" %>&page=<%= (pageNum-1) %>">Anterior</a>
+                    </li>
+                    <% for (int i = 1; i <= totalPaginas; i++) { %>
+                        <li class="page-item <%= (i == pageNum) ? "active" : "" %>">
+                            <a class="page-link" href="gestionar_citas.jsp?estado=<%= estado != null ? estado : "" %>&fecha=<%= fecha != null ? fecha : "" %>&page=<%= i %>"><%= i %></a>
+                        </li>
+                    <% } %>
+                    <li class="page-item <%= (pageNum >= totalPaginas) ? "disabled" : "" %>">
+                        <a class="page-link" href="gestionar_citas.jsp?estado=<%= estado != null ? estado : "" %>&fecha=<%= fecha != null ? fecha : "" %>&page=<%= (pageNum+1) %>">Siguiente</a>
+                    </li>
+                </ul>
+            </nav>
         </div>
 
         <!-- Modal para cancelar cita -->

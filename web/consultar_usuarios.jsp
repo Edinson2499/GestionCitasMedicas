@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
@@ -65,13 +64,33 @@
                 </c:forEach>
             </tbody>
         </table>
+        <!-- Controles de paginación (frontend, requiere soporte en Servlet) -->
+        <div class="d-flex justify-content-center align-items-center my-3">
+            <nav aria-label="Paginación">
+                <ul class="pagination">
+                    <c:if test="${page > 1}">
+                        <li class="page-item">
+                            <a class="page-link" href="consultar_usuarios.jsp?tipo_usuario=${param.tipo_usuario}&page=${page-1}">Anterior</a>
+                        </li>
+                    </c:if>
+                    <c:forEach begin="1" end="${totalPaginas}" var="i">
+                        <li class="page-item ${i == page ? 'active' : ''}">
+                            <a class="page-link" href="consultar_usuarios.jsp?tipo_usuario=${param.tipo_usuario}&page=${i}">${i}</a>
+                        </li>
+                    </c:forEach>
+                    <c:if test="${page < totalPaginas}">
+                        <li class="page-item">
+                            <a class="page-link" href="consultar_usuarios.jsp?tipo_usuario=${param.tipo_usuario}&page=${page+1}">Siguiente</a>
+                        </li>
+                    </c:if>
+                </ul>
+            </nav>
+        </div>
     </c:if>
 
     <br>
     <a class="btn-back" href="menu_admin.jsp" title="Volver al menú administrador" title="Volver al menu anterior"></a>
     <!-- Bootstrap JS Bundle CDN -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
 </body>
 </html>

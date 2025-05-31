@@ -30,6 +30,16 @@ public class ConsultarUsuariosServlet extends HttpServlet {
         }
 
         String tipoUsuarioFiltro = request.getParameter("tipo_usuario");
+        int limit = 10;
+        int page = 1;
+        if (request.getParameter("page") != null) {
+            try {
+                page = Integer.parseInt(request.getParameter("page"));
+                if (page < 1) page = 1;
+            } catch (Exception e) { page = 1; }
+        }
+        int offset = (page - 1) * limit;
+        int totalRegistros = 0;
         List<UsuarioAdmin> listaUsuarios = new ArrayList<>();
         Connection conexion = null;
         PreparedStatement sentencia = null;
@@ -39,14 +49,35 @@ public class ConsultarUsuariosServlet extends HttpServlet {
         try {
             conexion = ConexionBD.conectar();
             if (conexion != null) {
+                // Contar total de registros para paginación
+                String countSql = "SELECT COUNT(*) FROM Usuario";
+                if (!"todos".equals(tipoUsuarioFiltro)) {
+                    countSql += " WHERE tipo_usuario = ?";
+                }
+                PreparedStatement psCount = conexion.prepareStatement(countSql);
+                if (!"todos".equals(tipoUsuarioFiltro)) {
+                    psCount.setString(1, tipoUsuarioFiltro);
+                }
+                ResultSet rsCount = psCount.executeQuery();
+                if (rsCount.next()) {
+                    totalRegistros = rsCount.getInt(1);
+                }
+                rsCount.close();
+                psCount.close();
+
+                // Consulta paginada
                 String consulta = "SELECT id, nombre, apellidos, usuario_generado, tipo_usuario FROM Usuario";
                 if (!"todos".equals(tipoUsuarioFiltro)) {
                     consulta += " WHERE tipo_usuario = ?";
                 }
+                consulta += " ORDER BY id DESC LIMIT ? OFFSET ?";
                 sentencia = conexion.prepareStatement(consulta);
+                int idx = 1;
                 if (!"todos".equals(tipoUsuarioFiltro)) {
-                    sentencia.setString(1, tipoUsuarioFiltro);
+                    sentencia.setString(idx++, tipoUsuarioFiltro);
                 }
+                sentencia.setInt(idx++, limit);
+                sentencia.setInt(idx++, offset);
                 resultado = sentencia.executeQuery();
 
                 while (resultado.next()) {
@@ -70,8 +101,11 @@ public class ConsultarUsuariosServlet extends HttpServlet {
             try { if (conexion != null && !conexion.isClosed()) conexion.close(); } catch (SQLException e) { e.printStackTrace(); }
         }
 
+        int totalPaginas = (int) Math.ceil((double) totalRegistros / limit);
         request.setAttribute("listaUsuarios", listaUsuarios);
         request.setAttribute("error", mensajeError);
+        request.setAttribute("page", page);
+        request.setAttribute("totalPaginas", totalPaginas);
         request.getRequestDispatcher("consultar_usuarios.jsp").forward(request, response);
     }
 

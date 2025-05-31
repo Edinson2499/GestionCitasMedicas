@@ -74,5 +74,8 @@
                 <include name="javax.mail-1.6.2.jar"/>
             </fileset>
         </path>
+        <property name="javac.source" value="17"/>
+        <property name="javac.target" value="17"/>
+        <property name="javac.release" value="17"/>
     </target>
 </project>

@@ -18,7 +18,7 @@
             <input type="hidden" name="rol" value="paciente">
             <h1>Registro de Usuarios</h1>
             <br>
-            <label style="display: inline-block; width: 100px; text-align: left; margin-right: 5px;">ID:</label> <input type="text" class="txt" id="txtId" required="" name="txtId" style="margin-bottom: 5px;">
+            <label style="display: inline-block; width: 100px; text-align: left; margin-right: 5px;">ID:</label> <input type="text" class="txt" id="txtId" required name="txtId" style="margin-bottom: 5px;" pattern="\d{6,}" title="Solo números, mínimo 6 dígitos">
             <br>
             <br>
             <label style="display: inline-block; width: 100px; text-align: left; margin-right: 5px;">Nombre:</label> 
@@ -28,7 +28,7 @@
             <input type="text" class="txt" id="txtApellidos" required="" onkeyup="usuarioGeneradoAutomaticamente()" name="txtApellidos" style="display: inline-block; margin-bottom: 5px;">
             <br>
             <label style="display: inline-block; width: 100px; text-align: left; margin-right: 5px;">Telefono:</label> 
-            <input type="tel" class="txt" id="txtTelefono" required="" onkeyup="usuarioGeneradoAutomaticamente()" name="txtTelefono" style="display: inline-block; margin-bottom: 5px;">
+            <input type="tel" class="txt" id="txtTelefono" required name="txtTelefono" style="display: inline-block; margin-bottom: 5px;" pattern="\d{7,}" title="Solo números, mínimo 7 dígitos">
             <br>
             <label style="display: inline-block; width: 100px; text-align: left; margin-right: 5px;">Direccion:</label> 
             <input type="text" class="txt" id="txtDireccion" required="" onkeyup="usuarioGeneradoAutomaticamente()" name="txtDireccion" style="display: inline-block; margin-bottom: 5px;">
@@ -37,10 +37,10 @@
             <input type="text" class="txt" id="txtEmail" required="" onkeyup="usuarioGeneradoAutomaticamente()" name="txtEmail" style="display: inline-block; margin-bottom: 5px;">
             <br>
             <label style="display: inline-block; width: 100px; text-align: left; margin-right: 5px;">Contraseña:</label> 
-            <input type="password" class="txt" id="txtContrasena" required="" onkeyup="coincidirContrasena()" style="display: inline-block; margin-bottom: 5px;">
+            <input type="password" class="txt" id="txtContrasena" required onkeyup="coincidirContrasena()" name="txtContrasena" style="display: inline-block; margin-bottom: 5px;" pattern='^(?=.*[0-9])(?=.*[!@#$%^&*()_+\-=\[\]{};":\\|,.\/?]).{8,}$'  title="Mínimo 8 caracteres, al menos un número y un símbolo">
             <br>
             <label style="display: contents; width: 100px; text-align: left; margin-right: 5px;">Repita la Contraseña:</label> 
-            <input type="password" class="txt" id="txtRepetirContrasena" required="" onkeyup="coincidirContrasena()" name="txtContrasena" style="display: inline-block; margin-bottom: 5px;">
+            <input type="password" class="txt" id="txtRepetirContrasena" required onkeyup="coincidirContrasena()" name="txtContrasena" style="display: inline-block; margin-bottom: 5px;" pattern='^(?=.*[0-9])(?=.*[!@#$%^&*()_+\-=\[\]{};":\\|,.\/?]).{8,}$'  title="Mínimo 8 caracteres, al menos un número y un símbolo">
             <br>
                 <br>
                 <label class="avisoContrasena" id="avisoContrasena"> ------- </label>

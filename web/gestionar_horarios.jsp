@@ -89,14 +89,38 @@
                     conn = null;
                     ps = null;
                     rs = null;
+                    int limit = 10;
+                    int pageNum = 1;
+                    if (request.getParameter("page") != null) {
+                        try {
+                            pageNum = Integer.parseInt(request.getParameter("page"));
+                            if (pageNum < 1) pageNum = 1;
+                        } catch (Exception e) { pageNum = 1; }
+                    }
+                    int offset = (pageNum - 1) * limit;
+                    int totalRegistros = 0;
+                    try {
+                        conn = ConexionBD.conectar();
+                        String countSql = "SELECT COUNT(*) FROM DisponibilidadEspecialista";
+                        PreparedStatement psCount = conn.prepareStatement(countSql);
+                        ResultSet rsCount = psCount.executeQuery();
+                        if (rsCount.next()) {
+                            totalRegistros = rsCount.getInt(1);
+                        }
+                        rsCount.close();
+                        psCount.close();
+                    } catch (Exception e) { totalRegistros = 0; }
+                    int totalPaginas = (int) Math.ceil((double) totalRegistros / limit);
                     try {
                         conn = ConexionBD.conectar();
                         String sql = "SELECT d.id, d.fecha, d.hora_inicio, d.hora_fin, u.nombre, u.apellidos, es.especialidad " +
                                      "FROM DisponibilidadEspecialista d " +
                                      "JOIN Usuario u ON d.id_especialista = u.id " +
                                      "JOIN Especialista es ON u.id = es.id_usuario " +
-                                     "ORDER BY d.fecha DESC, d.hora_inicio ASC";
+                                     "ORDER BY d.fecha DESC, d.hora_inicio ASC LIMIT ? OFFSET ?";
                         ps = conn.prepareStatement(sql);
+                        ps.setInt(1, limit);
+                        ps.setInt(2, offset);
                         rs = ps.executeQuery();
                         boolean hayResultados = false;
                         while (rs.next()) {
@@ -131,6 +155,24 @@
                 %>
                 </tbody>
             </table>
+        </div>
+        <!-- Controles de paginación -->
+        <div class="d-flex justify-content-center align-items-center my-3">
+            <nav aria-label="Paginación">
+                <ul class="pagination">
+                    <li class="page-item <%= (pageNum <= 1) ? "disabled" : "" %>">
+                        <a class="page-link" href="gestionar_horarios.jsp?page=<%= (pageNum-1) %>">Anterior</a>
+                    </li>
+                    <% for (int i = 1; i <= totalPaginas; i++) { %>
+                        <li class="page-item <%= (i == pageNum) ? "active" : "" %>">
+                            <a class="page-link" href="gestionar_horarios.jsp?page=<%= i %>"><%= i %></a>
+                        </li>
+                    <% } %>
+                    <li class="page-item <%= (pageNum >= totalPaginas) ? "disabled" : "" %>">
+                        <a class="page-link" href="gestionar_horarios.jsp?page=<%= (pageNum+1) %>">Siguiente</a>
+                    </li>
+                </ul>
+            </nav>
         </div>
         <a href="menu_admin.jsp" class="btn-back" title="Volver al menú de administración"></a>
     </div>

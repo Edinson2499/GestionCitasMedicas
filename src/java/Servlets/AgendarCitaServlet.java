@@ -106,7 +106,26 @@ public class AgendarCitaServlet extends HttpServlet {
                     return;
                 }
 
-                Integer idEspecialista = obtenerIdEspecialistaPorNombre(conexion, especialistaSeleccionadoStr, especialidad, fechaCita, horaCita);
+                // Reemplazar la llamada a obtenerIdEspecialistaPorNombre por lógica directa
+                // Buscar el especialista por nombre completo, especialidad y disponibilidad en la fecha y hora seleccionada
+                Integer idEspecialista = null;
+                String sqlEspecialista = "SELECT u.id FROM Usuario u " +
+                        "JOIN Especialista e ON u.id = e.id_usuario " +
+                        "JOIN DisponibilidadEspecialista d ON u.id = d.id_especialista " +
+                        "WHERE CONCAT(u.nombre, ' ', u.apellidos) = ? AND e.especialidad = ? AND d.fecha = ? " +
+                        "AND d.hora_inicio <= ? AND d.hora_fin >= ?";
+                try (PreparedStatement ps = conexion.prepareStatement(sqlEspecialista)) {
+                    ps.setString(1, especialistaSeleccionadoStr);
+                    ps.setString(2, especialidad);
+                    ps.setDate(3, java.sql.Date.valueOf(fechaCita));
+                    ps.setTime(4, java.sql.Time.valueOf(horaCita));
+                    ps.setTime(5, java.sql.Time.valueOf(horaCita));
+                    try (ResultSet rs = ps.executeQuery()) {
+                        if (rs.next()) {
+                            idEspecialista = rs.getInt("id");
+                        }
+                    }
+                }
                 if (idEspecialista == null) {
                     mensaje = "No se encontró especialista disponible para ese horario.";
                     forwardMensaje(request, response, mensaje);
@@ -149,52 +168,6 @@ public class AgendarCitaServlet extends HttpServlet {
         // Si no hay acción válida
         mensaje = "Acción no válida.";
         forwardMensaje(request, response, mensaje);
-    }
-
-    private Integer obtenerIdEspecialista(Connection conexion, String especialistaSeleccionadoStr, String especialidad, LocalDate fechaCita, LocalTime horaCita) throws SQLException {
-        String sql;
-        PreparedStatement ps;
-
-        if (especialistaSeleccionadoStr != null && !especialistaSeleccionadoStr.trim().isEmpty()) {
-            sql = "SELECT u.id FROM Usuario u " +
-                  "JOIN Especialista e ON u.id = e.id_usuario " +
-                  "JOIN DisponibilidadEspecialista d ON u.id = d.id_especialista " +
-                  "WHERE CONCAT(u.nombre, ' ', u.apellidos) = ? " +
-                  "AND e.especialidad = ? " +
-                  "AND d.fecha = ? " +
-                  "AND d.hora_inicio <= ? " +
-                  "AND d.hora_fin >= ? " +
-                  "LIMIT 1";
-            ps = conexion.prepareStatement(sql);
-            ps.setString(1, especialistaSeleccionadoStr);
-            ps.setString(2, especialidad);
-            ps.setDate(3, Date.valueOf(fechaCita));
-            ps.setTime(4, Time.valueOf(horaCita));
-            ps.setTime(5, Time.valueOf(horaCita));
-        } else {
-            sql = "SELECT u.id FROM Usuario u " +
-                  "JOIN Especialista e ON u.id = e.id_usuario " +
-                  "JOIN DisponibilidadEspecialista d ON u.id = d.id_especialista " +
-                  "WHERE e.especialidad = ? " +
-                  "AND d.fecha = ? " +
-                  "AND d.hora_inicio <= ? " +
-                  "AND d.hora_fin >= ? " +
-                  "LIMIT 1";
-            ps = conexion.prepareStatement(sql);
-            ps.setString(1, especialidad);
-            ps.setDate(2, Date.valueOf(fechaCita));
-            ps.setTime(3, Time.valueOf(horaCita));
-            ps.setTime(4, Time.valueOf(horaCita));
-        }
-
-        try (ps) {
-            try (ResultSet rs = ps.executeQuery()) {
-                if (rs.next()) {
-                    return rs.getInt("id");
-                }
-            }
-        }
-        return null;
     }
 
     private int insertarCita(Connection conexion, int idPaciente, int idEspecialista, Timestamp fechaHora, String motivo) throws SQLException {
@@ -250,6 +223,7 @@ public class AgendarCitaServlet extends HttpServlet {
         return null;
     }
 
+    // Corregir el posible error de fin de archivo y manejo de excepción en EmailSender
     private void enviarNotificaciones(DatosPaciente paciente, DatosEspecialista especialista, LocalDate fecha, LocalTime hora) {
         try {
             if (paciente.email != null && !paciente.email.isEmpty()) {
@@ -279,17 +253,21 @@ public class AgendarCitaServlet extends HttpServlet {
                         + "<img src='https://raw.githubusercontent.com/Shadowfiend2504/GestionCitasMedicas/refs/heads/main/web/imagenes/Banner%20(1).png' alt='Banner' style='width:100%; max-width:400px; height:auto;'>"
                         + "</div>"
                         + "</body></html>";
-                EmailSender.enviarEmailHTML(paciente.email, asunto, cuerpo);
+                try {
+                    EmailSender.enviarEmailHTML(paciente.email, asunto, cuerpo);
+                } catch (Exception ex) {
+                    LOGGER.log(Level.WARNING, "No se pudo enviar el correo a {0}", paciente.email);
+                }
             }
             if (paciente.telefono != null && !paciente.telefono.isEmpty()) {
-                LOGGER.info("Enviando SMS a: " + paciente.telefono);
+                LOGGER.log(Level.INFO, "Enviando SMS a: {0}", paciente.telefono);
                 String sms = String.format(
                     "Estimado/a %s, su cita médica ha sido agendada para el %s a las %s con el especialista %s (%s). Por favor, preséntese 10 minutos antes. Si requiere cancelar o reprogramar, contáctenos. Atentamente, Business Health.",
                     paciente.nombre, fecha, hora, especialista.nombre, especialista.especialidad
                 );
                 boolean enviado = SMSSender.enviarSMS(paciente.telefono, sms);
                 if (!enviado) {
-                    LOGGER.warning("No se pudo enviar el SMS a " + paciente.telefono);
+                    LOGGER.log(Level.WARNING, "No se pudo enviar el SMS a {0}", paciente.telefono);
                 }
             }
         } catch (Exception e) {
@@ -347,21 +325,36 @@ public class AgendarCitaServlet extends HttpServlet {
         List<String> disponibles = new java.util.ArrayList<>();
         LocalTime inicio = horaInicio.toLocalTime();
         LocalTime fin = horaFin.toLocalTime();
-        while (!inicio.plusMinutes(20).isAfter(fin)) {
-            LocalTime slotFin = inicio.plusMinutes(20);
-            Timestamp slotInicioTs = Timestamp.valueOf(fecha.atTime(inicio));
-            Timestamp slotFinTs = Timestamp.valueOf(fecha.atTime(slotFin));
-            // Verifica si hay cita en ese slot
-            String sql = "SELECT COUNT(*) FROM Cita WHERE id_especialista = ? AND fecha_hora >= ? AND fecha_hora < ? AND estado IN ('pendiente','confirmada','realizada')";
-            try (PreparedStatement ps = conexion.prepareStatement(sql)) {
-                ps.setInt(1, idEspecialista);
-                ps.setTimestamp(2, slotInicioTs);
-                ps.setTimestamp(3, slotFinTs);
-                try (ResultSet rs = ps.executeQuery()) {
-                    if (rs.next() && rs.getInt(1) == 0) {
-                        disponibles.add(inicio + " - " + slotFin);
+
+        // 1. Obtener todas las citas del especialista para ese día en una sola consulta
+        String sqlCitas = "SELECT fecha_hora FROM Cita WHERE id_especialista = ? AND DATE(fecha_hora) = ? AND estado IN ('pendiente','confirmada','realizada')";
+        java.util.Set<LocalTime> horasOcupadas = new java.util.HashSet<>();
+        try (PreparedStatement ps = conexion.prepareStatement(sqlCitas)) {
+            ps.setInt(1, idEspecialista);
+            ps.setDate(2, java.sql.Date.valueOf(fecha));
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    Timestamp ts = rs.getTimestamp("fecha_hora");
+                    if (ts != null) {
+                        horasOcupadas.add(ts.toLocalDateTime().toLocalTime());
                     }
                 }
+            }
+        }
+
+        // 2. Generar slots y validar en memoria
+        while (!inicio.plusMinutes(20).isAfter(fin)) {
+            LocalTime slotFin = inicio.plusMinutes(20);
+            boolean ocupado = false;
+            // Verifica si el inicio del slot coincide con alguna cita ya agendada
+            for (LocalTime horaCita : horasOcupadas) {
+                if (!horaCita.isBefore(inicio) && horaCita.isBefore(slotFin)) {
+                    ocupado = true;
+                    break;
+                }
+            }
+            if (!ocupado) {
+                disponibles.add(inicio + " - " + slotFin);
             }
             inicio = inicio.plusMinutes(20);
         }
@@ -387,32 +380,6 @@ public class AgendarCitaServlet extends HttpServlet {
             this.nombre = nombre;
             this.especialidad = especialidad;
         }
-    }
-
-    // Agrega este método auxiliar:
-    private Integer obtenerIdEspecialistaPorNombre(Connection conexion, String nombreCompleto, String especialidad, LocalDate fechaCita, LocalTime horaCita) throws SQLException {
-        String sql = "SELECT u.id FROM Usuario u " +
-                     "JOIN Especialista e ON u.id = e.id_usuario " +
-                     "JOIN DisponibilidadEspecialista d ON u.id = d.id_especialista " +
-                     "WHERE CONCAT(u.nombre, ' ', u.apellidos) = ? " +
-                     "AND e.especialidad = ? " +
-                     "AND d.fecha = ? " +
-                     "AND d.hora_inicio <= ? " +
-                     "AND d.hora_fin >= ? " +
-                     "LIMIT 1";
-        try (PreparedStatement ps = conexion.prepareStatement(sql)) {
-            ps.setString(1, nombreCompleto);
-            ps.setString(2, especialidad);
-            ps.setDate(3, Date.valueOf(fechaCita));
-            ps.setTime(4, Time.valueOf(horaCita));
-            ps.setTime(5, Time.valueOf(horaCita));
-            try (ResultSet rs = ps.executeQuery()) {
-                if (rs.next()) {
-                    return rs.getInt("id");
-                }
-            }
-        }
-        return null;
     }
 }
 

@@ -30,58 +30,74 @@
         <div class="alert alert-info text-center my-3"><%= mensaje %></div>
     <%
         }
+        // Declarar variables fuera de los bloques try para que estén disponibles en todos los finally
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
+        int limit = 10;
+        int pageNum = 1;
+        int offset = 0;
+        int totalRegistros = 0;
+        int totalPaginas = 0;
         try {
+            if (request.getParameter("page") != null) {
+                try {
+                    pageNum = Integer.parseInt(request.getParameter("page"));
+                    if (pageNum < 1) pageNum = 1;
+                } catch (Exception e) { pageNum = 1; }
+            }
+            offset = (pageNum - 1) * limit;
             conn = ConexionBD.conectar();
-            String sql = "SELECT c.id, c.fecha_hora, c.motivo, es.especialidad, u.nombre AS nombre_especialista, u.apellidos AS apellidos_especialista " +
-                         "FROM Cita c " +
-                         "JOIN Usuario u ON c.id_especialista = u.id " +
-                         "JOIN Especialista es ON u.id = es.id_usuario " +
-                         "WHERE c.id_paciente = ? AND c.estado = 'pendiente' AND c.fecha_hora >= NOW() " +
-                         "ORDER BY c.fecha_hora ASC";
-            ps = conn.prepareStatement(sql);
+            String countSql = "SELECT COUNT(*) FROM Cita WHERE id_paciente = ? AND estado = 'pendiente' AND fecha_hora >= NOW()";
+            PreparedStatement psCount = conn.prepareStatement(countSql);
+            psCount.setInt(1, idPaciente);
+            ResultSet rsCount = psCount.executeQuery();
+            if (rsCount.next()) {
+                totalRegistros = rsCount.getInt(1);
+            }
+            rsCount.close();
+            psCount.close();
+            totalPaginas = (int) Math.ceil((double) totalRegistros / limit);
+
+            // --- INICIO BLOQUE PRINCIPAL DE CONSULTA Y RENDERIZADO ---
+            ps = conn.prepareStatement(
+                "SELECT c.id, c.fecha_hora, c.motivo, es.especialidad, u.nombre AS nombre_especialista, u.apellidos AS apellidos_especialista " +
+                "FROM Cita c " +
+                "JOIN Usuario u ON c.id_especialista = u.id " +
+                "JOIN Especialista es ON u.id = es.id_usuario " +
+                "WHERE c.id_paciente = ? AND c.estado = 'pendiente' AND c.fecha_hora >= NOW() " +
+                "ORDER BY c.fecha_hora ASC LIMIT ? OFFSET ?"
+            );
             ps.setInt(1, idPaciente);
+            ps.setInt(2, limit);
+            ps.setInt(3, offset);
             rs = ps.executeQuery();
             if (!rs.isBeforeFirst()) {
     %>
                 <p class="no-citas">No tienes citas pendientes para cancelar.</p>
     <%
             } else {
+                while (rs.next()) {
+                    java.sql.Timestamp fechaHoraCita = rs.getTimestamp("fecha_hora");
+                    java.time.LocalDateTime ldt = fechaHoraCita.toLocalDateTime();
+                    java.time.format.DateTimeFormatter formatter = java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+                    String fechaHoraFormateada = ldt.format(formatter);
     %>
-        <form method="post" action="CancelarCitaServlet" style="width:100%;max-width:100%;">
-            <div class="container-fluid px-0">
-                <div class="row justify-content-center">
-                    <div class="col-12 col-md-10">
-                        <%
-                            while (rs.next()) {
-                                java.sql.Timestamp fechaHoraCita = rs.getTimestamp("fecha_hora");
-                                java.time.LocalDateTime ldt = fechaHoraCita.toLocalDateTime();
-                                java.time.format.DateTimeFormatter formatter = java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-                                String fechaHoraFormateada = ldt.format(formatter);
-                        %>
-                        <div class="cita-container mb-3">
-                            <ul class="list-unstyled mb-2">
-                                <li><p><strong>Fecha y Hora:</strong> <%= fechaHoraFormateada %></p></li>
-                                <li><p><strong>Especialidad:</strong> <%= rs.getString("especialidad") %></p></li>
-                                <li><p><strong>Especialista:</strong> <%= rs.getString("nombre_especialista") %> <%= rs.getString("apellidos_especialista") %></p></li>
-                                <li><p><strong>Motivo:</strong> <%= rs.getString("motivo") %></p></li>
-                            </ul>
-                            <button type="button" class="btn btn-danger btnCancelar" data-id="<%= rs.getInt("id") %>">Cancelar</button>
-                        </div>
-                        <%
-                            }
-                        %>
-                    </div>
+                <div class="cita-container mb-3">
+                    <ul class="list-unstyled mb-2">
+                        <li><p><strong>Fecha y Hora:</strong> <%= fechaHoraFormateada %></p></li>
+                        <li><p><strong>Especialidad:</strong> <%= rs.getString("especialidad") %></p></li>
+                        <li><p><strong>Especialista:</strong> <%= rs.getString("nombre_especialista") %> <%= rs.getString("apellidos_especialista") %></p></li>
+                        <li><p><strong>Motivo:</strong> <%= rs.getString("motivo") %></p></li>
+                    </ul>
+                    <button type="button" class="btn btn-danger btnCancelar" data-id="<%= rs.getInt("id") %>">Cancelar</button>
                 </div>
-            </div>
-        </form>
     <%
+                }
             }
         } catch (Exception e) {
     %>
-        <div class='alert alert-danger'>Error al cargar las citas: <%= e.getMessage() %></div>
+            <div class='alert alert-danger'>Error al cargar las citas: <%= e.getMessage() %></div>
     <%
         } finally {
             try { if (rs != null) rs.close(); } catch (Exception e) {}
@@ -99,6 +115,23 @@
                 <button class="btn btn-secondary" id="btnCancelarCancelar">No cancelar</button>
             </div>
         </div>
+    </div>
+    <div class="d-flex justify-content-center align-items-center my-3">
+        <nav aria-label="Paginación">
+            <ul class="pagination">
+                <li class="page-item <%= (pageNum <= 1) ? "disabled" : "" %>">
+                    <a class="page-link" href="cancelar_cita.jsp?page=<%= (pageNum-1) %>">Anterior</a>
+                </li>
+                <% for (int i = 1; i <= totalPaginas; i++) { %>
+                    <li class="page-item <%= (i == pageNum) ? "active" : "" %>">
+                        <a class="page-link" href="cancelar_cita.jsp?page=<%= i %>"><%= i %></a>
+                    </li>
+                <% } %>
+                <li class="page-item <%= (pageNum >= totalPaginas) ? "disabled" : "" %>">
+                    <a class="page-link" href="cancelar_cita.jsp?page=<%= (pageNum+1) %>">Siguiente</a>
+                </li>
+            </ul>
+        </nav>
     </div>
     </main>
     <a href="menu_paciente.jsp" class="btn-back" title="Volver al menú de Paciente"></a>

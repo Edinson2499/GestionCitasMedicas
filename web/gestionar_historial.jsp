@@ -74,6 +74,35 @@
                     conn = null;
                     ps = null;
                     rs = null;
+                    int limit = 10;
+                    int pageNum = 1;
+                    if (request.getParameter("page") != null) {
+                        try {
+                            pageNum = Integer.parseInt(request.getParameter("page"));
+                            if (pageNum < 1) pageNum = 1;
+                        } catch (Exception e) { pageNum = 1; }
+                    }
+                    int offset = (pageNum - 1) * limit;
+                    String idPaciente = request.getParameter("idPaciente");
+                    int totalRegistros = 0;
+                    try {
+                        conn = ConexionBD.conectar();
+                        String countSql = "SELECT COUNT(*) FROM Cita c WHERE (c.estado = 'realizada' OR c.estado = 'cancelada') ";
+                        if (idPaciente != null && !idPaciente.isEmpty()) {
+                            countSql += "AND c.id_paciente = ? ";
+                        }
+                        PreparedStatement psCount = conn.prepareStatement(countSql);
+                        if (idPaciente != null && !idPaciente.isEmpty()) {
+                            psCount.setInt(1, Integer.parseInt(idPaciente));
+                        }
+                        ResultSet rsCount = psCount.executeQuery();
+                        if (rsCount.next()) {
+                            totalRegistros = rsCount.getInt(1);
+                        }
+                        rsCount.close();
+                        psCount.close();
+                    } catch (Exception e) { totalRegistros = 0; }
+                    int totalPaginas = (int) Math.ceil((double) totalRegistros / limit);
                     try {
                         conn = ConexionBD.conectar();
                         String sql = "SELECT c.fecha_hora, c.motivo, c.descripcion, c.estado, " +
@@ -84,15 +113,17 @@
                                      "JOIN Usuario esp ON c.id_especialista = esp.id " +
                                      "JOIN Especialista es ON esp.id = es.id_usuario " +
                                      "WHERE (c.estado = 'realizada' OR c.estado = 'cancelada') ";
-                        String idPaciente = request.getParameter("idPaciente");
                         if (idPaciente != null && !idPaciente.isEmpty()) {
                             sql += "AND c.id_paciente = ? ";
                         }
-                        sql += "ORDER BY c.fecha_hora DESC";
+                        sql += "ORDER BY c.fecha_hora DESC LIMIT ? OFFSET ?";
                         ps = conn.prepareStatement(sql);
+                        int idx = 1;
                         if (idPaciente != null && !idPaciente.isEmpty()) {
-                            ps.setInt(1, Integer.parseInt(idPaciente));
+                            ps.setInt(idx++, Integer.parseInt(idPaciente));
                         }
+                        ps.setInt(idx++, limit);
+                        ps.setInt(idx++, offset);
                         rs = ps.executeQuery();
                         boolean hayResultados = false;
                         while (rs.next()) {
@@ -130,6 +161,24 @@
                 %>
                 </tbody>
             </table>
+        </div>
+        <!-- Controles de paginación -->
+        <div class="d-flex justify-content-center align-items-center my-3">
+            <nav aria-label="Paginación">
+                <ul class="pagination">
+                    <li class="page-item <%= (pageNum <= 1) ? "disabled" : "" %>">
+                        <a class="page-link" href="gestionar_historial.jsp?idPaciente=<%= idPaciente != null ? idPaciente : "" %>&page=<%= (pageNum-1) %>">Anterior</a>
+                    </li>
+                    <% for (int i = 1; i <= totalPaginas; i++) { %>
+                        <li class="page-item <%= (i == pageNum) ? "active" : "" %>">
+                            <a class="page-link" href="gestionar_historial.jsp?idPaciente=<%= idPaciente != null ? idPaciente : "" %>&page=<%= i %>"><%= i %></a>
+                        </li>
+                    <% } %>
+                    <li class="page-item <%= (pageNum >= totalPaginas) ? "disabled" : "" %>">
+                        <a class="page-link" href="gestionar_historial.jsp?idPaciente=<%= idPaciente != null ? idPaciente : "" %>&page=<%= (pageNum+1) %>">Siguiente</a>
+                    </li>
+                </ul>
+            </nav>
         </div>
         <a href="menu_admin.jsp" class="btn-back" title="Volver al menú de administración"></a>
     </div>

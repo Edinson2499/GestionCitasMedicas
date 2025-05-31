@@ -13,6 +13,47 @@
     Connection conexion = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
+    int limit = 10;
+    int pageNum = 1;
+    if (request.getParameter("page") != null) {
+        try {
+            pageNum = Integer.parseInt(request.getParameter("page"));
+            if (pageNum < 1) pageNum = 1;
+        } catch (Exception e) { pageNum = 1; }
+    }
+    int offset = (pageNum - 1) * limit;
+    int totalRegistros = 0;
+    try {
+        conexion = SQL.ConexionBD.conectar();
+        String countSql = "SELECT COUNT(*) FROM Usuario u LEFT JOIN Especialista e ON u.id = e.id_usuario WHERE 1=1";
+        if (!filtroNombre.isEmpty()) {
+            countSql += " AND u.nombre LIKE ?";
+        }
+        if (!filtroApellido.isEmpty()) {
+            countSql += " AND u.apellidos LIKE ?";
+        }
+        if (!filtroTipo.isEmpty()) {
+            countSql += " AND u.tipo_usuario = ?";
+        }
+        PreparedStatement psCount = conexion.prepareStatement(countSql);
+        int idxCount = 1;
+        if (!filtroNombre.isEmpty()) {
+            psCount.setString(idxCount++, "%" + filtroNombre + "%");
+        }
+        if (!filtroApellido.isEmpty()) {
+            psCount.setString(idxCount++, "%" + filtroApellido + "%");
+        }
+        if (!filtroTipo.isEmpty()) {
+            psCount.setString(idxCount++, filtroTipo);
+        }
+        ResultSet rsCount = psCount.executeQuery();
+        if (rsCount.next()) {
+            totalRegistros = rsCount.getInt(1);
+        }
+        rsCount.close();
+        psCount.close();
+    } catch (Exception e) { totalRegistros = 0; }
+    int totalPaginas = (int) Math.ceil((double) totalRegistros / limit);
 %>
 <!DOCTYPE html>
 <html lang="es">
@@ -51,7 +92,7 @@
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conexion = SQL.ConexionBD.conectar();
-            String sql = "SELECT u.id, u.nombre, u.apellidos, u.tipo_usuario, u.contrasena, u.telefono, u.direccion, u.correo, e.especialidad " +
+            String sql = "SELECT u.id, u.nombre, u.apellidos, u.tipo_usuario, u.contrasena, u.telefono, u.direccion, u.correo, u.usuario_generado, e.especialidad " +
                          "FROM Usuario u LEFT JOIN Especialista e ON u.id = e.id_usuario WHERE 1=1";
             if (!filtroNombre.isEmpty()) {
                 sql += " AND u.nombre LIKE ?";
@@ -62,8 +103,8 @@
             if (!filtroTipo.isEmpty()) {
                 sql += " AND u.tipo_usuario = ?";
             }
+            sql += " LIMIT ? OFFSET ?";
             ps = conexion.prepareStatement(sql);
-
             int idx = 1;
             if (!filtroNombre.isEmpty()) {
                 ps.setString(idx++, "%" + filtroNombre + "%");
@@ -74,7 +115,8 @@
             if (!filtroTipo.isEmpty()) {
                 ps.setString(idx++, filtroTipo);
             }
-
+            ps.setInt(idx++, limit);
+            ps.setInt(idx++, offset);
             rs = ps.executeQuery();
             if (rs.next()) { // Cambia aquí: usamos rs.next() para el do-while
     %>
@@ -92,6 +134,7 @@
                     <th>Teléfono</th>
                     <th>Dirección</th>
                     <th>Correo</th>
+                    <th>Usuario Generado</th>
                     <th>Acción</th>
                 </tr>
             </thead>
@@ -109,9 +152,22 @@
         <td data-label="Teléfono"><%= rs.getString("telefono") != null ? rs.getString("telefono") : "-" %></td>
         <td data-label="Dirección"><%= rs.getString("direccion") != null ? rs.getString("direccion") : "-" %></td>
         <td data-label="Correo"><%= rs.getString("correo") != null ? rs.getString("correo") : "-" %></td>
+        <td data-label="Usuario Generado"><%= rs.getString("usuario_generado") != null ? rs.getString("usuario_generado") : "-" %></td>
         <td data-label="Acción">
-            <a href="EditarUsuarioServlet?id=<%= rs.getInt("id") %>">Editar</a> |
-            <a href="#" class="btn-eliminar" data-id="<%= rs.getInt("id") %>">Eliminar</a>
+            <% 
+                int idUsuarioListado = rs.getInt("id");
+                String usuarioGeneradoListado = rs.getString("usuario_generado");
+                Integer idSesion = (Integer) session.getAttribute("idUsuario");
+                String usuarioGeneradoSesion = (String) session.getAttribute("usuario_generado");
+                boolean esAdmin01Listado = idUsuarioListado == 1 && "admin01".equals(usuarioGeneradoListado);
+                boolean esAdmin01Sesion = idSesion != null && idSesion == 1 && "admin01".equals(usuarioGeneradoSesion);
+                if (!esAdmin01Listado || (esAdmin01Listado && esAdmin01Sesion)) {
+            %>
+                <a href="EditarUsuarioServlet?id=<%= rs.getInt("id") %>">Editar</a> |
+                <a href="#" class="btn-eliminar" data-id="<%= rs.getInt("id") %>">Eliminar</a>
+            <% } else { %>
+                <span style="color:gray;">No permitido</span>
+            <% } %>
         </td>
     </tr>
 <%
@@ -119,6 +175,24 @@
 %>
 </tbody>
         </table>
+    </div>
+    <!-- Controles de paginación -->
+    <div class="d-flex justify-content-center align-items-center my-3">
+        <nav aria-label="Paginación">
+            <ul class="pagination">
+                <li class="page-item <%= (pageNum <= 1) ? "disabled" : "" %>">
+                    <a class="page-link" href="editar_usuario.jsp?filtroNombre=<%= filtroNombre %>&filtroApellido=<%= filtroApellido %>&filtroTipo=<%= filtroTipo %>&page=<%= (pageNum-1) %>">Anterior</a>
+                </li>
+                <% for (int i = 1; i <= totalPaginas; i++) { %>
+                    <li class="page-item <%= (i == pageNum) ? "active" : "" %>">
+                        <a class="page-link" href="editar_usuario.jsp?filtroNombre=<%= filtroNombre %>&filtroApellido=<%= filtroApellido %>&filtroTipo=<%= filtroTipo %>&page=<%= i %>"><%= i %></a>
+                    </li>
+                <% } %>
+                <li class="page-item <%= (pageNum >= totalPaginas) ? "disabled" : "" %>">
+                    <a class="page-link" href="editar_usuario.jsp?filtroNombre=<%= filtroNombre %>&filtroApellido=<%= filtroApellido %>&filtroTipo=<%= filtroTipo %>&page=<%= (pageNum+1) %>">Siguiente</a>
+                </li>
+            </ul>
+        </nav>
     </div>
 <%
     } else {

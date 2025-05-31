@@ -17,6 +17,16 @@
     Connection conn = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
+    int limit = 10;
+    int page = 1;
+    if (request.getParameter("page") != null) {
+        try {
+            page = Integer.parseInt(request.getParameter("page"));
+            if (page < 1) page = 1;
+        } catch (Exception e) { page = 1; }
+    }
+    int offset = (page - 1) * limit;
+    int totalRegistros = 0;
     try {
         conn = ConexionBD.conectar();
         // Obtener nombre del paciente
@@ -29,15 +39,29 @@
         rs.close();
         ps.close();
 
+        String countSql = "SELECT COUNT(*) FROM Cita WHERE id_paciente = ? AND (estado = 'realizada' OR estado = 'cancelada')";
+        PreparedStatement psCount = conn.prepareStatement(countSql);
+        psCount.setInt(1, idPaciente);
+        ResultSet rsCount = psCount.executeQuery();
+        if (rsCount.next()) {
+            totalRegistros = rsCount.getInt(1);
+        }
+        rsCount.close();
+        psCount.close();
+
+        int totalPaginas = (int) Math.ceil((double) totalRegistros / limit);
+
         // Obtener historial médico
         String sql = "SELECT c.fecha_hora, c.motivo, c.estado, es.especialidad, u.nombre AS nombre_especialista, u.apellidos AS apellidos_especialista " +
                      "FROM Cita c " +
                      "JOIN Usuario u ON c.id_especialista = u.id " +
                      "JOIN Especialista es ON u.id = es.id_usuario " +
                      "WHERE c.id_paciente = ? AND (c.estado = 'realizada' OR c.estado = 'cancelada') " +
-                     "ORDER BY c.fecha_hora DESC";
+                     "ORDER BY c.fecha_hora DESC LIMIT ? OFFSET ?";
         ps = conn.prepareStatement(sql);
         ps.setInt(1, idPaciente);
+        ps.setInt(2, limit);
+        ps.setInt(3, offset);
         rs = ps.executeQuery();
 %>
 <!DOCTYPE html>
@@ -91,6 +115,23 @@
                 %>
                 </tbody>
             </table>
+        </div>
+        <div class="d-flex justify-content-center align-items-center my-3">
+            <nav aria-label="Paginación">
+                <ul class="pagination">
+                    <li class="page-item <%= (page <= 1) ? "disabled" : "" %>">
+                        <a class="page-link" href="historial_medico_paciente.jsp?id=<%= idPaciente %>&page=<%= (page-1) %>">Anterior</a>
+                    </li>
+                    <% for (int i = 1; i <= totalPaginas; i++) { %>
+                        <li class="page-item <%= (i == page) ? "active" : "" %>">
+                            <a class="page-link" href="historial_medico_paciente.jsp?id=<%= idPaciente %>&page=<%= i %>"><%= i %></a>
+                        </li>
+                    <% } %>
+                    <li class="page-item <%= (page >= totalPaginas) ? "disabled" : "" %>">
+                        <a class="page-link" href="historial_medico_paciente.jsp?id=<%= idPaciente %>&page=<%= (page+1) %>">Siguiente</a>
+                    </li>
+                </ul>
+            </nav>
         </div>
         <%
             }

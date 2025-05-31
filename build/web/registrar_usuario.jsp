@@ -50,7 +50,7 @@
             </div>
             <div class="mb-3">
                 <label for="telefono" class="form-label" style="display: inline-block; width: 100px; text-align: left; margin-right: 5px; margin-bottom: 5px;">Teléfono:</label>
-                <input type="tel" class="txt" id="telefono" name="telefono">
+                <input type="tel" class="txt" id="telefono" name="telefono" pattern="\d{7,}" title="Solo números, mínimo 7 dígitos">
             </div>
             <div class="mb-3">
                 <label for="direccion" class="form-label" style="display: inline-block; width: 100px; text-align: left; margin-right: 5px; margin-bottom: 5px;">Dirección:</label>
@@ -62,7 +62,11 @@
             </div>
             <div class="mb-3">
                 <label for="contrasena" class="form-label" style="display: inline-block; width: 100px; text-align: left; margin-right: 5px; margin-bottom: 5px;">Contraseña:</label>
-                <input type="password" class="txt" id="contrasena" name="contrasena" required>
+                <input type="password" class="txt" id="contrasena" name="contrasena" required 
+                pattern='^(?=.*[0-9])(?=.*[!@#$%^&*()_+\-=\[\]{};":\\|,.\/?]).{8,}$' 
+                title="Mínimo 8 caracteres, al menos un número y un símbolo">
+
+
             </div>
             <div class="mb-3">
                 <label for="tipo_usuario" class="form-label" style="display: inline-block; width: 140px; text-align: left; margin-right: 5px; margin-bottom: 5px;">Tipo de Usuario:</label>
@@ -114,7 +118,7 @@
                 <input type="text" class="txt" id="usuario_generado" name="usuario_generado" readonly>
             </div>
             <input type="submit" class="btn" value="Registrar">
-            <a href="menu_admin.jsp" class="btn-back" title="Volver al menu de administrador"></a>
+            <a href="menu_admin.jsp" class="btn-back" title="Volver al menú"></a>
         </form>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

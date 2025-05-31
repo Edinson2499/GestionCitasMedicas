@@ -63,6 +63,40 @@
         PreparedStatement ps = null;
         ResultSet rs = null;
         boolean mostrarTabla = fechaInicio != null && fechaFin != null && !fechaInicio.isEmpty() && !fechaFin.isEmpty();
+        int limit = 10;
+
+        int pageNum = 1;
+        if (request.getParameter("page") != null) {
+            try {
+                pageNum = Integer.parseInt(request.getParameter("page"));
+                if (pageNum < 1) pageNum = 1;
+            } catch (Exception e) { pageNum = 1; }
+        }
+        int offset = (pageNum - 1) * limit;
+        int totalRegistros = 0;
+        if (mostrarTabla) {
+            try {
+                conn = SQL.ConexionBD.conectar();
+                String countSql = "SELECT COUNT(*) FROM Cita c WHERE c.id_especialista = ? AND DATE(c.fecha_hora) BETWEEN ? AND ? ";
+                if (estado != null && !estado.isEmpty()) {
+                    countSql += "AND c.estado = ? ";
+                }
+                PreparedStatement psCount = conn.prepareStatement(countSql);
+                psCount.setInt(1, idEspecialista);
+                psCount.setString(2, fechaInicio);
+                psCount.setString(3, fechaFin);
+                if (estado != null && !estado.isEmpty()) {
+                    psCount.setString(4, estado);
+                }
+                ResultSet rsCount = psCount.executeQuery();
+                if (rsCount.next()) {
+                    totalRegistros = rsCount.getInt(1);
+                }
+                rsCount.close();
+                psCount.close();
+            } catch (Exception e) { totalRegistros = 0; }
+        }
+        int totalPaginas = (int) Math.ceil((double) totalRegistros / limit);
         if (mostrarTabla) {
             try {
                 conn = SQL.ConexionBD.conectar();
@@ -73,14 +107,17 @@
                 if (estado != null && !estado.isEmpty()) {
                     sql += "AND c.estado = ? ";
                 }
-                sql += "ORDER BY c.fecha_hora DESC";
+                sql += "ORDER BY c.fecha_hora DESC LIMIT ? OFFSET ?";
                 ps = conn.prepareStatement(sql);
                 ps.setInt(1, idEspecialista);
                 ps.setString(2, fechaInicio);
                 ps.setString(3, fechaFin);
+                int idx = 4;
                 if (estado != null && !estado.isEmpty()) {
-                    ps.setString(4, estado);
+                    ps.setString(idx++, estado);
                 }
+                ps.setInt(idx++, limit);
+                ps.setInt(idx++, offset);
                 rs = ps.executeQuery();
     %>
     <div id="resultado_reporte" class="mb-5">
@@ -128,6 +165,24 @@
                     %>
                 </tbody>
             </table>
+        </div>
+        <!-- Controles de paginación -->
+        <div class="d-flex justify-content-center align-items-center my-3">
+            <nav aria-label="Paginación">
+                <ul class="pagination">
+                    <li class="page-item <%= (pageNum <= 1) ? "disabled" : "" %>">
+                        <a class="page-link" href="generar_reportes.jsp?fecha_inicio=<%= fechaInicio %>&fecha_fin=<%= fechaFin %>&estado=<%= estado != null ? estado : "" %>&page=<%= (pageNum-1) %>">Anterior</a>
+                    </li>
+                    <% for (int i = 1; i <= totalPaginas; i++) { %>
+                        <li class="page-item <%= (i == pageNum) ? "active" : "" %>">
+                            <a class="page-link" href="generar_reportes.jsp?fecha_inicio=<%= fechaInicio %>&fecha_fin=<%= fechaFin %>&estado=<%= estado != null ? estado : "" %>&page=<%= i %>"><%= i %></a>
+                        </li>
+                    <% } %>
+                    <li class="page-item <%= (pageNum >= totalPaginas) ? "disabled" : "" %>">
+                        <a class="page-link" href="generar_reportes.jsp?fecha_inicio=<%= fechaInicio %>&fecha_fin=<%= fechaFin %>&estado=<%= estado != null ? estado : "" %>&page=<%= (pageNum+1) %>">Siguiente</a>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </div>
     <%

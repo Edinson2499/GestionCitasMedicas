@@ -260,29 +260,51 @@ GestionCitasMedicas/
 
 1. **Clona este repositorio:**
 
-bash
-git clone [https://github.com/Shadowfiend2504/GestionCitasMedicas](https://github.com/Shadowfiend2504/GestionCitasMedicas).git
+   ```bash
+   git clone https://github.com/Shadowfiend2504/GestionCitasMedicas.git
+   ```
 
-## 👤 Roles de Usuario
+2. **Importa el proyecto en tu IDE favorito:**
+   - Puedes usar NetBeans, Eclipse, IntelliJ IDEA o Visual Studio Code.
+   - Selecciona la carpeta del proyecto `GestionCitasMedicas` como proyecto Java existente.
 
-- **Paciente**: Registro, inicio de sesión, solicitud y consulta de citas.
-- **Médico**: Visualización de citas asignadas.
-- **Administrador**: Gestión de usuarios y sistema.
+3. **Configura el servidor Apache Tomcat:**
+   - Descarga e instala [Apache Tomcat 9 o superior](https://tomcat.apache.org/).
+   - Asegúrate de que el puerto (por defecto 8080) no esté ocupado.
+   - Agrega el servidor Tomcat a tu IDE y vincula el proyecto.
 
-## 📄 Principales JSPs
+4. **Configura la base de datos MySQL:**
+   - Instala MySQL Server y asegúrate de que esté en ejecución.
+   - Crea una base de datos llamada `citasmedicas` (o el nombre que uses en tu archivo de configuración).
+   - Importa el script de base de datos:
+     ```sql
+     SOURCE CitasMedicasBase.sql;
+     ```
+     Puedes hacerlo desde la línea de comandos de MySQL o usando una herramienta como MySQL Workbench.
 
-- `login.jsp`: Inicio de sesión
-- `altaUsuario.jsp`: Registro de usuarios
-- `menu.jsp`: Menú principal
-- `citas.jsp`: Gestión de citas
-- `admin.jsp`: Panel administrativo
+5. **Configura las credenciales de la base de datos:**
+   - Edita el archivo de configuración de conexión (por ejemplo, en `SQL/ConexionBD.java`) para poner tu usuario y contraseña de MySQL.
 
-## 🔒 Seguridad
+6. **Agrega las dependencias necesarias:**
+   - Asegúrate de tener los siguientes JARs en el classpath o en la carpeta `lib` de tu proyecto o de Tomcat:
+     - `mysql-connector-j-9.2.0.jar`
+     - `jakarta.mail-2.0.1.jar`
+     - `gson-2.13.1.jar`
+     - `httpclient-4.5.14.jar`
+   - Si usas Maven, puedes agregarlas como dependencias en el `pom.xml`.
 
-- Validación de formularios del lado del cliente y servidor.
-- Control de acceso mediante sesiones.
+7. **Compila y despliega la aplicación:**
+   - Si usas Ant, ejecuta:
+     ```bash
+     ant clean
+     ant dist
+     ant deploy
+     ```
+   - O bien, compila desde tu IDE y ejecuta en Tomcat.
 
-Repositorio gestionado con Git.
+8. **Accede a la aplicación:**
+   - Abre tu navegador y ve a: [http://localhost:8080/GestionCitasMedicas](http://localhost:8080/GestionCitasMedicas)
+   - Regístrate como paciente o especialista, o inicia sesión como administrador.
 
 ---
 

@@ -37,10 +37,10 @@
             <input type="text" class="txt" id="txtEmail" required="" onkeyup="usuarioGeneradoAutomaticamente()" name="txtEmail" style="display: inline-block; margin-bottom: 5px;">
             <br>
             <label style="display: inline-block; width: 100px; text-align: left; margin-right: 5px;">Contraseña:</label> 
-            <input type="password" class="txt" id="txtContrasena" required onkeyup="coincidirContrasena()" name="txtContrasena" style="display: inline-block; margin-bottom: 5px;" pattern='^(?=.*[0-9])(?=.*[!@#$%^&*()_+\-=\[\]{};":\\|,.\/?]).{8,}$'  title="Mínimo 8 caracteres, al menos un número y un símbolo">
+            <input type="password" class="txt" id="txtContrasena" required onkeyup="coincidirContrasena()" name="txtContrasena" style="display: inline-block; margin-bottom: 5px;" pattern="\d{8,}"  title="Mínimo 8 caracteres, al menos un número y un símbolo">
             <br>
             <label style="display: contents; width: 100px; text-align: left; margin-right: 5px;">Repita la Contraseña:</label> 
-            <input type="password" class="txt" id="txtRepetirContrasena" required onkeyup="coincidirContrasena()" name="txtContrasena" style="display: inline-block; margin-bottom: 5px;" pattern='^(?=.*[0-9])(?=.*[!@#$%^&*()_+\-=\[\]{};":\\|,.\/?]).{8,}$'  title="Mínimo 8 caracteres, al menos un número y un símbolo">
+            <input type="password" class="txt" id="txtRepetirContrasena" required onkeyup="coincidirContrasena()" name="txtContrasena" style="display: inline-block; margin-bottom: 5px;" pattern="\d{8,}"  title="Mínimo 8 caracteres, al menos un número y un símbolo">
             <br>
                 <br>
                 <label class="avisoContrasena" id="avisoContrasena"> ------- </label>

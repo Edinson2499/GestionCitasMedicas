@@ -63,7 +63,7 @@
             <div class="mb-3">
                 <label for="contrasena" class="form-label" style="display: inline-block; width: 100px; text-align: left; margin-right: 5px; margin-bottom: 5px;">Contraseña:</label>
                 <input type="password" class="txt" id="contrasena" name="contrasena" required 
-                pattern='^(?=.*[0-9])(?=.*[!@#$%^&*()_+\-=\[\]{};":\\|,.\/?]).{8,}$' 
+                pattern="\d{8,}" 
                 title="Mínimo 8 caracteres, al menos un número y un símbolo">
 
 

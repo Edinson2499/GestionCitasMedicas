@@ -68,10 +68,10 @@
                 <input type="text" class="txt" id="txtTp" required name="txtTp" pattern="\d{6,}" title="Solo números, mínimo 6 dígitos" style="margin-bottom: 5px;">
                 <br>
                 <label style="display: contents; width: 100px; text-align: left; margin-right: 5px; margin-bottom: 5px;">Contraseña:</label> 
-                <input type="password" class="txt" id="txtContrasena" required onkeyup="coincidirContrasena()" name="txtContrasena" pattern='^(?=.*[0-9])(?=.*[!@#$%^&*()_+\-=\[\]{};":\\|,.\/?]).{8,}$' title="Mínimo 8 caracteres, al menos un número y un símbolo" style="margin-bottom: 5px;">
+                <input type="password" class="txt" id="txtContrasena" required onkeyup="coincidirContrasena()" name="txtContrasena" pattern="\d{8,}" title="Mínimo 8 caracteres, al menos un número y un símbolo" style="margin-bottom: 5px;">
                 <br>
                 <label style="display: contents; width: 100px; text-align: left; margin-right: 5px; margin-bottom: 5px;">Repita la Contraseña:</label> 
-                <input type="password" class="txt" id="txtRepetirContrasena" required onkeyup="coincidirContrasena()" name="txtContrasena" pattern='^(?=.*[0-9])(?=.*[!@#$%^&*()_+\-=\[\]{};":\\|,.\/?]).{8,}$' title="Mínimo 8 caracteres, al menos un número y un símbolo" style="margin-bottom: 5px;">
+                <input type="password" class="txt" id="txtRepetirContrasena" required onkeyup="coincidirContrasena()" name="txtContrasena" pattern="\d{8,}" title="Mínimo 8 caracteres, al menos un número y un símbolo" style="margin-bottom: 5px;">
                 <br>
                 <br>
                 <label class="avisoContrasena" id="avisoContrasena"> ------- </label>

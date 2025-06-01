@@ -1,4 +1,3 @@
-<!-- filepath: c:\Users\Vargas Cardenas\Desktop\GestionCitasMedicas\web\historial_medico_paciente.jsp -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.sql.*,SQL.ConexionBD" %>
 <%
     String idParam = request.getParameter("id");

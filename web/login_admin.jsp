@@ -1,9 +1,3 @@
-<%-- 
-    Document   : login_admin
-    Created on : 3/05/2025, 11:52:28 a. m.
-    Author     : javie
---%>
-
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">

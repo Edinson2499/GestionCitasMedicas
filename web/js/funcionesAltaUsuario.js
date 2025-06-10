@@ -14,22 +14,45 @@ function resetearFormulario() {
 }
 
 
-function usuarioGeneradoAutomaticamente() {
-
-    var nombre = document.getElementById("txtNombre");
-    var apellidos = document.getElementById("txtApellidos");
-
+async function usuarioGeneradoAutomaticamente() {
+    var nombre = document.getElementById("txtNombre").value.trim().toLowerCase();
+    var apellidos = document.getElementById("txtApellidos").value.trim().toLowerCase();
     var usuarioGeneradoAutomaticamente = document.getElementById("txtUsuarioGeneradoAutomaticamente");
 
+    if (!nombre || !apellidos) {
+        usuarioGeneradoAutomaticamente.value = "";
+        return;
+    }
 
-    var resultadoCombinado = nombre.value.slice(0, 3) + apellidos.value.slice(0, 3) + "@bussineshealth.com";
+    // Toma la primera letra del primer nombre y la primera letra del primer apellido
+    var nombreBase = nombre.split(" ")[0].charAt(0);
+    var apellidoBase = apellidos.split(" ")[0].charAt(0);
+    var base = nombreBase + apellidoBase;
+    var usuarioFinal = base + "@bussineshealth.com";
+    let contador = 1;
 
-    usuarioGeneradoAutomaticamente.value = resultadoCombinado;
+    try {
+        let existe = true;
+        while (existe) {
+            const response = await fetch(`VerificarUsuarioServlet?usuario=${encodeURIComponent(usuarioFinal)}`);
+            const text = await response.text();
+            existe = text.trim() === "true";
 
-    if (nombre.value.length ==0 || apellidos.value.length == 0) {
+            if (!existe) {
+                break;
+            } else {
+                usuarioFinal = base + contador + "@bussineshealth.com";
+                contador++;
+            }
+        }
+        usuarioGeneradoAutomaticamente.value = usuarioFinal;
+    } catch (error) {
+        console.error("Error al verificar usuario:", error);
         usuarioGeneradoAutomaticamente.value = "";
     }
 }
+
+
 
 
 function coincidirContrasena() {

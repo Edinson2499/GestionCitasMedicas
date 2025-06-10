@@ -1,0 +1,307 @@
+/* ================================
+   Estilos generales del cuerpo
+================================ */
+body {
+    font-family: var(--bs-body-font-family, sans-serif);
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+    background-color: rgb(233 246 253) !important; /* Fuerza el color de fondo */
+    background-size: cover;
+    background-position: center;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-size: 100vw 100vh;
+}
+
+/* ================================
+   Título principal (h1 y h2)
+================================ */
+h1, h2 {
+    color: #222;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 12px 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    margin-bottom: 20px;
+    width: 90%;
+    max-width: 600px;
+}
+
+h1 {
+    font-size: clamp(22px, 5vw, 28px);
+}
+
+h2 {
+    font-size: clamp(18px, 4.5vw, 24px);
+    color: #222;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 10px 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    margin-bottom: 20px;
+    width: 90%;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* ================================
+   Formulario de filtro
+================================ */
+form {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 500px;
+    margin-bottom: 30px;
+    box-sizing: border-box;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label, .form-label {
+    display: block;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+    font-size: clamp(14px, 2vw, 15px);
+}
+
+/* ================================
+   Select personalizado
+================================ */
+select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    font-size: clamp(13px, 2vw, 14px);
+    transition: border-color 0.3s;
+}
+
+select:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* ================================
+   Botón de envío
+================================ */
+button[type="submit"],
+.btn-primary {
+    background: rgba(113, 206, 239, 1);
+    color: black;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 12px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+button[type="submit"]:hover,
+.btn-primary:hover {
+    background-color: rgba(5, 86, 179, 1);
+    color: white;
+}
+/* ================================
+   Tabla de resultados
+================================ */
+table {
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto 30px auto;
+    border-collapse: collapse;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 14px 18px;
+    border-bottom: 1px solid #e0e0e0;
+    text-align: left;
+    font-size: clamp(12px, 2vw, 15px);
+}
+
+th {
+    background-color: #007bff;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+tr:nth-child(even) td {
+    background-color: #f9f9f9;
+}
+
+tr:hover td {
+    background-color: #f1f1f1;
+}
+
+/* ================================
+   Enlace de acción (editar)
+================================ */
+a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #0056b3;
+}
+
+/* ================================
+   Botón de regreso
+================================ */
+a.btn-back {
+    width: 80px;
+    height: 80px;
+    background-image: url('../imagenes/Atras.webp');
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s;
+    position: absolute;
+    left: 30px;
+    top: 30px;
+    display: inline-block;
+}
+
+a.btn-back:hover {
+    background-image: url('../imagenes/Atras_hover.webp');
+}
+
+/* ================================
+   Mensaje de error
+================================ */
+.alert-danger {
+    text-align: center;
+    width: 90%;
+    max-width: 600px;
+    margin: 10px auto;
+    font-weight: bold;
+}
+
+/* ================================
+   Media queries (Responsive)
+================================ */
+@media (max-width: 768px) {
+    form {
+        padding: 1rem;
+    }
+
+    th, td {
+        padding: 10px 12px;
+    }
+
+    a.btn-back {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    form {
+        padding: 1rem;
+    }
+
+    th, td {
+        padding: 8px 10px;
+    }
+
+    a.btn-back {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* Bloque responsive para fondo y botón de regreso en móvil */
+@media (max-width: 600px) {
+    body {
+        background-color: rgb(233 246 253) !important; /* Fuerza el color de fondo */
+        background-size: cover; /* Cambia esto */
+        background-repeat: no-repeat;
+        background-position: center center;
+        min-height: 100vh;
+        min-width: 100vw;
+        overflow-x: hidden;
+    }
+    a.btn-back {
+        width: 45px !important;
+        height: 45px !important;
+        background-image: url('../imagenes/Atras.webp') !important;
+        background-size: contain !important;
+        background-repeat: no-repeat !important;
+        background-position: center !important;
+        left: 10px !important;
+        top: 10px !important;
+    }
+    a.btn-back:hover {
+        background-image: url('../imagenes/Atras_hover.webp') !important;
+    }
+
+    table, thead, tbody, th, td, tr {
+        display: block;
+        width: 100%;
+    }
+    thead {
+        display: none;
+    }
+    tr {
+        margin-bottom: 1.5rem;
+        border: 1px solid #007bff; /* Color del encabezado */
+        border-radius: 10px;
+        background: #fff;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+        padding: 10px 0;
+        overflow: hidden;
+    }
+    td {
+        padding: 8px 16px;
+        text-align: left;
+        position: relative;
+        border: none !important;
+        border-left: 4px solid #007bff; /* Simula encabezado */
+        margin-bottom: 6px;
+        background: #f5faff; /* Suave azul para simular encabezado */
+    }
+    td:before {
+        content: attr(data-label);
+        font-weight: bold;
+        display: block;
+        margin-bottom: 4px;
+        color: #007bff;
+    }
+    /* Opcional: solo el primer td de cada tarjeta con fondo más fuerte */
+    td:first-child {
+        background: #007bff;
+        color: #fff;
+        border-left: 4px solid #007bff;
+    }
+    td:first-child:before {
+        color: #fff;
+    }
+}

@@ -1,70 +1,263 @@
-/*
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
-*/
-/* 
-    Created on : 22/04/2025, 3:45:14 p. m.
-    Author     : javie
-*/
-
-/* estilos_citas_asignadas.css */
-
+/* ===========================================
+   Estilos generales del cuerpo
+=========================================== */
 body {
-    font-family: sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f4f4f4;
     margin: 0;
-    padding: 20px;
+    padding: 40px 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: rgb(233 246 253) !important; /* Fuerza el color de fondo */
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    background-size: 100vw 100vh;
+    /* Quitar difuminación */
+    /* backdrop-filter: blur(2px); */
 }
 
+/* ===========================================
+   Título principal
+=========================================== */
 h1 {
-    color: #333;
-    margin-bottom: 20px;
+    color: #222;
+    margin-bottom: 30px;
+    font-size: clamp(20px, 6vw, 28px);
+    text-align: center;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 10px 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
+/* ===========================================
+   Contenedor principal
+=========================================== */
 div {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 80%;
-    max-width: 800px;
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 1000px;
+    overflow-x: auto;
 }
 
+/* ===========================================
+   Párrafos
+=========================================== */
 p {
     margin-bottom: 15px;
+    font-size: 16px;
+    color: #333;
 }
 
+/* ===========================================
+   Tabla y sus estilos generales
+=========================================== */
 table {
-    width: 100%;
+    width: 90%;
+    max-width: 1000px;
+    margin: 20px auto;
     border-collapse: collapse;
-    margin-top: 15px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
+/* Etiquetas dentro de tablas y formularios */
+label {
+    margin-bottom: 5px;
+    color: #222;
+    font-size: 14px;
+}
+
+/* Celdas de tabla */
 th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
+    padding: 14px 18px;
+    border-bottom: 1px solid #e0e0e0;
     text-align: left;
+    font-size: 15px;
 }
 
+/* Encabezados de tabla */
 th {
-    background-color: #f2f2f2;
-    font-weight: bold;
+    background-color: #0069d9;
+    color: white;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 0.5px;
 }
 
-tbody tr:nth-child(even) {
+/* Celdas normales */
+td {
+    background-color: #fff;
+    color: #333;
+}
+
+/* Filas pares */
+tr:nth-child(even) {
     background-color: #f9f9f9;
 }
 
-a {
-    display: inline-block;
-    margin-top: 20px;
-    text-decoration: none;
-    color: #007bff;
+/* Hover sobre filas */
+tr:hover {
+    background-color: #f1f1f1;
+}
+/* Filas pares con color alternado */
+tbody tr:nth-child(even) {
+    background-color: #fafafa;
 }
 
-a:hover {
-    text-decoration: underline;
+/* Efecto hover en filas */
+tbody tr:hover {
+    background-color: #f1f1f1;
 }
+
+/* ===========================================
+   Botón de regreso con imagen
+=========================================== */
+a {
+    width: 80px;
+    height: 80px;
+    background-image: url('../imagenes/Atras.webp');
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-image 0.3s ease;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 10;
+}
+
+/* Hover del botón de regreso */
+a:hover {
+    background-image: url('../imagenes/Atras_hover.webp');
+    transform: scale(1.05);
+}
+
+/* ===========================================
+   Estilos responsive adicionales
+=========================================== */
+@media (max-width: 768px) {
+    body {
+        padding: 30px 15px;
+    }
+
+    h1 {
+        font-size: 20px;
+        padding: 10px;
+    }
+
+    div {
+        padding: 20px;
+        width: 100%;
+    }
+
+    table {
+        font-size: 14px;
+    }
+
+    th, td {
+        padding: 10px;
+    }
+
+    a {
+        width: 50px;
+        height: 50px;
+        top: 15px;
+        left: 15px;
+        background-size: contain;
+    }
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 8px 2px;
+        background-color: rgb(233 246 253) !important; /* Fuerza el color de fondo */
+        background-size: 100vw 100vh;
+        background-repeat: no-repeat;
+        background-position: center center;
+        min-height: 100vh;
+        min-width: 100vw;
+        overflow-x: hidden;
+    }
+    h1 {
+        font-size: 1.1rem;
+        padding: 7px 2px;
+        margin-bottom: 10px;
+        border-radius: 8px;
+    }
+    div {
+        padding: 7px 2px;
+        width: 100vw;
+        max-width: 100vw;
+        border-radius: 0.7rem;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+        margin: 0;
+    }
+    p {
+        font-size: 13px;
+    }
+    /* Tabla tipo tarjeta para móvil */
+    table, thead, tbody, th, td, tr {
+        display: block;
+        width: 100%;
+    }
+    thead {
+        display: none;
+    }
+    tr {
+        margin-bottom: 1.2rem;
+        border: 1px solid #0069d9;
+        border-radius: 10px;
+        background: #fff;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+        padding: 8px 0;
+        overflow: hidden;
+    }
+    td {
+        padding: 7px 12px;
+        text-align: left;
+        position: relative;
+        border: none !important;
+        border-left: 4px solid #0069d9;
+        margin-bottom: 4px;
+        background: #f5faff;
+        font-size: 12px;
+    }
+    td:before {
+        content: attr(data-label);
+        font-weight: bold;
+        display: block;
+        margin-bottom: 2px;
+        color: #0069d9;
+        font-size: 12px;
+    }
+    td:first-child {
+        background: #0069d9;
+        color: #fff;
+        border-left: 4px solid #0069d9;
+    }
+    td:first-child:before {
+        color: #fff;
+    }
+    a {
+        width: 36px;
+        height: 36px;
+        top: 6px;
+        left: 6px;
+        background-size: contain;
+        position: fixed;
+    }
+    a:hover {
+        background-image: url('../imagenes/Atras_hover.webp');
+    }
+}
+

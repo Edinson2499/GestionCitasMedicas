@@ -1,0 +1,165 @@
+/* ==========================================
+   VARIABLES Y CONFIGURACIÓN GENERAL
+========================================== */
+body {
+    font-family: var(--bs-body-font-family, sans-serif);
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+    background-image: url(../imagenes/Menus.webp);
+    background-size: cover;
+    background-position: center;
+    box-sizing: border-box;
+}
+
+/* ==========================================
+   ENCABEZADO PRINCIPAL (H1)
+========================================== */
+h1 {
+    color: #222;
+    font-size: clamp(20px, 6vw, 28px);
+    text-align: center;
+    margin: 0 auto 20px auto;
+    padding: 12px 20px;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    width: 90%;
+    max-width: 600px;
+}
+
+/* ==========================================
+   CONTENEDOR DEL FORMULARIO
+========================================== */
+.container-disponibilidad {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 600px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+/* ==========================================
+   ETIQUETAS DE FORMULARIO
+========================================== */
+label,
+.form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+/* ==========================================
+   CAMPOS DE FECHA Y HORA
+========================================== */
+input[type="date"],
+input[type="time"] {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ced4da;
+    border-radius: 0.375rem;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+table {
+    width: 100%;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    overflow: hidden;
+}
+
+th, td {
+    text-align: center;
+    padding: 12px 8px;
+}
+
+th {
+    background-color: #0d6efd;
+    color: #fff;
+    font-weight: 600;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+
+/* ==========================================
+   BOTÓN GUARDAR / ENVIAR
+========================================== */
+button[type="submit"],
+.btn-guardar {
+    background-color: #dc3545;
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 12px;
+    font-size: 18px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover,
+.btn-guardar:hover {
+    background-color: #bb2d3b;
+    color: white;
+}
+
+/* ==========================================
+   BOTÓN DE REGRESO (IMAGEN REDONDA)
+========================================== */
+a.btn-back {
+    width: 80px;
+    height: 80px;
+    background-image: url('../imagenes/Atras.webp');
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s;
+    position: absolute;
+    left: 30px;
+    top: 30px;
+    display: inline-block;
+}
+
+a.btn-back:hover {
+    background-image: url('../imagenes/Atras_hover.webp');
+}
+
+/* ==========================================
+   MEDIA QUERIES: RESPONSIVE DESIGN
+========================================== */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 20px;
+        padding: 10px;
+    }
+
+    .container-disponibilidad {
+        padding: 1rem;
+    }
+
+    input[type="date"],
+    input[type="time"],
+    button[type="submit"],
+    .btn-guardar {
+        font-size: 1rem;
+        padding: 0.5rem;
+    }
+
+    a.btn-back {
+        width: 50px;
+        height: 50px;
+        background-size: 50px 50px;
+    }
+}

@@ -26,11 +26,7 @@ public class VerCitasAsignadasServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         Integer idEspecialista = (Integer) session.getAttribute("idUsuario");
-
-        if (idEspecialista == null) {
-            response.sendRedirect("login.jsp"); // Redirigir si no hay sesión
-            return;
-        }
+        String rol = (String) session.getAttribute("rol");
 
         Connection conexion = null;
         PreparedStatement sentencia = null;
@@ -45,14 +41,14 @@ public class VerCitasAsignadasServlet extends HttpServlet {
                                   "JOIN Usuario p ON c.id_paciente = p.id " +
                                   "JOIN Usuario es ON c.id_especialista = es.id " +
                                   "JOIN Especialista e ON es.id = e.id_usuario " +
-                                  "WHERE c.id_especialista = ?";
+                                  "WHERE c.id_especialista = ? AND c.estado IN ('pendiente', 'confirmada')";
                 sentencia = conexion.prepareStatement(consulta);
                 sentencia.setInt(1, idEspecialista);
                 resultado = sentencia.executeQuery();
 
                 while (resultado.next()) {
                     CitaAsignada cita = new CitaAsignada();
-                    cita.setFechaHora(resultado.getTimestamp("fecha_hora"));
+                    cita.setFechaHora(resultado.getTimestamp("fecha_hora").toString());
                     cita.setNombrePaciente(resultado.getString("nombre_paciente") + " " + resultado.getString("apellidos_paciente"));
                     cita.setEspecialidad(resultado.getString("especialidad"));
                     cita.setEstado(resultado.getString("estado"));
@@ -76,6 +72,11 @@ public class VerCitasAsignadasServlet extends HttpServlet {
 
         request.setAttribute("citasAsignadas", citas);
         request.getRequestDispatcher("ver_citas_asignadas.jsp").forward(request, response);
+
+        System.out.println("Citas encontradas: " + citas.size());
+        for (CitaAsignada cita : citas) {
+            System.out.println("Cita: " + cita.getFechaHora() + " - " + cita.getNombrePaciente());
+        }
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -84,16 +85,16 @@ public class VerCitasAsignadasServlet extends HttpServlet {
 
     // Clase auxiliar para representar una cita asignada
     public static class CitaAsignada {
-        private java.sql.Timestamp fechaHora;
+        private String fechaHora;
         private String nombrePaciente;
         private String especialidad;
         private String estado;
 
-        public java.sql.Timestamp getFechaHora() {
+        public String getFechaHora() {
             return fechaHora;
         }
 
-        public void setFechaHora(java.sql.Timestamp fechaHora) {
+        public void setFechaHora(String fechaHora) {
             this.fechaHora = fechaHora;
         }
 

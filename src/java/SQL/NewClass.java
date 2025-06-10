@@ -7,10 +7,6 @@ package SQL;
 
 import java.util.Arrays;
 
-/**
- *
- * @author Emmanuel
- */
 public class NewClass {
 
     public static void main(String[] args) {

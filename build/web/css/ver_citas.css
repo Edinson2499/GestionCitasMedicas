@@ -1,0 +1,233 @@
+/* =========================
+   Estilos generales del body
+   ========================= */
+body {
+    background-color: rgb(233 246 253) !important; /* Fuerza el color de fondo */
+    background-size: cover;
+    background-position: center;
+    font-family: var(--bs-body-font-family, sans-serif);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    color: white;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* =========================
+   Contenedor principal (main)
+   ========================= */
+main {
+    background-color: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    color: #1d1414;
+    box-sizing: border-box;
+}
+
+/* =========================
+   Encabezado de la sección
+   ========================= */
+h1 {
+    color: #222;
+    margin-bottom: 30px;
+    font-size: clamp(20px, 6vw, 28px);
+    text-align: center;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 10px 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* =========================
+   Mensajes de estado
+   ========================= */
+.no-citas, .error {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    color: #e63731;
+}
+
+.no-citas {
+    color: #1d1414;
+}
+
+/* =========================
+   Lista de citas
+   ========================= */
+.cita-container {
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+}
+
+.cita-container li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: block;
+}
+
+.cita-container p {
+    margin: 8px 0;
+    font-size: 16px;
+}
+
+/* =========================
+   Botón de regreso
+   ========================= */
+a.btn-back {
+    width: 80px;
+    height: 80px;
+    background-image: url('../imagenes/Atras.webp');
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: inline-block;
+}
+
+.btn-back:hover {
+    background-image: url('../imagenes/Atras_hover.webp');
+}
+
+/* =========================
+   Modal genérico para confirmaciones
+   ========================= */
+.modal {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: auto;
+    background: rgba(0,0,0,0.45);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal .contenido-modal {
+    background: #fff;
+    color: #222;
+    margin: auto;
+    padding: 30px 25px 20px 25px;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+    min-width: 300px;
+    max-width: 90vw;
+    text-align: center;
+}
+
+.modal .buttonGroup {
+    margin-top: 20px;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+/* =========================
+   Responsividad para pantallas pequeñas
+   ========================= */
+@media screen and (max-width: 768px) {
+    body {
+        padding: 8px;
+    }
+
+    h1 {
+        font-size: 5vw;
+        padding: 8px 8px;
+    }
+
+    main {
+        padding: 15px;
+        border-radius: 14px;
+        max-width: 98vw;
+    }
+
+    .cita-container {
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    .cita-container p {
+        font-size: 14px;
+    }
+
+    a {
+        width: 50px;
+        height: 50px;
+        top: 10px;
+        left: 10px;
+        background-size: contain;
+    }
+
+    .modal .contenido-modal {
+        padding: 18px 10px 12px 10px;
+        min-width: 180px;
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    body {
+        padding: 2px;
+        background-color: rgb(233 246 253) !important; /* Fuerza el color de fondo */
+        background-size: 100vw 100vh;
+        background-repeat: no-repeat;
+        background-position: center center;
+        min-height: 100vh;
+        min-width: 100vw;
+        overflow-x: hidden;
+    }
+
+    h1 {
+        font-size: 16px;
+        padding: 6px 4px;
+        margin-bottom: 15px;
+    }
+
+    main {
+        width: 100%;
+        padding: 7px;
+        border-radius: 8px;
+    }
+
+    .cita-container {
+        padding: 7px;
+        border-radius: 7px;
+    }
+
+    .cita-container p {
+        font-size: 12px;
+    }
+
+    a {
+        width: 36px;
+        height: 36px;
+        top: 6px;
+        left: 6px;
+    }
+
+    .modal .contenido-modal {
+        padding: 10px 4px 8px 4px;
+        min-width: 120px;
+        font-size: 13px;
+    }
+}

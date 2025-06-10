@@ -1,74 +1,154 @@
-/*
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
-*/
-/* 
-    Created on : 22/04/2025, 3:45:59 p. m.
-    Author     : javie
-*/
-
+/* ================================
+   Estilos generales del cuerpo
+================================== */
 body {
-    font-family: sans-serif;
-    background-color: #f4f4f4;
+    font-family: var(--bs-body-font-family, sans-serif);
+    background-color: rgb(233 246 253) !important; /* Fuerza el color de fondo */
     margin: 0;
     padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center;
+    box-sizing: border-box;
+    background-size: 100vw 100vh;
 }
 
+/* ================================
+   Título principal (h1)
+================================== */
 h1 {
-    color: #333;
+    color: #222;
     margin-bottom: 20px;
-}
-
-div {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 80%;
+    font-size: clamp(20px, 6vw, 28px);
+    text-align: center;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 12px 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    width: 90%;
     max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-
-input[type="date"],
-input[type="time"] {
-    width: calc(100% - 12px);
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+/* ================================
+   Contenedor principal
+================================== */
+div.container-disponibilidad {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 600px;
+    margin: 0 auto;
     box-sizing: border-box;
 }
 
-button[type="submit"] {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 15px;
+/* ================================
+   Etiquetas de formulario
+================================== */
+label, .form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+/* ================================
+   Campos de fecha y hora
+================================== */
+input[type="date"],
+input[type="time"] {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ced4da;
+    border-radius: 0.375rem;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+/* ================================
+   Botón de envío
+================================== */
+button[type="submit"], .btn-guardar {
+    background: rgba(113, 206, 239, 1);
+    color: black;
+    padding: 12px 20px;
     border: none;
-    border-radius: 4px;
+    border-radius: 12px;
+    font-size: 18px;
     cursor: pointer;
-    font-size: 16px;
     transition: background-color 0.3s ease;
+    width: 100%;
+    margin-top: 10px;
 }
-
 button[type="submit"]:hover {
-    background-color: #0056b3;
+    background-color: rgba(5, 86, 179, 1);
+    color: white;
 }
-
-a {
+/* ================================
+   Botón de regreso
+================================== */
+a.btn-back {
+    width: 80px;
+    height: 80px;
+    background-image: url('../imagenes/Atras.webp');
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s;
+    position: absolute;
+    left: 30px;
+    top: 30px;
     display: inline-block;
-    margin-top: 20px;
-    text-decoration: none;
-    color: #007bff;
 }
 
-a:hover {
-    text-decoration: underline;
+a.btn-back:hover {
+    background-image: url(../imagenes/Atras_hover.webp);
+}
+
+/* ================================
+   Media queries: Responsividad y recursos móviles
+================================== */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 20px;
+        padding: 10px;
+    }
+
+    div.container-disponibilidad {
+        padding: 1rem;
+    }
+
+    input[type="date"],
+    input[type="time"],
+    button[type="submit"], .btn-guardar {
+        font-size: 1rem;
+        padding: 0.5rem;
+    }
+
+    a.btn-back {
+        width: 50px;
+        height: 50px;
+        background-image: url('../imagenes/Atras.webp');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    a.btn-back:hover {
+        background-image: url('../imagenes/Atras_hover.webp');
+    }
+
+    body {
+        background-color: rgb(233 246 253) !important; /* Fuerza el color de fondo */
+        background-size: 100vw 100vh;   /* Hace que la imagen cubra toda la pantalla */
+        background-repeat: no-repeat;
+        background-position: center center;
+        min-height: 100vh;
+        min-width: 100vw;
+        overflow-x: hidden;
+    }
 }

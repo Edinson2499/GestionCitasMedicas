@@ -1,11 +1,13 @@
-
-<%@pa</style>ge contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Registro E</title>
+        <link rel="icon" href="imagenes/Logo.svg" type="image/svg+xml">
         <link rel="stylesheet" href="css/estilosAltaUsuario.css" type="text/css" media="all">
+        <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
         <%
             response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
             response.setHeader("Pragma", "no-cache");
@@ -18,7 +20,7 @@
                 <input type="hidden" name="rol" value="especialista">
                 <h1>Registro de Usuarios</h1>
                 <br>
-                <label>ID:</label> <input type="text" class="txt" id="txtId" required="" name="txtiD">
+                <label style="display: inline-block; width: 100px; text-align: left; margin-right: 5px; margin-bottom: 5px;">ID:</label> <input type="text" class="txt" id="txtId" required name="txtiD" pattern="\d{6,}" title="Solo números, mínimo 6 dígitos">
                 <br>
                 <br>
                 <label style="display: inline-block; width: 100px; text-align: left; margin-right: 5px; margin-bottom: 5px;">Nombre:</label> 
@@ -28,54 +30,56 @@
                 <input type="text" class="txt" id="txtApellidos" required="" onkeyup="usuarioGeneradoAutomaticamente()" name="txtApellidos" style="margin-bottom: 5px;">
                 <br>
                 <label style="display: inline-block; width: 100px; text-align: left; margin-right: 5px; margin-bottom: 5px;">Telefono:</label> 
-                <input type="tel" class="txt" id="txtTelefono" required="" onkeyup="usuarioGeneradoAutomaticamente()" name="txtTelefono" style="margin-bottom: 5px;">
+                <input type="tel" class="txt" id="txtTelefono" required name="txtTelefono" pattern="\d{7,}" title="Solo números, mínimo 7 dígitos" style="margin-bottom: 5px;">
                 <br>
                 <label style="display: inline-block; width: 100px; text-align: left; margin-right: 5px; margin-bottom: 5px;">Direccion:</label> 
                 <input type="text" class="txt" id="txtDireccion" required="" onkeyup="usuarioGeneradoAutomaticamente()" name="txtDireccion" style="margin-bottom: 5px;">
                 <br>
+                <label style="display: inline-block; width: 100px; text-align: left; margin-right: 5px; margin-bottom: 5px;">Correo:</label>
+                <input type="text" class="txt" id="txtEmail" required="" onkeyup="usuarioGeneradoAutomaticamente()" name="txtEmail" style="margin-bottom: 5px;">
                 <br>
-                <label>Especialidad:</label>
-                <select class="txt select" id="txtEspecialidad" name="txtEspecialidad" required="">
-                    <option value=""disabled selected>Seleccione una especialidad</option>
-                    <option value="Cardiología">Cardiología</option>
-                    <option value="Dermatología">Dermatología</option>
-                    <option value="Pediatría">Pediatría</option>
-                    <option value="Neurología">Neurología</option>
-                    <option value="Oncología">Oncología</option>
-                    <option value="Psiquiatría">Psiquiatría</option>
-                    <option value="Ginecología">Ginecología</option>
-                    <option value="Oftalmología">Oftalmología</option>
-                    <option value="Ortopedia">Ortopedia</option>
-                    <option value="Endocrinología">Endocrinología</option>
-                    <option value="Traumatología">Traumatología</option>
-                    <option value="Otorrinolaringología">Otorrinolaringología</option>
-                    <option value="Medicina Interna">Medicina Interna</option>
-                    <option value="Urología">Urología</option>
-                    <option value="Radiología">Radiología</option>
-                    <option value="Anestesiología">Anestesiología</option>
-                    <option value="Cirugía General">Cirugía General</option>
-                    <option value="Neumología">Neumología</option>
-                    <option value="Gastroenterología">Gastroenterología</option>
-                    <option value="Nefrología">Nefrología</option>
-                    <option value="Inmunología">Inmunología</option>
-                </select>
+                <label style="display: inline-block; width: 100px; text-align: left; margin-right: 5px; margin-bottom: 5px;">Especialidad:</label>
+                <input list="especialidad" placeholder="Seleccione una especialidad" class="txt" id="txtEspecialidad" name="txtEspecialidad" required="">
+                <datalist id="especialidad">
+                    <option value="Cardiología"></option>
+                    <option value="Dermatología"></option>
+                    <option value="Pediatría"></option>
+                    <option value="Neurología"></option>
+                    <option value="Oncología"></option>
+                    <option value="Psiquiatría"></option>
+                    <option value="Ginecología"></option>
+                    <option value="Oftalmología"></option>
+                    <option value="Ortopedia"></option>
+                    <option value="Endocrinología"></option>
+                    <option value="Traumatología"></option>
+                    <option value="Otorrinolaringología"></option>
+                    <option value="Medicina Interna"></option>
+                    <option value="Urología"></option>
+                    <option value="Radiología"></option>
+                    <option value="Anestesiología"></option>
+                    <option value="Cirugía General"></option>
+                    <option value="Neumología"></option>
+                    <option value="Gastroenterología"> </option>
+                    <option value="Nefrología"></option>
+                    </datalist>
                 <br>
                 <br>
                 <label style="display: contents; width: 100px; text-align: left; margin-right: 5px; margin-bottom: 5px;">ID Tarjeta Profecional:</label> 
-                <input type="text" class="txt" id="txtTp" required="" name="txtTp"style="margin-bottom: 5px;">
+                <input type="text" class="txt" id="txtTp" required name="txtTp" pattern="\d{6,}" title="Solo números, mínimo 6 dígitos" style="margin-bottom: 5px;">
                 <br>
                 <label style="display: contents; width: 100px; text-align: left; margin-right: 5px; margin-bottom: 5px;">Contraseña:</label> 
-                <input type="password" class="txt" id="txtContrasena" required="" onkeyup="coincidirContrasena()"style="margin-bottom: 5px;">
+                <input type="password" class="txt" id="txtContrasena" required onkeyup="coincidirContrasena()" name="txtContrasena" pattern="\d{8,}" title="Mínimo 8 caracteres, al menos un número y un símbolo" style="margin-bottom: 5px;">
                 <br>
-                <label style="display: contents; width: 100px; text-align: left; margin-right: 5px; margin-bottom: 5px;">Repita la Contrasena:</label> 
-                <input type="password" class="txt" id="txtRepetirContrasena" required="" onkeyup="coincidirContrasena()" name="txtContrasena"style="margin-bottom: 5px;">
+                <label style="display: contents; width: 100px; text-align: left; margin-right: 5px; margin-bottom: 5px;">Repita la Contraseña:</label> 
+                <input type="password" class="txt" id="txtRepetirContrasena" required onkeyup="coincidirContrasena()" name="txtContrasena" pattern="\d{8,}" title="Mínimo 8 caracteres, al menos un número y un símbolo" style="margin-bottom: 5px;">
                 <br>
                 <br>
                 <label class="avisoContrasena" id="avisoContrasena"> ------- </label>
                 <br>
-                <br>
-                <label>Usuario Generado:</label> <input type="text" class="txt" id="txtUsuarioGeneradoAutomaticamente" required="" readonly="" name="txtUsuarioGeneradoAutomaticamente">
-                <br>
+                <div style="margin-bottom: 10px;">
+                    <label style="display: inline-block; width: 150px; text-align: left; margin-right: 10px;">Usuario Generado:</label>
+                    <input type="text" class="txt" id="txtUsuarioGeneradoAutomaticamente" required readonly name="txtUsuarioGeneradoAutomaticamente">
+                </div>
                 <br>
                 
                 <input type="submit" value="Enviar Datos" class="btn" id="btnEnviarDatos" disabled="">
@@ -83,6 +87,8 @@
                 
             </form>
         </div>
-    </body>
+    <!-- Bootstrap JS Bundle CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
     <script src="js/funcionesAltaUsuario.js"></script>
 </html>

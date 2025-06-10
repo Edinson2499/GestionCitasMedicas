@@ -7,8 +7,8 @@
 <!-- the Compile on Save feature is turned off for the project. -->
 <!-- You can turn off the Compile on Save (or Deploy on Save) setting -->
 <!-- in the project's Project Properties dialog box.-->
-<project name="citasMedicasV1" default="default" basedir=".">
-    <description>Builds, tests, and runs the project citasMedicasV1.</description>
+<project name="citasMedicas" default="default" basedir=".">
+    <description>Builds, tests, and runs the project citasMedicas.</description>
     <import file="nbproject/build-impl.xml"/>
     <!--
 
@@ -68,4 +68,14 @@
     nbproject/build-impl.xml file. 
 
     -->
+    <target name="-pre-compile">
+        <path id="project.classpath">
+            <fileset dir="web/WEB-INF/lib">
+                <include name="javax.mail-1.6.2.jar"/>
+            </fileset>
+        </path>
+        <property name="javac.source" value="17"/>
+        <property name="javac.target" value="17"/>
+        <property name="javac.release" value="17"/>
+    </target>
 </project>

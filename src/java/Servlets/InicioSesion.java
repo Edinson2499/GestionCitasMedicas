@@ -35,41 +35,90 @@ public class InicioSesion extends HttpServlet {
         String txtUsuario = request.getParameter("txtUsuario");
         String txtContrasena = request.getParameter("txtContrasena");
 
+        if (txtUsuario == null || txtContrasena == null || txtUsuario.isEmpty() || txtContrasena.isEmpty()) {
+            out.println("<h2>Error: Usuario o contraseña vacíos.</h2>");
+            return;
+        }
+
         out.println("<!DOCTYPE html>");
         out.println("<html>");
+        out.println("<head>");
+        out.println("<meta charset='UTF-8'>");
+        out.println("<title>Inicio de Sesión</title>");
+        out.println("<link rel='icon' href='imagenes/Logo.png' type='image/png'>");
+        out.println("<meta name='viewport' content='width=device-width, initial-scale=1.0'>");
+        out.println("<style>");
+        out.println("body { margin: 0; font-family: Arial, sans-serif; background-color: #e6f4fe; }"); // fondo azul celeste claro
+        out.println(".modal { display: flex; justify-content: center; align-items: center; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; }");
+        out.println(".modal-content {");
+        out.println("  background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);");
+        out.println("  color: #000000;");
+        out.println("  padding: 30px;");
+        out.println("  border-radius: 12px;");
+        out.println("  text-align: center;");
+        out.println("  width: 90%; max-width: 400px;");
+        out.println("  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);");
+        out.println("}");
+        out.println(".modal-content h2 { margin-top: 0; font-weight: bold; }");
+        out.println(".modal-content p { margin: 10px 0; }");
+        out.println(".modal-content button { background-color:rgba(113, 206, 239, 1); border: none; color: black; padding: 10px 20px; margin-top: 20px; font-size: 16px; cursor: pointer; border-radius: 8px; }");
+        out.println(".modal-content button:hover { background-color:rgba(113, 206, 239, 1); }");
+        out.println("</style>");
+        out.println("</head>");
         out.println("<body>");
-        out.println("<script type=\"text/javascript\">");
 
-        // Ahora buscarUsuarioInicioSesion retorna el rol
         String rol = metodos.buscarUsuarioInicioSesion(txtUsuario, txtContrasena);
 
-        if (rol != null) { // Inicio de sesión exitoso
+        if (rol != null) {
             String nombre = metodos.buscarNombre(txtUsuario);
             int idUsuario = metodos.buscarIdUsuario(txtUsuario);
 
             sesion.setAttribute("nombre", nombre);
             sesion.setAttribute("txtUsuario", txtUsuario);
             sesion.setAttribute("rol", rol);
-            sesion.setAttribute("idUsuario", idUsuario); // Guardar el ID en la sesión
+            sesion.setAttribute("idUsuario", idUsuario);
 
-            out.println("alert('¡Bienvenido a mi página! \\nIniciaste sesión como: " + txtUsuario + " (Rol: " + rol + ")')");
+            out.println("<div class='modal' id='welcomeModal'>");
+            out.println("  <div class='modal-content'>");
+            out.println("    <h2>¡Bienvenido a BuinessHealth!</h2>");
+            out.println("    <p>Iniciaste sesión como: <strong>" + txtUsuario + "</strong> (Rol: " + rol + ")</p>");
+            out.println("    <button onclick='redirigir()'>Aceptar</button>");
+            out.println("  </div>");
+            out.println("</div>");
+
+            out.println("<script type='text/javascript'>");
+            out.println("function redirigir() {");
 
             if (rol.equals("paciente")) {
-                out.println("location = 'menu_paciente.jsp'");
+                out.println("  window.location = 'menu_paciente.jsp';");
             } else if (rol.equals("especialista")) {
-                out.println("location = 'menu_Especialista.jsp'"); // Asegúrate de tener este JSP
+                out.println("  window.location = 'menu_especialista.jsp';");
+            } else if (rol.equals("administrador")) {
+                out.println("  window.location = 'index.html';");
             } else {
-                out.println("location = 'menu_otro.jsp'"); // Para otros roles si los hay
+                out.println("  window.location = 'index.html';");
             }
 
+
+            out.println("}");
+            out.println("</script>");
+
         } else {
-            out.println("alert('Datos Incorrectos, verifica tus credenciales o date de alta en el sistema')");
-            out.println("location = 'index.html'");
+            out.println("<div class='modal' id='errorModal'>");
+            out.println("  <div class='modal-content'>");
+            out.println("    <h2>Datos Incorrectos</h2>");
+            out.println("    <p>Verifica tus credenciales o date de alta en el sistema.</p>");
+            out.println("    <button onclick='redirigirError()'>Aceptar</button>");
+            out.println("  </div>");
+            out.println("</div>");
+
+            out.println("<script type='text/javascript'>");
+            out.println("function redirigirError() {");
+            out.println("  window.location = 'index.html';");
+            out.println("}");
+            out.println("</script>");
         }
 
-        System.out.println("El valor del rol dentro del SERVLET es: " + rol);
-
-        out.println("</script>");
         out.println("</body>");
         out.println("</html>");
     }

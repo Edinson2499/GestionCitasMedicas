@@ -1,0 +1,131 @@
+/* ==============================
+   Estilos generales del body
+   ============================== */
+body {
+    background-image: url(../imagenes/Menus.webp);
+    background-size: cover;
+    background-position: center;
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;    /* Centrar horizontalmente */
+    align-items: center;        /* Centrar verticalmente */
+    flex-direction: column;     /* Organizar elementos en columna */
+    height: 100vh;              /* Altura completa de la ventana */
+    margin: 0;
+    color: white;
+}
+
+/* ==============================
+   Título principal (h1)
+   ============================== */
+h1 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* ==============================
+   Contenedor del menú de usuario
+   ============================== */
+.menu-usuario {
+    background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* ==============================
+   Lista dentro del menú de usuario
+   ============================== */
+.menu-usuario ul {
+    list-style: none;          /* Quitar viñetas */
+    padding: 0;
+    margin: 0;
+    display: inline-block;     /* Para ajustar al contenido */
+}
+
+/* ==============================
+   Elementos de la lista
+   ============================== */
+.menu-usuario li {
+    margin: 15px 0;            /* Espacio vertical entre items */
+}
+
+/* ==============================
+   Enlaces dentro del menú de usuario
+   ============================== */
+.menu-usuario a {
+    display: block;            /* Que el enlace ocupe todo el bloque */
+    padding: 12px 25px;
+    text-decoration: none;     /* Sin subrayado */
+    color: #333;
+    font-size: 18px;
+    border-radius: 10px;
+    background-color: #fff;    /* Fondo blanco */
+    transition: background-color 0.3s ease;
+}
+
+/* ==============================
+   Efecto hover para los enlaces
+   ============================== */
+.menu-usuario a:hover {
+    background-color: #e0f7fa; /* Fondo celeste claro */
+    color: #007bff;            /* Texto azul brillante */
+}
+
+/* ==============================
+   RESPONSIVE PARA MENÚ DE USUARIO
+   ============================== */
+@media screen and (max-width: 480px) {
+    body {
+        padding: 5px;
+        background-image: url(../imagenes/Menus_C.webp); /* Fuerza el color de fondo */
+        background-size: 100vw 100vh;
+        background-repeat: no-repeat;
+        background-position: center center;
+        min-height: 100vh;
+        min-width: 100vw;
+        overflow-x: hidden; /* Empieza desde arriba */
+    }
+
+    h1 {
+        font-size: 1.8em;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .menu-usuario {
+        width: 100%;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: none;
+        margin-top: 20px;
+    }
+
+    .menu-usuario ul {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .menu-usuario li {
+        margin: 10px 0;
+        width: 100%;
+    }
+
+    .menu-usuario a {
+        font-size: 16px;
+        padding: 12px;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        background-color: #ffffff;
+        color: #333;
+    }
+
+    .menu-usuario a:hover {
+        background-color: #d6f5ff;
+        color: #007bff;
+    }
+}
